@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_05_22_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_05_22_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_05_22_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_05_22_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿
+     <span data-begin="3.180" data-dur="0.099">
+      CHAPTER
+     </span>
+     <span data-begin="6.620" data-dur="0.360">
+      XXII
+     </span>
+     <p>
+      第二十二章
+     </p>
+    </p>
+    <p>
+     <span data-begin="7.540" data-dur="1.340">
+      In
+     </span>
+     <span data-begin="9.320" data-dur="0.299">
+      1809
+     </span>
+     <span data-begin="10.080" data-dur="0.000">
+      the
+     </span>
+     <span data-begin="10.080" data-dur="0.519">
+      intimacy
+     </span>
+     <span data-begin="10.599" data-dur="0.520">
+      between
+     </span>
+     "
+     <span data-begin="11.119" data-dur="0.181">
+      the
+     </span>
+     <span data-begin="11.300" data-dur="0.280">
+      world's
+     </span>
+     <span data-begin="11.580" data-dur="0.359">
+      two
+     </span>
+     <span data-begin="11.939" data-dur="0.840">
+      arbiters
+     </span>
+     ,"
+     <span data-begin="13.160" data-dur="0.199">
+      as
+     </span>
+     <span data-begin="13.359" data-dur="0.361">
+      Napoleon
+     </span>
+     <span data-begin="13.720" data-dur="0.479">
+      and
+     </span>
+     <span data-begin="14.199" data-dur="0.381">
+      Alexander
+     </span>
+     <span data-begin="14.580" data-dur="0.400">
+      were
+     </span>
+     <span data-begin="14.980" data-dur="0.480">
+      called
+     </span>
+     ,
+     <span data-begin="15.820" data-dur="0.280">
+      was
+     </span>
+     <span data-begin="16.100" data-dur="0.439">
+      such
+     </span>
+     <span data-begin="16.539" data-dur="0.261">
+      that
+     </span>
+     <span data-begin="16.800" data-dur="0.160">
+      when
+     </span>
+     <span data-begin="16.960" data-dur="0.379">
+      Napoleon
+     </span>
+     <span data-begin="17.339" data-dur="0.380">
+      declared
+     </span>
+     <span data-begin="17.719" data-dur="0.401">
+      war
+     </span>
+     <span data-begin="18.120" data-dur="0.219">
+      on
+     </span>
+     <span data-begin="18.339" data-dur="0.540">
+      Austria
+     </span>
+     <span data-begin="19.539" data-dur="0.040">
+      a
+     </span>
+     <span data-begin="19.579" data-dur="0.260">
+      Russian
+     </span>
+     <span data-begin="19.839" data-dur="0.340">
+      corps
+     </span>
+     <span data-begin="20.179" data-dur="0.421">
+      crossed
+     </span>
+     <span data-begin="20.600" data-dur="0.239">
+      the
+     </span>
+     <span data-begin="20.839" data-dur="0.461">
+      frontier
+     </span>
+     <span data-begin="21.300" data-dur="0.460">
+      to
+     </span>
+     co-
+     <span data-begin="21.760" data-dur="0.419">
+      operate
+     </span>
+     <span data-begin="22.179" data-dur="0.340">
+      with
+     </span>
+     <span data-begin="22.519" data-dur="0.200">
+      our
+     </span>
+     <span data-begin="22.719" data-dur="0.340">
+      old
+     </span>
+     <span data-begin="23.059" data-dur="0.320">
+      enemy
+     </span>
+     <span data-begin="23.379" data-dur="0.741">
+      Bonaparte
+     </span>
+     <span data-begin="24.120" data-dur="0.860">
+      against
+     </span>
+     <span data-begin="24.980" data-dur="0.379">
+      our
+     </span>
+     <span data-begin="25.359" data-dur="0.441">
+      old
+     </span>
+     <span data-begin="25.800" data-dur="0.300">
+      ally
+     </span>
+     <span data-begin="26.440" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="26.539" data-dur="0.360">
+      Emperor
+     </span>
+     <span data-begin="26.899" data-dur="0.221">
+      of
+     </span>
+     <span data-begin="27.120" data-dur="0.619">
+      Austria
+     </span>
+     ,
+     <span data-begin="28.420" data-dur="0.180">
+      and
+     </span>
+     <span data-begin="28.600" data-dur="0.119">
+      in
+     </span>
+     <span data-begin="28.719" data-dur="0.261">
+      court
+     </span>
+     <span data-begin="28.980" data-dur="0.520">
+      circles
+     </span>
+     <span data-begin="29.500" data-dur="0.260">
+      the
+     </span>
+     <span data-begin="29.760" data-dur="0.540">
+      possibility
+     </span>
+     <span data-begin="30.300" data-dur="0.259">
+      of
+     </span>
+     <span data-begin="30.559" data-dur="0.480">
+      marriage
+     </span>
+     <span data-begin="31.039" data-dur="0.781">
+      between
+     </span>
+     <span data-begin="31.820" data-dur="0.479">
+      Napoleon
+     </span>
+     <span data-begin="32.299" data-dur="0.460">
+      and
+     </span>
+     <span data-begin="32.759" data-dur="0.220">
+      one
+     </span>
+     <span data-begin="32.979" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="33.119" data-dur="0.680">
+      Alexander's
+     </span>
+     <span data-begin="33.799" data-dur="0.320">
+      sisters
+     </span>
+     <span data-begin="34.119" data-dur="0.381">
+      was
+     </span>
+     <span data-begin="34.500" data-dur="0.420">
+      spoken
+     </span>
+     <span data-begin="34.920" data-dur="0.320">
+      of
+     </span>
+     .
+     <span data-begin="35.960" data-dur="0.339">
+      But
+     </span>
+     <span data-begin="36.299" data-dur="0.301">
+      besides
+     </span>
+     <span data-begin="36.600" data-dur="0.839">
+      considerations
+     </span>
+     <span data-begin="37.439" data-dur="0.180">
+      of
+     </span>
+     <span data-begin="37.619" data-dur="0.280">
+      foreign
+     </span>
+     <span data-begin="37.899" data-dur="0.640">
+      policy
+     </span>
+     ,
+     <span data-begin="39.100" data-dur="0.159">
+      the
+     </span>
+     <span data-begin="39.259" data-dur="0.360">
+      attention
+     </span>
+     <span data-begin="39.619" data-dur="0.201">
+      of
+     </span>
+     <span data-begin="39.820" data-dur="0.280">
+      Russian
+     </span>
+     <span data-begin="40.100" data-dur="0.820">
+      society
+     </span>
+     <span data-begin="40.920" data-dur="0.339">
+      was
+     </span>
+     <span data-begin="41.259" data-dur="0.180">
+      at
+     </span>
+     <span data-begin="41.439" data-dur="0.161">
+      that
+     </span>
+     <span data-begin="41.600" data-dur="0.460">
+      time
+     </span>
+     <span data-begin="42.060" data-dur="0.400">
+      keenly
+     </span>
+     <span data-begin="42.460" data-dur="0.460">
+      directed
+     </span>
+     <span data-begin="42.920" data-dur="0.339">
+      on
+     </span>
+     <span data-begin="43.259" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="43.399" data-dur="0.421">
+      internal
+     </span>
+     <span data-begin="43.820" data-dur="0.640">
+      changes
+     </span>
+     <span data-begin="44.460" data-dur="0.600">
+      that
+     </span>
+     <span data-begin="45.060" data-dur="0.180">
+      were
+     </span>
+     <span data-begin="45.240" data-dur="0.339">
+      being
+     </span>
+     <span data-begin="45.579" data-dur="0.460">
+      undertaken
+     </span>
+     <span data-begin="46.039" data-dur="0.381">
+      in
+     </span>
+     <span data-begin="46.420" data-dur="0.280">
+      all
+     </span>
+     <span data-begin="46.700" data-dur="0.159">
+      the
+     </span>
+     <span data-begin="46.859" data-dur="0.561">
+      departments
+     </span>
+     <span data-begin="47.420" data-dur="0.259">
+      of
+     </span>
+     <span data-begin="47.679" data-dur="0.580">
+      government
+     </span>
+     .
+     <p>
+      1809 年，拿破仑和亚历山大被称为 "世界上的两位仲裁者"，他们之间的关系非常亲密，以至于当拿破仑向奥地利宣战时，一支俄国军团越过边境，与我们的老对手波拿巴合作，对抗我们的老盟友奥地利皇帝。但是，除了外交政策，当时俄国社会的注意力还集中在政府各部门正在进行的内部变革上。
+     </p>
+    </p>
+    <p>
+     <span data-begin="49.520" data-dur="0.839">
+      Life
+     </span>
+     <span data-begin="50.740" data-dur="0.339">
+      meanwhile
+     </span>
+     —
+     <span data-begin="51.859" data-dur="0.180">
+      real
+     </span>
+     <span data-begin="52.039" data-dur="0.580">
+      life
+     </span>
+     ,
+     <span data-begin="52.859" data-dur="0.201">
+      with
+     </span>
+     <span data-begin="53.060" data-dur="0.220">
+      its
+     </span>
+     <span data-begin="53.280" data-dur="0.460">
+      essential
+     </span>
+     <span data-begin="53.740" data-dur="0.460">
+      interests
+     </span>
+     <span data-begin="54.200" data-dur="0.419">
+      of
+     </span>
+     <span data-begin="54.619" data-dur="0.240">
+      health
+     </span>
+     <span data-begin="54.859" data-dur="0.281">
+      and
+     </span>
+     <span data-begin="55.140" data-dur="0.439">
+      sickness
+     </span>
+     ,
+     <span data-begin="56.299" data-dur="0.201">
+      toil
+     </span>
+     <span data-begin="56.500" data-dur="0.280">
+      and
+     </span>
+     <span data-begin="56.780" data-dur="0.220">
+      rest
+     </span>
+     ,
+     <span data-begin="57.719" data-dur="0.080">
+      and
+     </span>
+     <span data-begin="57.799" data-dur="0.180">
+      its
+     </span>
+     <span data-begin="57.979" data-dur="0.401">
+      intellectual
+     </span>
+     <span data-begin="58.380" data-dur="0.860">
+      interests
+     </span>
+     <span data-begin="59.240" data-dur="0.220">
+      in
+     </span>
+     <span data-begin="59.460" data-dur="0.320">
+      thought
+     </span>
+     ,
+     <span data-begin="60.119" data-dur="0.420">
+      science
+     </span>
+     ,
+     <span data-begin="61.000" data-dur="0.280">
+      poetry
+     </span>
+     ,
+     <span data-begin="61.820" data-dur="0.280">
+      music
+     </span>
+     ,
+     <span data-begin="62.600" data-dur="0.140">
+      love
+     </span>
+     ,
+     <span data-begin="63.200" data-dur="0.459">
+      friendship
+     </span>
+     ,
+     <span data-begin="64.340" data-dur="0.300">
+      hatred
+     </span>
+     ,
+     <span data-begin="64.640" data-dur="0.360">
+      and
+     </span>
+     <span data-begin="65.000" data-dur="0.420">
+      passions
+     </span>
+     —
+     <span data-begin="66.219" data-dur="0.580">
+      went
+     </span>
+     <span data-begin="66.799" data-dur="0.220">
+      on
+     </span>
+     <span data-begin="67.019" data-dur="0.241">
+      as
+     </span>
+     <span data-begin="67.260" data-dur="0.479">
+      usual
+     </span>
+     ,
+     <span data-begin="68.260" data-dur="0.420">
+      independently
+     </span>
+     <span data-begin="68.680" data-dur="0.479">
+      of
+     </span>
+     <span data-begin="69.159" data-dur="0.341">
+      and
+     </span>
+     <span data-begin="69.500" data-dur="0.319">
+      apart
+     </span>
+     <span data-begin="69.819" data-dur="0.321">
+      from
+     </span>
+     <span data-begin="70.140" data-dur="0.379">
+      political
+     </span>
+     <span data-begin="70.519" data-dur="0.661">
+      friendship
+     </span>
+     <span data-begin="71.180" data-dur="0.679">
+      or
+     </span>
+     <span data-begin="71.859" data-dur="0.641">
+      enmity
+     </span>
+     <span data-begin="72.500" data-dur="0.500">
+      with
+     </span>
+     <span data-begin="73.000" data-dur="0.500">
+      Napoleon
+     </span>
+     <span data-begin="73.500" data-dur="0.680">
+      Bonaparte
+     </span>
+     <span data-begin="74.180" data-dur="0.360">
+      and
+     </span>
+     <span data-begin="74.540" data-dur="0.160">
+      from
+     </span>
+     <span data-begin="74.700" data-dur="0.300">
+      all
+     </span>
+     the
+     <span data-begin="75.000" data-dur="0.439">
+      schemes
+     </span>
+     <span data-begin="75.439" data-dur="0.261">
+      of
+     </span>
+     <span data-begin="75.700" data-dur="0.720">
+      reconstruction
+     </span>
+     .
+     <p>
+      与此同时，生活--真正的生活，包括健康与疾病、劳作与休息等基本利益，以及思想、科学、诗歌、音乐、爱情、友谊、仇恨和激情等智力利益--照常进行，与拿破仑-波拿巴的政治友谊或敌意以及所有重建计划无关。
+     </p>
+    </p>
+    <p>
+     <span data-begin="83.739" data-dur="0.140">
+      BOOK
+     </span>
+     <span data-begin="84.439" data-dur="0.341">
+      SIX
+     </span>
+     :
+     <span data-begin="84.780" data-dur="0.220">
+      1808
+     </span>
+     -
+     <span data-begin="85.000" data-dur="0.599">
+      10
+     </span>
+     <p>
+      第六册：1808 - 10
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>

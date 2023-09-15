@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_07_02_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_07_02_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_07_02_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_07_02_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER II
+     <p>
+      第二章
+     </p>
+    </p>
+    <p>
+     After reaching home Nicholas was at first serious and even dull. He was worried by the impending necessity of interfering in the stupid business matters for which his mother had called him home. To throw off this burden as quickly as possible, on the third day after his arrival he went, angry and scowling and without answering questions as to where he was going, to Mitenka's lodge and demanded an account of everything. But what an account of everything might be Nicholas knew even less than the frightened and bewildered Mitenka. The conversation and the examination of the accounts with Mitenka did not last long. The village elder, a peasant delegate, and the village clerk, who were waiting in the passage, heard with fear and delight first the young count's voice roaring and snapping and rising louder and louder, and then words of abuse, dreadful words, ejaculated one after the other.
+     <p>
+      回到家后，尼古拉斯一开始很严肃，甚至有些沉闷。母亲叫他回家是为了处理一些愚蠢的公务，而他马上就要插手这些公务，这让他很担心。为了尽快甩掉这个包袱，他在到家后的第三天就怒气冲冲、面无表情地去了米登卡的小屋，问他要去哪里，他也不回答。尼古拉斯比惊慌失措的米滕卡更不清楚事情的真相。与米登卡的谈话和审查账目并没有持续多久。村长、农民代表和村支书在通道里等着，他们又惊又喜，先是听到年轻伯爵的声音又吼又叫，声音越来越大，然后是辱骂的话语，可怕的话语，一个接一个地说了出来。
+     </p>
+    </p>
+    <p>
+     "Robber!... Ungrateful wretch!... I'll hack the dog to pieces! I'm not my father!... Robbing us!..." and so on.
+     <p>
+      强盗忘恩负义的卑鄙小人！...我要把这条狗砍成碎片我不是我父亲！...抢劫我们！...... "等等。
+     </p>
+    </p>
+    <p>
+     Then with no less fear and delight they saw how the young count, red in the face and with bloodshot eyes, dragged Mitenka out by the scruff of the neck and applied his foot and knee to his behind with great agility at convenient moments between the words, shouting, "Be off! Never let me see your face here again, you villain!"
+     <p>
+      然后，他们又惊又喜地看到，年轻的伯爵满脸通红，双眼布满血丝，拽着米登卡的脖子把他拖了出来，并在说话的间隙用脚和膝盖灵活地顶着他的后背，喊道："滚开！别让我再看到你的脸，你这个恶棍！"
+     </p>
+    </p>
+    <p>
+     Mitenka flew headlong down the six steps and ran away into the shrubbery. (This shrubbery was a well-known haven of refuge for culprits at Otradnoe. Mitenka himself, returning tipsy from the town, used to hide there, and many of the residents at Otradnoe, hiding from Mitenka, knew of its protective qualities.)
+     <p>
+      米腾卡一头飞下六级台阶，跑进灌木丛中。(这片灌木丛是奥特拉德诺伊著名的罪犯避难所）。米登卡本人从城里醉醺醺地回来时，就经常躲在那里，奥特拉德诺伊的许多居民为了躲避米登卡，也都知道灌木丛的保护作用）。
+     </p>
+    </p>
+    <p>
+     Mitenka's wife and sisters-in-law thrust their heads and frightened faces out of the door of a room where a bright samovar was boiling and where the steward's high bedstead stood with its patchwork quilt.
+     <p>
+      米滕卡的妻子和妯娌们把头和惊恐的面孔从房间的门缝里伸出来，房间里烧着明亮的茶炊，管家的高脚床架上放着拼接的被子。
+     </p>
+    </p>
+    <p>
+     The young count paid no heed to them, but, breathing hard, passed by with resolute strides and went into the house.
+     <p>
+      年轻的伯爵没有理会她们，而是喘着粗气，迈着坚定的步伐走过她们，进了屋子。
+     </p>
+    </p>
+    <p>
+     The countess, who heard at once from the maids what had happened at the lodge, was calmed by the thought that now their affairs would certainly improve, but on the other hand felt anxious as to the effect this excitement might have on her son. She went several times to his door on tiptoe and listened, as he lighted one pipe after another.
+     <p>
+      伯爵夫人马上从女仆们那里听说了小屋发生的事情，想到现在他们的情况肯定会有所好转，她的心情平静了下来，但另一方面，她又担心这种刺激会对儿子产生影响。她几次蹑手蹑脚地走到儿子家门口，听着他点燃一个又一个烟斗。
+     </p>
+    </p>
+    <p>
+     Next day the old count called his son aside and, with an embarrassed smile, said to him:
+     <p>
+      第二天，老伯爵把儿子叫到一边，尴尬地笑着对他说："但是你知道
+     </p>
+    </p>
+    <p>
+     "But you know, my dear boy, it's a pity you got excited! Mitenka has told me all about it."
+     <p>
+      "但你知道吗，我亲爱的孩子，你太激动了，太可惜了！米滕卡已经把一切都告诉我了。"
+     </p>
+    </p>
+    <p>
+     "I knew," thought Nicholas, "that I should never understand anything in this crazy world."
+     <p>
+      "我就知道，"尼古拉斯想，"在这个疯狂的世界里，我永远不会明白任何事。"
+     </p>
+    </p>
+    <p>
+     "You were angry that he had not entered those 700
+     <span data-begin="144.730" data-dur="0.489">
+      rubles
+     </span>
+     .
+     <span data-begin="145.599" data-dur="0.099">
+      But
+     </span>
+     <span data-begin="145.699" data-dur="0.089">
+      they
+     </span>
+     <span data-begin="145.789" data-dur="0.110">
+      were
+     </span>
+     <span data-begin="145.899" data-dur="0.290">
+      carried
+     </span>
+     <span data-begin="146.189" data-dur="0.420">
+      forward
+     </span>
+     —
+     <span data-begin="146.779" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="146.919" data-dur="0.099">
+      you
+     </span>
+     <span data-begin="147.019" data-dur="0.130">
+      did
+     </span>
+     <span data-begin="147.149" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="147.359" data-dur="0.179">
+      look
+     </span>
+     <span data-begin="147.539" data-dur="0.078">
+      at
+     </span>
+     <span data-begin="147.618" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="147.709" data-dur="0.170">
+      other
+     </span>
+     <span data-begin="147.879" data-dur="0.440">
+      page
+     </span>
+     ."
+     <p>
+      "你生气的是他没有输入那700卢布。"但他们被转走了 而你却没看另一页"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="148.579" data-dur="0.370">
+      Papa
+     </span>
+     ,
+     <span data-begin="148.949" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="149.050" data-dur="0.110">
+      is
+     </span>
+     <span data-begin="149.160" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="149.219" data-dur="0.459">
+      blackguard
+     </span>
+     <span data-begin="149.679" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="149.809" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="149.838" data-dur="0.441">
+      thief
+     </span>
+     !
+     <span data-begin="150.320" data-dur="0.097">
+      I
+     </span>
+     <span data-begin="150.418" data-dur="0.211">
+      know
+     </span>
+     <span data-begin="150.629" data-dur="0.170">
+      he
+     </span>
+     <span data-begin="150.800" data-dur="0.269">
+      is
+     </span>
+     !
+     <span data-begin="151.509" data-dur="0.170">
+      And
+     </span>
+     <span data-begin="151.679" data-dur="0.190">
+      what
+     </span>
+     <span data-begin="151.869" data-dur="0.140">
+      I
+     </span>
+     <span data-begin="152.009" data-dur="0.160">
+      have
+     </span>
+     <span data-begin="152.169" data-dur="0.229">
+      done
+     </span>
+     ,
+     <span data-begin="152.429" data-dur="0.179">
+      I
+     </span>
+     <span data-begin="152.609" data-dur="0.140">
+      have
+     </span>
+     <span data-begin="152.750" data-dur="0.179">
+      done
+     </span>
+     ;
+     <span data-begin="153.359" data-dur="0.120">
+      but
+     </span>
+     ,
+     <span data-begin="153.480" data-dur="0.128">
+      if
+     </span>
+     <span data-begin="153.609" data-dur="0.120">
+      you
+     </span>
+     <span data-begin="153.730" data-dur="0.210">
+      like
+     </span>
+     ,
+     <span data-begin="153.969" data-dur="0.089">
+      I
+     </span>
+     <span data-begin="154.059" data-dur="0.220">
+      won't
+     </span>
+     <span data-begin="154.279" data-dur="0.229">
+      speak
+     </span>
+     <span data-begin="154.509" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="154.640" data-dur="0.097">
+      him
+     </span>
+     <span data-begin="154.738" data-dur="1.000">
+      again
+     </span>
+     ."
+     <p>
+      "爸爸，他是个恶棍和小偷！我知道他是！我已经做了，我已经做了；但是，如果你愿意，我不会再跟他说话了。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="155.980" data-dur="0.179">
+      No
+     </span>
+     ,
+     <span data-begin="156.160" data-dur="0.160">
+      my
+     </span>
+     <span data-begin="156.320" data-dur="0.199">
+      dear
+     </span>
+     <span data-begin="156.519" data-dur="0.199">
+      boy
+     </span>
+     " (
+     <span data-begin="156.929" data-dur="1.000">
+      the
+     </span>
+     count, too, felt embarrassed. He knew he had mismanaged his wife's property and was to blame toward his children, but he did not know how to remedy it). "
+     <span data-begin="164.629" data-dur="0.329">
+      No
+     </span>
+     ,
+     <span data-begin="164.959" data-dur="0.078">
+      I
+     </span>
+     <span data-begin="165.038" data-dur="0.241">
+      beg
+     </span>
+     <span data-begin="165.279" data-dur="0.089">
+      you
+     </span>
+     <span data-begin="165.369" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="165.539" data-dur="0.290">
+      attend
+     </span>
+     <span data-begin="165.829" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="165.919" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="166.009" data-dur="0.500">
+      business
+     </span>
+     .
+     <span data-begin="166.550" data-dur="0.128">
+      I
+     </span>
+     <span data-begin="166.679" data-dur="0.170">
+      am
+     </span>
+     <span data-begin="166.849" data-dur="0.280">
+      old
+     </span>
+     .
+     <span data-begin="167.189" data-dur="0.329">
+      I
+     </span>
+     ..."
+     <p>
+      "不，我亲爱的孩子"（伯爵也感到尴尬。他知道自己对妻子的财产管理不善，对孩子们也有责任，但他不知道该如何补救）。"不，我请求您去处理这件事。我老了。I..."
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="168.159" data-dur="0.199">
+      No
+     </span>
+     ,
+     <span data-begin="168.359" data-dur="0.310">
+      Papa
+     </span>
+     .
+     <span data-begin="168.719" data-dur="0.359">
+      Forgive
+     </span>
+     <span data-begin="169.130" data-dur="0.128">
+      me
+     </span>
+     <span data-begin="169.259" data-dur="0.099">
+      if
+     </span>
+     <span data-begin="169.389" data-dur="0.068">
+      I
+     </span>
+     <span data-begin="169.458" data-dur="0.180">
+      have
+     </span>
+     <span data-begin="169.639" data-dur="0.329">
+      caused
+     </span>
+     <span data-begin="169.969" data-dur="0.170">
+      you
+     </span>
+     <span data-begin="170.169" data-dur="1.000">
+      unpleasantness
+     </span>
+     .
+     <span data-begin="171.369" data-dur="0.068">
+      I
+     </span>
+     <span data-begin="171.438" data-dur="0.511">
+      understand
+     </span>
+     <span data-begin="171.950" data-dur="0.080">
+      it
+     </span>
+     <span data-begin="172.069" data-dur="0.210">
+      all
+     </span>
+     <span data-begin="172.279" data-dur="0.229">
+      less
+     </span>
+     <span data-begin="172.509" data-dur="0.089">
+      than
+     </span>
+     <span data-begin="172.599" data-dur="0.140">
+      you
+     </span>
+     <span data-begin="172.739" data-dur="1.000">
+      do
+     </span>
+     ."
+     <p>
+      "不，爸爸。如果我给您带来不愉快，请原谅我。我比你更不了解这一切。"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="174.119" data-dur="0.269">
+      Devil
+     </span>
+     <span data-begin="174.389" data-dur="0.260">
+      take
+     </span>
+     <span data-begin="174.649" data-dur="0.170">
+      all
+     </span>
+     <span data-begin="174.819" data-dur="0.240">
+      these
+     </span>
+     <span data-begin="175.059" data-dur="0.500">
+      peasants
+     </span>
+     ,
+     <span data-begin="175.559" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="175.689" data-dur="0.229">
+      money
+     </span>
+     <span data-begin="175.920" data-dur="0.380">
+      matters
+     </span>
+     ,
+     <span data-begin="176.300" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="176.420" data-dur="0.468">
+      carryings
+     </span>
+     <span data-begin="176.889" data-dur="0.420">
+      forward
+     </span>
+     <span data-begin="177.309" data-dur="0.260">
+      from
+     </span>
+     <span data-begin="177.569" data-dur="0.359">
+      page
+     </span>
+     <span data-begin="177.929" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="178.029" data-dur="0.340">
+      page
+     </span>
+     ,"
+     <span data-begin="178.369" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="178.460" data-dur="0.310">
+      thought
+     </span>
+     . "
+     <span data-begin="179.269" data-dur="0.058">
+      I
+     </span>
+     <span data-begin="179.328" data-dur="0.251">
+      used
+     </span>
+     <span data-begin="179.579" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="179.670" data-dur="0.518">
+      understand
+     </span>
+     <span data-begin="180.189" data-dur="0.149">
+      what
+     </span>
+     <span data-begin="180.340" data-dur="0.040">
+      a
+     </span>
+     '
+     <span data-begin="180.479" data-dur="0.459">
+      corner
+     </span>
+     '
+     <span data-begin="180.939" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="181.049" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="181.130" data-dur="0.378">
+      stakes
+     </span>
+     <span data-begin="181.509" data-dur="0.099">
+      at
+     </span>
+     <span data-begin="181.609" data-dur="0.350">
+      cards
+     </span>
+     <span data-begin="181.960" data-dur="0.260">
+      meant
+     </span>
+     ,
+     <span data-begin="182.589" data-dur="0.110">
+      but
+     </span>
+     <span data-begin="182.699" data-dur="0.390">
+      carrying
+     </span>
+     <span data-begin="183.089" data-dur="0.359">
+      forward
+     </span>
+     <span data-begin="183.449" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="183.569" data-dur="0.229">
+      another
+     </span>
+     <span data-begin="183.799" data-dur="0.280">
+      page
+     </span>
+     <span data-begin="184.109" data-dur="0.038">
+      I
+     </span>
+     <span data-begin="184.148" data-dur="0.300">
+      don't
+     </span>
+     <span data-begin="184.449" data-dur="0.459">
+      understand
+     </span>
+     <span data-begin="184.909" data-dur="0.078">
+      at
+     </span>
+     <span data-begin="184.988" data-dur="0.311">
+      all
+     </span>
+     ,"
+     <span data-begin="185.549" data-dur="0.240">
+      said
+     </span>
+     <span data-begin="185.789" data-dur="0.149">
+      he
+     </span>
+     <span data-begin="185.940" data-dur="0.080">
+      to
+     </span>
+     <span data-begin="186.049" data-dur="1.000">
+      himself
+     </span>
+     ,
+     <span data-begin="187.309" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="187.479" data-dur="0.320">
+      after
+     </span>
+     <span data-begin="187.799" data-dur="0.220">
+      that
+     </span>
+     <span data-begin="188.020" data-dur="0.108">
+      he
+     </span>
+     <span data-begin="188.129" data-dur="0.149">
+      did
+     </span>
+     <span data-begin="188.279" data-dur="0.190">
+      not
+     </span>
+     <span data-begin="188.469" data-dur="0.229">
+      meddle
+     </span>
+     <span data-begin="188.699" data-dur="0.130">
+      in
+     </span>
+     <span data-begin="188.829" data-dur="0.350">
+      business
+     </span>
+     <span data-begin="189.209" data-dur="0.420">
+      affairs
+     </span>
+     .
+     <span data-begin="190.000" data-dur="0.118">
+      But
+     </span>
+     <span data-begin="190.119" data-dur="0.220">
+      once
+     </span>
+     <span data-begin="190.340" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="190.409" data-dur="0.399">
+      countess
+     </span>
+     <span data-begin="190.809" data-dur="0.269">
+      called
+     </span>
+     <span data-begin="191.079" data-dur="0.089">
+      her
+     </span>
+     <span data-begin="191.170" data-dur="0.359">
+      son
+     </span>
+     <span data-begin="191.559" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="191.699" data-dur="0.429">
+      informed
+     </span>
+     <span data-begin="192.159" data-dur="0.120">
+      him
+     </span>
+     <span data-begin="192.279" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="192.449" data-dur="0.149">
+      she
+     </span>
+     <span data-begin="192.600" data-dur="0.087">
+      had
+     </span>
+     <span data-begin="192.688" data-dur="0.029">
+      a
+     </span>
+     <span data-begin="192.718" data-dur="0.581">
+      promissory
+     </span>
+     <span data-begin="193.299" data-dur="0.269">
+      note
+     </span>
+     <span data-begin="193.599" data-dur="0.170">
+      from
+     </span>
+     <span data-begin="193.799" data-dur="0.179">
+      Anna
+     </span>
+     <span data-begin="193.979" data-dur="0.719">
+      Mikhaylovna
+     </span>
+     <span data-begin="194.750" data-dur="0.128">
+      for
+     </span>
+     <span data-begin="194.879" data-dur="0.179">
+      two
+     </span>
+     <span data-begin="195.059" data-dur="0.410">
+      thousand
+     </span>
+     <span data-begin="195.469" data-dur="0.450">
+      rubles
+     </span>
+     ,
+     <span data-begin="196.309" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="196.469" data-dur="0.320">
+      asked
+     </span>
+     <span data-begin="196.789" data-dur="0.179">
+      him
+     </span>
+     <span data-begin="197.000" data-dur="0.130">
+      what
+     </span>
+     <span data-begin="197.159" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="197.260" data-dur="0.218">
+      thought
+     </span>
+     <span data-begin="197.479" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="197.569" data-dur="0.250">
+      doing
+     </span>
+     <span data-begin="197.819" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="197.979" data-dur="0.130">
+      it
+     </span>
+     .
+     <p>
+      "魔鬼把所有这些农民、钱财和搬运的事情从一页翻到另一页，"他想。他自言自语道："我以前明白'角子'和牌局上的赌注是什么意思，但从这一页转到另一页，我就完全不明白了。"从那以后，他再也不插手商业事务了。但有一次，伯爵夫人打电话给儿子，告诉他安娜-米哈伊洛芙娜给她开了一张两千卢布的期票，问他有什么打算。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="198.529" data-dur="0.210">
+      This
+     </span>
+     ,"
+     <span data-begin="198.809" data-dur="0.269">
+      answered
+     </span>
+     <span data-begin="199.079" data-dur="0.500">
+      Nicholas
+     </span>
+     . "
+     <span data-begin="199.909" data-dur="0.099">
+      You
+     </span>
+     <span data-begin="200.009" data-dur="0.190">
+      say
+     </span>
+     <span data-begin="200.200" data-dur="0.110">
+      it
+     </span>
+     <span data-begin="200.360" data-dur="0.238">
+      rests
+     </span>
+     <span data-begin="200.599" data-dur="0.170">
+      with
+     </span>
+     <span data-begin="200.770" data-dur="0.280">
+      me
+     </span>
+     .
+     <span data-begin="201.549" data-dur="0.240">
+      Well
+     </span>
+     ,
+     <span data-begin="201.969" data-dur="0.120">
+      I
+     </span>
+     <span data-begin="202.090" data-dur="0.179">
+      don't
+     </span>
+     <span data-begin="202.270" data-dur="0.250">
+      like
+     </span>
+     <span data-begin="202.569" data-dur="0.179">
+      Anna
+     </span>
+     <span data-begin="202.750" data-dur="1.000">
+      Mikhaylovna
+     </span>
+     <span data-begin="203.790" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="203.930" data-dur="0.058">
+      I
+     </span>
+     <span data-begin="203.989" data-dur="0.190">
+      don't
+     </span>
+     <span data-begin="204.180" data-dur="0.199">
+      like
+     </span>
+     <span data-begin="204.380" data-dur="0.500">
+      Boris
+     </span>
+     ,
+     <span data-begin="204.959" data-dur="0.140">
+      but
+     </span>
+     <span data-begin="205.099" data-dur="0.110">
+      they
+     </span>
+     <span data-begin="205.209" data-dur="0.229">
+      were
+     </span>
+     <span data-begin="205.439" data-dur="0.089">
+      our
+     </span>
+     <span data-begin="205.529" data-dur="0.310">
+      friends
+     </span>
+     <span data-begin="205.840" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="205.979" data-dur="0.299">
+      poor
+     </span>
+     .
+     <span data-begin="206.709" data-dur="0.160">
+      Well
+     </span>
+     <span data-begin="206.869" data-dur="0.170">
+      then
+     </span>
+     ,
+     <span data-begin="207.069" data-dur="0.359">
+      this
+     </span>
+     !"
+     <span data-begin="207.479" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="207.579" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="207.669" data-dur="0.250">
+      tore
+     </span>
+     <span data-begin="207.919" data-dur="0.149">
+      up
+     </span>
+     <span data-begin="208.069" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="208.128" data-dur="0.311">
+      note
+     </span>
+     ,
+     <span data-begin="208.779" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="208.899" data-dur="0.110">
+      by
+     </span>
+     <span data-begin="209.009" data-dur="0.229">
+      so
+     </span>
+     <span data-begin="209.239" data-dur="0.299">
+      doing
+     </span>
+     <span data-begin="209.540" data-dur="0.310">
+      caused
+     </span>
+     <span data-begin="209.879" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="209.979" data-dur="0.179">
+      old
+     </span>
+     <span data-begin="210.159" data-dur="0.410">
+      countess
+     </span>
+     <span data-begin="210.569" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="210.689" data-dur="0.199">
+      weep
+     </span>
+     <span data-begin="210.889" data-dur="0.310">
+      tears
+     </span>
+     <span data-begin="211.200" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="211.279" data-dur="0.269">
+      joy
+     </span>
+     .
+     <span data-begin="211.770" data-dur="0.250">
+      After
+     </span>
+     <span data-begin="212.020" data-dur="0.260">
+      that
+     </span>
+     ,
+     <span data-begin="212.309" data-dur="0.240">
+      young
+     </span>
+     <span data-begin="212.549" data-dur="0.450">
+      Rostov
+     </span>
+     <span data-begin="213.049" data-dur="0.229">
+      took
+     </span>
+     <span data-begin="213.279" data-dur="0.140">
+      no
+     </span>
+     <span data-begin="213.419" data-dur="0.290">
+      further
+     </span>
+     <span data-begin="213.709" data-dur="0.310">
+      part
+     </span>
+     <span data-begin="214.020" data-dur="0.149">
+      in
+     </span>
+     <span data-begin="214.169" data-dur="0.149">
+      any
+     </span>
+     <span data-begin="214.319" data-dur="0.420">
+      business
+     </span>
+     <span data-begin="214.770" data-dur="0.440">
+      affairs
+     </span>
+     ,
+     <span data-begin="215.469" data-dur="0.140">
+      but
+     </span>
+     <span data-begin="215.610" data-dur="0.410">
+      devoted
+     </span>
+     <span data-begin="216.020" data-dur="0.518">
+      himself
+     </span>
+     <span data-begin="216.539" data-dur="0.140">
+      with
+     </span>
+     <span data-begin="216.680" data-dur="0.548">
+      passionate
+     </span>
+     <span data-begin="217.229" data-dur="1.000">
+      enthusiasm
+     </span>
+     <span data-begin="218.369" data-dur="0.080">
+      to
+     </span>
+     <span data-begin="218.500" data-dur="0.179">
+      what
+     </span>
+     <span data-begin="218.680" data-dur="0.188">
+      was
+     </span>
+     <span data-begin="218.869" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="218.979" data-dur="0.199">
+      him
+     </span>
+     <span data-begin="219.180" data-dur="0.047">
+      a
+     </span>
+     <span data-begin="219.228" data-dur="0.150">
+      new
+     </span>
+     <span data-begin="219.379" data-dur="0.520">
+      pursuit
+     </span>
+     —
+     <span data-begin="220.009" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="220.110" data-dur="0.489">
+      chase
+     </span>
+     —
+     <span data-begin="220.919" data-dur="0.140">
+      for
+     </span>
+     <span data-begin="221.059" data-dur="0.179">
+      which
+     </span>
+     <span data-begin="221.239" data-dur="0.140">
+      his
+     </span>
+     <span data-begin="221.379" data-dur="0.310">
+      father
+     </span>
+     <span data-begin="221.689" data-dur="0.250">
+      kept
+     </span>
+     <span data-begin="221.939" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="222.000" data-dur="0.240">
+      large
+     </span>
+     <span data-begin="222.270" data-dur="1.000">
+      establishment
+     </span>
+     .
+     <p>
+      "这个，"尼古拉斯回答道。"你说由我来处理。我不喜欢安娜-米哈伊洛芙娜，也不喜欢鲍里斯，但他们是我们的朋友，而且很穷。那么，这个！"他撕碎了纸条，老伯爵夫人因此喜极而泣。从那以后，年轻的罗斯托夫再也没有参与任何商业活动，而是满腔热情地投入到他的新事业中去--他父亲经营着一家规模庞大的追猎公司。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>

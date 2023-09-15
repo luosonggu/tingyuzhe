@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_06_19_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_06_19_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_06_19_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_06_19_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER XIX
+     <p>
+      第十九章
+     </p>
+    </p>
+    <p>
+     Next day Prince Andrew called at a few houses he had not visited before, and among them at the Rostovs' with whom he had renewed acquaintance at the ball. Apart from considerations of politeness which demanded the call, he wanted to see that original, eager girl who had left such a pleasant impression on his mind, in her own home.
+     <p>
+      第二天，安德鲁王子拜访了几户他以前没有拜访过的人家，其中就有他在舞会上再次结识的罗斯托夫家。除了出于礼貌需要拜访之外，他还想在自己的家里看看那位给他留下了如此美好印象的热情奔放的姑娘。
+     </p>
+    </p>
+    <p>
+     Natasha was one of the first to meet him. She was wearing a dark-blue house dress in which Prince Andrew thought her even prettier than in her ball dress. She and all the Rostov family welcomed him as an old friend, simply and cordially. The whole family, whom he had formerly judged severely, now seemed to him to consist
+     <span data-begin="45.750" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="45.949" data-dur="0.429">
+      excellent
+     </span>
+     ,
+     <span data-begin="46.409" data-dur="0.440">
+      simple
+     </span>
+     ,
+     <span data-begin="46.879" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="47.009" data-dur="0.329">
+      kindly
+     </span>
+     <span data-begin="47.339" data-dur="1.000">
+      people
+     </span>
+     .
+     <span data-begin="48.369" data-dur="0.110">
+      The
+     </span>
+     <span data-begin="48.479" data-dur="0.190">
+      old
+     </span>
+     <span data-begin="48.670" data-dur="0.299">
+      count's
+     </span>
+     <span data-begin="48.969" data-dur="0.789">
+      hospitality
+     </span>
+     <span data-begin="49.760" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="49.920" data-dur="0.210">
+      good
+     </span>
+     <span data-begin="50.159" data-dur="0.500">
+      nature
+     </span>
+     ,
+     <span data-begin="50.819" data-dur="0.250">
+      which
+     </span>
+     <span data-begin="51.069" data-dur="0.380">
+      struck
+     </span>
+     <span data-begin="51.449" data-dur="0.120">
+      one
+     </span>
+     <span data-begin="51.569" data-dur="0.459">
+      especially
+     </span>
+     <span data-begin="52.029" data-dur="0.099">
+      in
+     </span>
+     <span data-begin="52.130" data-dur="0.590">
+      Petersburg
+     </span>
+     <span data-begin="52.750" data-dur="0.170">
+      as
+     </span>
+     <span data-begin="52.920" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="52.959" data-dur="0.400">
+      pleasant
+     </span>
+     <span data-begin="53.359" data-dur="0.450">
+      surprise
+     </span>
+     ,
+     <span data-begin="54.250" data-dur="0.108">
+      were
+     </span>
+     <span data-begin="54.359" data-dur="0.340">
+      such
+     </span>
+     <span data-begin="54.699" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="54.849" data-dur="0.229">
+      Prince
+     </span>
+     <span data-begin="55.159" data-dur="0.240">
+      Andrew
+     </span>
+     <span data-begin="55.399" data-dur="0.160">
+      could
+     </span>
+     <span data-begin="55.559" data-dur="0.220">
+      not
+     </span>
+     <span data-begin="55.779" data-dur="0.390">
+      refuse
+     </span>
+     <span data-begin="56.170" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="56.260" data-dur="0.260">
+      stay
+     </span>
+     <span data-begin="56.520" data-dur="0.138">
+      to
+     </span>
+     <span data-begin="56.659" data-dur="0.329">
+      dinner
+     </span>
+     . "
+     <span data-begin="57.500" data-dur="0.299">
+      Yes
+     </span>
+     ,"
+     <span data-begin="57.799" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="57.899" data-dur="0.320">
+      thought
+     </span>
+     , "
+     <span data-begin="58.389" data-dur="0.149">
+      they
+     </span>
+     <span data-begin="58.539" data-dur="0.078">
+      are
+     </span>
+     <span data-begin="58.618" data-dur="0.490">
+      capital
+     </span>
+     <span data-begin="59.109" data-dur="0.399">
+      people
+     </span>
+     ,
+     <span data-begin="59.760" data-dur="0.149">
+      who
+     </span>
+     <span data-begin="59.909" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="60.000" data-dur="0.329">
+      course
+     </span>
+     <span data-begin="60.329" data-dur="0.130">
+      have
+     </span>
+     <span data-begin="60.489" data-dur="0.160">
+      not
+     </span>
+     <span data-begin="60.649" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="60.750" data-dur="0.548">
+      slightest
+     </span>
+     <span data-begin="61.299" data-dur="0.359">
+      idea
+     </span>
+     <span data-begin="61.659" data-dur="0.140">
+      what
+     </span>
+     <span data-begin="61.799" data-dur="0.070">
+      a
+     </span>
+     <span data-begin="61.909" data-dur="0.399">
+      treasure
+     </span>
+     <span data-begin="62.309" data-dur="0.120">
+      they
+     </span>
+     <span data-begin="62.430" data-dur="0.438">
+      possess
+     </span>
+     <span data-begin="62.869" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="62.938" data-dur="1.000">
+      Natasha
+     </span>
+     ;
+     <span data-begin="64.049" data-dur="0.160">
+      but
+     </span>
+     <span data-begin="64.209" data-dur="0.089">
+      they
+     </span>
+     <span data-begin="64.299" data-dur="0.089">
+      are
+     </span>
+     <span data-begin="64.389" data-dur="0.390">
+      kindly
+     </span>
+     <span data-begin="64.779" data-dur="0.440">
+      folk
+     </span>
+     <span data-begin="65.250" data-dur="0.158">
+      and
+     </span>
+     <span data-begin="65.409" data-dur="0.250">
+      form
+     </span>
+     <span data-begin="65.659" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="65.738" data-dur="0.291">
+      best
+     </span>
+     <span data-begin="66.029" data-dur="0.440">
+      possible
+     </span>
+     <span data-begin="66.469" data-dur="0.370">
+      setting
+     </span>
+     <span data-begin="66.869" data-dur="0.120">
+      for
+     </span>
+     <span data-begin="66.989" data-dur="0.120">
+      this
+     </span>
+     <span data-begin="67.109" data-dur="0.590">
+      strikingly
+     </span>
+     <span data-begin="67.699" data-dur="0.539">
+      poetic
+     </span>
+     ,
+     <span data-begin="68.510" data-dur="0.429">
+      charming
+     </span>
+     <span data-begin="68.939" data-dur="0.310">
+      girl
+     </span>
+     ,
+     <span data-begin="69.279" data-dur="0.599">
+      overflowing
+     </span>
+     <span data-begin="69.879" data-dur="0.229">
+      with
+     </span>
+     <span data-begin="70.109" data-dur="1.000">
+      life
+     </span>
+     !"
+     <p>
+      娜塔莎是最先见到他的人之一。她穿着深蓝色的家居服，安德鲁王子觉得她比舞会上的礼服还要漂亮。她和罗斯托夫全家人像老朋友一样欢迎他，简单而亲切。他以前对整个家族的评价很严厉，而现在在他看来，他们都是优秀、朴实和善良的人。老伯爵的热情好客和善良天性，在彼得堡尤其让人感到惊喜，安德鲁王子无法拒绝留下共进晚餐。"是的，"他想，"他们都是大写的人，当然丝毫不知道他们拥有的娜塔莎是多么的珍宝；但他们都是善良的人，为这个充满诗意、充满生命力的迷人姑娘提供了最好的环境！"
+     </p>
+    </p>
+    <p>
+     <span data-begin="71.189" data-dur="0.110">
+      In
+     </span>
+     <span data-begin="71.299" data-dur="0.530">
+      Natasha
+     </span>
+     <span data-begin="71.829" data-dur="0.240">
+      Prince
+     </span>
+     <span data-begin="72.149" data-dur="0.220">
+      Andrew
+     </span>
+     <span data-begin="72.369" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="72.540" data-dur="0.590">
+      conscious
+     </span>
+     <span data-begin="73.159" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="73.270" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="73.309" data-dur="0.429">
+      strange
+     </span>
+     <span data-begin="73.739" data-dur="0.240">
+      world
+     </span>
+     <span data-begin="73.979" data-dur="0.520">
+      completely
+     </span>
+     <span data-begin="74.529" data-dur="0.329">
+      alien
+     </span>
+     <span data-begin="74.860" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="75.020" data-dur="0.190">
+      him
+     </span>
+     <span data-begin="75.649" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="75.829" data-dur="0.440">
+      brimful
+     </span>
+     <span data-begin="76.270" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="76.380" data-dur="0.320">
+      joys
+     </span>
+     <span data-begin="76.729" data-dur="0.310">
+      unknown
+     </span>
+     <span data-begin="77.040" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="77.129" data-dur="0.220">
+      him
+     </span>
+     ,
+     <span data-begin="77.729" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="77.798" data-dur="0.351">
+      different
+     </span>
+     <span data-begin="78.149" data-dur="0.229">
+      world
+     </span>
+     ,
+     <span data-begin="78.790" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="79.020" data-dur="0.118">
+      in
+     </span>
+     <span data-begin="79.139" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="79.259" data-dur="0.539">
+      Otradnoe
+     </span>
+     <span data-begin="79.799" data-dur="0.510">
+      avenue
+     </span>
+     <span data-begin="80.360" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="80.500" data-dur="0.110">
+      at
+     </span>
+     <span data-begin="80.610" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="80.700" data-dur="0.320">
+      window
+     </span>
+     <span data-begin="81.020" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="81.219" data-dur="0.399">
+      moonlight
+     </span>
+     <span data-begin="81.619" data-dur="0.410">
+      night
+     </span>
+     <span data-begin="82.259" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="82.439" data-dur="0.310">
+      already
+     </span>
+     <span data-begin="82.750" data-dur="0.329">
+      begun
+     </span>
+     <span data-begin="83.079" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="83.200" data-dur="0.659">
+      disconcert
+     </span>
+     <span data-begin="83.860" data-dur="0.080">
+      him
+     </span>
+     .
+     <span data-begin="84.399" data-dur="0.240">
+      Now
+     </span>
+     <span data-begin="84.669" data-dur="0.120">
+      this
+     </span>
+     <span data-begin="84.879" data-dur="0.140">
+      world
+     </span>
+     <span data-begin="85.020" data-dur="0.758">
+      disconcerted
+     </span>
+     <span data-begin="85.779" data-dur="0.179">
+      him
+     </span>
+     <span data-begin="85.959" data-dur="0.140">
+      no
+     </span>
+     <span data-begin="86.099" data-dur="0.470">
+      longer
+     </span>
+     <span data-begin="86.909" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="87.059" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="87.219" data-dur="0.140">
+      no
+     </span>
+     <span data-begin="87.360" data-dur="0.340">
+      longer
+     </span>
+     <span data-begin="87.739" data-dur="0.429">
+      alien
+     </span>
+     <span data-begin="88.169" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="88.340" data-dur="0.220">
+      him
+     </span>
+     ,
+     <span data-begin="88.950" data-dur="0.250">
+      but
+     </span>
+     <span data-begin="89.229" data-dur="0.120">
+      he
+     </span>
+     <span data-begin="89.349" data-dur="0.480">
+      himself
+     </span>
+     <span data-begin="89.829" data-dur="0.350">
+      having
+     </span>
+     <span data-begin="90.180" data-dur="0.269">
+      entered
+     </span>
+     <span data-begin="90.450" data-dur="0.140">
+      it
+     </span>
+     <span data-begin="90.709" data-dur="0.350">
+      found
+     </span>
+     <span data-begin="91.059" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="91.199" data-dur="0.190">
+      it
+     </span>
+     <span data-begin="91.419" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="91.469" data-dur="0.179">
+      new
+     </span>
+     <span data-begin="91.649" data-dur="1.000">
+      enjoyment
+     </span>
+     .
+     <p>
+      在娜塔莎身上，安德鲁王子意识到了一个完全陌生的世界，一个充满了他所不知道的欢乐的世界，一个与众不同的世界，在奥特拉德诺大街上，在那个月夜的窗前，这个世界已经开始让他感到不安了。现在，这个世界不再让他感到不安，也不再让他感到陌生，而他自己在进入这个世界后也发现了新的乐趣。
+     </p>
+    </p>
+    <p>
+     After dinner Natasha, at Prince Andrew's request, went to the clavichord and began singing. Prince Andrew stood by a window talking to the ladies and listened to her. In the midst of a phrase he ceased speaking and suddenly felt tears choking him, a thing he had thought impossible for him. He looked at Natasha as she sang, and something new and joyful stirred in his soul. He felt happy and at the same time sad. He had absolutely nothing to weep about yet he was ready to weep. What about? His former love? The little princess? His disillusionments?... His hopes for the future?... Yes and no. The chief reason was a sudden, vivid sense of the terrible contrast between something infinitely great and illimitable within him and that limited and material something that he, and even she, was. This contrast weighed on and yet cheered him while she sang.
+     <p>
+      晚饭后，娜塔莎应安德鲁王子的要求，来到小提琴前开始唱歌。安德鲁王子站在窗边与女士们交谈，聆听着她的歌声。在唱到一个乐句时，他停止了说话，突然感到泪水汹涌而下，他曾以为这对他来说是不可能的。他看着娜塔莎唱歌，灵魂深处涌动着一种新的快乐。他感到高兴，同时也感到悲伤。他完全没有什么可哭的，但他却准备哭泣。哭什么呢？他曾经的爱人？小公主？他的幻灭？他对未来的希望？有，也没有最主要的原因是，他突然生动地感受到，他内心深处无限伟大、不可估量的东西与他，甚至她，有限的、物质的东西之间存在着可怕的反差。她唱歌的时候，这种反差让他感到沉重，但又让他感到振奋。
+     </p>
+    </p>
+    <p>
+     As soon as Natasha had finished she went up to him and asked how he liked her voice. She asked this and then became confused, feeling that she ought not to have asked it. He smiled, looking at her, and said he liked her singing as he liked everything she did.
+     <p>
+      娜塔莎一唱完，就走到他身边，问他喜欢她的歌声吗？她问完这句话后就糊涂了，觉得自己不应该问这个问题。他微笑着看着她，说他喜欢她的歌声，就像喜欢她所做的一切一样。
+     </p>
+    </p>
+    <p>
+     Prince Andrew left the Rostovs' late in the evening. He went to bed from habit, but soon realized that he could not sleep. Having lit his candle he sat up in bed, then got up, then lay down again not at all troubled by his sleeplessness: his soul was as fresh and joyful as if he had stepped out of a stuffy room into God's own fresh air. It did not enter his head that he was in love with Natasha; he was not thinking about her, but only picturing her to himself, and in consequence all life appeared in a new light. "Why do I strive, why do I toil in this narrow, confined frame, when life, all life with all its joys, is open to me?" said he to himself. And for the first time for a very long while he began making happy plans for the future. He decided that he must attend to his son's education by finding a tutor and putting the boy in his charge, then he ought to retire from the service and go abroad, and see England, Switzerland and Italy. "I must use my freedom while I feel so much strength and youth in me," he said to himself. "Pierre was right when he said one must believe in the possibility of happiness in order to be happy, and now I do believe in it. Let the dead bury their dead, but while one has life one must live and be happy!" thought he.
+     <p>
+      安德鲁王子傍晚才离开罗斯托夫家。他习惯性地上床睡觉，但很快意识到自己睡不着。点燃蜡烛后，他从床上坐了起来，然后起身，接着又躺下，丝毫没有为睡不着而烦恼：他的灵魂就像走出闷热的房间，呼吸到上帝赐予的新鲜空气一样，清新而愉悦。他并没有想到自己爱上了娜塔莎；他并没有想着她，只是把她想象成自己的样子，因此，所有的生活都焕然一新。"他自言自语地说："既然生活，所有的生活，所有的欢乐，都向我敞开着大门，我为什么还要努力，为什么还要在这狭隘、局促的框框里苦苦挣扎呢？很久以来，他第一次开始为未来制定快乐的计划。他决定，一定要给儿子找个家庭教师，让他负责教育儿子，然后他就退休，出国去看看英国、瑞士和意大利。"他自言自语道："我必须利用我的自由，因为我还年轻，还充满活力。"皮埃尔说过，一个人要想幸福，就必须相信幸福的可能性。让死人去埋葬他们的死人吧，但当一个人还活着的时候，他就必须生活并快乐起来！"他想。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>

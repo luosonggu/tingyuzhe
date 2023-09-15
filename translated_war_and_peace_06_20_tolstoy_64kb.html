@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_06_20_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_06_20_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_06_20_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_06_20_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER XX
+     <p>
+      第二十章
+     </p>
+    </p>
+    <p>
+     One morning Colonel Berg, whom Pierre knew as he knew everybody in Moscow and Petersburg, came to see him. Berg arrived in an immaculate brand-new uniform, with his hair pomaded and brushed forward over his temples as the Emperor Alexander wore his hair.
+     <p>
+      一天上午，皮埃尔认识的伯格上校来找他，因为他认识莫斯科和彼得堡的每一个人。伯格身着崭新的军装，一尘不染，头发蓬松，像亚历山大皇帝梳头一样梳在鬓角上。
+     </p>
+    </p>
+    <p>
+     "I have just been to see the countess, your wife. Unfortunately she could not grant my request, but I hope, Count, I shall be more fortunate with you," he said with a smile.
+     <p>
+      "我刚刚去见了伯爵夫人，也就是您的妻子。遗憾的是，她没能答应我的请求，但我希望，伯爵，我会更幸运地见到您。"他微笑着说。
+     </p>
+    </p>
+    <p>
+     "What is it you wish, Colonel? I am at your service."
+     <p>
+      "您有什么吩咐，上校？我愿意为您效劳。"
+     </p>
+    </p>
+    <p>
+     "I have now quite settled in my new rooms, Count" (Berg said this with perfect conviction that this information could not but be agreeable), "
+     <span data-begin="66.540" data-dur="0.188">
+      and
+     </span>
+     <span data-begin="66.729" data-dur="0.320">
+      so
+     </span>
+     <span data-begin="67.049" data-dur="0.170">
+      I
+     </span>
+     <span data-begin="67.220" data-dur="0.348">
+      wish
+     </span>
+     <span data-begin="67.569" data-dur="0.280">
+      to
+     </span>
+     <span data-begin="67.849" data-dur="0.390">
+      arrange
+     </span>
+     <span data-begin="68.389" data-dur="0.340">
+      just
+     </span>
+     <span data-begin="68.760" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="68.819" data-dur="0.440">
+      small
+     </span>
+     <span data-begin="69.260" data-dur="0.578">
+      party
+     </span>
+     <span data-begin="69.839" data-dur="0.240">
+      for
+     </span>
+     <span data-begin="70.110" data-dur="0.240">
+      my
+     </span>
+     <span data-begin="70.479" data-dur="0.350">
+      own
+     </span>
+     <span data-begin="70.869" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="71.040" data-dur="0.179">
+      my
+     </span>
+     <span data-begin="71.290" data-dur="0.459">
+      wife's
+     </span>
+     <span data-begin="71.809" data-dur="1.000">
+      friends
+     </span>
+     ." (He smiled still more pleasantly.) "
+     <span data-begin="77.000" data-dur="0.179">
+      I
+     </span>
+     <span data-begin="77.180" data-dur="0.470">
+      wished
+     </span>
+     <span data-begin="77.650" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="77.790" data-dur="0.308">
+      ask
+     </span>
+     <span data-begin="78.099" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="78.199" data-dur="0.740">
+      countess
+     </span>
+     <span data-begin="78.979" data-dur="0.240">
+      and
+     </span>
+     <span data-begin="79.220" data-dur="0.329">
+      you
+     </span>
+     <span data-begin="79.669" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="79.799" data-dur="0.199">
+      do
+     </span>
+     <span data-begin="80.000" data-dur="0.179">
+      me
+     </span>
+     <span data-begin="80.180" data-dur="0.160">
+      the
+     </span>
+     <span data-begin="80.400" data-dur="0.420">
+      honor
+     </span>
+     <span data-begin="81.009" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="81.239" data-dur="0.359">
+      coming
+     </span>
+     <span data-begin="81.659" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="81.860" data-dur="0.440">
+      tea
+     </span>
+     <span data-begin="82.479" data-dur="0.220">
+      and
+     </span>
+     <span data-begin="82.759" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="82.869" data-dur="1.000">
+      supper
+     </span>
+     ."
+     <p>
+      "我现在已经在我的新房间里安顿下来了，伯爵"（伯格说这话时深信，这个消息不会不令人高兴的），"所以我想为我自己和我妻子的朋友们安排一个小型聚会"。(他笑得更开心了）"我想请伯爵夫人和您赏脸来喝茶和吃晚饭"。
+     </p>
+    </p>
+    <p>
+     <span data-begin="85.629" data-dur="0.470">
+      Only
+     </span>
+     <span data-begin="86.139" data-dur="0.620">
+      Countess
+     </span>
+     <span data-begin="86.759" data-dur="0.539">
+      Helene
+     </span>
+     ,
+     <span data-begin="87.409" data-dur="0.810">
+      considering
+     </span>
+     <span data-begin="88.250" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="88.329" data-dur="0.821">
+      society
+     </span>
+     <span data-begin="89.180" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="89.369" data-dur="0.410">
+      such
+     </span>
+     <span data-begin="89.819" data-dur="0.399">
+      people
+     </span>
+     <span data-begin="90.829" data-dur="0.220">
+      as
+     </span>
+     <span data-begin="91.079" data-dur="0.170">
+      the
+     </span>
+     Bergs
+     <span data-begin="91.900" data-dur="0.530">
+      beneath
+     </span>
+     <span data-begin="92.459" data-dur="0.240">
+      her
+     </span>
+     ,
+     <span data-begin="93.079" data-dur="0.170">
+      could
+     </span>
+     <span data-begin="93.279" data-dur="0.120">
+      be
+     </span>
+     <span data-begin="93.400" data-dur="0.299">
+      cruel
+     </span>
+     <span data-begin="93.699" data-dur="0.580">
+      enough
+     </span>
+     <span data-begin="94.279" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="94.439" data-dur="0.489">
+      refuse
+     </span>
+     <span data-begin="94.930" data-dur="0.308">
+      such
+     </span>
+     <span data-begin="95.239" data-dur="0.140">
+      an
+     </span>
+     <span data-begin="95.379" data-dur="1.000">
+      invitation
+     </span>
+     .
+     <span data-begin="97.860" data-dur="0.220">
+      Berg
+     </span>
+     <span data-begin="98.110" data-dur="0.599">
+      explained
+     </span>
+     <span data-begin="98.709" data-dur="0.260">
+      so
+     </span>
+     <span data-begin="98.970" data-dur="0.669">
+      clearly
+     </span>
+     <span data-begin="99.779" data-dur="0.220">
+      why
+     </span>
+     <span data-begin="100.000" data-dur="0.168">
+      he
+     </span>
+     <span data-begin="100.169" data-dur="0.410">
+      wanted
+     </span>
+     <span data-begin="100.629" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="100.708" data-dur="0.501">
+      collect
+     </span>
+     <span data-begin="101.209" data-dur="0.110">
+      at
+     </span>
+     <span data-begin="101.349" data-dur="0.329">
+      his
+     </span>
+     <span data-begin="101.680" data-dur="0.470">
+      house
+     </span>
+     <span data-begin="102.610" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="102.669" data-dur="0.440">
+      small
+     </span>
+     <span data-begin="103.110" data-dur="0.170">
+      but
+     </span>
+     <span data-begin="103.309" data-dur="0.560">
+      select
+     </span>
+     <span data-begin="103.869" data-dur="1.000">
+      company
+     </span>
+     ,
+     <span data-begin="105.119" data-dur="0.220">
+      and
+     </span>
+     <span data-begin="105.339" data-dur="0.290">
+      why
+     </span>
+     <span data-begin="105.659" data-dur="0.310">
+      this
+     </span>
+     <span data-begin="105.970" data-dur="0.160">
+      would
+     </span>
+     <span data-begin="106.199" data-dur="0.160">
+      give
+     </span>
+     <span data-begin="106.399" data-dur="0.240">
+      him
+     </span>
+     <span data-begin="106.739" data-dur="1.000">
+      pleasure
+     </span>
+     ,
+     <span data-begin="107.869" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="108.079" data-dur="0.359">
+      why
+     </span>
+     <span data-begin="108.470" data-dur="0.229">
+      though
+     </span>
+     <span data-begin="108.699" data-dur="0.149">
+      he
+     </span>
+     <span data-begin="108.879" data-dur="0.380">
+      grudged
+     </span>
+     <span data-begin="109.259" data-dur="0.650">
+      spending
+     </span>
+     <span data-begin="109.909" data-dur="0.410">
+      money
+     </span>
+     <span data-begin="110.319" data-dur="0.170">
+      on
+     </span>
+     <span data-begin="110.559" data-dur="0.489">
+      cards
+     </span>
+     <span data-begin="111.049" data-dur="0.070">
+      or
+     </span>
+     <span data-begin="111.159" data-dur="0.470">
+      anything
+     </span>
+     <span data-begin="111.739" data-dur="1.000">
+      harmful
+     </span>
+     ,
+     <span data-begin="113.049" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="113.180" data-dur="0.258">
+      was
+     </span>
+     <span data-begin="113.439" data-dur="0.650">
+      prepared
+     </span>
+     <span data-begin="114.199" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="114.329" data-dur="0.220">
+      run
+     </span>
+     <span data-begin="114.549" data-dur="0.280">
+      into
+     </span>
+     <span data-begin="114.829" data-dur="0.350">
+      some
+     </span>
+     <span data-begin="115.180" data-dur="1.000">
+      expense
+     </span>
+     <span data-begin="116.459" data-dur="0.160">
+      for
+     </span>
+     <span data-begin="116.659" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="116.728" data-dur="0.391">
+      sake
+     </span>
+     <span data-begin="117.119" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="117.290" data-dur="0.170">
+      good
+     </span>
+     <span data-begin="117.529" data-dur="1.000">
+      society
+     </span>
+     —
+     <span data-begin="118.750" data-dur="0.229">
+      that
+     </span>
+     <span data-begin="119.009" data-dur="0.410">
+      Pierre
+     </span>
+     <span data-begin="119.719" data-dur="0.149">
+      could
+     </span>
+     <span data-begin="119.869" data-dur="0.390">
+      not
+     </span>
+     <span data-begin="120.290" data-dur="0.680">
+      refuse
+     </span>
+     ,
+     <span data-begin="121.189" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="121.369" data-dur="0.590">
+      promised
+     </span>
+     <span data-begin="121.959" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="122.069" data-dur="1.000">
+      come
+     </span>
+     .
+     <p>
+      只有海伦伯爵夫人才会认为像伯格夫妇这样的人在她的社交圈中是低人一等的，才会残忍到拒绝这样的邀请。伯格非常清楚地解释了为什么他想在他家召集一个人数不多但经过挑选的同伴，为什么这会给他带来快乐，为什么尽管他不喜欢把钱花在纸牌或任何有害的东西上，但为了良好的社交，他还是准备花点钱--皮埃尔无法拒绝，于是答应前来。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="124.549" data-dur="0.199">
+      But
+     </span>
+     <span data-begin="124.750" data-dur="0.278">
+      don't
+     </span>
+     <span data-begin="125.029" data-dur="0.140">
+      be
+     </span>
+     <span data-begin="125.169" data-dur="0.310">
+      late
+     </span>
+     ,
+     <span data-begin="125.579" data-dur="0.359">
+      Count
+     </span>
+     ,
+     <span data-begin="125.969" data-dur="0.190">
+      if
+     </span>
+     <span data-begin="126.209" data-dur="0.080">
+      I
+     </span>
+     <span data-begin="126.290" data-dur="0.188">
+      may
+     </span>
+     <span data-begin="126.479" data-dur="0.510">
+      venture
+     </span>
+     <span data-begin="127.079" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="127.229" data-dur="0.599">
+      ask
+     </span>
+     ;
+     <span data-begin="128.239" data-dur="0.329">
+      about
+     </span>
+     <span data-begin="128.569" data-dur="0.210">
+      ten
+     </span>
+     <span data-begin="128.779" data-dur="0.500">
+      minutes
+     </span>
+     <span data-begin="129.279" data-dur="0.199">
+      to
+     </span>
+     <span data-begin="129.509" data-dur="0.380">
+      eight
+     </span>
+     ,
+     <span data-begin="129.959" data-dur="1.000">
+      please
+     </span>
+     .
+     <span data-begin="131.250" data-dur="0.168">
+      We
+     </span>
+     <span data-begin="131.419" data-dur="0.269">
+      shall
+     </span>
+     <span data-begin="131.690" data-dur="0.280">
+      make
+     </span>
+     <span data-begin="131.970" data-dur="0.190">
+      up
+     </span>
+     <span data-begin="132.160" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="132.219" data-dur="0.311">
+      rubber
+     </span>
+     .
+     <span data-begin="133.220" data-dur="0.179">
+      Our
+     </span>
+     <span data-begin="133.470" data-dur="0.380">
+      general
+     </span>
+     <span data-begin="133.959" data-dur="0.240">
+      is
+     </span>
+     <span data-begin="134.250" data-dur="1.000">
+      coming
+     </span>
+     .
+     <span data-begin="135.459" data-dur="0.190">
+      He
+     </span>
+     <span data-begin="135.649" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="135.860" data-dur="0.329">
+      very
+     </span>
+     <span data-begin="136.220" data-dur="0.160">
+      good
+     </span>
+     <span data-begin="136.520" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="136.639" data-dur="1.000">
+      me
+     </span>
+     .
+     <span data-begin="137.830" data-dur="0.170">
+      We
+     </span>
+     <span data-begin="138.000" data-dur="0.278">
+      shall
+     </span>
+     <span data-begin="138.279" data-dur="0.199">
+      have
+     </span>
+     <span data-begin="138.479" data-dur="0.489">
+      supper
+     </span>
+     ,
+     <span data-begin="139.050" data-dur="0.299">
+      Count
+     </span>
+     .
+     <span data-begin="139.929" data-dur="0.329">
+      So
+     </span>
+     <span data-begin="140.259" data-dur="0.179">
+      you
+     </span>
+     <span data-begin="140.440" data-dur="0.179">
+      will
+     </span>
+     <span data-begin="140.649" data-dur="0.220">
+      do
+     </span>
+     <span data-begin="140.869" data-dur="0.179">
+      me
+     </span>
+     <span data-begin="141.050" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="141.279" data-dur="1.000">
+      favor
+     </span>
+     ."
+     <p>
+      "伯爵，请不要迟到，如果我可以冒昧地问一下的话，请在八点前十分钟到。我们来凑个热闹。我们的将军要来了。他对我很好。我们一起吃晚饭，伯爵那你就帮我这个忙吧
+     </p>
+    </p>
+    <p>
+     <span data-begin="143.239" data-dur="0.580">
+      Contrary
+     </span>
+     <span data-begin="143.819" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="143.989" data-dur="0.229">
+      his
+     </span>
+     <span data-begin="144.250" data-dur="0.448">
+      habit
+     </span>
+     <span data-begin="144.699" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="144.830" data-dur="0.260">
+      being
+     </span>
+     <span data-begin="145.129" data-dur="0.459">
+      late
+     </span>
+     ,
+     <span data-begin="145.649" data-dur="0.399">
+      Pierre
+     </span>
+     <span data-begin="146.169" data-dur="0.210">
+      on
+     </span>
+     <span data-begin="146.410" data-dur="0.290">
+      that
+     </span>
+     <span data-begin="146.750" data-dur="0.310">
+      day
+     </span>
+     <span data-begin="147.270" data-dur="0.260">
+      arrived
+     </span>
+     <span data-begin="147.559" data-dur="0.140">
+      at
+     </span>
+     <span data-begin="147.800" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="147.898" data-dur="0.371">
+      Bergs
+     </span>
+     '
+     <span data-begin="148.309" data-dur="0.450">
+      house
+     </span>
+     ,
+     <span data-begin="149.209" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="149.470" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="149.679" data-dur="0.350">
+      ten
+     </span>
+     <span data-begin="150.110" data-dur="0.168">
+      but
+     </span>
+     <span data-begin="150.279" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="150.489" data-dur="0.390">
+      fifteen
+     </span>
+     <span data-begin="150.910" data-dur="0.530">
+      minutes
+     </span>
+     <span data-begin="151.440" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="151.610" data-dur="1.000">
+      eight
+     </span>
+     .
+     <p>
+      皮埃尔一反迟到的习惯，这天不是 10 点，而是 8 点差 15 分就到了伯格家。
+     </p>
+    </p>
+    <p>
+     <span data-begin="154.019" data-dur="0.399">
+      Having
+     </span>
+     <span data-begin="154.550" data-dur="0.508">
+      prepared
+     </span>
+     <span data-begin="155.059" data-dur="0.470">
+      everything
+     </span>
+     <span data-begin="155.529" data-dur="0.690">
+      necessary
+     </span>
+     <span data-begin="156.250" data-dur="0.199">
+      for
+     </span>
+     <span data-begin="156.500" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="156.669" data-dur="0.570">
+      party
+     </span>
+     ,
+     <span data-begin="157.599" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="157.690" data-dur="0.489">
+      Bergs
+     </span>
+     <span data-begin="158.220" data-dur="0.130">
+      were
+     </span>
+     <span data-begin="158.399" data-dur="0.299">
+      ready
+     </span>
+     <span data-begin="158.699" data-dur="0.310">
+      for
+     </span>
+     <span data-begin="159.039" data-dur="0.140">
+      their
+     </span>
+     <span data-begin="159.239" data-dur="0.450">
+      guests
+     </span>
+     '
+     <span data-begin="159.970" data-dur="1.000">
+      arrival
+     </span>
+     .
+     <p>
+      伯格夫妇已经准备好了宴会所需的一切，随时迎接客人的到来。
+     </p>
+    </p>
+    <p>
+     <span data-begin="162.040" data-dur="0.199">
+      In
+     </span>
+     <span data-begin="162.269" data-dur="0.170">
+      their
+     </span>
+     <span data-begin="162.439" data-dur="0.459">
+      new
+     </span>
+     ,
+     <span data-begin="163.060" data-dur="0.410">
+      clean
+     </span>
+     ,
+     <span data-begin="163.509" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="163.709" data-dur="0.269">
+      light
+     </span>
+     <span data-begin="163.980" data-dur="1.000">
+      study
+     </span>
+     <span data-begin="165.179" data-dur="0.170">
+      with
+     </span>
+     <span data-begin="165.350" data-dur="0.238">
+      its
+     </span>
+     <span data-begin="165.589" data-dur="0.450">
+      small
+     </span>
+     <span data-begin="166.039" data-dur="0.630">
+      busts
+     </span>
+     <span data-begin="166.719" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="166.909" data-dur="0.659">
+      pictures
+     </span>
+     <span data-begin="167.629" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="167.770" data-dur="0.240">
+      new
+     </span>
+     <span data-begin="168.039" data-dur="1.000">
+      furniture
+     </span>
+     <span data-begin="169.209" data-dur="0.459">
+      sat
+     </span>
+     <span data-begin="169.799" data-dur="0.429">
+      Berg
+     </span>
+     <span data-begin="170.409" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="170.679" data-dur="0.240">
+      his
+     </span>
+     <span data-begin="170.999" data-dur="1.000">
+      wife
+     </span>
+     .
+     <span data-begin="172.809" data-dur="0.410">
+      Berg
+     </span>
+     ,
+     <span data-begin="173.450" data-dur="0.489">
+      closely
+     </span>
+     <span data-begin="173.940" data-dur="0.388">
+      buttoned
+     </span>
+     <span data-begin="174.329" data-dur="0.170">
+      up
+     </span>
+     <span data-begin="174.530" data-dur="0.138">
+      in
+     </span>
+     <span data-begin="174.669" data-dur="0.229">
+      his
+     </span>
+     <span data-begin="174.899" data-dur="0.229">
+      new
+     </span>
+     <span data-begin="175.129" data-dur="1.000">
+      uniform
+     </span>
+     ,
+     <span data-begin="176.600" data-dur="0.350">
+      sat
+     </span>
+     <span data-begin="176.979" data-dur="0.429">
+      beside
+     </span>
+     <span data-begin="177.440" data-dur="0.280">
+      his
+     </span>
+     <span data-begin="177.780" data-dur="0.380">
+      wife
+     </span>
+     <span data-begin="178.339" data-dur="0.859">
+      explaining
+     </span>
+     <span data-begin="179.229" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="179.369" data-dur="0.260">
+      her
+     </span>
+     <span data-begin="180.319" data-dur="0.179">
+      that
+     </span>
+     <span data-begin="180.530" data-dur="0.199">
+      one
+     </span>
+     <span data-begin="180.839" data-dur="0.640">
+      always
+     </span>
+     <span data-begin="181.579" data-dur="0.500">
+      could
+     </span>
+     <span data-begin="182.339" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="182.489" data-dur="0.310">
+      should
+     </span>
+     <span data-begin="182.829" data-dur="0.130">
+      be
+     </span>
+     <span data-begin="183.009" data-dur="0.760">
+      acquainted
+     </span>
+     <span data-begin="184.020" data-dur="0.199">
+      with
+     </span>
+     <span data-begin="184.259" data-dur="0.620">
+      people
+     </span>
+     <span data-begin="185.029" data-dur="0.399">
+      above
+     </span>
+     <span data-begin="185.429" data-dur="1.000">
+      one
+     </span>
+     ,
+     <span data-begin="186.489" data-dur="0.459">
+      because
+     </span>
+     <span data-begin="186.999" data-dur="0.539">
+      only
+     </span>
+     <span data-begin="187.839" data-dur="0.560">
+      then
+     </span>
+     <span data-begin="188.550" data-dur="0.288">
+      does
+     </span>
+     <span data-begin="188.839" data-dur="0.350">
+      one
+     </span>
+     <span data-begin="189.190" data-dur="0.220">
+      get
+     </span>
+     <span data-begin="189.440" data-dur="1.370">
+      satisfaction
+     </span>
+     <span data-begin="190.960" data-dur="0.199">
+      from
+     </span>
+     <span data-begin="191.300" data-dur="1.160">
+      acquaintances
+     </span>
+     .
+     <p>
+      在他们崭新、整洁、明亮的书房里，摆放着小半身像、画像和新家具，坐着伯格和他的妻子。伯格穿着新制服，扣子扣得紧紧的，他坐在妻子身边，向她解释说，一个人总是可以也应该结识高人一等的人，因为只有这样，才能从熟人那里得到满足。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="194.249" data-dur="0.140">
+      You
+     </span>
+     <span data-begin="194.390" data-dur="0.278">
+      can
+     </span>
+     <span data-begin="194.669" data-dur="0.280">
+      get
+     </span>
+     <span data-begin="194.979" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="195.100" data-dur="0.258">
+      know
+     </span>
+     <span data-begin="195.359" data-dur="1.000">
+      something
+     </span>
+     ,
+     <span data-begin="196.699" data-dur="0.140">
+      you
+     </span>
+     <span data-begin="196.839" data-dur="0.250">
+      can
+     </span>
+     <span data-begin="197.169" data-dur="0.359">
+      ask
+     </span>
+     <span data-begin="197.530" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="197.679" data-dur="1.000">
+      something
+     </span>
+     .
+     <span data-begin="199.280" data-dur="0.429">
+      See
+     </span>
+     <span data-begin="199.710" data-dur="0.128">
+      how
+     </span>
+     <span data-begin="199.839" data-dur="0.210">
+      I
+     </span>
+     <span data-begin="200.079" data-dur="0.530">
+      managed
+     </span>
+     <span data-begin="200.639" data-dur="0.250">
+      from
+     </span>
+     <span data-begin="200.889" data-dur="0.199">
+      my
+     </span>
+     <span data-begin="201.169" data-dur="0.359">
+      first
+     </span>
+     <span data-begin="201.530" data-dur="1.000">
+      promotion
+     </span>
+     ." (Berg measured his life not by years but by promotions.) "
+     <span data-begin="209.079" data-dur="0.229">
+      My
+     </span>
+     <span data-begin="209.309" data-dur="0.420">
+      comrades
+     </span>
+     <span data-begin="210.129" data-dur="0.149">
+      are
+     </span>
+     <span data-begin="210.280" data-dur="0.468">
+      still
+     </span>
+     <span data-begin="210.749" data-dur="1.000">
+      nobodies
+     </span>
+     ,
+     <span data-begin="212.100" data-dur="0.480">
+      while
+     </span>
+     <span data-begin="212.609" data-dur="0.229">
+      I
+     </span>
+     <span data-begin="212.839" data-dur="0.220">
+      am
+     </span>
+     <span data-begin="213.089" data-dur="0.410">
+      only
+     </span>
+     <span data-begin="213.499" data-dur="0.510">
+      waiting
+     </span>
+     <span data-begin="214.039" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="214.219" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="214.269" data-dur="1.000">
+      vacancy
+     </span>
+     <span data-begin="215.419" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="215.509" data-dur="0.500">
+      command
+     </span>
+     <span data-begin="216.009" data-dur="0.070">
+      a
+     </span>
+     <span data-begin="216.109" data-dur="1.000">
+      regiment
+     </span>
+     ,
+     <span data-begin="217.309" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="217.479" data-dur="0.240">
+      have
+     </span>
+     <span data-begin="217.819" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="217.909" data-dur="0.890">
+      happiness
+     </span>
+     <span data-begin="218.839" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="218.939" data-dur="0.170">
+      be
+     </span>
+     <span data-begin="219.110" data-dur="0.218">
+      your
+     </span>
+     <span data-begin="219.329" data-dur="1.000">
+      husband
+     </span>
+     ." (
+     <span data-begin="221.649" data-dur="1.000">
+      He
+     </span>
+     rose and kissed Vera's hand, and on the way to her straightened out a turned-up corner of the carpet.) "
+     <span data-begin="230.180" data-dur="0.210">
+      And
+     </span>
+     <span data-begin="230.390" data-dur="0.370">
+      how
+     </span>
+     <span data-begin="230.789" data-dur="0.170">
+      have
+     </span>
+     <span data-begin="230.960" data-dur="0.128">
+      I
+     </span>
+     <span data-begin="231.089" data-dur="0.530">
+      obtained
+     </span>
+     <span data-begin="231.619" data-dur="0.160">
+      all
+     </span>
+     <span data-begin="231.869" data-dur="1.000">
+      this
+     </span>
+     ?
+     <span data-begin="233.269" data-dur="0.599">
+      Chiefly
+     </span>
+     <span data-begin="233.869" data-dur="0.160">
+      by
+     </span>
+     <span data-begin="234.030" data-dur="0.539">
+      knowing
+     </span>
+     <span data-begin="234.570" data-dur="0.380">
+      how
+     </span>
+     <span data-begin="234.979" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="235.159" data-dur="0.340">
+      choose
+     </span>
+     <span data-begin="235.500" data-dur="0.190">
+      my
+     </span>
+     <span data-begin="235.750" data-dur="1.130">
+      aquaintances
+     </span>
+     .
+     <span data-begin="238.409" data-dur="0.280">
+      It
+     </span>
+     <span data-begin="238.729" data-dur="0.390">
+      goes
+     </span>
+     <span data-begin="239.149" data-dur="0.420">
+      without
+     </span>
+     <span data-begin="239.570" data-dur="1.000">
+      saying
+     </span>
+     <span data-begin="240.729" data-dur="0.269">
+      that
+     </span>
+     <span data-begin="241.000" data-dur="0.210">
+      one
+     </span>
+     <span data-begin="241.210" data-dur="0.368">
+      must
+     </span>
+     <span data-begin="241.579" data-dur="0.149">
+      be
+     </span>
+     <span data-begin="241.759" data-dur="1.209">
+      conscientious
+     </span>
+     <span data-begin="243.189" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="243.359" data-dur="1.000">
+      methodical
+     </span>
+     ."
+     <p>
+      "你可以了解一些事情，你可以要求一些事情。看看我是如何从第一次晋升开始做起的"。(我的同志们还是无名小卒，而我只是在等待一个指挥一个团的空缺，并有幸成为您的丈夫。(他起身亲吻了薇拉的手，并在走向她的途中整理了一下地毯上翻起的一角）。"我是如何得到这一切的呢？主要是因为我知道如何选择我的朋友。不言而喻，一个人必须兢兢业业、有条不紊。
+     </p>
+    </p>
+    <p>
+     <span data-begin="246.659" data-dur="0.280">
+      Berg
+     </span>
+     <span data-begin="246.989" data-dur="0.510">
+      smiled
+     </span>
+     <span data-begin="247.539" data-dur="0.170">
+      with
+     </span>
+     <span data-begin="247.710" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="247.769" data-dur="0.420">
+      sense
+     </span>
+     <span data-begin="248.189" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="248.309" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="248.460" data-dur="1.280">
+      superiority
+     </span>
+     <span data-begin="250.070" data-dur="0.299">
+      over
+     </span>
+     <span data-begin="250.419" data-dur="0.130">
+      a
+     </span>
+     <span data-begin="250.609" data-dur="0.470">
+      weak
+     </span>
+     <span data-begin="251.079" data-dur="1.000">
+      woman
+     </span>
+     ,
+     <span data-begin="252.189" data-dur="0.229">
+      and
+     </span>
+     <span data-begin="252.460" data-dur="1.000">
+      paused
+     </span>
+     ,
+     <span data-begin="253.559" data-dur="1.000">
+      reflecting
+     </span>
+     <span data-begin="254.659" data-dur="0.269">
+      that
+     </span>
+     <span data-begin="254.929" data-dur="0.340">
+      this
+     </span>
+     <span data-begin="255.269" data-dur="0.450">
+      dear
+     </span>
+     <span data-begin="255.850" data-dur="0.408">
+      wife
+     </span>
+     <span data-begin="256.259" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="256.399" data-dur="0.380">
+      his
+     </span>
+     <span data-begin="257.179" data-dur="0.420">
+      was
+     </span>
+     <span data-begin="257.669" data-dur="0.420">
+      after
+     </span>
+     <span data-begin="258.149" data-dur="0.220">
+      all
+     </span>
+     <span data-begin="258.659" data-dur="0.260">
+      but
+     </span>
+     <span data-begin="258.919" data-dur="0.120">
+      a
+     </span>
+     <span data-begin="259.039" data-dur="0.370">
+      weak
+     </span>
+     <span data-begin="259.559" data-dur="0.450">
+      woman
+     </span>
+     <span data-begin="260.499" data-dur="0.160">
+      who
+     </span>
+     <span data-begin="260.659" data-dur="0.179">
+      could
+     </span>
+     <span data-begin="260.839" data-dur="0.280">
+      not
+     </span>
+     <span data-begin="261.119" data-dur="1.000">
+      understand
+     </span>
+     <span data-begin="262.259" data-dur="0.320">
+      all
+     </span>
+     <span data-begin="262.579" data-dur="0.250">
+      that
+     </span>
+     <span data-begin="262.899" data-dur="0.900">
+      constitutes
+     </span>
+     <span data-begin="263.909" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="263.960" data-dur="0.590">
+      man's
+     </span>
+     <span data-begin="264.609" data-dur="1.000">
+      dignity
+     </span>
+     ,
+     <span data-begin="265.799" data-dur="0.340">
+      what
+     </span>
+     <span data-begin="266.169" data-dur="0.179">
+      it
+     </span>
+     <span data-begin="266.399" data-dur="0.420">
+      was
+     </span>
+     <span data-begin="267.009" data-dur="0.380">
+      ein
+     </span>
+     <span data-begin="267.390" data-dur="0.420">
+      Mann
+     </span>
+     <span data-begin="267.949" data-dur="0.149">
+      zu
+     </span>
+     <span data-begin="268.100" data-dur="1.000">
+      sein
+     </span>
+     . *
+     <span data-begin="271.439" data-dur="0.229">
+      Vera
+     </span>
+     <span data-begin="271.839" data-dur="0.220">
+      at
+     </span>
+     <span data-begin="272.059" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="272.140" data-dur="0.459">
+      same
+     </span>
+     <span data-begin="272.629" data-dur="0.380">
+      time
+     </span>
+     <span data-begin="273.009" data-dur="0.820">
+      smiling
+     </span>
+     <span data-begin="273.879" data-dur="0.240">
+      with
+     </span>
+     <span data-begin="274.119" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="274.169" data-dur="0.440">
+      sense
+     </span>
+     <span data-begin="274.609" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="274.720" data-dur="1.198">
+      superiority
+     </span>
+     <span data-begin="275.960" data-dur="0.280">
+      over
+     </span>
+     <span data-begin="276.299" data-dur="0.229">
+      her
+     </span>
+     <span data-begin="276.640" data-dur="0.510">
+      good
+     </span>
+     ,
+     <span data-begin="277.569" data-dur="0.919">
+      conscientious
+     </span>
+     <span data-begin="278.489" data-dur="1.000">
+      husband
+     </span>
+     ,
+     <span data-begin="279.539" data-dur="0.170">
+      who
+     </span>
+     <span data-begin="279.769" data-dur="0.320">
+      all
+     </span>
+     <span data-begin="280.140" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="280.219" data-dur="0.480">
+      same
+     </span>
+     <span data-begin="280.729" data-dur="0.700">
+      understood
+     </span>
+     <span data-begin="281.429" data-dur="0.320">
+      life
+     </span>
+     <span data-begin="281.929" data-dur="1.000">
+      wrongly
+     </span>
+     ,
+     <span data-begin="283.120" data-dur="0.140">
+      as
+     </span>
+     <span data-begin="283.260" data-dur="0.640">
+      according
+     </span>
+     <span data-begin="283.949" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="284.089" data-dur="0.340">
+      Vera
+     </span>
+     <span data-begin="284.979" data-dur="0.240">
+      all
+     </span>
+     <span data-begin="285.279" data-dur="0.329">
+      men
+     </span>
+     <span data-begin="285.609" data-dur="1.000">
+      did
+     </span>
+     .
+     <span data-begin="287.180" data-dur="0.470">
+      Berg
+     </span>
+     ,
+     <span data-begin="288.019" data-dur="0.429">
+      judging
+     </span>
+     <span data-begin="288.449" data-dur="0.199">
+      by
+     </span>
+     <span data-begin="288.650" data-dur="0.310">
+      his
+     </span>
+     <span data-begin="289.029" data-dur="0.390">
+      wife
+     </span>
+     ,
+     <span data-begin="289.790" data-dur="0.299">
+      thought
+     </span>
+     <span data-begin="290.159" data-dur="0.260">
+      all
+     </span>
+     <span data-begin="290.419" data-dur="0.520">
+      women
+     </span>
+     <span data-begin="290.999" data-dur="0.480">
+      weak
+     </span>
+     <span data-begin="291.620" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="291.769" data-dur="1.000">
+      foolish
+     </span>
+     .
+     <span data-begin="292.919" data-dur="1.000">
+      Vera
+     </span>
+     ,
+     <span data-begin="294.029" data-dur="0.380">
+      judging
+     </span>
+     <span data-begin="294.499" data-dur="0.390">
+      only
+     </span>
+     <span data-begin="294.889" data-dur="0.250">
+      by
+     </span>
+     <span data-begin="295.169" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="295.299" data-dur="1.000">
+      husband
+     </span>
+     <span data-begin="297.680" data-dur="0.329">
+      and
+     </span>
+     <span data-begin="298.260" data-dur="1.020">
+      generalizing
+     </span>
+     <span data-begin="299.309" data-dur="0.329">
+      from
+     </span>
+     <span data-begin="299.639" data-dur="0.240">
+      that
+     </span>
+     <span data-begin="299.939" data-dur="1.010">
+      observation
+     </span>
+     ,
+     <span data-begin="301.189" data-dur="0.710">
+      supposed
+     </span>
+     <span data-begin="301.900" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="302.129" data-dur="0.290">
+      all
+     </span>
+     <span data-begin="302.419" data-dur="0.440">
+      men
+     </span>
+     ,
+     <span data-begin="302.949" data-dur="0.199">
+      though
+     </span>
+     <span data-begin="303.150" data-dur="0.140">
+      they
+     </span>
+     <span data-begin="303.320" data-dur="0.770">
+      understand
+     </span>
+     <span data-begin="304.120" data-dur="0.650">
+      nothing
+     </span>
+     <span data-begin="304.939" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="305.150" data-dur="0.089">
+      are
+     </span>
+     <span data-begin="305.279" data-dur="0.799">
+      conceited
+     </span>
+     <span data-begin="306.119" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="306.239" data-dur="1.000">
+      selfish
+     </span>
+     ,
+     <span data-begin="307.449" data-dur="0.570">
+      ascribe
+     </span>
+     <span data-begin="308.109" data-dur="0.350">
+      common
+     </span>
+     <span data-begin="308.460" data-dur="0.399">
+      sense
+     </span>
+     <span data-begin="308.859" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="309.019" data-dur="1.000">
+      themselves
+     </span>
+     <span data-begin="310.059" data-dur="1.000">
+      alone
+     </span>
+     .
+     <p>
+      伯格笑了，他觉得自己比一个弱女子更有优越感，他停顿了一下，想到他的这位亲爱的妻子终究不过是一个弱女子，她无法理解构成男人尊严的一切，也无法理解什么是男人的尊严。* 与此同时，薇拉的脸上还洋溢着一种优越感，她认为自己的丈夫是个兢兢业业的好男人，但她对生活的理解却是错误的，薇拉认为所有的男人都是这样。伯格从妻子的角度出发，认为所有女人都软弱而愚蠢。薇拉只从自己的丈夫身上进行判断，并根据这种观察进行归纳，她认为所有的男人，尽管什么都不懂，自负又自私，但却只把常识归于自己。
+     </p>
+    </p>
+    <p>
+     * To be a man.
+     <p>
+      * 做一个男人
+     </p>
+    </p>
+    <p>
+     <span data-begin="312.239" data-dur="0.280">
+      Berg
+     </span>
+     <span data-begin="312.650" data-dur="0.500">
+      rose
+     </span>
+     <span data-begin="313.659" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="313.900" data-dur="0.550">
+      embraced
+     </span>
+     <span data-begin="314.499" data-dur="0.250">
+      his
+     </span>
+     <span data-begin="314.790" data-dur="0.229">
+      wife
+     </span>
+     <span data-begin="315.210" data-dur="1.000">
+      carefully
+     </span>
+     ,
+     <span data-begin="316.369" data-dur="0.220">
+      so
+     </span>
+     <span data-begin="316.589" data-dur="0.179">
+      as
+     </span>
+     <span data-begin="316.769" data-dur="0.310">
+      not
+     </span>
+     <span data-begin="317.109" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="317.188" data-dur="0.490">
+      crush
+     </span>
+     <span data-begin="317.680" data-dur="0.149">
+      her
+     </span>
+     <span data-begin="317.829" data-dur="0.429">
+      lace
+     </span>
+     <span data-begin="318.260" data-dur="0.669">
+      fichu
+     </span>
+     <span data-begin="319.249" data-dur="0.329">
+      for
+     </span>
+     <span data-begin="319.609" data-dur="0.380">
+      which
+     </span>
+     <span data-begin="319.989" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="320.119" data-dur="0.160">
+      had
+     </span>
+     <span data-begin="320.409" data-dur="0.310">
+      paid
+     </span>
+     <span data-begin="320.749" data-dur="0.099">
+      a
+     </span>
+     <span data-begin="320.879" data-dur="0.269">
+      good
+     </span>
+     <span data-begin="321.180" data-dur="1.000">
+      price
+     </span>
+     ,
+     <span data-begin="322.229" data-dur="0.420">
+      kissing
+     </span>
+     <span data-begin="322.650" data-dur="0.140">
+      her
+     </span>
+     <span data-begin="322.790" data-dur="0.539">
+      straight
+     </span>
+     <span data-begin="323.359" data-dur="0.190">
+      on
+     </span>
+     <span data-begin="323.579" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="323.680" data-dur="1.000">
+      lips
+     </span>
+     .
+     <p>
+      伯格站起身来，小心翼翼地搂住妻子，以免压坏她花了大价钱买来的蕾丝菲秋，直吻她的嘴唇。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="325.859" data-dur="0.110">
+      The
+     </span>
+     <span data-begin="325.969" data-dur="0.280">
+      only
+     </span>
+     <span data-begin="326.249" data-dur="0.359">
+      thing
+     </span>
+     <span data-begin="326.639" data-dur="0.359">
+      is
+     </span>
+     ,
+     <span data-begin="327.299" data-dur="0.078">
+      we
+     </span>
+     <span data-begin="327.378" data-dur="0.460">
+      mustn't
+     </span>
+     <span data-begin="327.839" data-dur="0.110">
+      have
+     </span>
+     <span data-begin="328.010" data-dur="0.429">
+      children
+     </span>
+     <span data-begin="328.570" data-dur="0.168">
+      too
+     </span>
+     <span data-begin="328.739" data-dur="0.420">
+      soon
+     </span>
+     ,"
+     <span data-begin="329.589" data-dur="0.110">
+      he
+     </span>
+     <span data-begin="329.699" data-dur="1.000">
+      continued
+     </span>
+     ,
+     <span data-begin="331.019" data-dur="0.470">
+      following
+     </span>
+     <span data-begin="331.489" data-dur="0.140">
+      an
+     </span>
+     <span data-begin="331.659" data-dur="0.729">
+      unconscious
+     </span>
+     <span data-begin="332.469" data-dur="0.580">
+      sequence
+     </span>
+     <span data-begin="333.049" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="333.189" data-dur="1.000">
+      ideas
+     </span>
+     .
+     <p>
+      "唯一的问题是，我们不能太早要孩子，"他按照无意识的思路继续说道。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="335.519" data-dur="0.370">
+      Yes
+     </span>
+     ,"
+     <span data-begin="335.889" data-dur="0.470">
+      answered
+     </span>
+     <span data-begin="336.360" data-dur="0.269">
+      Vera
+     </span>
+     , "
+     <span data-begin="337.299" data-dur="0.170">
+      I
+     </span>
+     <span data-begin="337.469" data-dur="0.370">
+      don't
+     </span>
+     <span data-begin="337.959" data-dur="0.179">
+      at
+     </span>
+     <span data-begin="338.139" data-dur="0.299">
+      all
+     </span>
+     <span data-begin="338.439" data-dur="0.320">
+      want
+     </span>
+     <span data-begin="338.809" data-dur="0.280">
+      that
+     </span>
+     .
+     <span data-begin="339.650" data-dur="0.199">
+      We
+     </span>
+     <span data-begin="339.849" data-dur="0.390">
+      must
+     </span>
+     <span data-begin="340.240" data-dur="0.149">
+      live
+     </span>
+     <span data-begin="340.389" data-dur="0.229">
+      for
+     </span>
+     <span data-begin="340.619" data-dur="1.000">
+      society
+     </span>
+     ."
+     <p>
+      "是的，"薇拉回答，"我一点也不想那样。我们必须为社会而活。"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="343.070" data-dur="0.608">
+      Princess
+     </span>
+     <span data-begin="343.679" data-dur="0.729">
+      Yusupova
+     </span>
+     <span data-begin="344.439" data-dur="0.329">
+      wore
+     </span>
+     <span data-begin="344.769" data-dur="0.340">
+      one
+     </span>
+     <span data-begin="345.150" data-dur="0.760">
+      exactly
+     </span>
+     <span data-begin="345.910" data-dur="0.290">
+      like
+     </span>
+     <span data-begin="346.279" data-dur="0.390">
+      this
+     </span>
+     ,"
+     <span data-begin="346.839" data-dur="0.359">
+      said
+     </span>
+     <span data-begin="347.199" data-dur="0.420">
+      Berg
+     </span>
+     ,
+     <span data-begin="348.070" data-dur="0.480">
+      pointing
+     </span>
+     <span data-begin="348.589" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="348.709" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="348.820" data-dur="0.750">
+      fichu
+     </span>
+     <span data-begin="349.799" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="349.959" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="350.049" data-dur="0.620">
+      happy
+     </span>
+     <span data-begin="350.740" data-dur="0.218">
+      and
+     </span>
+     <span data-begin="350.959" data-dur="0.470">
+      kindly
+     </span>
+     <span data-begin="351.429" data-dur="1.000">
+      smile
+     </span>
+     .
+     <p>
+      "尤苏波娃公主就戴过这样的一个。"伯格指着那件菲丘说，脸上洋溢着幸福而亲切的笑容。
+     </p>
+    </p>
+    <p>
+     <span data-begin="353.839" data-dur="0.290">
+      Just
+     </span>
+     <span data-begin="354.160" data-dur="1.000">
+      then
+     </span>
+     <span data-begin="355.219" data-dur="0.470">
+      Count
+     </span>
+     <span data-begin="355.689" data-dur="0.719">
+      Bezukhov
+     </span>
+     <span data-begin="356.599" data-dur="0.120">
+      was
+     </span>
+     <span data-begin="356.749" data-dur="1.000">
+      announced
+     </span>
+     .
+     <span data-begin="359.039" data-dur="0.690">
+      Husband
+     </span>
+     <span data-begin="359.760" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="359.999" data-dur="0.380">
+      wife
+     </span>
+     <span data-begin="360.379" data-dur="0.550">
+      glanced
+     </span>
+     <span data-begin="360.979" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="361.150" data-dur="0.208">
+      one
+     </span>
+     <span data-begin="361.359" data-dur="0.539">
+      another
+     </span>
+     ,
+     <span data-begin="362.309" data-dur="0.250">
+      both
+     </span>
+     <span data-begin="362.559" data-dur="0.710">
+      smiling
+     </span>
+     <span data-begin="363.309" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="363.420" data-dur="0.489">
+      self
+     </span>
+     -
+     <span data-begin="363.910" data-dur="1.099">
+      satisfaction
+     </span>
+     ,
+     <span data-begin="365.369" data-dur="0.269">
+      and
+     </span>
+     <span data-begin="365.690" data-dur="0.410">
+      each
+     </span>
+     <span data-begin="366.100" data-dur="0.590">
+      mentally
+     </span>
+     <span data-begin="366.719" data-dur="0.620">
+      claiming
+     </span>
+     <span data-begin="367.729" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="367.920" data-dur="0.489">
+      honor
+     </span>
+     <span data-begin="368.589" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="368.859" data-dur="0.260">
+      this
+     </span>
+     <span data-begin="369.190" data-dur="1.000">
+      visit
+     </span>
+     .
+     <p>
+      就在这时，贝祖霍夫伯爵被宣布了出来。夫妻俩对视了一眼，都露出了自我满足的微笑，并各自在心里为这次来访感到荣幸。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="372.240" data-dur="0.299">
+      This
+     </span>
+     <span data-begin="372.539" data-dur="0.250">
+      is
+     </span>
+     <span data-begin="372.789" data-dur="0.179">
+      what
+     </span>
+     <span data-begin="372.969" data-dur="0.530">
+      comes
+     </span>
+     <span data-begin="373.639" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="373.809" data-dur="0.530">
+      knowing
+     </span>
+     <span data-begin="374.339" data-dur="0.260">
+      how
+     </span>
+     <span data-begin="374.679" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="374.769" data-dur="0.290">
+      make
+     </span>
+     <span data-begin="375.060" data-dur="1.109">
+      acquaintances
+     </span>
+     ,"
+     <span data-begin="376.449" data-dur="0.420">
+      thought
+     </span>
+     <span data-begin="376.869" data-dur="1.000">
+      Berg
+     </span>
+     . "
+     <span data-begin="378.439" data-dur="0.269">
+      This
+     </span>
+     <span data-begin="378.709" data-dur="0.250">
+      is
+     </span>
+     <span data-begin="378.959" data-dur="0.280">
+      what
+     </span>
+     <span data-begin="379.240" data-dur="0.348">
+      comes
+     </span>
+     <span data-begin="379.589" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="379.719" data-dur="0.459">
+      knowing
+     </span>
+     <span data-begin="380.309" data-dur="0.260">
+      how
+     </span>
+     <span data-begin="380.609" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="380.699" data-dur="0.610">
+      conduct
+     </span>
+     <span data-begin="381.309" data-dur="1.000">
+      oneself
+     </span>
+     ."
+     <p>
+      "伯格心想："这就是懂得结交的结果。"这就是懂得如何做人的结果"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="384.059" data-dur="0.220">
+      But
+     </span>
+     <span data-begin="384.279" data-dur="0.399">
+      please
+     </span>
+     <span data-begin="384.679" data-dur="0.390">
+      don't
+     </span>
+     <span data-begin="385.099" data-dur="0.700">
+      interrupt
+     </span>
+     <span data-begin="385.799" data-dur="0.260">
+      me
+     </span>
+     <span data-begin="386.089" data-dur="0.210">
+      when
+     </span>
+     <span data-begin="386.299" data-dur="0.030">
+      I
+     </span>
+     <span data-begin="386.330" data-dur="0.110">
+      am
+     </span>
+     <span data-begin="386.469" data-dur="0.870">
+      entertaining
+     </span>
+     <span data-begin="387.339" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="387.459" data-dur="0.650">
+      guests
+     </span>
+     ,"
+     <span data-begin="388.269" data-dur="0.329">
+      said
+     </span>
+     <span data-begin="388.629" data-dur="1.000">
+      Vera
+     </span>
+     , "
+     <span data-begin="389.759" data-dur="0.440">
+      because
+     </span>
+     <span data-begin="390.269" data-dur="0.199">
+      I
+     </span>
+     <span data-begin="390.469" data-dur="0.340">
+      know
+     </span>
+     <span data-begin="390.809" data-dur="0.160">
+      what
+     </span>
+     <span data-begin="391.010" data-dur="0.659">
+      interests
+     </span>
+     <span data-begin="391.789" data-dur="0.280">
+      each
+     </span>
+     <span data-begin="392.069" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="392.219" data-dur="0.429">
+      them
+     </span>
+     <span data-begin="393.120" data-dur="0.188">
+      and
+     </span>
+     <span data-begin="393.309" data-dur="0.380">
+      what
+     </span>
+     <span data-begin="393.690" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="393.809" data-dur="0.359">
+      say
+     </span>
+     <span data-begin="394.239" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="394.349" data-dur="0.399">
+      different
+     </span>
+     <span data-begin="394.870" data-dur="1.000">
+      people
+     </span>
+     ."
+     <p>
+      "不过，在我招待客人的时候，请不要打断我，"薇拉说，"因为我知道他们每个人的兴趣所在，也知道该对不同的人说些什么。"
+     </p>
+    </p>
+    <p>
+     <span data-begin="396.859" data-dur="0.370">
+      Berg
+     </span>
+     <span data-begin="397.230" data-dur="0.508">
+      smiled
+     </span>
+     <span data-begin="397.739" data-dur="1.000">
+      again
+     </span>
+     .
+     <p>
+      伯格又笑了。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="399.539" data-dur="0.210">
+      It
+     </span>
+     <span data-begin="399.749" data-dur="0.340">
+      can't
+     </span>
+     <span data-begin="400.089" data-dur="0.149">
+      be
+     </span>
+     <span data-begin="400.239" data-dur="0.539">
+      helped
+     </span>
+     :
+     <span data-begin="401.089" data-dur="0.290">
+      men
+     </span>
+     <span data-begin="401.379" data-dur="0.489">
+      must
+     </span>
+     <span data-begin="401.870" data-dur="0.719">
+      sometimes
+     </span>
+     <span data-begin="402.620" data-dur="0.160">
+      have
+     </span>
+     <span data-begin="402.809" data-dur="0.780">
+      masculine
+     </span>
+     <span data-begin="403.589" data-dur="1.000">
+      conversation
+     </span>
+     ,"
+     <span data-begin="405.279" data-dur="0.340">
+      said
+     </span>
+     <span data-begin="405.650" data-dur="1.000">
+      he
+     </span>
+     .
+     <p>
+      "他说："这也是没办法的事，男人有时必须有男子气概的谈话
+     </p>
+    </p>
+    <p>
+     <span data-begin="408.139" data-dur="0.140">
+      They
+     </span>
+     <span data-begin="408.309" data-dur="0.500">
+      received
+     </span>
+     <span data-begin="408.809" data-dur="0.580">
+      Pierre
+     </span>
+     <span data-begin="409.480" data-dur="0.149">
+      in
+     </span>
+     <span data-begin="409.629" data-dur="0.170">
+      their
+     </span>
+     <span data-begin="409.800" data-dur="0.550">
+      small
+     </span>
+     ,
+     <span data-begin="410.629" data-dur="0.340">
+      new
+     </span>
+     <span data-begin="410.999" data-dur="0.539">
+      drawing
+     </span>
+     -
+     <span data-begin="411.569" data-dur="0.280">
+      room
+     </span>
+     ,
+     <span data-begin="412.139" data-dur="0.390">
+      where
+     </span>
+     <span data-begin="412.559" data-dur="0.170">
+      it
+     </span>
+     <span data-begin="412.730" data-dur="0.210">
+      was
+     </span>
+     <span data-begin="412.999" data-dur="1.000">
+      impossible
+     </span>
+     <span data-begin="414.069" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="414.159" data-dur="0.329">
+      sit
+     </span>
+     <span data-begin="414.489" data-dur="0.260">
+      down
+     </span>
+     <span data-begin="414.839" data-dur="1.000">
+      anywhere
+     </span>
+     <span data-begin="416.099" data-dur="0.470">
+      without
+     </span>
+     <span data-begin="416.569" data-dur="0.760">
+      disturbing
+     </span>
+     <span data-begin="417.359" data-dur="0.399">
+      its
+     </span>
+     <span data-begin="417.760" data-dur="1.000">
+      symmetry
+     </span>
+     ,
+     <span data-begin="418.819" data-dur="0.740">
+      neatness
+     </span>
+     ,
+     <span data-begin="419.629" data-dur="0.269">
+      and
+     </span>
+     <span data-begin="419.979" data-dur="1.000">
+      order
+     </span>
+     ;
+     <span data-begin="421.800" data-dur="0.680">
+      so
+     </span>
+     <span data-begin="422.819" data-dur="0.179">
+      it
+     </span>
+     <span data-begin="422.999" data-dur="0.179">
+      was
+     </span>
+     <span data-begin="423.330" data-dur="0.310">
+      quite
+     </span>
+     <span data-begin="423.729" data-dur="1.000">
+      comprehensible
+     </span>
+     <span data-begin="424.859" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="425.069" data-dur="0.269">
+      not
+     </span>
+     <span data-begin="425.339" data-dur="0.780">
+      strange
+     </span>
+     <span data-begin="426.150" data-dur="0.128">
+      that
+     </span>
+     <span data-begin="426.279" data-dur="0.470">
+      Berg
+     </span>
+     ,
+     <span data-begin="426.779" data-dur="0.370">
+      having
+     </span>
+     <span data-begin="427.190" data-dur="0.680">
+      generously
+     </span>
+     <span data-begin="427.900" data-dur="0.370">
+      offered
+     </span>
+     <span data-begin="428.300" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="428.459" data-dur="0.530">
+      disturb
+     </span>
+     <span data-begin="429.019" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="429.098" data-dur="0.631">
+      symmetry
+     </span>
+     <span data-begin="429.729" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="429.859" data-dur="0.130">
+      an
+     </span>
+     <span data-begin="429.989" data-dur="1.000">
+      armchair
+     </span>
+     <span data-begin="431.089" data-dur="0.190">
+      or
+     </span>
+     <span data-begin="431.279" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="431.479" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="431.580" data-dur="0.550">
+      sofa
+     </span>
+     <span data-begin="432.159" data-dur="0.199">
+      for
+     </span>
+     <span data-begin="432.359" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="432.580" data-dur="0.440">
+      dear
+     </span>
+     <span data-begin="433.049" data-dur="0.620">
+      guest
+     </span>
+     ,
+     <span data-begin="434.010" data-dur="0.158">
+      but
+     </span>
+     <span data-begin="434.169" data-dur="0.260">
+      being
+     </span>
+     <span data-begin="434.529" data-dur="0.710">
+      apparently
+     </span>
+     <span data-begin="435.309" data-dur="0.669">
+      painfully
+     </span>
+     <span data-begin="435.979" data-dur="0.669">
+      undecided
+     </span>
+     <span data-begin="436.799" data-dur="0.160">
+      on
+     </span>
+     <span data-begin="436.959" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="437.059" data-dur="0.310">
+      matter
+     </span>
+     <span data-begin="437.370" data-dur="1.000">
+      himself
+     </span>
+     ,
+     <span data-begin="438.799" data-dur="0.740">
+      eventually
+     </span>
+     <span data-begin="439.539" data-dur="0.320">
+      left
+     </span>
+     <span data-begin="439.859" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="439.949" data-dur="0.550">
+      visitor
+     </span>
+     <span data-begin="440.499" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="440.639" data-dur="0.399">
+      settle
+     </span>
+     <span data-begin="441.099" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="441.229" data-dur="0.570">
+      question
+     </span>
+     <span data-begin="441.799" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="441.900" data-dur="1.000">
+      selection
+     </span>
+     .
+     <span data-begin="443.650" data-dur="0.510">
+      Pierre
+     </span>
+     <span data-begin="444.239" data-dur="0.630">
+      disturbed
+     </span>
+     <span data-begin="444.869" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="444.948" data-dur="0.631">
+      symmetry
+     </span>
+     <span data-begin="445.580" data-dur="0.179">
+      by
+     </span>
+     <span data-begin="445.760" data-dur="0.429">
+      moving
+     </span>
+     <span data-begin="446.219" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="446.330" data-dur="0.329">
+      chair
+     </span>
+     <span data-begin="446.739" data-dur="0.110">
+      for
+     </span>
+     <span data-begin="446.879" data-dur="1.000">
+      himself
+     </span>
+     ,
+     <span data-begin="448.459" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="448.719" data-dur="0.359">
+      Berg
+     </span>
+     <span data-begin="449.190" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="449.400" data-dur="0.520">
+      Vera
+     </span>
+     <span data-begin="450.169" data-dur="0.640">
+      immediately
+     </span>
+     <span data-begin="450.809" data-dur="0.489">
+      began
+     </span>
+     <span data-begin="451.299" data-dur="0.179">
+      their
+     </span>
+     <span data-begin="451.580" data-dur="0.450">
+      evening
+     </span>
+     <span data-begin="452.059" data-dur="1.000">
+      party
+     </span>
+     ,
+     <span data-begin="453.139" data-dur="0.810">
+      interrupting
+     </span>
+     <span data-begin="453.989" data-dur="0.290">
+      each
+     </span>
+     <span data-begin="454.319" data-dur="0.340">
+      other
+     </span>
+     <span data-begin="454.889" data-dur="0.190">
+      in
+     </span>
+     <span data-begin="455.109" data-dur="0.160">
+      their
+     </span>
+     <span data-begin="455.299" data-dur="0.599">
+      efforts
+     </span>
+     <span data-begin="455.900" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="456.120" data-dur="0.760">
+      entertain
+     </span>
+     <span data-begin="456.909" data-dur="0.179">
+      their
+     </span>
+     <span data-begin="457.189" data-dur="1.000">
+      guest
+     </span>
+     .
+     <p>
+      他们在狭小的新客厅里接待了皮埃尔，在这里，随便找个地方坐下来，都会破坏客厅的对称、整洁和秩序；因此，伯格慷慨地提出为他亲爱的客人破坏扶手椅或沙发的对称，但他自己显然在这件事上痛苦地犹豫不决，最终让来访者自己解决选择问题，这是完全可以理解的，也并不奇怪。皮埃尔为自己搬了一把椅子，破坏了对称性，伯格和薇拉立即开始了他们的晚会，在招待客人的过程中互相打断。
+     </p>
+    </p>
+    <p>
+     Vera,
+     <span data-begin="460.260" data-dur="0.318">
+      having
+     </span>
+     <span data-begin="460.579" data-dur="0.700">
+      decided
+     </span>
+     <span data-begin="461.329" data-dur="0.179">
+      in
+     </span>
+     <span data-begin="461.510" data-dur="0.140">
+      her
+     </span>
+     <span data-begin="461.779" data-dur="0.260">
+      own
+     </span>
+     <span data-begin="462.039" data-dur="0.570">
+      mind
+     </span>
+     <span data-begin="462.889" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="463.090" data-dur="0.420">
+      Pierre
+     </span>
+     <span data-begin="463.650" data-dur="0.308">
+      ought
+     </span>
+     <span data-begin="463.959" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="464.060" data-dur="0.140">
+      be
+     </span>
+     <span data-begin="464.200" data-dur="0.610">
+      entertained
+     </span>
+     <span data-begin="464.840" data-dur="0.199">
+      with
+     </span>
+     <span data-begin="465.129" data-dur="0.760">
+      conversation
+     </span>
+     <span data-begin="465.950" data-dur="0.338">
+      about
+     </span>
+     <span data-begin="466.289" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="466.370" data-dur="0.410">
+      French
+     </span>
+     <span data-begin="466.849" data-dur="1.000">
+      embassy
+     </span>
+     ,
+     <span data-begin="467.980" data-dur="0.199">
+      at
+     </span>
+     <span data-begin="468.249" data-dur="0.420">
+      once
+     </span>
+     <span data-begin="468.670" data-dur="0.450">
+      began
+     </span>
+     <span data-begin="469.189" data-dur="1.000">
+      accordingly
+     </span>
+     . Berg, having decided that masculine conversation was required, interrupted his wife's remarks and touched on the question of the war with Austria, and unconsciously jumped from the general subject to personal considerations as to the proposals made him to take part in the Austrian campaign and the reasons why he had declined them. Though the conversation was very incoherent and Vera was angry at the intrusion of the masculine element, both husband and wife felt with satisfaction that, even if only one guest was present, their evening had begun very well and was as like as two peas to every other evening party with its talk, tea, and lighted candles.
+     <p>
+      薇拉自己认为皮埃尔应该和她聊聊法国大使馆的事情，于是立刻开始了谈话。伯格认为需要男性化的谈话，于是打断了妻子的话，谈到了与奥地利的战争问题，并不自觉地从一般话题跳到了他个人的考虑上，谈到了他参加奥地利战役的建议以及他拒绝这些建议的原因。虽然谈话语无伦次，薇拉也对男性元素的闯入感到生气，但夫妻俩都满意地感到，即使只有一位客人在场，他们的夜晚也开始得非常好，就像两颗豌豆一样，与其他夜晚的聚会一样，有谈话、喝茶和点燃的蜡烛。
+     </p>
+    </p>
+    <p>
+     Before long Boris, Berg's old comrade, arrived. There was a shade of condescension and patronage in his treatment of Berg and Vera. After Boris came a lady with the colonel, then the general himself, then the Rostovs, and the party became unquestionably exactly like all other evening parties. Berg and Vera could not repress their smiles of satisfaction at the sight of all this movement in their drawing room, at the sound of the disconnected talk, the rustling of dresses, and the bowing and scraping. Everything was just as everybody always has it, especially so the general, who admired the apartment, patted Berg on the shoulder, and with parental authority superintended the setting out of the table for boston. The general sat down by Count Ilya Rostov, who was next to himself the most important guest. The old people sat with the old, the young with the young, and the hostess at the tea table, on which stood exactly the same kind of cakes in a silver cake basket as the Panins had at their party. Everything was just as it was everywhere else.
+     <p>
+      不久，伯格的老战友鲍里斯来了。他对伯格和薇拉的态度带着一种居高临下的宠爱。鲍里斯之后，一位女士带着上校来了，接着是将军本人，然后是罗斯托夫夫妇，晚会毫无疑问变得和其他晚会一模一样。伯格和薇拉看到客厅里如此热闹的景象，听到断断续续的谈话声、窸窸窣窣的礼服声、鞠躬和刮擦的声音，都抑制不住露出了满意的笑容。一切都和往常一样，尤其是将军，他对这间居室赞不绝口，拍了拍伯格的肩膀，带着家长的威严监督大家摆放波士顿的餐桌。将军坐在伊利亚-罗斯托夫伯爵身边，他是仅次于自己的最重要的客人。老人和老人坐在一起，年轻人和年轻人坐在一起，女主人则坐在茶几旁，茶几上放着银制蛋糕篮里的蛋糕，和帕宁夫妇在宴会上吃的一模一样。一切都和其他地方一样。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>
