@@ -1,0 +1,3536 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_10_07_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_10_07_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_10_07_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_10_07_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER VII
+     <p>
+      第七章
+     </p>
+    </p>
+    <p>
+     While this was taking place in Petersburg the French
+     <span data-begin="15.809" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="16.049" data-dur="0.480">
+      already
+     </span>
+     <span data-begin="16.529" data-dur="0.410">
+      passed
+     </span>
+     <span data-begin="16.940" data-dur="0.789">
+      Smolensk
+     </span>
+     <span data-begin="17.869" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="18.020" data-dur="0.199">
+      were
+     </span>
+     <span data-begin="18.260" data-dur="0.410">
+      drawing
+     </span>
+     <span data-begin="18.670" data-dur="0.399">
+      nearer
+     </span>
+     <span data-begin="19.069" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="19.350" data-dur="0.320">
+      nearer
+     </span>
+     <span data-begin="19.670" data-dur="0.240">
+      to
+     </span>
+     <span data-begin="20.079" data-dur="1.000">
+      Moscow
+     </span>
+     .
+     <span data-begin="22.069" data-dur="0.930">
+      Napoleon's
+     </span>
+     <span data-begin="23.000" data-dur="0.750">
+      historian
+     </span>
+     <span data-begin="23.850" data-dur="1.000">
+      Thiers
+     </span>
+     ,
+     <span data-begin="25.019" data-dur="0.299">
+      like
+     </span>
+     <span data-begin="25.399" data-dur="0.310">
+      other
+     </span>
+     <span data-begin="25.739" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="25.949" data-dur="0.240">
+      his
+     </span>
+     <span data-begin="26.189" data-dur="1.000">
+      historians
+     </span>
+     ,
+     <span data-begin="27.500" data-dur="0.340">
+      trying
+     </span>
+     <span data-begin="27.869" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="27.969" data-dur="1.000">
+      justify
+     </span>
+     <span data-begin="29.010" data-dur="0.288">
+      his
+     </span>
+     <span data-begin="29.299" data-dur="0.640">
+      hero
+     </span>
+     <span data-begin="30.229" data-dur="0.550">
+      says
+     </span>
+     <span data-begin="31.059" data-dur="0.190">
+      that
+     </span>
+     <span data-begin="31.279" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="31.379" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="31.689" data-dur="0.429">
+      drawn
+     </span>
+     <span data-begin="32.159" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="32.250" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="32.360" data-dur="0.500">
+      walls
+     </span>
+     <span data-begin="32.889" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="33.000" data-dur="0.640">
+      Moscow
+     </span>
+     <span data-begin="33.809" data-dur="0.599">
+      against
+     </span>
+     <span data-begin="34.439" data-dur="0.399">
+      his
+     </span>
+     <span data-begin="34.939" data-dur="1.000">
+      will
+     </span>
+     .
+     <span data-begin="37.979" data-dur="0.210">
+      He
+     </span>
+     <span data-begin="38.309" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="38.549" data-dur="0.290">
+      as
+     </span>
+     <span data-begin="38.879" data-dur="0.310">
+      right
+     </span>
+     <span data-begin="39.329" data-dur="0.099">
+      as
+     </span>
+     <span data-begin="39.489" data-dur="0.299">
+      other
+     </span>
+     <span data-begin="39.790" data-dur="1.060">
+      historians
+     </span>
+     <span data-begin="41.419" data-dur="0.080">
+      who
+     </span>
+     <span data-begin="41.500" data-dur="0.179">
+      look
+     </span>
+     <span data-begin="41.759" data-dur="0.210">
+      for
+     </span>
+     <span data-begin="41.969" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="42.090" data-dur="0.859">
+      explanation
+     </span>
+     <span data-begin="42.950" data-dur="0.128">
+      of
+     </span>
+     <span data-begin="43.079" data-dur="0.659">
+      historic
+     </span>
+     <span data-begin="43.739" data-dur="0.539">
+      events
+     </span>
+     <span data-begin="44.340" data-dur="0.060">
+      in
+     </span>
+     <span data-begin="44.459" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="44.599" data-dur="0.290">
+      will
+     </span>
+     <span data-begin="44.889" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="45.159" data-dur="0.260">
+      one
+     </span>
+     <span data-begin="45.419" data-dur="1.000">
+      man
+     </span>
+     ;
+     <span data-begin="46.689" data-dur="0.329">
+      he
+     </span>
+     <span data-begin="47.329" data-dur="0.099">
+      is
+     </span>
+     <span data-begin="47.430" data-dur="0.068">
+      as
+     </span>
+     <span data-begin="47.499" data-dur="0.300">
+      right
+     </span>
+     <span data-begin="47.950" data-dur="0.110">
+      as
+     </span>
+     <span data-begin="48.139" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="48.250" data-dur="0.359">
+      Russian
+     </span>
+     <span data-begin="48.610" data-dur="1.000">
+      historians
+     </span>
+     <span data-begin="49.840" data-dur="0.068">
+      who
+     </span>
+     <span data-begin="49.909" data-dur="0.719">
+      maintain
+     </span>
+     <span data-begin="50.659" data-dur="0.120">
+      that
+     </span>
+     <span data-begin="50.860" data-dur="0.690">
+      Napoleon
+     </span>
+     <span data-begin="51.579" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="51.860" data-dur="0.260">
+      drawn
+     </span>
+     <span data-begin="52.180" data-dur="0.058">
+      to
+     </span>
+     <span data-begin="52.239" data-dur="0.610">
+      Moscow
+     </span>
+     <span data-begin="52.879" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="53.029" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="53.159" data-dur="0.510">
+      skill
+     </span>
+     <span data-begin="53.909" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="54.149" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="54.270" data-dur="0.380">
+      Russian
+     </span>
+     <span data-begin="54.709" data-dur="1.000">
+      commanders
+     </span>
+     . Here besides the law of retrospection, which regards all the past as a preparation for events that subsequently occur, the
+     <span data-begin="66.250" data-dur="0.410">
+      law
+     </span>
+     <span data-begin="66.720" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="66.989" data-dur="1.050">
+      reciprocity
+     </span>
+     <span data-begin="68.119" data-dur="0.280">
+      comes
+     </span>
+     <span data-begin="68.430" data-dur="0.290">
+      in
+     </span>
+     ,
+     <span data-begin="68.769" data-dur="0.870">
+      confusing
+     </span>
+     <span data-begin="69.689" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="69.768" data-dur="0.300">
+      whole
+     </span>
+     <span data-begin="70.139" data-dur="1.000">
+      matter
+     </span>
+     .
+     <span data-begin="72.250" data-dur="0.099">
+      A
+     </span>
+     <span data-begin="72.379" data-dur="0.299">
+      good
+     </span>
+     <span data-begin="72.709" data-dur="0.729">
+      chessplayer
+     </span>
+     <span data-begin="73.580" data-dur="0.480">
+      having
+     </span>
+     <span data-begin="74.089" data-dur="0.359">
+      lost
+     </span>
+     <span data-begin="74.449" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="74.528" data-dur="0.471">
+      game
+     </span>
+     <span data-begin="75.099" data-dur="0.130">
+      is
+     </span>
+     <span data-begin="75.229" data-dur="0.940">
+      sincerely
+     </span>
+     <span data-begin="76.169" data-dur="1.000">
+      convinced
+     </span>
+     <span data-begin="77.449" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="77.659" data-dur="0.299">
+      his
+     </span>
+     <span data-begin="77.959" data-dur="0.489">
+      loss
+     </span>
+     <span data-begin="78.489" data-dur="0.650">
+      resulted
+     </span>
+     <span data-begin="79.339" data-dur="0.210">
+      from
+     </span>
+     <span data-begin="79.549" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="79.618" data-dur="0.670">
+      mistake
+     </span>
+     <span data-begin="80.290" data-dur="0.168">
+      he
+     </span>
+     <span data-begin="80.459" data-dur="0.420">
+      made
+     </span>
+     <span data-begin="81.400" data-dur="0.218">
+      and
+     </span>
+     <span data-begin="81.619" data-dur="0.489">
+      looks
+     </span>
+     <span data-begin="82.189" data-dur="0.240">
+      for
+     </span>
+     <span data-begin="82.430" data-dur="0.190">
+      that
+     </span>
+     <span data-begin="82.729" data-dur="0.580">
+      mistake
+     </span>
+     <span data-begin="83.519" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="83.689" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="83.839" data-dur="1.000">
+      opening
+     </span>
+     ,
+     <span data-begin="85.169" data-dur="0.229">
+      but
+     </span>
+     <span data-begin="85.430" data-dur="0.680">
+      forgets
+     </span>
+     <span data-begin="86.379" data-dur="0.179">
+      that
+     </span>
+     <span data-begin="86.559" data-dur="0.140">
+      at
+     </span>
+     <span data-begin="86.819" data-dur="0.160">
+      each
+     </span>
+     <span data-begin="87.009" data-dur="0.630">
+      stage
+     </span>
+     <span data-begin="87.639" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="87.879" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="87.970" data-dur="0.500">
+      game
+     </span>
+     <span data-begin="88.829" data-dur="0.210">
+      there
+     </span>
+     <span data-begin="89.040" data-dur="0.170">
+      were
+     </span>
+     <span data-begin="89.509" data-dur="0.570">
+      similar
+     </span>
+     <span data-begin="90.079" data-dur="1.000">
+      mistakes
+     </span>
+     <span data-begin="91.459" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="91.669" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="91.869" data-dur="0.370">
+      none
+     </span>
+     <span data-begin="92.239" data-dur="0.149">
+      of
+     </span>
+     <span data-begin="92.439" data-dur="0.320">
+      his
+     </span>
+     <span data-begin="92.759" data-dur="0.480">
+      moves
+     </span>
+     <span data-begin="93.299" data-dur="0.199">
+      were
+     </span>
+     <span data-begin="93.819" data-dur="1.000">
+      perfect
+     </span>
+     .
+     <span data-begin="95.419" data-dur="0.170">
+      He
+     </span>
+     <span data-begin="95.650" data-dur="0.350">
+      only
+     </span>
+     <span data-begin="96.029" data-dur="0.690">
+      notices
+     </span>
+     <span data-begin="96.750" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="96.879" data-dur="0.560">
+      mistake
+     </span>
+     <span data-begin="97.529" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="97.598" data-dur="0.341">
+      which
+     </span>
+     <span data-begin="97.939" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="98.029" data-dur="0.390">
+      pays
+     </span>
+     <span data-begin="98.419" data-dur="1.000">
+      attention
+     </span>
+     ,
+     <span data-begin="99.819" data-dur="0.410">
+      because
+     </span>
+     <span data-begin="100.229" data-dur="1.000">
+      his
+     </span>
+     opponent took advantage of it. How
+     <span data-begin="103.739" data-dur="0.329">
+      much
+     </span>
+     <span data-begin="104.069" data-dur="0.280">
+      more
+     </span>
+     <span data-begin="104.349" data-dur="0.729">
+      complex
+     </span>
+     <span data-begin="105.079" data-dur="0.260">
+      than
+     </span>
+     <span data-begin="105.369" data-dur="0.370">
+      this
+     </span>
+     <span data-begin="105.809" data-dur="0.140">
+      is
+     </span>
+     <span data-begin="106.009" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="106.088" data-dur="0.330">
+      game
+     </span>
+     <span data-begin="106.419" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="106.549" data-dur="0.420">
+      war
+     </span>
+     ,
+     <span data-begin="107.459" data-dur="0.240">
+      which
+     </span>
+     <span data-begin="107.699" data-dur="0.520">
+      occurs
+     </span>
+     <span data-begin="108.259" data-dur="0.250">
+      under
+     </span>
+     <span data-begin="108.509" data-dur="0.489">
+      certain
+     </span>
+     <span data-begin="109.040" data-dur="0.588">
+      limits
+     </span>
+     <span data-begin="109.629" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="109.889" data-dur="0.410">
+      time
+     </span>
+     ,
+     <span data-begin="110.819" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="110.970" data-dur="0.429">
+      where
+     </span>
+     <span data-begin="111.489" data-dur="0.110">
+      it
+     </span>
+     <span data-begin="111.629" data-dur="0.190">
+      is
+     </span>
+     <span data-begin="111.819" data-dur="0.310">
+      not
+     </span>
+     <span data-begin="112.290" data-dur="0.390">
+      one
+     </span>
+     <span data-begin="112.680" data-dur="0.440">
+      will
+     </span>
+     <span data-begin="113.329" data-dur="0.190">
+      that
+     </span>
+     <span data-begin="113.519" data-dur="1.000">
+      manipulates
+     </span>
+     <span data-begin="114.619" data-dur="0.710">
+      lifeless
+     </span>
+     <span data-begin="115.389" data-dur="1.000">
+      objects
+     </span>
+     ,
+     <span data-begin="116.689" data-dur="0.199">
+      but
+     </span>
+     <span data-begin="116.959" data-dur="0.770">
+      everything
+     </span>
+     <span data-begin="117.759" data-dur="0.740">
+      results
+     </span>
+     <span data-begin="118.529" data-dur="0.269">
+      from
+     </span>
+     <span data-begin="118.949" data-dur="1.100">
+      innumerable
+     </span>
+     <span data-begin="120.139" data-dur="0.789">
+      conflicts
+     </span>
+     <span data-begin="120.959" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="121.219" data-dur="0.710">
+      various
+     </span>
+     <span data-begin="122.009" data-dur="1.000">
+      wills
+     </span>
+     !
+     <p>
+      就在彼得堡发生这一切的时候，法军已经越过了斯摩棱斯克，离莫斯科越来越近了。拿破仑的历史学家梯也尔和其他历史学家一样，为了给自己的英雄开脱，说他是在违背自己意愿的情况下被引向莫斯科城墙的。他和其他历史学家一样，从一个人的意志中寻找历史事件的解释；他和俄国历史学家一样，认为拿破仑是被俄国指挥官的技巧吸引到莫斯科的。在这里，除了把过去的一切都看作是为后来发生的事件做准备的回溯法则之外，互惠法则的出现也让整个问题变得扑朔迷离。一个优秀的棋手在输掉一盘棋后，会真诚地相信他的失利是由于他所犯的一个错误造成的，并在开局中寻找这个错误，但却忘记了在对局的每个阶段都有类似的错误，而且他的每一步棋都不是完美无缺的。他只注意到他所注意的错误，因为对手利用了这个错误。战争游戏比这复杂得多，它是在一定的时间限制下进行的，操纵无生命物体的不是一种意志，而是各种意志无数次冲突的结果！
+     </p>
+    </p>
+    <p>
+     <span data-begin="124.299" data-dur="0.359">
+      After
+     </span>
+     <span data-begin="124.659" data-dur="1.000">
+      Smolensk
+     </span>
+     <span data-begin="126.059" data-dur="0.740">
+      Napoleon
+     </span>
+     <span data-begin="126.860" data-dur="0.290">
+      sought
+     </span>
+     <span data-begin="127.259" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="127.540" data-dur="0.370">
+      battle
+     </span>
+     <span data-begin="128.020" data-dur="1.000">
+      beyond
+     </span>
+     Dorogobuzh at Vyazma, and then at Tsarevo-Zaymishche, but it happened that
+     <span data-begin="136.539" data-dur="0.329">
+      owing
+     </span>
+     <span data-begin="136.910" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="136.989" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="137.050" data-dur="0.818">
+      conjunction
+     </span>
+     <span data-begin="137.869" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="138.279" data-dur="0.489">
+      innumerable
+     </span>
+     <span data-begin="138.970" data-dur="1.230">
+      circumstances
+     </span>
+     <span data-begin="140.699" data-dur="0.160">
+      the
+     </span>
+     <span data-begin="140.860" data-dur="0.520">
+      Russians
+     </span>
+     <span data-begin="141.410" data-dur="0.149">
+      could
+     </span>
+     <span data-begin="141.559" data-dur="0.250">
+      not
+     </span>
+     <span data-begin="141.889" data-dur="0.170">
+      give
+     </span>
+     <span data-begin="142.059" data-dur="0.530">
+      battle
+     </span>
+     <span data-begin="142.679" data-dur="0.170">
+      till
+     </span>
+     <span data-begin="142.910" data-dur="0.160">
+      they
+     </span>
+     <span data-begin="143.099" data-dur="0.260">
+      reached
+     </span>
+     <span data-begin="143.410" data-dur="1.000">
+      Borodino
+     </span>
+     ,
+     <span data-begin="144.539" data-dur="0.560">
+      seventy
+     </span>
+     <span data-begin="145.099" data-dur="0.470">
+      miles
+     </span>
+     <span data-begin="145.569" data-dur="0.140">
+      from
+     </span>
+     <span data-begin="145.709" data-dur="1.000">
+      Moscow
+     </span>
+     .
+     <span data-begin="147.229" data-dur="0.229">
+      From
+     </span>
+     <span data-begin="147.459" data-dur="1.000">
+      Vyazma
+     </span>
+     <span data-begin="148.619" data-dur="0.659">
+      Napoleon
+     </span>
+     <span data-begin="149.279" data-dur="0.440">
+      ordered
+     </span>
+     <span data-begin="150.020" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="150.049" data-dur="0.291">
+      direct
+     </span>
+     <span data-begin="150.479" data-dur="0.610">
+      advance
+     </span>
+     <span data-begin="151.129" data-dur="0.110">
+      on
+     </span>
+     <span data-begin="151.239" data-dur="1.000">
+      Moscow
+     </span>
+     .
+     <p>
+      斯摩棱斯克战役之后，拿破仑在多罗戈布日之外的维亚兹马寻求一战，随后又在察雷沃-扎伊米什切寻求一战，但由于无数情况的叠加，俄军在到达距莫斯科七十英里的博罗季诺之前无法开战。拿破仑下令从维亚兹马直接向莫斯科推进。
+     </p>
+    </p>
+    <p>
+     Moscou, la capitale asiatique de ce grand empire, la ville sacree des peuples d'Alexandre, Moscou avec ses innombrables eglises en forme de pagodes chinoises, *
+     <span data-begin="184.629" data-dur="0.310">
+      this
+     </span>
+     <span data-begin="184.970" data-dur="1.000">
+      Moscow
+     </span>
+     <span data-begin="186.019" data-dur="0.240">
+      gave
+     </span>
+     <span data-begin="186.289" data-dur="0.830">
+      Napoleon's
+     </span>
+     <span data-begin="187.159" data-dur="1.000">
+      imagination
+     </span>
+     <span data-begin="188.309" data-dur="0.429">
+      no
+     </span>
+     <span data-begin="188.739" data-dur="1.000">
+      rest
+     </span>
+     .
+     <span data-begin="191.360" data-dur="0.269">
+      On
+     </span>
+     <span data-begin="191.629" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="191.759" data-dur="0.310">
+      march
+     </span>
+     <span data-begin="192.179" data-dur="0.220">
+      from
+     </span>
+     <span data-begin="192.399" data-dur="0.539">
+      Vyazma
+     </span>
+     <span data-begin="193.019" data-dur="1.000">
+      to
+     </span>
+     Tsarevo-Zaymishche he rode
+     <span data-begin="195.409" data-dur="0.310">
+      his
+     </span>
+     <span data-begin="195.720" data-dur="0.280">
+      light
+     </span>
+     <span data-begin="196.110" data-dur="0.190">
+      bay
+     </span>
+     <span data-begin="196.300" data-dur="0.630">
+      bobtailed
+     </span>
+     <span data-begin="197.009" data-dur="0.530">
+      ambler
+     </span>
+     <span data-begin="197.989" data-dur="0.669">
+      accompanied
+     </span>
+     <span data-begin="198.699" data-dur="0.170">
+      by
+     </span>
+     <span data-begin="198.869" data-dur="0.290">
+      his
+     </span>
+     <span data-begin="199.190" data-dur="0.570">
+      Guards
+     </span>
+     ,
+     <span data-begin="200.059" data-dur="0.240">
+      his
+     </span>
+     <span data-begin="200.300" data-dur="0.740">
+      bodyguard
+     </span>
+     ,
+     <span data-begin="201.220" data-dur="0.220">
+      his
+     </span>
+     <span data-begin="201.489" data-dur="0.690">
+      pages
+     </span>
+     ,
+     <span data-begin="202.489" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="202.709" data-dur="0.229">
+      aides
+     </span>
+     -
+     <span data-begin="202.940" data-dur="0.110">
+      de
+     </span>
+     -
+     <span data-begin="203.159" data-dur="1.000">
+      camp
+     </span>
+     . Berthier,
+     <span data-begin="204.959" data-dur="0.179">
+      his
+     </span>
+     <span data-begin="205.169" data-dur="0.350">
+      chief
+     </span>
+     <span data-begin="205.519" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="205.690" data-dur="0.489">
+      staff
+     </span>
+     ,
+     <span data-begin="206.360" data-dur="0.338">
+      dropped
+     </span>
+     <span data-begin="206.699" data-dur="0.470">
+      behind
+     </span>
+     <span data-begin="207.229" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="207.308" data-dur="0.651">
+      question
+     </span>
+     <span data-begin="208.049" data-dur="0.040">
+      a
+     </span>
+     <span data-begin="208.119" data-dur="0.410">
+      Russian
+     </span>
+     <span data-begin="208.569" data-dur="0.599">
+      prisoner
+     </span>
+     <span data-begin="209.220" data-dur="0.530">
+      captured
+     </span>
+     <span data-begin="209.779" data-dur="0.170">
+      by
+     </span>
+     <span data-begin="209.949" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="210.169" data-dur="1.000">
+      cavalry
+     </span>
+     . Followed by Lelorgne d'Ideville, an
+     <span data-begin="214.929" data-dur="1.000">
+      interpreter
+     </span>
+     ,
+     <span data-begin="216.309" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="216.429" data-dur="0.580">
+      overtook
+     </span>
+     <span data-begin="217.009" data-dur="0.740">
+      Napoleon
+     </span>
+     <span data-begin="217.789" data-dur="0.070">
+      at
+     </span>
+     <span data-begin="217.970" data-dur="0.047">
+      a
+     </span>
+     <span data-begin="218.018" data-dur="0.430">
+      gallop
+     </span>
+     <span data-begin="218.619" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="218.819" data-dur="0.329">
+      reined
+     </span>
+     <span data-begin="219.149" data-dur="0.130">
+      in
+     </span>
+     <span data-begin="219.279" data-dur="0.280">
+      his
+     </span>
+     <span data-begin="219.559" data-dur="0.560">
+      horse
+     </span>
+     <span data-begin="220.149" data-dur="0.190">
+      with
+     </span>
+     <span data-begin="220.339" data-dur="0.149">
+      an
+     </span>
+     <span data-begin="220.489" data-dur="0.560">
+      amused
+     </span>
+     <span data-begin="221.139" data-dur="1.000">
+      expression
+     </span>
+     .
+     <p>
+      莫斯科，这个大帝国的亚洲之都，亚历山大人民的圣城，莫斯科有无数中国式的教堂，* 这座莫斯科让拿破仑的想象力久久不能平静。从维亚兹马到察雷沃-扎伊米什切的行军途中，拿破仑骑着他那辆轻便的骝马伏特加，身边跟着他的近卫军、保镖、侍从和副官。他的参谋长贝尔蒂埃（Berthier）落在后面，审问一名被骑兵抓获的俄国俘虏。在翻译 Lelorgne d'Ideville 的跟随下，他疾步追上拿破仑，并勒住马缰绳，露出了得意的表情。
+     </p>
+    </p>
+    <p>
+     * "Moscow, the Asiatic capital of this great empire, the
+     <p>
+      *"莫斯科，这个伟大帝国的亚洲首都，亚历山大子民的
+     </p>
+    </p>
+    <p>
+     sacred city of Alexander's people, Moscow with its
+     <p>
+      圣城，莫斯科有
+     </p>
+    </p>
+    <p>
+     innumerable churches shaped like Chinese pagodas."
+     <p>
+      无数形似中国宝塔的教堂。"
+     </p>
+    </p>
+    <p>
+     "Well?" asked Napoleon.
+     <p>
+      "怎么样？"拿破仑问道。
+     </p>
+    </p>
+    <p>
+     "One of Platov's Cossacks says that Platov's corps is joining up with the main army and that Kutuzov has been appointed commander-in-chief. He is a very shrewd and garrulous fellow."
+     <p>
+      "普拉托夫的一个哥萨克人说，普拉托夫的军团正在与主力部队会合，库图佐夫已被任命为总司令。他是个非常精明和唠叨的家伙。"
+     </p>
+    </p>
+    <p>
+     <span data-begin="240.399" data-dur="0.630">
+      Napoleon
+     </span>
+     <span data-begin="241.029" data-dur="0.680">
+      smiled
+     </span>
+     <span data-begin="241.809" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="241.989" data-dur="0.250">
+      told
+     </span>
+     <span data-begin="242.269" data-dur="0.160">
+      them
+     </span>
+     <span data-begin="242.479" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="242.599" data-dur="0.229">
+      give
+     </span>
+     <span data-begin="242.830" data-dur="0.108">
+      the
+     </span>
+     <span data-begin="242.939" data-dur="0.510">
+      Cossack
+     </span>
+     <span data-begin="243.449" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="243.569" data-dur="0.489">
+      horse
+     </span>
+     <span data-begin="244.439" data-dur="0.240">
+      and
+     </span>
+     <span data-begin="244.739" data-dur="0.260">
+      bring
+     </span>
+     <span data-begin="245.039" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="245.118" data-dur="0.360">
+      man
+     </span>
+     <span data-begin="245.549" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="245.649" data-dur="1.000">
+      him
+     </span>
+     .
+     <span data-begin="246.860" data-dur="0.260">
+      He
+     </span>
+     <span data-begin="247.220" data-dur="0.299">
+      wished
+     </span>
+     <span data-begin="247.559" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="247.699" data-dur="0.320">
+      talk
+     </span>
+     <span data-begin="248.019" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="248.098" data-dur="0.230">
+      him
+     </span>
+     <span data-begin="248.429" data-dur="1.000">
+      himself
+     </span>
+     .
+     <span data-begin="250.869" data-dur="0.410">
+      Several
+     </span>
+     <span data-begin="251.489" data-dur="0.849">
+      adjutants
+     </span>
+     <span data-begin="252.389" data-dur="0.489">
+      galloped
+     </span>
+     <span data-begin="252.909" data-dur="0.340">
+      off
+     </span>
+     ,
+     <span data-begin="253.519" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="253.729" data-dur="0.110">
+      an
+     </span>
+     <span data-begin="253.839" data-dur="0.269">
+      hour
+     </span>
+     <span data-begin="254.110" data-dur="0.500">
+      later
+     </span>
+     ,
+     <span data-begin="254.830" data-dur="1.000">
+      Lavrushka
+     </span>
+     ,
+     <span data-begin="256.009" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="256.109" data-dur="0.390">
+      serf
+     </span>
+     <span data-begin="256.600" data-dur="0.508">
+      Denisov
+     </span>
+     <span data-begin="257.109" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="257.290" data-dur="0.429">
+      handed
+     </span>
+     <span data-begin="257.720" data-dur="0.299">
+      over
+     </span>
+     <span data-begin="258.089" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="258.239" data-dur="1.000">
+      Rostov
+     </span>
+     ,
+     <span data-begin="259.290" data-dur="0.260">
+      rode
+     </span>
+     <span data-begin="259.579" data-dur="0.179">
+      up
+     </span>
+     <span data-begin="259.820" data-dur="0.108">
+      to
+     </span>
+     <span data-begin="259.929" data-dur="1.000">
+      Napoleon
+     </span>
+     <span data-begin="261.019" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="261.130" data-dur="0.160">
+      an
+     </span>
+     <span data-begin="261.359" data-dur="0.640">
+      orderly's
+     </span>
+     <span data-begin="262.029" data-dur="0.580">
+      jacket
+     </span>
+     <span data-begin="262.970" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="263.119" data-dur="0.149">
+      on
+     </span>
+     <span data-begin="263.329" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="263.358" data-dur="0.400">
+      French
+     </span>
+     <span data-begin="263.790" data-dur="0.459">
+      cavalry
+     </span>
+     <span data-begin="264.279" data-dur="0.599">
+      saddle
+     </span>
+     ,
+     <span data-begin="265.229" data-dur="0.190">
+      with
+     </span>
+     <span data-begin="265.419" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="265.488" data-dur="0.490">
+      merry
+     </span>
+     ,
+     <span data-begin="266.029" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="266.250" data-dur="0.410">
+      tipsy
+     </span>
+     <span data-begin="266.660" data-dur="1.000">
+      face
+     </span>
+     .
+     <span data-begin="268.320" data-dur="0.470">
+      Napoleon
+     </span>
+     <span data-begin="268.790" data-dur="0.260">
+      told
+     </span>
+     <span data-begin="269.100" data-dur="0.229">
+      him
+     </span>
+     <span data-begin="269.329" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="269.489" data-dur="0.229">
+      ride
+     </span>
+     <span data-begin="269.720" data-dur="0.190">
+      by
+     </span>
+     <span data-begin="269.910" data-dur="0.208">
+      his
+     </span>
+     <span data-begin="270.119" data-dur="0.480">
+      side
+     </span>
+     <span data-begin="270.679" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="270.839" data-dur="0.380">
+      began
+     </span>
+     <span data-begin="271.259" data-dur="0.530">
+      questioning
+     </span>
+     <span data-begin="271.959" data-dur="1.000">
+      him
+     </span>
+     .
+     <p>
+      拿破仑笑了笑，让他们给哥萨克人一匹马，把这个人带到他面前。他想亲自和他谈谈。几个副官飞快地跑开了，一个小时后，杰尼索夫交给罗斯托夫的农奴拉夫鲁什卡穿着传令兵的外套，骑着法国骑兵的马鞍，满脸喜悦，醉醺醺地来到拿破仑面前。拿破仑让他骑在自己身边，开始询问他。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="273.329" data-dur="0.130">
+      You
+     </span>
+     <span data-begin="273.459" data-dur="0.190">
+      are
+     </span>
+     <span data-begin="273.649" data-dur="0.110">
+      a
+     </span>
+     <span data-begin="273.790" data-dur="1.000">
+      Cossack
+     </span>
+     ?"
+     <p>
+      "你是哥萨克人？"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="275.100" data-dur="0.378">
+      Yes
+     </span>
+     ,
+     <span data-begin="275.479" data-dur="0.099">
+      a
+     </span>
+     <span data-begin="275.609" data-dur="0.399">
+      Cossack
+     </span>
+     ,
+     <span data-begin="276.139" data-dur="0.120">
+      your
+     </span>
+     <span data-begin="276.329" data-dur="1.000">
+      Honor
+     </span>
+     ."
+     <p>
+      "是的，哥萨克人，大人"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="277.589" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="277.679" data-dur="0.849">
+      Cossack
+     </span>
+     ,
+     <span data-begin="278.529" data-dur="0.179">
+      not
+     </span>
+     <span data-begin="278.779" data-dur="0.450">
+      knowing
+     </span>
+     <span data-begin="279.299" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="279.419" data-dur="0.240">
+      what
+     </span>
+     <span data-begin="279.699" data-dur="0.500">
+      company
+     </span>
+     <span data-begin="280.269" data-dur="0.110">
+      he
+     </span>
+     <span data-begin="280.380" data-dur="0.570">
+      was
+     </span>
+     ,
+     <span data-begin="281.269" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="281.419" data-dur="0.710">
+      Napoleon's
+     </span>
+     <span data-begin="282.190" data-dur="0.340">
+      plain
+     </span>
+     <span data-begin="282.609" data-dur="0.590">
+      appearance
+     </span>
+     <span data-begin="283.199" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="283.339" data-dur="0.440">
+      nothing
+     </span>
+     <span data-begin="283.919" data-dur="0.340">
+      about
+     </span>
+     <span data-begin="284.299" data-dur="0.240">
+      it
+     </span>
+     <span data-begin="284.639" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="284.869" data-dur="0.190">
+      would
+     </span>
+     <span data-begin="285.089" data-dur="0.390">
+      reveal
+     </span>
+     <span data-begin="285.540" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="285.630" data-dur="0.089">
+      an
+     </span>
+     <span data-begin="285.779" data-dur="0.590">
+      Oriental
+     </span>
+     <span data-begin="286.369" data-dur="0.530">
+      mind
+     </span>
+     <span data-begin="287.359" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="287.449" data-dur="0.570">
+      presence
+     </span>
+     <span data-begin="288.019" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="288.190" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="288.229" data-dur="1.000">
+      monarch
+     </span>
+     ,
+     <span data-begin="289.329" data-dur="0.429">
+      talked
+     </span>
+     <span data-begin="289.759" data-dur="0.149">
+      with
+     </span>
+     <span data-begin="289.910" data-dur="0.608">
+      extreme
+     </span>
+     <span data-begin="290.519" data-dur="1.000">
+      familiarity
+     </span>
+     <span data-begin="291.690" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="291.989" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="292.079" data-dur="0.740">
+      incidents
+     </span>
+     <span data-begin="292.880" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="293.179" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="293.320" data-dur="0.410">
+      war
+     </span>
+     ,"
+     <span data-begin="294.199" data-dur="0.359">
+      says
+     </span>
+     <span data-begin="294.669" data-dur="1.000">
+      Thiers
+     </span>
+     , narrating this episode. In reality Lavrushka, having got drunk the day
+     <span data-begin="302.389" data-dur="1.000">
+      before
+     </span>
+     <span data-begin="303.500" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="303.639" data-dur="0.199">
+      left
+     </span>
+     <span data-begin="303.940" data-dur="0.208">
+      his
+     </span>
+     <span data-begin="304.149" data-dur="0.520">
+      master
+     </span>
+     <span data-begin="304.729" data-dur="1.000">
+      dinnerless
+     </span>
+     ,
+     <span data-begin="305.889" data-dur="0.130">
+      had
+     </span>
+     <span data-begin="306.100" data-dur="0.199">
+      been
+     </span>
+     <span data-begin="306.299" data-dur="0.410">
+      whipped
+     </span>
+     <span data-begin="306.880" data-dur="0.168">
+      and
+     </span>
+     <span data-begin="307.049" data-dur="0.290">
+      sent
+     </span>
+     <span data-begin="307.389" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="307.479" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="307.579" data-dur="0.599">
+      village
+     </span>
+     <span data-begin="308.250" data-dur="0.160">
+      in
+     </span>
+     <span data-begin="308.449" data-dur="0.390">
+      quest
+     </span>
+     <span data-begin="308.839" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="309.019" data-dur="1.000">
+      chickens
+     </span>
+     ,
+     <span data-begin="310.729" data-dur="0.320">
+      where
+     </span>
+     <span data-begin="311.049" data-dur="0.210">
+      he
+     </span>
+     <span data-begin="311.259" data-dur="0.599">
+      engaged
+     </span>
+     <span data-begin="311.859" data-dur="0.060">
+      in
+     </span>
+     <span data-begin="311.949" data-dur="0.640">
+      looting
+     </span>
+     <span data-begin="312.949" data-dur="0.160">
+      till
+     </span>
+     <span data-begin="313.139" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="313.350" data-dur="0.378">
+      French
+     </span>
+     <span data-begin="313.729" data-dur="0.199">
+      took
+     </span>
+     <span data-begin="313.959" data-dur="0.210">
+      him
+     </span>
+     <span data-begin="314.199" data-dur="1.000">
+      prisoner
+     </span>
+     .
+     <span data-begin="315.940" data-dur="0.770">
+      Lavrushka
+     </span>
+     <span data-begin="316.839" data-dur="0.210">
+      was
+     </span>
+     <span data-begin="317.049" data-dur="0.220">
+      one
+     </span>
+     <span data-begin="317.269" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="317.459" data-dur="0.320">
+      those
+     </span>
+     <span data-begin="317.820" data-dur="0.539">
+      coarse
+     </span>
+     ,
+     <span data-begin="318.459" data-dur="0.299">
+      bare
+     </span>
+     -
+     <span data-begin="318.859" data-dur="0.350">
+      faced
+     </span>
+     <span data-begin="319.209" data-dur="1.000">
+      lackeys
+     </span>
+     <span data-begin="320.239" data-dur="0.160">
+      who
+     </span>
+     <span data-begin="320.399" data-dur="0.160">
+      have
+     </span>
+     <span data-begin="320.559" data-dur="0.340">
+      seen
+     </span>
+     <span data-begin="320.970" data-dur="0.288">
+      all
+     </span>
+     <span data-begin="321.259" data-dur="0.440">
+      sorts
+     </span>
+     <span data-begin="321.699" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="321.809" data-dur="0.410">
+      things
+     </span>
+     ,
+     <span data-begin="322.829" data-dur="0.489">
+      consider
+     </span>
+     <span data-begin="323.350" data-dur="0.149">
+      it
+     </span>
+     <span data-begin="323.500" data-dur="0.640">
+      necessary
+     </span>
+     <span data-begin="324.309" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="324.440" data-dur="0.140">
+      do
+     </span>
+     <span data-begin="324.619" data-dur="0.680">
+      everything
+     </span>
+     <span data-begin="325.329" data-dur="0.190">
+      in
+     </span>
+     <span data-begin="325.519" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="325.548" data-dur="0.421">
+      mean
+     </span>
+     <span data-begin="326.000" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="326.169" data-dur="0.370">
+      cunning
+     </span>
+     <span data-begin="326.619" data-dur="0.390">
+      way
+     </span>
+     ,
+     <span data-begin="327.459" data-dur="0.160">
+      are
+     </span>
+     <span data-begin="327.669" data-dur="0.329">
+      ready
+     </span>
+     <span data-begin="328.000" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="328.220" data-dur="0.440">
+      render
+     </span>
+     <span data-begin="328.739" data-dur="0.250">
+      any
+     </span>
+     <span data-begin="328.989" data-dur="0.329">
+      sort
+     </span>
+     <span data-begin="329.380" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="329.459" data-dur="0.650">
+      service
+     </span>
+     <span data-begin="330.149" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="330.259" data-dur="0.149">
+      their
+     </span>
+     <span data-begin="330.440" data-dur="1.000">
+      master
+     </span>
+     ,
+     <span data-begin="331.630" data-dur="0.208">
+      and
+     </span>
+     <span data-begin="331.839" data-dur="0.199">
+      are
+     </span>
+     <span data-begin="332.039" data-dur="0.520">
+      keen
+     </span>
+     <span data-begin="332.589" data-dur="0.170">
+      at
+     </span>
+     <span data-begin="332.820" data-dur="0.480">
+      guessing
+     </span>
+     <span data-begin="333.329" data-dur="0.149">
+      their
+     </span>
+     <span data-begin="333.479" data-dur="0.590">
+      master's
+     </span>
+     <span data-begin="334.209" data-dur="0.459">
+      baser
+     </span>
+     <span data-begin="334.799" data-dur="1.000">
+      impulses
+     </span>
+     ,
+     <span data-begin="336.160" data-dur="0.890">
+      especially
+     </span>
+     <span data-begin="337.079" data-dur="0.350">
+      those
+     </span>
+     <span data-begin="337.509" data-dur="0.570">
+      prompted
+     </span>
+     <span data-begin="338.190" data-dur="0.210">
+      by
+     </span>
+     <span data-begin="338.429" data-dur="0.630">
+      vanity
+     </span>
+     <span data-begin="339.089" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="339.339" data-dur="1.000">
+      pettiness
+     </span>
+     .
+     <p>
+      "哥萨克不知道自己是在什么同伴的陪同下，因为拿破仑朴素的外表在东方人的心目中丝毫看不出他是一位君主，他极其熟悉地谈论着战争中发生的事件，"梯也尔在叙述这段插曲时说道。实际上，拉夫鲁什卡在前一天喝醉了酒，他的主人没有吃晚饭，他就被鞭打了一顿，然后被送到村子里去找鸡，在那里他进行了抢劫，直到法国人把他俘虏。拉夫鲁什卡是那种粗鲁、赤裸的奴才，他们见多识广，认为做任何事情都必须卑鄙狡猾，随时准备为主人提供任何形式的服务，并善于揣测主人的卑劣冲动，尤其是那些由虚荣和小气引起的冲动。
+     </p>
+    </p>
+    <p>
+     <span data-begin="341.429" data-dur="0.580">
+      Finding
+     </span>
+     <span data-begin="342.079" data-dur="0.550">
+      himself
+     </span>
+     <span data-begin="343.000" data-dur="0.160">
+      in
+     </span>
+     <span data-begin="343.160" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="343.229" data-dur="0.539">
+      company
+     </span>
+     <span data-begin="343.769" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="343.929" data-dur="1.000">
+      Napoleon
+     </span>
+     ,
+     <span data-begin="345.209" data-dur="0.199">
+      whose
+     </span>
+     <span data-begin="345.440" data-dur="0.680">
+      identity
+     </span>
+     <span data-begin="346.199" data-dur="0.280">
+      he
+     </span>
+     <span data-begin="346.809" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="347.089" data-dur="0.599">
+      easily
+     </span>
+     <span data-begin="347.759" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="347.919" data-dur="0.440">
+      surely
+     </span>
+     <span data-begin="348.459" data-dur="1.000">
+      recognized
+     </span>
+     ,
+     <span data-begin="349.799" data-dur="1.000">
+      Lavrushka
+     </span>
+     <span data-begin="350.859" data-dur="0.210">
+      was
+     </span>
+     <span data-begin="351.070" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="351.449" data-dur="0.170">
+      in
+     </span>
+     <span data-begin="351.649" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="351.789" data-dur="0.310">
+      least
+     </span>
+     <span data-begin="352.149" data-dur="1.000">
+      abashed
+     </span>
+     <span data-begin="353.369" data-dur="0.190">
+      but
+     </span>
+     <span data-begin="353.559" data-dur="0.530">
+      merely
+     </span>
+     <span data-begin="354.089" data-dur="0.240">
+      did
+     </span>
+     <span data-begin="354.359" data-dur="0.269">
+      his
+     </span>
+     <span data-begin="354.859" data-dur="0.610">
+      utmost
+     </span>
+     <span data-begin="355.519" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="355.630" data-dur="0.380">
+      gain
+     </span>
+     <span data-begin="356.329" data-dur="0.210">
+      his
+     </span>
+     <span data-begin="356.539" data-dur="0.350">
+      new
+     </span>
+     <span data-begin="356.979" data-dur="0.700">
+      master's
+     </span>
+     <span data-begin="357.759" data-dur="1.000">
+      favor
+     </span>
+     .
+     <p>
+      拉夫鲁什卡发现自己和拿破仑在一起，他很容易就认出了拿破仑的身份，但他丝毫不感到羞愧，只是竭尽全力博得新主人的欢心。
+     </p>
+    </p>
+    <p>
+     <span data-begin="360.889" data-dur="0.160">
+      He
+     </span>
+     <span data-begin="361.049" data-dur="0.320">
+      knew
+     </span>
+     <span data-begin="361.399" data-dur="0.269">
+      very
+     </span>
+     <span data-begin="361.669" data-dur="0.410">
+      well
+     </span>
+     <span data-begin="362.159" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="362.329" data-dur="0.250">
+      this
+     </span>
+     <span data-begin="362.579" data-dur="0.190">
+      was
+     </span>
+     <span data-begin="362.770" data-dur="1.000">
+      Napoleon
+     </span>
+     ,
+     <span data-begin="364.069" data-dur="0.170">
+      but
+     </span>
+     <span data-begin="364.239" data-dur="0.810">
+      Napoleon's
+     </span>
+     <span data-begin="365.150" data-dur="0.610">
+      presence
+     </span>
+     <span data-begin="365.799" data-dur="0.170">
+      could
+     </span>
+     <span data-begin="365.969" data-dur="0.260">
+      no
+     </span>
+     <span data-begin="366.230" data-dur="0.269">
+      more
+     </span>
+     <span data-begin="366.569" data-dur="0.690">
+      intimidate
+     </span>
+     <span data-begin="367.310" data-dur="0.250">
+      him
+     </span>
+     <span data-begin="367.589" data-dur="0.140">
+      than
+     </span>
+     <span data-begin="367.779" data-dur="1.000">
+      Rostov's
+     </span>
+     ,
+     <span data-begin="369.139" data-dur="0.028">
+      or
+     </span>
+     <span data-begin="369.168" data-dur="0.061">
+      a
+     </span>
+     <span data-begin="369.230" data-dur="0.570">
+      sergeant
+     </span>
+     <span data-begin="369.829" data-dur="0.710">
+      major's
+     </span>
+     <span data-begin="370.579" data-dur="0.149">
+      with
+     </span>
+     <span data-begin="370.839" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="370.989" data-dur="0.470">
+      rods
+     </span>
+     ,
+     <span data-begin="371.879" data-dur="0.190">
+      would
+     </span>
+     <span data-begin="372.100" data-dur="0.140">
+      have
+     </span>
+     <span data-begin="372.309" data-dur="0.370">
+      done
+     </span>
+     ,
+     <span data-begin="373.149" data-dur="0.179">
+      for
+     </span>
+     <span data-begin="373.329" data-dur="0.160">
+      he
+     </span>
+     <span data-begin="373.489" data-dur="0.160">
+      had
+     </span>
+     <span data-begin="373.679" data-dur="0.680">
+      nothing
+     </span>
+     <span data-begin="374.419" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="374.589" data-dur="0.359">
+      either
+     </span>
+     <span data-begin="374.950" data-dur="0.128">
+      the
+     </span>
+     <span data-begin="375.079" data-dur="0.510">
+      sergeant
+     </span>
+     <span data-begin="375.589" data-dur="0.550">
+      major
+     </span>
+     <span data-begin="376.229" data-dur="0.130">
+      or
+     </span>
+     <span data-begin="376.360" data-dur="0.630">
+      Napoleon
+     </span>
+     <span data-begin="377.110" data-dur="0.199">
+      could
+     </span>
+     <span data-begin="377.399" data-dur="0.480">
+      deprive
+     </span>
+     <span data-begin="377.879" data-dur="0.290">
+      him
+     </span>
+     <span data-begin="378.239" data-dur="1.000">
+      of
+     </span>
+     .
+     <p>
+      他很清楚，这就是拿破仑，但拿破仑的存在对他的威慑力，不亚于罗斯托夫的威慑力，也不亚于拿着棍棒的军士长的威慑力，因为他没有任何东西是军士长或拿破仑可以剥夺的。
+     </p>
+    </p>
+    <p>
+     <span data-begin="379.610" data-dur="0.548">
+      So
+     </span>
+     <span data-begin="380.159" data-dur="0.160">
+      he
+     </span>
+     <span data-begin="380.360" data-dur="0.410">
+      rattled
+     </span>
+     <span data-begin="380.770" data-dur="0.359">
+      on
+     </span>
+     ,
+     <span data-begin="381.199" data-dur="0.329">
+      telling
+     </span>
+     <span data-begin="381.629" data-dur="0.290">
+      all
+     </span>
+     <span data-begin="381.919" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="382.020" data-dur="0.528">
+      gossip
+     </span>
+     <span data-begin="382.549" data-dur="0.140">
+      he
+     </span>
+     <span data-begin="382.690" data-dur="0.190">
+      had
+     </span>
+     <span data-begin="382.929" data-dur="0.310">
+      heard
+     </span>
+     <span data-begin="383.239" data-dur="0.350">
+      among
+     </span>
+     <span data-begin="383.619" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="383.749" data-dur="1.000">
+      orderlies
+     </span>
+     .
+     <span data-begin="385.110" data-dur="0.288">
+      Much
+     </span>
+     <span data-begin="385.399" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="385.569" data-dur="0.160">
+      it
+     </span>
+     <span data-begin="385.819" data-dur="1.000">
+      true
+     </span>
+     .
+     <span data-begin="387.429" data-dur="1.000">
+      But
+     </span>
+     <span data-begin="388.699" data-dur="0.299">
+      when
+     </span>
+     <span data-begin="388.999" data-dur="0.659">
+      Napoleon
+     </span>
+     <span data-begin="389.690" data-dur="0.410">
+      asked
+     </span>
+     <span data-begin="390.129" data-dur="0.149">
+      him
+     </span>
+     <span data-begin="390.600" data-dur="0.438">
+      whether
+     </span>
+     <span data-begin="391.039" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="391.159" data-dur="0.590">
+      Russians
+     </span>
+     <span data-begin="391.749" data-dur="0.229">
+      thought
+     </span>
+     <span data-begin="392.159" data-dur="0.160">
+      they
+     </span>
+     <span data-begin="392.350" data-dur="0.170">
+      would
+     </span>
+     <span data-begin="392.569" data-dur="0.260">
+      beat
+     </span>
+     <span data-begin="393.370" data-dur="0.620">
+      Bonaparte
+     </span>
+     <span data-begin="394.120" data-dur="0.099">
+      or
+     </span>
+     <span data-begin="394.249" data-dur="0.329">
+      not
+     </span>
+     ,
+     <span data-begin="395.159" data-dur="0.669">
+      Lavrushka
+     </span>
+     <span data-begin="395.829" data-dur="0.570">
+      screwed
+     </span>
+     <span data-begin="396.399" data-dur="0.110">
+      up
+     </span>
+     <span data-begin="396.609" data-dur="0.220">
+      his
+     </span>
+     <span data-begin="396.890" data-dur="0.450">
+      eyes
+     </span>
+     <span data-begin="397.479" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="397.719" data-dur="1.000">
+      considered
+     </span>
+     .
+     <p>
+      于是，他滔滔不绝地讲起了他在勤务兵中听到的所有流言蜚语。其中很多都是真的。但是，当拿破仑问他俄国人是否认为他们能打败波拿巴时，拉夫鲁什卡瞪起眼睛思考起来。
+     </p>
+    </p>
+    <p>
+     <span data-begin="400.100" data-dur="0.190">
+      In
+     </span>
+     <span data-begin="400.319" data-dur="0.280">
+      this
+     </span>
+     <span data-begin="400.639" data-dur="0.690">
+      question
+     </span>
+     <span data-begin="401.449" data-dur="0.140">
+      he
+     </span>
+     <span data-begin="401.589" data-dur="0.370">
+      saw
+     </span>
+     <span data-begin="402.139" data-dur="0.459">
+      subtle
+     </span>
+     <span data-begin="402.710" data-dur="0.480">
+      cunning
+     </span>
+     ,
+     <span data-begin="403.719" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="403.839" data-dur="0.350">
+      men
+     </span>
+     <span data-begin="404.190" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="404.389" data-dur="0.220">
+      his
+     </span>
+     <span data-begin="404.690" data-dur="0.310">
+      type
+     </span>
+     <span data-begin="405.059" data-dur="0.370">
+      see
+     </span>
+     <span data-begin="405.519" data-dur="0.440">
+      cunning
+     </span>
+     <span data-begin="405.999" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="406.269" data-dur="1.000">
+      everything
+     </span>
+     ,
+     <span data-begin="407.379" data-dur="0.329">
+      so
+     </span>
+     <span data-begin="407.739" data-dur="0.160">
+      he
+     </span>
+     <span data-begin="408.059" data-dur="0.420">
+      frowned
+     </span>
+     <span data-begin="408.780" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="408.919" data-dur="0.160">
+      did
+     </span>
+     <span data-begin="409.079" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="409.309" data-dur="0.450">
+      answer
+     </span>
+     <span data-begin="409.829" data-dur="1.000">
+      immediately
+     </span>
+     .
+     <p>
+      在这个问题中，他看到了微妙的狡猾，就像他这种人在任何事情中都能看到狡猾一样，所以他皱起了眉头，没有立即回答。
+     </p>
+    </p>
+    <p>
+     "It's like this," he said thoughtfully, "if there's a battle
+     <span data-begin="416.989" data-dur="1.000">
+      soon
+     </span>
+     ,
+     <span data-begin="418.019" data-dur="0.489">
+      yours
+     </span>
+     <span data-begin="418.559" data-dur="0.299">
+      will
+     </span>
+     <span data-begin="418.899" data-dur="0.160">
+      win
+     </span>
+     .
+     <span data-begin="419.860" data-dur="0.370">
+      That's
+     </span>
+     <span data-begin="420.299" data-dur="1.000">
+      right
+     </span>
+     .
+     <span data-begin="421.769" data-dur="0.229">
+      But
+     </span>
+     <span data-begin="422.000" data-dur="0.188">
+      if
+     </span>
+     <span data-begin="422.189" data-dur="0.340">
+      three
+     </span>
+     <span data-begin="422.530" data-dur="0.429">
+      days
+     </span>
+     <span data-begin="422.960" data-dur="0.539">
+      pass
+     </span>
+     ,
+     <span data-begin="423.890" data-dur="0.399">
+      then
+     </span>
+     <span data-begin="424.449" data-dur="0.420">
+      after
+     </span>
+     <span data-begin="424.869" data-dur="0.280">
+      that
+     </span>
+     ,
+     <span data-begin="425.659" data-dur="0.530">
+      well
+     </span>
+     ,
+     <span data-begin="426.579" data-dur="0.480">
+      then
+     </span>
+     <span data-begin="427.539" data-dur="0.229">
+      that
+     </span>
+     <span data-begin="427.769" data-dur="0.429">
+      same
+     </span>
+     <span data-begin="428.199" data-dur="0.570">
+      battle
+     </span>
+     <span data-begin="428.809" data-dur="0.179">
+      will
+     </span>
+     <span data-begin="428.989" data-dur="0.250">
+      not
+     </span>
+     <span data-begin="429.559" data-dur="0.450">
+      soon
+     </span>
+     <span data-begin="430.009" data-dur="0.179">
+      be
+     </span>
+     <span data-begin="430.189" data-dur="1.000">
+      over
+     </span>
+     ."
+     <p>
+      "是这样的，"他若有所思地说，"如果马上要打仗，你的人会赢。这就对了。但如果过了三天，再过三天，那么，同样的战斗也不会很快结束。"
+     </p>
+    </p>
+    <p>
+     Lelorgne d'Ideville smilingly interpreted this
+     <span data-begin="437.059" data-dur="0.640">
+      speech
+     </span>
+     <span data-begin="437.699" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="437.820" data-dur="1.000">
+      Napoleon
+     </span>
+     thus: "If a battle takes place within the next three
+     <span data-begin="442.829" data-dur="0.459">
+      days
+     </span>
+     <span data-begin="443.449" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="443.518" data-dur="0.471">
+      French
+     </span>
+     <span data-begin="444.049" data-dur="0.199">
+      will
+     </span>
+     <span data-begin="444.250" data-dur="0.380">
+      win
+     </span>
+     ,
+     <span data-begin="445.179" data-dur="0.190">
+      but
+     </span>
+     <span data-begin="445.369" data-dur="0.140">
+      if
+     </span>
+     <span data-begin="445.539" data-dur="0.560">
+      later
+     </span>
+     ,
+     <span data-begin="446.269" data-dur="0.280">
+      God
+     </span>
+     <span data-begin="446.549" data-dur="0.410">
+      knows
+     </span>
+     <span data-begin="446.960" data-dur="0.190">
+      what
+     </span>
+     <span data-begin="447.259" data-dur="0.140">
+      will
+     </span>
+     <span data-begin="447.399" data-dur="1.000">
+      happen
+     </span>
+     ."
+     <span data-begin="449.829" data-dur="1.000">
+      Napoleon
+     </span>
+     <span data-begin="450.899" data-dur="0.179">
+      did
+     </span>
+     <span data-begin="451.079" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="451.309" data-dur="0.560">
+      smile
+     </span>
+     ,
+     <span data-begin="452.089" data-dur="0.210">
+      though
+     </span>
+     <span data-begin="452.329" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="452.460" data-dur="0.280">
+      was
+     </span>
+     <span data-begin="452.829" data-dur="0.810">
+      evidently
+     </span>
+     <span data-begin="453.640" data-dur="0.097">
+      in
+     </span>
+     <span data-begin="453.738" data-dur="0.421">
+      high
+     </span>
+     <span data-begin="454.210" data-dur="0.290">
+      good
+     </span>
+     <span data-begin="454.600" data-dur="1.000">
+      humor
+     </span>
+     ,
+     <span data-begin="455.649" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="455.869" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="456.030" data-dur="0.420">
+      ordered
+     </span>
+     <span data-begin="456.549" data-dur="0.260">
+      these
+     </span>
+     <span data-begin="456.869" data-dur="0.520">
+      words
+     </span>
+     <span data-begin="457.449" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="457.539" data-dur="1.000">
+      be
+     </span>
+     repeated.
+     <p>
+      Lelorgne d'Ideville 笑眯眯地向拿破仑解释了这番话："如果在接下来的三天内发生战斗，法国人将获胜，但如果再晚一些，天知道会发生什么"。拿破仑没有笑，尽管他显然很有幽默感，但他还是命令把这些话重复一遍。
+     </p>
+    </p>
+    <p>
+     <span data-begin="459.949" data-dur="0.620">
+      Lavrushka
+     </span>
+     <span data-begin="460.570" data-dur="0.608">
+      noticed
+     </span>
+     <span data-begin="461.179" data-dur="0.250">
+      this
+     </span>
+     <span data-begin="461.719" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="461.960" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="462.079" data-dur="0.590">
+      entertain
+     </span>
+     <span data-begin="462.739" data-dur="0.149">
+      him
+     </span>
+     <span data-begin="462.890" data-dur="0.620">
+      further
+     </span>
+     ,
+     <span data-begin="463.850" data-dur="0.659">
+      pretending
+     </span>
+     <span data-begin="464.509" data-dur="0.220">
+      not
+     </span>
+     <span data-begin="464.850" data-dur="0.097">
+      to
+     </span>
+     <span data-begin="464.948" data-dur="0.270">
+      know
+     </span>
+     <span data-begin="465.309" data-dur="0.140">
+      who
+     </span>
+     <span data-begin="465.449" data-dur="0.659">
+      Napoleon
+     </span>
+     <span data-begin="466.239" data-dur="0.390">
+      was
+     </span>
+     ,
+     <span data-begin="466.729" data-dur="1.000">
+      added
+     </span>
+     :
+     <p>
+      拉夫鲁什卡注意到了这一点，为了进一步取悦他他假装不知道拿破仑是谁，又补充说：
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="468.409" data-dur="0.299">
+      We
+     </span>
+     <span data-begin="468.710" data-dur="0.450">
+      know
+     </span>
+     <span data-begin="469.339" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="469.570" data-dur="0.118">
+      you
+     </span>
+     <span data-begin="469.689" data-dur="0.250">
+      have
+     </span>
+     <span data-begin="469.939" data-dur="1.000">
+      Bonaparte
+     </span>
+     <span data-begin="471.249" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="471.439" data-dur="0.280">
+      that
+     </span>
+     <span data-begin="471.749" data-dur="0.170">
+      he
+     </span>
+     <span data-begin="471.960" data-dur="0.240">
+      has
+     </span>
+     <span data-begin="472.280" data-dur="0.390">
+      beaten
+     </span>
+     <span data-begin="473.129" data-dur="0.599">
+      everybody
+     </span>
+     <span data-begin="473.729" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="473.869" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="473.979" data-dur="1.000">
+      world
+     </span>
+     ,
+     <span data-begin="475.229" data-dur="0.149">
+      but
+     </span>
+     <span data-begin="475.439" data-dur="0.149">
+      we
+     </span>
+     <span data-begin="475.589" data-dur="0.190">
+      are
+     </span>
+     <span data-begin="475.919" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="475.978" data-dur="0.571">
+      different
+     </span>
+     <span data-begin="476.619" data-dur="1.000">
+      matter
+     </span>
+     ..."—without
+     <span data-begin="478.739" data-dur="0.659">
+      knowing
+     </span>
+     <span data-begin="479.609" data-dur="0.420">
+      why
+     </span>
+     <span data-begin="480.059" data-dur="0.240">
+      or
+     </span>
+     <span data-begin="480.299" data-dur="0.269">
+      how
+     </span>
+     <span data-begin="480.649" data-dur="0.260">
+      this
+     </span>
+     <span data-begin="480.909" data-dur="0.229">
+      bit
+     </span>
+     <span data-begin="481.169" data-dur="0.179">
+      of
+     </span>
+     <span data-begin="481.350" data-dur="0.618">
+      boastful
+     </span>
+     <span data-begin="481.969" data-dur="0.900">
+      patriotism
+     </span>
+     <span data-begin="482.919" data-dur="0.399">
+      slipped
+     </span>
+     <span data-begin="483.449" data-dur="1.000">
+      out
+     </span>
+     <span data-begin="485.129" data-dur="0.170">
+      at
+     </span>
+     <span data-begin="485.479" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="485.809" data-dur="1.000">
+      end
+     </span>
+     .
+     <p>
+      "我们知道你们有波拿巴，他打败了世界上所有的人，但我们是另一回事......"--不知道为什么，也不知道这一点自吹自擂的爱国主义是如何在最后溜出来
+     </p>
+    </p>
+    <p>
+     The interpreter translated these words without the last phrase,
+     <span data-begin="493.010" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="493.189" data-dur="0.599">
+      Bonaparte
+     </span>
+     <span data-begin="493.870" data-dur="1.000">
+      smiled
+     </span>
+     . "
+     <span data-begin="496.320" data-dur="0.097">
+      The
+     </span>
+     <span data-begin="496.418" data-dur="0.360">
+      young
+     </span>
+     <span data-begin="496.809" data-dur="0.550">
+      Cossack
+     </span>
+     <span data-begin="497.629" data-dur="0.380">
+      made
+     </span>
+     <span data-begin="498.010" data-dur="0.208">
+      his
+     </span>
+     <span data-begin="498.219" data-dur="1.000">
+      mighty
+     </span>
+     interlocutor smile," says Thiers. After riding a few paces in silence, Napoleon turned to Berthier
+     <span data-begin="507.400" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="507.579" data-dur="0.340">
+      said
+     </span>
+     <span data-begin="508.070" data-dur="0.120">
+      he
+     </span>
+     <span data-begin="508.219" data-dur="0.290">
+      wished
+     </span>
+     <span data-begin="508.579" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="508.658" data-dur="0.400">
+      see
+     </span>
+     <span data-begin="509.439" data-dur="0.199">
+      how
+     </span>
+     <span data-begin="509.680" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="509.759" data-dur="0.471">
+      news
+     </span>
+     <span data-begin="510.290" data-dur="0.208">
+      that
+     </span>
+     <span data-begin="510.499" data-dur="0.078">
+      he
+     </span>
+     <span data-begin="510.578" data-dur="0.191">
+      was
+     </span>
+     <span data-begin="510.879" data-dur="0.410">
+      talking
+     </span>
+     <span data-begin="511.329" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="511.460" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="511.570" data-dur="0.450">
+      Emperor
+     </span>
+     <span data-begin="512.089" data-dur="1.000">
+      himself
+     </span>
+     ,
+     <span data-begin="513.299" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="513.419" data-dur="0.229">
+      that
+     </span>
+     <span data-begin="513.710" data-dur="0.329">
+      very
+     </span>
+     <span data-begin="514.079" data-dur="0.380">
+      Emperor
+     </span>
+     <span data-begin="514.790" data-dur="0.149">
+      who
+     </span>
+     <span data-begin="514.939" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="515.150" data-dur="0.470">
+      written
+     </span>
+     <span data-begin="515.689" data-dur="0.220">
+      his
+     </span>
+     <span data-begin="516.100" data-dur="0.750">
+      immortally
+     </span>
+     <span data-begin="516.850" data-dur="0.868">
+      victorious
+     </span>
+     <span data-begin="517.719" data-dur="0.290">
+      name
+     </span>
+     <span data-begin="518.059" data-dur="0.190">
+      on
+     </span>
+     <span data-begin="518.249" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="518.400" data-dur="1.000">
+      Pyramids
+     </span>
+     ,
+     <span data-begin="519.499" data-dur="0.170">
+      would
+     </span>
+     <span data-begin="519.669" data-dur="0.410">
+      affect
+     </span>
+     <span data-begin="520.279" data-dur="0.240">
+      this
+     </span>
+     <span data-begin="520.609" data-dur="1.000">
+      enfant
+     </span>
+     <span data-begin="521.639" data-dur="0.140">
+      du
+     </span>
+     <span data-begin="521.779" data-dur="1.000">
+      Don
+     </span>
+     . *
+     <p>
+      翻译翻译了这些话，但没有翻译最后一句，波拿巴笑了。"梯也尔说："这个年轻的哥萨克人让他强大的对话者笑了。拿破仑沉默地骑了几步后，转身对贝尔蒂埃说，他想看看他正在与皇帝本人交谈，与那位在金字塔上写下他不朽的胜利名字的皇帝交谈，这个消息会对这位唐朝的孩子产生什么影响。
+     </p>
+    </p>
+    <p>
+     * "
+     <span data-begin="523.969" data-dur="0.390">
+      Child
+     </span>
+     <span data-begin="524.460" data-dur="0.149">
+      of
+     </span>
+     <span data-begin="524.749" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="524.919" data-dur="1.000">
+      Don
+     </span>
+     ."
+     <p>
+      "唐人的孩子"
+     </p>
+    </p>
+    <p>
+     <span data-begin="528.619" data-dur="0.070">
+      The
+     </span>
+     <span data-begin="528.889" data-dur="0.199">
+      fact
+     </span>
+     <span data-begin="529.089" data-dur="0.370">
+      was
+     </span>
+     <span data-begin="529.540" data-dur="0.750">
+      accordingly
+     </span>
+     <span data-begin="530.359" data-dur="0.590">
+      conveyed
+     </span>
+     <span data-begin="531.189" data-dur="0.110">
+      to
+     </span>
+     Lavrushka.
+     <p>
+      这个事实被转告给了拉夫鲁什卡。
+     </p>
+    </p>
+    <p>
+     <span data-begin="531.329" data-dur="1.000">
+      Lavrushka
+     </span>
+     ,
+     <span data-begin="534.989" data-dur="0.979">
+      understanding
+     </span>
+     <span data-begin="535.999" data-dur="0.240">
+      that
+     </span>
+     <span data-begin="536.239" data-dur="0.240">
+      this
+     </span>
+     <span data-begin="536.479" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="536.650" data-dur="0.299">
+      done
+     </span>
+     <span data-begin="537.159" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="537.228" data-dur="0.551">
+      perplex
+     </span>
+     <span data-begin="537.779" data-dur="0.359">
+      him
+     </span>
+     <span data-begin="538.509" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="538.680" data-dur="0.179">
+      that
+     </span>
+     <span data-begin="538.859" data-dur="0.690">
+      Napoleon
+     </span>
+     <span data-begin="539.579" data-dur="0.700">
+      expected
+     </span>
+     <span data-begin="540.409" data-dur="0.220">
+      him
+     </span>
+     <span data-begin="540.680" data-dur="0.097">
+      to
+     </span>
+     <span data-begin="540.778" data-dur="1.000">
+      be
+     </span>
+     frightened, to gratify
+     <span data-begin="543.799" data-dur="0.370">
+      his
+     </span>
+     <span data-begin="544.169" data-dur="0.190">
+      new
+     </span>
+     <span data-begin="544.359" data-dur="0.780">
+      masters
+     </span>
+     <span data-begin="545.229" data-dur="0.399">
+      promptly
+     </span>
+     <span data-begin="545.629" data-dur="0.700">
+      pretended
+     </span>
+     <span data-begin="546.379" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="546.499" data-dur="0.160">
+      be
+     </span>
+     <span data-begin="546.689" data-dur="0.820">
+      astonished
+     </span>
+     <span data-begin="547.540" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="547.749" data-dur="0.199">
+      awe
+     </span>
+     -
+     <span data-begin="547.949" data-dur="1.000">
+      struck
+     </span>
+     ,
+     <span data-begin="549.419" data-dur="0.380">
+      opened
+     </span>
+     <span data-begin="549.799" data-dur="0.199">
+      his
+     </span>
+     <span data-begin="549.999" data-dur="0.340">
+      eyes
+     </span>
+     <span data-begin="550.400" data-dur="0.459">
+      wide
+     </span>
+     ,
+     <span data-begin="550.859" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="551.269" data-dur="0.450">
+      assumed
+     </span>
+     <span data-begin="551.749" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="551.850" data-dur="0.810">
+      expression
+     </span>
+     <span data-begin="552.759" data-dur="0.110">
+      he
+     </span>
+     <span data-begin="552.869" data-dur="0.539">
+      usually
+     </span>
+     <span data-begin="553.439" data-dur="0.140">
+      put
+     </span>
+     <span data-begin="553.699" data-dur="0.280">
+      on
+     </span>
+     <span data-begin="554.460" data-dur="0.240">
+      when
+     </span>
+     <span data-begin="554.749" data-dur="0.420">
+      taken
+     </span>
+     <span data-begin="555.169" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="555.329" data-dur="0.120">
+      be
+     </span>
+     <span data-begin="555.449" data-dur="1.000">
+      whipped
+     </span>
+     . "
+     <span data-begin="557.579" data-dur="0.299">
+      As
+     </span>
+     <span data-begin="557.879" data-dur="0.220">
+      soon
+     </span>
+     <span data-begin="558.180" data-dur="0.128">
+      as
+     </span>
+     <span data-begin="558.309" data-dur="0.710">
+      Napoleon's
+     </span>
+     <span data-begin="559.059" data-dur="0.799">
+      interpreter
+     </span>
+     <span data-begin="559.889" data-dur="0.199">
+      had
+     </span>
+     <span data-begin="560.089" data-dur="0.719">
+      spoken
+     </span>
+     ,"
+     <span data-begin="560.879" data-dur="0.359">
+      says
+     </span>
+     <span data-begin="561.320" data-dur="1.000">
+      Thiers
+     </span>
+     , "
+     <span data-begin="562.419" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="562.540" data-dur="1.000">
+      Cossack
+     </span>
+     ,
+     <span data-begin="563.779" data-dur="0.640">
+      seized
+     </span>
+     <span data-begin="564.469" data-dur="0.269">
+      by
+     </span>
+     <span data-begin="564.790" data-dur="0.740">
+      amazement
+     </span>
+     ,
+     <span data-begin="565.779" data-dur="0.170">
+      did
+     </span>
+     <span data-begin="565.949" data-dur="0.250">
+      not
+     </span>
+     <span data-begin="566.710" data-dur="0.110">
+      utter
+     </span>
+     <span data-begin="566.969" data-dur="0.329">
+      another
+     </span>
+     <span data-begin="567.369" data-dur="0.560">
+      word
+     </span>
+     ,
+     <span data-begin="568.379" data-dur="0.149">
+      but
+     </span>
+     <span data-begin="568.609" data-dur="0.320">
+      rode
+     </span>
+     <span data-begin="568.969" data-dur="0.450">
+      on
+     </span>
+     ,
+     <span data-begin="569.729" data-dur="0.220">
+      his
+     </span>
+     <span data-begin="570.040" data-dur="0.478">
+      eyes
+     </span>
+     <span data-begin="570.519" data-dur="0.370">
+      fixed
+     </span>
+     <span data-begin="570.919" data-dur="0.220">
+      on
+     </span>
+     <span data-begin="571.139" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="571.218" data-dur="1.000">
+      conqueror
+     </span>
+     <span data-begin="572.379" data-dur="0.250">
+      whose
+     </span>
+     <span data-begin="572.629" data-dur="0.340">
+      fame
+     </span>
+     <span data-begin="572.969" data-dur="0.199">
+      had
+     </span>
+     <span data-begin="573.320" data-dur="0.440">
+      reached
+     </span>
+     <span data-begin="573.799" data-dur="0.199">
+      him
+     </span>
+     <span data-begin="574.029" data-dur="0.480">
+      across
+     </span>
+     <span data-begin="574.540" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="574.609" data-dur="0.440">
+      steppes
+     </span>
+     <span data-begin="575.049" data-dur="0.240">
+      of
+     </span>
+     <span data-begin="575.600" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="575.889" data-dur="1.000">
+      East
+     </span>
+     .
+     <span data-begin="577.919" data-dur="0.240">
+      All
+     </span>
+     <span data-begin="578.259" data-dur="0.250">
+      his
+     </span>
+     <span data-begin="578.509" data-dur="1.000">
+      loquacity
+     </span>
+     <span data-begin="580.309" data-dur="0.240">
+      was
+     </span>
+     <span data-begin="580.549" data-dur="0.530">
+      suddenly
+     </span>
+     <span data-begin="581.229" data-dur="0.599">
+      arrested
+     </span>
+     <span data-begin="581.879" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="582.100" data-dur="0.550">
+      replaced
+     </span>
+     <span data-begin="582.739" data-dur="0.140">
+      by
+     </span>
+     <span data-begin="582.879" data-dur="0.110">
+      a
+     </span>
+     <span data-begin="582.989" data-dur="0.280">
+      naive
+     </span>
+     <span data-begin="583.320" data-dur="0.359">
+      and
+     </span>
+     <span data-begin="583.820" data-dur="0.610">
+      silent
+     </span>
+     <span data-begin="584.469" data-dur="0.399">
+      feeling
+     </span>
+     <span data-begin="584.899" data-dur="0.170">
+      of
+     </span>
+     <span data-begin="585.129" data-dur="1.000">
+      admiration
+     </span>
+     .
+     <span data-begin="586.949" data-dur="1.000">
+      Napoleon
+     </span>
+     ,
+     <span data-begin="588.009" data-dur="0.359">
+      after
+     </span>
+     <span data-begin="588.369" data-dur="0.429">
+      making
+     </span>
+     <span data-begin="588.829" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="588.989" data-dur="0.429">
+      Cossack
+     </span>
+     <span data-begin="589.460" data-dur="0.030">
+      a
+     </span>
+     <span data-begin="589.589" data-dur="0.530">
+      present
+     </span>
+     ,
+     <span data-begin="590.529" data-dur="0.210">
+      had
+     </span>
+     <span data-begin="590.839" data-dur="0.120">
+      him
+     </span>
+     <span data-begin="590.989" data-dur="0.399">
+      set
+     </span>
+     <span data-begin="591.570" data-dur="1.000">
+      free
+     </span>
+     <span data-begin="592.689" data-dur="0.299">
+      like
+     </span>
+     <span data-begin="593.059" data-dur="0.099">
+      a
+     </span>
+     bird restored to its native fields."
+     <p>
+      拉夫鲁什卡明白，拿破仑这样做是为了让他感到困惑，希望他受到惊吓，以满足他的新主人的要求，于是立即装出一副惊讶和敬畏的样子，睁大了眼睛，摆出了他被鞭打时通常会有的表情。"拿破仑的翻译一开口，"梯也尔说，"哥萨克就惊呆了，再也不吭声了，而是骑着马，眼睛紧紧盯着这位声名传遍东方草原的征服者。他所有的豪言壮语突然被打断，取而代之的是一种天真而无声的钦佩之情。拿破仑送给哥萨克人一份礼物后，就像放归故里的鸟儿一样把他放走了"。
+     </p>
+    </p>
+    <p>
+     Napoleon rode on, dreaming of the Moscow that so appealed to his imagination, and "the
+     <span data-begin="593.189" data-dur="0.500">
+      bird
+     </span>
+     <span data-begin="593.729" data-dur="0.550">
+      restored
+     </span>
+     <span data-begin="594.350" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="594.460" data-dur="0.229">
+      its
+     </span>
+     <span data-begin="594.689" data-dur="0.500">
+      native
+     </span>
+     <span data-begin="595.389" data-dur="1.000">
+      fields
+     </span>
+     " galloped to our outposts, inventing on the way all that had not taken place but that he meant to relate to his comrades. What had really taken place he did not wish to relate because it seemed to him not worth telling. He found the Cossacks, inquired for the regiment operating with Platov's detachment and by evening found his master, Nicholas Rostov, quartered at Yankovo. Rostov was just mounting to go for a ride round the neighboring villages with Ilyin; he let Lavrushka have another horse and took him along with him.
+     <p>
+      拿破仑骑着马，憧憬着令他浮想联翩的莫斯科，而 "归巢的鸟儿 "则向我们的前哨飞奔而去，一路上他编造了所有没有发生的事情，但他想把这些事情告诉他的战友们。真正发生的事情他不想说，因为在他看来不值得说。他找到了哥萨克人，打听到了与普拉托夫分遣队一起行动的那个团，傍晚时分找到了他的主人尼古拉-罗斯托夫，他就驻扎在扬科沃。罗斯托夫正准备和伊林一起去附近的村庄转转；他把另一匹马让给了拉夫鲁什卡，并带着他一起去了。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>

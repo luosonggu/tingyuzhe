@@ -1,0 +1,5165 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_10_20_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_10_20_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_10_20_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_10_20_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER XX
+     <p>
+      第二十章
+     </p>
+    </p>
+    <p>
+     <span data-begin="11.010" data-dur="0.179">
+      On
+     </span>
+     <span data-begin="11.189" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="11.268" data-dur="0.481">
+      morning
+     </span>
+     <span data-begin="11.840" data-dur="0.108">
+      of
+     </span>
+     <span data-begin="11.949" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="12.008" data-dur="0.281">
+      twenty
+     </span>
+     -
+     <span data-begin="12.289" data-dur="0.350">
+      fifth
+     </span>
+     <span data-begin="12.670" data-dur="0.438">
+      Pierre
+     </span>
+     <span data-begin="13.109" data-dur="0.179">
+      was
+     </span>
+     <span data-begin="13.289" data-dur="0.480">
+      leaving
+     </span>
+     <span data-begin="14.259" data-dur="1.000">
+      Mozhaysk
+     </span>
+     .
+     <span data-begin="15.579" data-dur="0.179">
+      At
+     </span>
+     <span data-begin="15.759" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="15.869" data-dur="0.480">
+      descent
+     </span>
+     <span data-begin="16.420" data-dur="0.138">
+      of
+     </span>
+     <span data-begin="16.559" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="16.670" data-dur="0.188">
+      high
+     </span>
+     <span data-begin="16.859" data-dur="0.359">
+      steep
+     </span>
+     <span data-begin="17.219" data-dur="0.429">
+      hill
+     </span>
+     ,
+     <span data-begin="17.850" data-dur="0.288">
+      down
+     </span>
+     <span data-begin="18.139" data-dur="0.220">
+      which
+     </span>
+     <span data-begin="18.359" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="18.449" data-dur="0.500">
+      winding
+     </span>
+     <span data-begin="18.949" data-dur="0.399">
+      road
+     </span>
+     <span data-begin="19.420" data-dur="0.278">
+      led
+     </span>
+     <span data-begin="19.699" data-dur="0.179">
+      out
+     </span>
+     <span data-begin="19.879" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="19.979" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="20.069" data-dur="0.429">
+      town
+     </span>
+     <span data-begin="20.500" data-dur="0.308">
+      past
+     </span>
+     <span data-begin="20.809" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="20.909" data-dur="0.580">
+      cathedral
+     </span>
+     <span data-begin="21.489" data-dur="0.120">
+      on
+     </span>
+     <span data-begin="21.609" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="21.729" data-dur="0.370">
+      right
+     </span>
+     ,
+     <span data-begin="22.670" data-dur="0.179">
+      where
+     </span>
+     <span data-begin="22.850" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="22.909" data-dur="0.510">
+      service
+     </span>
+     <span data-begin="23.420" data-dur="0.218">
+      was
+     </span>
+     <span data-begin="23.639" data-dur="0.359">
+      being
+     </span>
+     <span data-begin="24.000" data-dur="0.340">
+      held
+     </span>
+     <span data-begin="24.340" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="24.430" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="24.509" data-dur="0.341">
+      bells
+     </span>
+     <span data-begin="24.850" data-dur="0.160">
+      were
+     </span>
+     <span data-begin="25.010" data-dur="0.380">
+      ringing
+     </span>
+     ,
+     <span data-begin="25.769" data-dur="0.299">
+      Pierre
+     </span>
+     <span data-begin="26.069" data-dur="0.220">
+      got
+     </span>
+     <span data-begin="26.289" data-dur="0.140">
+      out
+     </span>
+     <span data-begin="26.430" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="26.509" data-dur="0.180">
+      his
+     </span>
+     <span data-begin="26.689" data-dur="0.500">
+      vehicle
+     </span>
+     <span data-begin="27.449" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="27.590" data-dur="0.438">
+      proceeded
+     </span>
+     <span data-begin="28.029" data-dur="0.160">
+      on
+     </span>
+     <span data-begin="28.189" data-dur="0.280">
+      foot
+     </span>
+     .
+     <span data-begin="29.159" data-dur="0.399">
+      Behind
+     </span>
+     <span data-begin="29.559" data-dur="0.370">
+      him
+     </span>
+     <span data-begin="29.969" data-dur="0.130">
+      a
+     </span>
+     <span data-begin="30.209" data-dur="0.580">
+      cavalry
+     </span>
+     <span data-begin="30.789" data-dur="0.530">
+      regiment
+     </span>
+     <span data-begin="31.369" data-dur="0.210">
+      was
+     </span>
+     <span data-begin="31.579" data-dur="0.290">
+      coming
+     </span>
+     <span data-begin="31.869" data-dur="0.240">
+      down
+     </span>
+     <span data-begin="32.110" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="32.200" data-dur="0.250">
+      hill
+     </span>
+     <span data-begin="32.479" data-dur="0.440">
+      preceded
+     </span>
+     <span data-begin="32.919" data-dur="0.170">
+      by
+     </span>
+     <span data-begin="33.090" data-dur="0.138">
+      its
+     </span>
+     <span data-begin="33.229" data-dur="1.000">
+      singers
+     </span>
+     .
+     <span data-begin="34.389" data-dur="0.260">
+      Coming
+     </span>
+     <span data-begin="34.649" data-dur="0.099">
+      up
+     </span>
+     <span data-begin="34.779" data-dur="0.299">
+      toward
+     </span>
+     <span data-begin="35.079" data-dur="0.260">
+      him
+     </span>
+     <span data-begin="35.340" data-dur="0.128">
+      was
+     </span>
+     <span data-begin="35.469" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="35.528" data-dur="0.270">
+      train
+     </span>
+     <span data-begin="35.799" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="35.909" data-dur="0.459">
+      carts
+     </span>
+     <span data-begin="36.369" data-dur="0.420">
+      carrying
+     </span>
+     <span data-begin="36.790" data-dur="0.370">
+      men
+     </span>
+     <span data-begin="37.579" data-dur="0.149">
+      who
+     </span>
+     <span data-begin="37.729" data-dur="0.149">
+      had
+     </span>
+     <span data-begin="37.879" data-dur="0.240">
+      been
+     </span>
+     <span data-begin="38.119" data-dur="0.350">
+      wounded
+     </span>
+     <span data-begin="38.469" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="38.559" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="38.649" data-dur="0.640">
+      engagement
+     </span>
+     <span data-begin="39.290" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="39.369" data-dur="0.140">
+      day
+     </span>
+     <span data-begin="39.509" data-dur="1.000">
+      before
+     </span>
+     .
+     <span data-begin="40.829" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="40.919" data-dur="0.370">
+      peasant
+     </span>
+     <span data-begin="41.290" data-dur="0.539">
+      drivers
+     </span>
+     ,
+     <span data-begin="41.959" data-dur="0.560">
+      shouting
+     </span>
+     <span data-begin="42.520" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="42.649" data-dur="0.410">
+      lashing
+     </span>
+     <span data-begin="43.059" data-dur="0.140">
+      their
+     </span>
+     <span data-begin="43.200" data-dur="0.489">
+      horses
+     </span>
+     ,
+     <span data-begin="44.000" data-dur="0.329">
+      kept
+     </span>
+     <span data-begin="44.329" data-dur="0.489">
+      crossing
+     </span>
+     <span data-begin="44.819" data-dur="0.190">
+      from
+     </span>
+     <span data-begin="45.009" data-dur="0.299">
+      side
+     </span>
+     <span data-begin="45.309" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="45.378" data-dur="1.000">
+      side
+     </span>
+     .
+     <span data-begin="46.450" data-dur="0.097">
+      The
+     </span>
+     <span data-begin="46.548" data-dur="0.600">
+      carts
+     </span>
+     ,
+     <span data-begin="47.469" data-dur="0.220">
+      in
+     </span>
+     <span data-begin="47.719" data-dur="0.410">
+      each
+     </span>
+     <span data-begin="48.259" data-dur="0.170">
+      of
+     </span>
+     <span data-begin="48.430" data-dur="0.388">
+      which
+     </span>
+     <span data-begin="48.819" data-dur="0.299">
+      three
+     </span>
+     <span data-begin="49.119" data-dur="0.089">
+      or
+     </span>
+     <span data-begin="49.209" data-dur="0.310">
+      four
+     </span>
+     <span data-begin="49.520" data-dur="0.299">
+      wounded
+     </span>
+     <span data-begin="49.819" data-dur="0.620">
+      soldiers
+     </span>
+     <span data-begin="50.439" data-dur="0.130">
+      were
+     </span>
+     <span data-begin="50.569" data-dur="0.410">
+      lying
+     </span>
+     <span data-begin="50.979" data-dur="0.099">
+      or
+     </span>
+     <span data-begin="51.079" data-dur="0.399">
+      sitting
+     </span>
+     ,
+     <span data-begin="51.809" data-dur="0.420">
+      jolted
+     </span>
+     <span data-begin="52.229" data-dur="0.280">
+      over
+     </span>
+     <span data-begin="52.509" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="52.619" data-dur="0.539">
+      stones
+     </span>
+     <span data-begin="53.159" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="53.319" data-dur="0.170">
+      had
+     </span>
+     <span data-begin="53.489" data-dur="0.190">
+      been
+     </span>
+     <span data-begin="53.680" data-dur="0.480">
+      thrown
+     </span>
+     <span data-begin="54.379" data-dur="0.149">
+      on
+     </span>
+     <span data-begin="54.529" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="54.598" data-dur="0.341">
+      steep
+     </span>
+     <span data-begin="54.939" data-dur="0.480">
+      incline
+     </span>
+     <span data-begin="55.419" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="55.559" data-dur="0.199">
+      make
+     </span>
+     <span data-begin="55.759" data-dur="0.110">
+      it
+     </span>
+     <span data-begin="55.869" data-dur="0.459">
+      something
+     </span>
+     <span data-begin="56.329" data-dur="0.210">
+      like
+     </span>
+     <span data-begin="56.539" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="56.629" data-dur="1.000">
+      road
+     </span>
+     .
+     <span data-begin="57.879" data-dur="0.149">
+      The
+     </span>
+     <span data-begin="58.029" data-dur="0.520">
+      wounded
+     </span>
+     ,
+     <span data-begin="58.609" data-dur="0.500">
+      bandaged
+     </span>
+     <span data-begin="59.109" data-dur="0.210">
+      with
+     </span>
+     <span data-begin="59.319" data-dur="0.570">
+      rags
+     </span>
+     ,
+     <span data-begin="59.989" data-dur="0.220">
+      with
+     </span>
+     <span data-begin="60.209" data-dur="0.340">
+      pale
+     </span>
+     <span data-begin="60.549" data-dur="0.520">
+      cheeks
+     </span>
+     ,
+     <span data-begin="61.069" data-dur="0.560">
+      compressed
+     </span>
+     <span data-begin="61.629" data-dur="0.390">
+      lips
+     </span>
+     ,
+     <span data-begin="62.069" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="62.199" data-dur="0.269">
+      knitted
+     </span>
+     <span data-begin="62.469" data-dur="0.500">
+      brows
+     </span>
+     ,
+     <span data-begin="63.259" data-dur="0.280">
+      held
+     </span>
+     <span data-begin="63.539" data-dur="0.210">
+      on
+     </span>
+     <span data-begin="63.750" data-dur="0.108">
+      to
+     </span>
+     <span data-begin="63.859" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="63.959" data-dur="0.370">
+      sides
+     </span>
+     <span data-begin="64.330" data-dur="0.087">
+      of
+     </span>
+     <span data-begin="64.418" data-dur="0.111">
+      the
+     </span>
+     <span data-begin="64.529" data-dur="0.459">
+      carts
+     </span>
+     <span data-begin="64.989" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="65.110" data-dur="0.128">
+      they
+     </span>
+     <span data-begin="65.239" data-dur="0.140">
+      were
+     </span>
+     <span data-begin="65.379" data-dur="0.570">
+      jolted
+     </span>
+     <span data-begin="66.229" data-dur="0.480">
+      against
+     </span>
+     <span data-begin="66.709" data-dur="0.149">
+      one
+     </span>
+     <span data-begin="66.860" data-dur="1.000">
+      another
+     </span>
+     .
+     <span data-begin="68.139" data-dur="0.390">
+      Almost
+     </span>
+     <span data-begin="68.529" data-dur="0.179">
+      all
+     </span>
+     <span data-begin="68.709" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="68.839" data-dur="0.190">
+      them
+     </span>
+     <span data-begin="69.029" data-dur="0.470">
+      stared
+     </span>
+     <span data-begin="69.500" data-dur="0.130">
+      with
+     </span>
+     <span data-begin="69.699" data-dur="0.440">
+      naive
+     </span>
+     ,
+     <span data-begin="70.189" data-dur="0.520">
+      childlike
+     </span>
+     <span data-begin="70.709" data-dur="0.760">
+      curiosity
+     </span>
+     <span data-begin="71.470" data-dur="0.118">
+      at
+     </span>
+     <span data-begin="71.589" data-dur="0.420">
+      Pierre's
+     </span>
+     <span data-begin="72.010" data-dur="0.350">
+      white
+     </span>
+     <span data-begin="72.360" data-dur="0.350">
+      hat
+     </span>
+     <span data-begin="72.839" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="73.019" data-dur="0.390">
+      green
+     </span>
+     <span data-begin="73.589" data-dur="0.410">
+      swallow
+     </span>
+     -
+     <span data-begin="74.000" data-dur="0.320">
+      tail
+     </span>
+     <span data-begin="74.349" data-dur="1.000">
+      coat
+     </span>
+     .
+     <p>
+      25 日上午，皮埃尔离开了莫扎伊斯克。在陡峭的高山下坡处，有一条蜿蜒曲折的道路通向城外，经过右侧的大教堂，那里正在举行仪式，钟声悠扬。在他身后，一个骑兵团在歌手的带领下正从山上下来。向他驶来的是一列马车，车上载着前一天在交战中受伤的士兵。农民车夫一边喊叫，一边鞭打马匹，不停地从两边穿过。每辆车上都躺着或坐着三四名伤兵，他们在陡坡上铺设的石块上颠簸着，石块把陡坡铺成了一条路。伤员们缠着绷带，面色苍白，嘴唇紧闭，眉头紧蹙，紧紧抓住马车的两侧，随着马车的颠簸而摇晃。几乎所有人都带着天真、孩童般的好奇心，盯着皮埃尔的白帽子和绿色燕尾服。
+     </p>
+    </p>
+    <p>
+     <span data-begin="76.939" data-dur="0.390">
+      Pierre's
+     </span>
+     <span data-begin="77.330" data-dur="0.558">
+      coachman
+     </span>
+     <span data-begin="77.889" data-dur="0.420">
+      shouted
+     </span>
+     <span data-begin="78.339" data-dur="0.539">
+      angrily
+     </span>
+     <span data-begin="78.879" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="79.000" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="79.088" data-dur="0.551">
+      convoy
+     </span>
+     <span data-begin="79.639" data-dur="0.220">
+      of
+     </span>
+     <span data-begin="79.860" data-dur="0.370">
+      wounded
+     </span>
+     <span data-begin="80.369" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="80.500" data-dur="0.350">
+      keep
+     </span>
+     <span data-begin="80.879" data-dur="0.179">
+      to
+     </span>
+     <span data-begin="81.059" data-dur="0.199">
+      one
+     </span>
+     <span data-begin="81.259" data-dur="0.310">
+      side
+     </span>
+     <span data-begin="81.569" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="81.689" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="81.790" data-dur="0.340">
+      road
+     </span>
+     .
+     <span data-begin="82.809" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="82.900" data-dur="0.548">
+      cavalry
+     </span>
+     <span data-begin="83.449" data-dur="0.599">
+      regiment
+     </span>
+     ,
+     <span data-begin="84.360" data-dur="0.179">
+      as
+     </span>
+     <span data-begin="84.540" data-dur="0.158">
+      it
+     </span>
+     <span data-begin="84.699" data-dur="0.520">
+      descended
+     </span>
+     <span data-begin="85.220" data-dur="0.128">
+      the
+     </span>
+     <span data-begin="85.349" data-dur="0.370">
+      hill
+     </span>
+     <span data-begin="85.720" data-dur="0.188">
+      with
+     </span>
+     <span data-begin="85.909" data-dur="0.170">
+      its
+     </span>
+     <span data-begin="86.080" data-dur="0.500">
+      singers
+     </span>
+     ,
+     <span data-begin="86.610" data-dur="0.528">
+      surrounded
+     </span>
+     <span data-begin="87.139" data-dur="0.399">
+      Pierre's
+     </span>
+     <span data-begin="87.540" data-dur="0.530">
+      carriage
+     </span>
+     <span data-begin="88.110" data-dur="0.158">
+      and
+     </span>
+     <span data-begin="88.269" data-dur="0.320">
+      blocked
+     </span>
+     <span data-begin="88.589" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="88.680" data-dur="0.290">
+      road
+     </span>
+     .
+     <span data-begin="89.579" data-dur="0.320">
+      Pierre
+     </span>
+     <span data-begin="89.900" data-dur="0.558">
+      stopped
+     </span>
+     ,
+     <span data-begin="90.459" data-dur="0.470">
+      being
+     </span>
+     <span data-begin="90.930" data-dur="0.388">
+      pressed
+     </span>
+     <span data-begin="91.319" data-dur="0.420">
+      against
+     </span>
+     <span data-begin="91.739" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="91.818" data-dur="1.000">
+      side
+     </span>
+     <span data-begin="93.069" data-dur="0.179">
+      of
+     </span>
+     <span data-begin="93.250" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="93.348" data-dur="0.481">
+      cutting
+     </span>
+     <span data-begin="93.829" data-dur="0.170">
+      in
+     </span>
+     <span data-begin="94.000" data-dur="0.250">
+      which
+     </span>
+     <span data-begin="94.250" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="94.348" data-dur="0.261">
+      road
+     </span>
+     <span data-begin="94.610" data-dur="1.000">
+      ran
+     </span>
+     .
+     <span data-begin="95.680" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="95.759" data-dur="0.550">
+      sunshine
+     </span>
+     <span data-begin="96.309" data-dur="0.160">
+      from
+     </span>
+     <span data-begin="96.470" data-dur="0.359">
+      behind
+     </span>
+     <span data-begin="96.829" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="96.930" data-dur="0.368">
+      hill
+     </span>
+     <span data-begin="97.299" data-dur="0.179">
+      did
+     </span>
+     <span data-begin="97.479" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="97.709" data-dur="0.580">
+      penetrate
+     </span>
+     <span data-begin="98.319" data-dur="0.250">
+      into
+     </span>
+     <span data-begin="98.569" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="98.669" data-dur="0.429">
+      cutting
+     </span>
+     <span data-begin="99.610" data-dur="0.208">
+      and
+     </span>
+     <span data-begin="99.819" data-dur="0.199">
+      there
+     </span>
+     <span data-begin="100.019" data-dur="0.099">
+      it
+     </span>
+     <span data-begin="100.119" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="100.269" data-dur="0.340">
+      cold
+     </span>
+     <span data-begin="100.610" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="100.739" data-dur="0.480">
+      damp
+     </span>
+     ,
+     <span data-begin="101.569" data-dur="0.120">
+      but
+     </span>
+     <span data-begin="101.689" data-dur="0.489">
+      above
+     </span>
+     <span data-begin="102.180" data-dur="0.388">
+      Pierre's
+     </span>
+     <span data-begin="102.569" data-dur="0.310">
+      head
+     </span>
+     <span data-begin="102.930" data-dur="0.188">
+      was
+     </span>
+     <span data-begin="103.119" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="103.220" data-dur="0.329">
+      bright
+     </span>
+     <span data-begin="103.579" data-dur="0.399">
+      August
+     </span>
+     <span data-begin="103.979" data-dur="0.690">
+      sunshine
+     </span>
+     <span data-begin="104.669" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="104.779" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="104.860" data-dur="0.320">
+      bells
+     </span>
+     <span data-begin="105.180" data-dur="0.378">
+      sounded
+     </span>
+     <span data-begin="105.559" data-dur="1.000">
+      merrily
+     </span>
+     .
+     <span data-begin="106.629" data-dur="0.429">
+      One
+     </span>
+     <span data-begin="107.059" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="107.169" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="107.299" data-dur="0.450">
+      carts
+     </span>
+     <span data-begin="107.750" data-dur="0.188">
+      with
+     </span>
+     <span data-begin="107.939" data-dur="0.429">
+      wounded
+     </span>
+     <span data-begin="108.369" data-dur="0.399">
+      stopped
+     </span>
+     <span data-begin="108.769" data-dur="0.210">
+      by
+     </span>
+     <span data-begin="108.979" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="109.089" data-dur="0.310">
+      side
+     </span>
+     <span data-begin="109.399" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="109.519" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="109.629" data-dur="0.269">
+      road
+     </span>
+     <span data-begin="109.899" data-dur="0.310">
+      close
+     </span>
+     <span data-begin="110.209" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="110.309" data-dur="0.390">
+      Pierre
+     </span>
+     .
+     <span data-begin="111.329" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="111.419" data-dur="0.470">
+      driver
+     </span>
+     <span data-begin="111.889" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="112.009" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="112.159" data-dur="0.250">
+      bast
+     </span>
+     <span data-begin="112.409" data-dur="0.510">
+      shoes
+     </span>
+     <span data-begin="112.970" data-dur="0.299">
+      ran
+     </span>
+     <span data-begin="113.269" data-dur="0.470">
+      panting
+     </span>
+     <span data-begin="113.739" data-dur="0.130">
+      up
+     </span>
+     <span data-begin="113.899" data-dur="0.199">
+      to
+     </span>
+     <span data-begin="114.099" data-dur="0.160">
+      it
+     </span>
+     ,
+     <span data-begin="114.509" data-dur="0.420">
+      placed
+     </span>
+     <span data-begin="114.930" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="114.969" data-dur="0.490">
+      stone
+     </span>
+     <span data-begin="115.540" data-dur="0.269">
+      under
+     </span>
+     <span data-begin="115.809" data-dur="0.190">
+      one
+     </span>
+     <span data-begin="116.000" data-dur="0.240">
+      of
+     </span>
+     <span data-begin="116.279" data-dur="0.250">
+      its
+     </span>
+     <span data-begin="116.529" data-dur="0.740">
+      tireless
+     </span>
+     <span data-begin="117.309" data-dur="0.359">
+      hind
+     </span>
+     <span data-begin="117.669" data-dur="0.530">
+      wheels
+     </span>
+     ,
+     <span data-begin="118.239" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="118.389" data-dur="0.370">
+      began
+     </span>
+     <span data-begin="118.759" data-dur="1.000">
+      arranging
+     </span>
+     <span data-begin="120.089" data-dur="0.190">
+      the
+     </span>
+     <span data-begin="120.279" data-dur="0.429">
+      breech
+     </span>
+     -
+     <span data-begin="120.709" data-dur="0.420">
+      band
+     </span>
+     <span data-begin="121.169" data-dur="0.210">
+      on
+     </span>
+     <span data-begin="121.379" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="121.569" data-dur="0.190">
+      little
+     </span>
+     <span data-begin="121.790" data-dur="1.000">
+      horse
+     </span>
+     .
+     <p>
+      皮埃尔的马车夫愤怒地叫喊着，让伤员车队靠道路的一侧行驶。骑兵团带着他们的歌手下山时，包围了皮埃尔的马车，堵住了道路。皮埃尔停了下来，被压在了道路的切口一侧。山后的阳光照不进切口，那里阴冷潮湿，但皮埃尔的头顶上却是八月的艳阳，钟声欢快地响着。一辆载着伤员的马车在靠近皮埃尔的路边停了下来。穿着韧皮鞋的车夫气喘吁吁地跑上前去，在一个不知疲倦的后轮下放了一块石头，然后开始给他的小马整理马裤。
+     </p>
+    </p>
+    <p>
+     <span data-begin="124.250" data-dur="0.278">
+      One
+     </span>
+     <span data-begin="124.529" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="124.649" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="124.779" data-dur="0.410">
+      wounded
+     </span>
+     ,
+     <span data-begin="125.449" data-dur="0.149">
+      an
+     </span>
+     <span data-begin="125.599" data-dur="0.170">
+      old
+     </span>
+     <span data-begin="125.769" data-dur="0.570">
+      soldier
+     </span>
+     <span data-begin="126.369" data-dur="0.179">
+      with
+     </span>
+     <span data-begin="126.549" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="126.599" data-dur="0.410">
+      bandaged
+     </span>
+     <span data-begin="127.009" data-dur="0.299">
+      arm
+     </span>
+     <span data-begin="127.309" data-dur="0.149">
+      who
+     </span>
+     <span data-begin="127.459" data-dur="0.179">
+      was
+     </span>
+     <span data-begin="127.639" data-dur="0.399">
+      following
+     </span>
+     <span data-begin="128.039" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="128.118" data-dur="0.261">
+      cart
+     </span>
+     <span data-begin="128.379" data-dur="0.110">
+      on
+     </span>
+     <span data-begin="128.489" data-dur="0.320">
+      foot
+     </span>
+     ,
+     <span data-begin="129.169" data-dur="0.310">
+      caught
+     </span>
+     <span data-begin="129.479" data-dur="0.199">
+      hold
+     </span>
+     <span data-begin="129.679" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="129.809" data-dur="0.160">
+      it
+     </span>
+     <span data-begin="129.970" data-dur="0.199">
+      with
+     </span>
+     <span data-begin="130.169" data-dur="0.340">
+      his
+     </span>
+     <span data-begin="130.709" data-dur="0.429">
+      sound
+     </span>
+     <span data-begin="131.139" data-dur="0.380">
+      hand
+     </span>
+     <span data-begin="131.520" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="131.649" data-dur="0.269">
+      turned
+     </span>
+     <span data-begin="131.919" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="132.009" data-dur="0.149">
+      look
+     </span>
+     <span data-begin="132.160" data-dur="0.089">
+      at
+     </span>
+     <span data-begin="132.250" data-dur="0.390">
+      Pierre
+     </span>
+     .
+     <p>
+      一个伤员，一个胳膊上缠着绷带的老兵，步行跟在马车后面，他用健全的手抓住马车，转过身来看着皮埃尔。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="133.169" data-dur="0.110">
+      I
+     </span>
+     <span data-begin="133.279" data-dur="0.380">
+      say
+     </span>
+     ,
+     <span data-begin="133.690" data-dur="0.229">
+      fellow
+     </span>
+     <span data-begin="133.949" data-dur="0.520">
+      countryman
+     </span>
+     !
+     <span data-begin="134.860" data-dur="0.160">
+      Will
+     </span>
+     <span data-begin="135.020" data-dur="0.097">
+      they
+     </span>
+     <span data-begin="135.118" data-dur="0.200">
+      set
+     </span>
+     <span data-begin="135.319" data-dur="0.149">
+      us
+     </span>
+     <span data-begin="135.470" data-dur="0.280">
+      down
+     </span>
+     <span data-begin="135.750" data-dur="0.250">
+      here
+     </span>
+     <span data-begin="136.050" data-dur="0.078">
+      or
+     </span>
+     <span data-begin="136.129" data-dur="0.240">
+      take
+     </span>
+     <span data-begin="136.369" data-dur="0.130">
+      us
+     </span>
+     <span data-begin="136.500" data-dur="0.168">
+      on
+     </span>
+     <span data-begin="136.669" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="136.779" data-dur="0.450">
+      Moscow
+     </span>
+     ?"
+     <span data-begin="137.259" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="137.349" data-dur="1.000">
+      asked
+     </span>
+     .
+     <p>
+      "我说，老乡！他们会把我们放在这里还是带我们去莫斯科？"他问道。
+     </p>
+    </p>
+    <p>
+     <span data-begin="138.729" data-dur="0.320">
+      Pierre
+     </span>
+     <span data-begin="139.050" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="139.190" data-dur="0.188">
+      so
+     </span>
+     <span data-begin="139.379" data-dur="0.260">
+      deep
+     </span>
+     <span data-begin="139.639" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="139.750" data-dur="0.359">
+      thought
+     </span>
+     <span data-begin="140.110" data-dur="0.128">
+      that
+     </span>
+     <span data-begin="140.239" data-dur="0.120">
+      he
+     </span>
+     <span data-begin="140.360" data-dur="0.128">
+      did
+     </span>
+     <span data-begin="140.489" data-dur="0.179">
+      not
+     </span>
+     <span data-begin="140.669" data-dur="0.190">
+      hear
+     </span>
+     <span data-begin="140.860" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="140.958" data-dur="0.521">
+      question
+     </span>
+     .
+     <span data-begin="141.959" data-dur="0.149">
+      He
+     </span>
+     <span data-begin="142.110" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="142.309" data-dur="0.429">
+      looking
+     </span>
+     <span data-begin="142.739" data-dur="0.329">
+      now
+     </span>
+     <span data-begin="143.069" data-dur="0.110">
+      at
+     </span>
+     <span data-begin="143.179" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="143.270" data-dur="0.630">
+      cavalry
+     </span>
+     <span data-begin="144.009" data-dur="0.550">
+      regiment
+     </span>
+     <span data-begin="144.559" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="144.729" data-dur="0.149">
+      had
+     </span>
+     <span data-begin="144.879" data-dur="0.229">
+      met
+     </span>
+     <span data-begin="145.110" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="145.198" data-dur="0.561">
+      convoy
+     </span>
+     <span data-begin="145.759" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="145.910" data-dur="0.370">
+      wounded
+     </span>
+     ,
+     <span data-begin="146.779" data-dur="0.429">
+      now
+     </span>
+     <span data-begin="147.250" data-dur="0.128">
+      at
+     </span>
+     <span data-begin="147.379" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="147.458" data-dur="0.351">
+      cart
+     </span>
+     <span data-begin="147.809" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="147.959" data-dur="0.269">
+      which
+     </span>
+     <span data-begin="148.229" data-dur="0.078">
+      he
+     </span>
+     <span data-begin="148.308" data-dur="0.121">
+      was
+     </span>
+     <span data-begin="148.429" data-dur="0.539">
+      standing
+     </span>
+     ,
+     <span data-begin="149.270" data-dur="0.179">
+      in
+     </span>
+     <span data-begin="149.449" data-dur="0.210">
+      which
+     </span>
+     <span data-begin="149.690" data-dur="0.238">
+      two
+     </span>
+     <span data-begin="149.929" data-dur="0.310">
+      wounded
+     </span>
+     <span data-begin="150.239" data-dur="0.310">
+      men
+     </span>
+     <span data-begin="150.550" data-dur="0.097">
+      were
+     </span>
+     <span data-begin="150.648" data-dur="0.490">
+      sitting
+     </span>
+     <span data-begin="151.190" data-dur="0.158">
+      and
+     </span>
+     <span data-begin="151.349" data-dur="0.130">
+      one
+     </span>
+     <span data-begin="151.479" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="151.649" data-dur="0.380">
+      lying
+     </span>
+     .
+     <span data-begin="152.629" data-dur="0.190">
+      One
+     </span>
+     <span data-begin="152.819" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="152.949" data-dur="0.229">
+      those
+     </span>
+     <span data-begin="153.179" data-dur="0.390">
+      sitting
+     </span>
+     <span data-begin="153.569" data-dur="0.260">
+      up
+     </span>
+     <span data-begin="153.889" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="154.009" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="154.088" data-dur="0.471">
+      cart
+     </span>
+     <span data-begin="155.080" data-dur="0.188">
+      had
+     </span>
+     <span data-begin="155.269" data-dur="0.480">
+      probably
+     </span>
+     <span data-begin="155.750" data-dur="0.229">
+      been
+     </span>
+     <span data-begin="155.979" data-dur="0.350">
+      wounded
+     </span>
+     <span data-begin="156.330" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="156.440" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="156.519" data-dur="0.399">
+      cheek
+     </span>
+     .
+     <span data-begin="157.339" data-dur="0.179">
+      His
+     </span>
+     <span data-begin="157.519" data-dur="0.250">
+      whole
+     </span>
+     <span data-begin="157.769" data-dur="0.280">
+      head
+     </span>
+     <span data-begin="158.050" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="158.250" data-dur="0.378">
+      wrapped
+     </span>
+     <span data-begin="158.629" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="158.739" data-dur="0.539">
+      rags
+     </span>
+     <span data-begin="159.559" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="159.729" data-dur="0.160">
+      one
+     </span>
+     <span data-begin="159.889" data-dur="0.329">
+      cheek
+     </span>
+     <span data-begin="160.220" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="160.360" data-dur="0.399">
+      swollen
+     </span>
+     <span data-begin="160.759" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="160.869" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="160.959" data-dur="0.410">
+      size
+     </span>
+     <span data-begin="161.369" data-dur="0.058">
+      of
+     </span>
+     <span data-begin="161.428" data-dur="0.079">
+      a
+     </span>
+     <span data-begin="161.508" data-dur="0.371">
+      baby's
+     </span>
+     <span data-begin="161.879" data-dur="0.269">
+      head
+     </span>
+     .
+     <span data-begin="162.729" data-dur="0.220">
+      His
+     </span>
+     <span data-begin="162.949" data-dur="0.260">
+      nose
+     </span>
+     <span data-begin="163.209" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="163.330" data-dur="0.318">
+      mouth
+     </span>
+     <span data-begin="163.649" data-dur="0.140">
+      were
+     </span>
+     <span data-begin="163.789" data-dur="0.420">
+      twisted
+     </span>
+     <span data-begin="164.209" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="164.330" data-dur="0.179">
+      one
+     </span>
+     <span data-begin="164.509" data-dur="1.000">
+      side
+     </span>
+     .
+     <span data-begin="165.589" data-dur="0.099">
+      This
+     </span>
+     <span data-begin="165.690" data-dur="1.000">
+      soldier
+     </span>
+     <span data-begin="166.729" data-dur="0.229">
+      was
+     </span>
+     <span data-begin="166.959" data-dur="0.350">
+      looking
+     </span>
+     <span data-begin="167.309" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="167.429" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="167.500" data-dur="0.620">
+      cathedral
+     </span>
+     <span data-begin="168.160" data-dur="0.118">
+      and
+     </span>
+     <span data-begin="168.279" data-dur="0.420">
+      crossing
+     </span>
+     <span data-begin="168.699" data-dur="1.000">
+      himself
+     </span>
+     .
+     <span data-begin="169.789" data-dur="0.500">
+      Another
+     </span>
+     ,
+     <span data-begin="170.550" data-dur="0.087">
+      a
+     </span>
+     <span data-begin="170.638" data-dur="0.270">
+      young
+     </span>
+     <span data-begin="170.910" data-dur="0.320">
+      lad
+     </span>
+     ,
+     <span data-begin="171.500" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="171.589" data-dur="0.290">
+      fair
+     </span>
+     -
+     <span data-begin="171.879" data-dur="0.290">
+      haired
+     </span>
+     <span data-begin="172.169" data-dur="0.590">
+      recruit
+     </span>
+     <span data-begin="172.830" data-dur="0.210">
+      as
+     </span>
+     <span data-begin="173.069" data-dur="0.390">
+      white
+     </span>
+     <span data-begin="174.069" data-dur="0.310">
+      as
+     </span>
+     <span data-begin="174.429" data-dur="0.459">
+      though
+     </span>
+     <span data-begin="175.039" data-dur="0.240">
+      there
+     </span>
+     <span data-begin="175.279" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="175.449" data-dur="0.160">
+      no
+     </span>
+     <span data-begin="175.610" data-dur="0.258">
+      blood
+     </span>
+     <span data-begin="175.869" data-dur="0.078">
+      in
+     </span>
+     <span data-begin="175.948" data-dur="0.241">
+      his
+     </span>
+     <span data-begin="176.190" data-dur="0.199">
+      thin
+     </span>
+     <span data-begin="176.389" data-dur="0.440">
+      face
+     </span>
+     ,
+     <span data-begin="176.830" data-dur="0.179">
+      looked
+     </span>
+     <span data-begin="177.009" data-dur="0.099">
+      at
+     </span>
+     <span data-begin="177.110" data-dur="0.278">
+      Pierre
+     </span>
+     <span data-begin="177.389" data-dur="0.630">
+      kindly
+     </span>
+     ,
+     <span data-begin="178.059" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="178.220" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="178.249" data-dur="0.430">
+      fixed
+     </span>
+     <span data-begin="178.679" data-dur="1.000">
+      smile
+     </span>
+     .
+     <span data-begin="180.069" data-dur="0.099">
+      The
+     </span>
+     <span data-begin="180.259" data-dur="0.310">
+      third
+     </span>
+     <span data-begin="180.599" data-dur="0.179">
+      lay
+     </span>
+     <span data-begin="180.779" data-dur="0.440">
+      prone
+     </span>
+     <span data-begin="181.220" data-dur="0.188">
+      so
+     </span>
+     <span data-begin="181.409" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="181.550" data-dur="0.188">
+      his
+     </span>
+     <span data-begin="181.739" data-dur="0.320">
+      face
+     </span>
+     <span data-begin="182.059" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="182.220" data-dur="0.179">
+      not
+     </span>
+     <span data-begin="182.429" data-dur="1.000">
+      visible
+     </span>
+     .
+     <span data-begin="183.479" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="183.569" data-dur="0.620">
+      cavalry
+     </span>
+     <span data-begin="184.190" data-dur="0.518">
+      singers
+     </span>
+     <span data-begin="184.709" data-dur="0.110">
+      were
+     </span>
+     <span data-begin="184.819" data-dur="0.429">
+      passing
+     </span>
+     <span data-begin="185.250" data-dur="0.299">
+      close
+     </span>
+     <span data-begin="185.550" data-dur="1.000">
+      by
+     </span>
+     :
+     <p>
+      皮埃尔沉浸在思考中，没有听到这个问题。他现在正看着迎接伤员车队的骑兵团，现在正看着他站着的那辆车，车上坐着两个伤员，躺着一个伤员。其中一个坐在车上，脸颊可能受了伤。他的整个头都裹着破布，脸颊肿得像婴儿的头一样大。他的鼻子和嘴都歪向一边。这名士兵望着大教堂，自言自语。另一个是个年轻小伙子，白发苍苍，瘦削的脸上没有一丝血色，和蔼地看着皮埃尔，脸上挂着固定的微笑。第三个人俯卧着，看不到他的脸。骑兵歌手就在附近经过：
+     </p>
+    </p>
+    <p>
+     <span data-begin="186.779" data-dur="0.329">
+      Ah
+     </span>
+     <span data-begin="187.110" data-dur="0.518">
+      lost
+     </span>
+     ,
+     <span data-begin="187.629" data-dur="0.290">
+      quite
+     </span>
+     <span data-begin="187.949" data-dur="0.480">
+      lost
+     </span>
+     ...
+     <span data-begin="188.459" data-dur="0.199">
+      is
+     </span>
+     <span data-begin="188.709" data-dur="0.140">
+      my
+     </span>
+     <span data-begin="188.849" data-dur="0.269">
+      head
+     </span>
+     <span data-begin="189.119" data-dur="0.220">
+      so
+     </span>
+     <span data-begin="189.339" data-dur="0.510">
+      keen
+     </span>
+     ,
+     <p>
+      啊，迷失了，完全迷失了......我的头脑如此敏锐，
+     </p>
+    </p>
+    <p>
+     <span data-begin="189.879" data-dur="0.370">
+      Living
+     </span>
+     <span data-begin="190.250" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="190.360" data-dur="0.047">
+      a
+     </span>
+     <span data-begin="190.408" data-dur="0.421">
+      foreign
+     </span>
+     <span data-begin="190.830" data-dur="0.440">
+      land
+     </span>
+     .
+     <p>
+      ，生活在异国他乡。
+     </p>
+    </p>
+    <p>
+     <span data-begin="191.470" data-dur="0.118">
+      they
+     </span>
+     <span data-begin="191.589" data-dur="0.410">
+      sang
+     </span>
+     <span data-begin="192.029" data-dur="0.099">
+      their
+     </span>
+     <span data-begin="192.129" data-dur="0.630">
+      soldiers
+     </span>
+     '
+     <span data-begin="192.789" data-dur="0.290">
+      dance
+     </span>
+     <span data-begin="193.080" data-dur="1.000">
+      song
+     </span>
+     .
+     <p>
+      ，他们唱起了士兵的舞曲。
+     </p>
+    </p>
+    <p>
+     <span data-begin="195.069" data-dur="0.149">
+      As
+     </span>
+     <span data-begin="195.220" data-dur="0.140">
+      if
+     </span>
+     <span data-begin="195.360" data-dur="0.618">
+      responding
+     </span>
+     <span data-begin="195.979" data-dur="0.170">
+      to
+     </span>
+     <span data-begin="196.149" data-dur="0.370">
+      them
+     </span>
+     <span data-begin="197.000" data-dur="0.149">
+      but
+     </span>
+     <span data-begin="197.149" data-dur="0.179">
+      with
+     </span>
+     <span data-begin="197.330" data-dur="0.087">
+      a
+     </span>
+     <span data-begin="197.418" data-dur="0.411">
+      different
+     </span>
+     <span data-begin="197.830" data-dur="0.208">
+      sort
+     </span>
+     <span data-begin="198.039" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="198.149" data-dur="0.530">
+      merriment
+     </span>
+     ,
+     <span data-begin="199.039" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="199.110" data-dur="0.518">
+      metallic
+     </span>
+     <span data-begin="199.629" data-dur="0.390">
+      sound
+     </span>
+     <span data-begin="200.019" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="200.110" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="200.198" data-dur="0.381">
+      bells
+     </span>
+     <span data-begin="200.580" data-dur="0.648">
+      reverberated
+     </span>
+     <span data-begin="201.229" data-dur="0.229">
+      high
+     </span>
+     <span data-begin="201.459" data-dur="0.520">
+      above
+     </span>
+     <span data-begin="202.029" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="202.139" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="202.208" data-dur="0.261">
+      hot
+     </span>
+     <span data-begin="202.470" data-dur="0.318">
+      rays
+     </span>
+     <span data-begin="202.789" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="202.889" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="202.958" data-dur="0.321">
+      sun
+     </span>
+     <span data-begin="203.279" data-dur="0.280">
+      bathed
+     </span>
+     <span data-begin="203.559" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="203.638" data-dur="0.330">
+      top
+     </span>
+     <span data-begin="203.970" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="204.110" data-dur="0.118">
+      the
+     </span>
+     <span data-begin="204.229" data-dur="0.410">
+      opposite
+     </span>
+     <span data-begin="204.639" data-dur="0.370">
+      slope
+     </span>
+     <span data-begin="205.009" data-dur="0.140">
+      with
+     </span>
+     <span data-begin="205.149" data-dur="0.149">
+      yet
+     </span>
+     <span data-begin="205.299" data-dur="0.370">
+      another
+     </span>
+     <span data-begin="205.919" data-dur="0.240">
+      sort
+     </span>
+     <span data-begin="206.159" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="206.289" data-dur="0.450">
+      merriment
+     </span>
+     .
+     <span data-begin="207.309" data-dur="0.140">
+      But
+     </span>
+     <span data-begin="207.449" data-dur="0.320">
+      beneath
+     </span>
+     <span data-begin="207.769" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="207.848" data-dur="0.531">
+      slope
+     </span>
+     ,
+     <span data-begin="208.419" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="208.569" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="208.669" data-dur="0.390">
+      cart
+     </span>
+     <span data-begin="209.089" data-dur="0.229">
+      with
+     </span>
+     <span data-begin="209.319" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="209.440" data-dur="0.470">
+      wounded
+     </span>
+     <span data-begin="210.039" data-dur="0.199">
+      near
+     </span>
+     <span data-begin="210.239" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="210.569" data-dur="0.780">
+      panting
+     </span>
+     <span data-begin="211.349" data-dur="0.240">
+      little
+     </span>
+     <span data-begin="211.589" data-dur="0.480">
+      nag
+     </span>
+     <span data-begin="212.069" data-dur="0.199">
+      where
+     </span>
+     <span data-begin="212.269" data-dur="0.299">
+      Pierre
+     </span>
+     <span data-begin="212.569" data-dur="0.399">
+      stood
+     </span>
+     ,
+     <span data-begin="213.259" data-dur="0.170">
+      it
+     </span>
+     <span data-begin="213.429" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="213.580" data-dur="0.380">
+      damp
+     </span>
+     ,
+     <span data-begin="214.009" data-dur="0.520">
+      somber
+     </span>
+     ,
+     <span data-begin="214.529" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="214.659" data-dur="1.000">
+      sad
+     </span>
+     .
+     <p>
+      钟声在高空回荡，炙热的阳光沐浴着对面的坡顶，仿佛在回应他们，但又带着另一种欢快。但在坡下，在皮埃尔站着的气喘吁吁的小纳格附近的伤员车旁，却是一片潮湿、阴沉和悲伤。
+     </p>
+    </p>
+    <p>
+     <span data-begin="215.879" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="215.958" data-dur="0.351">
+      soldier
+     </span>
+     <span data-begin="216.309" data-dur="0.130">
+      with
+     </span>
+     <span data-begin="216.440" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="216.509" data-dur="0.340">
+      swollen
+     </span>
+     <span data-begin="216.849" data-dur="0.299">
+      cheek
+     </span>
+     <span data-begin="217.149" data-dur="0.179">
+      looked
+     </span>
+     <span data-begin="217.330" data-dur="0.610">
+      angrily
+     </span>
+     <span data-begin="217.970" data-dur="0.110">
+      at
+     </span>
+     <span data-begin="218.080" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="218.168" data-dur="0.421">
+      cavalry
+     </span>
+     <span data-begin="218.589" data-dur="1.000">
+      singers
+     </span>
+     .
+     <p>
+      脸颊红肿的士兵愤怒地看着骑兵歌手。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="219.899" data-dur="0.320">
+      Oh
+     </span>
+     ,
+     <span data-begin="220.220" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="220.318" data-dur="1.000">
+      coxcombs
+     </span>
+     !"
+     <span data-begin="221.589" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="221.720" data-dur="0.348">
+      muttered
+     </span>
+     <span data-begin="222.069" data-dur="1.000">
+      reproachfully
+     </span>
+     .
+     <p>
+      "哦，这些考克斯康姆人！"他责备地嘟囔道。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="224.409" data-dur="0.280">
+      It's
+     </span>
+     <span data-begin="224.690" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="224.919" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="225.009" data-dur="0.489">
+      soldiers
+     </span>
+     <span data-begin="225.500" data-dur="0.420">
+      only
+     </span>
+     ,
+     <span data-begin="226.080" data-dur="0.118">
+      but
+     </span>
+     <span data-begin="226.199" data-dur="0.140">
+      I've
+     </span>
+     <span data-begin="226.339" data-dur="0.240">
+      seen
+     </span>
+     <span data-begin="226.580" data-dur="0.459">
+      peasants
+     </span>
+     <span data-begin="227.039" data-dur="0.299">
+      today
+     </span>
+     ,
+     <span data-begin="227.339" data-dur="0.390">
+      too
+     </span>
+     ....
+     <span data-begin="228.080" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="228.159" data-dur="0.560">
+      peasants
+     </span>
+     —
+     <span data-begin="229.039" data-dur="0.299">
+      even
+     </span>
+     <span data-begin="229.339" data-dur="0.130">
+      they
+     </span>
+     <span data-begin="229.470" data-dur="0.269">
+      have
+     </span>
+     <span data-begin="229.799" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="229.878" data-dur="0.341">
+      go
+     </span>
+     ,"
+     <span data-begin="230.250" data-dur="0.258">
+      said
+     </span>
+     <span data-begin="230.509" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="230.599" data-dur="0.610">
+      soldier
+     </span>
+     <span data-begin="231.209" data-dur="0.420">
+      behind
+     </span>
+     <span data-begin="231.629" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="231.720" data-dur="0.370">
+      cart
+     </span>
+     ,
+     <span data-begin="232.149" data-dur="0.489">
+      addressing
+     </span>
+     <span data-begin="232.639" data-dur="0.299">
+      Pierre
+     </span>
+     <span data-begin="232.939" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="233.059" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="233.088" data-dur="0.291">
+      sad
+     </span>
+     <span data-begin="233.379" data-dur="0.410">
+      smile
+     </span>
+     . "
+     <span data-begin="234.349" data-dur="0.140">
+      No
+     </span>
+     <span data-begin="234.489" data-dur="0.729">
+      distinctions
+     </span>
+     <span data-begin="235.220" data-dur="0.238">
+      made
+     </span>
+     <span data-begin="235.459" data-dur="1.000">
+      nowadays
+     </span>
+     ....
+     <span data-begin="236.689" data-dur="0.140">
+      They
+     </span>
+     <span data-begin="236.830" data-dur="0.238">
+      want
+     </span>
+     <span data-begin="237.069" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="237.169" data-dur="0.179">
+      whole
+     </span>
+     <span data-begin="237.349" data-dur="0.350">
+      nation
+     </span>
+     <span data-begin="237.699" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="237.809" data-dur="0.370">
+      fall
+     </span>
+     <span data-begin="238.179" data-dur="0.170">
+      on
+     </span>
+     <span data-begin="238.349" data-dur="0.260">
+      them
+     </span>
+     —
+     <span data-begin="238.899" data-dur="0.149">
+      in
+     </span>
+     <span data-begin="239.049" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="239.128" data-dur="0.451">
+      word
+     </span>
+     ,
+     <span data-begin="239.679" data-dur="0.210">
+      it's
+     </span>
+     <span data-begin="239.889" data-dur="0.659">
+      Moscow
+     </span>
+     !
+     <span data-begin="240.899" data-dur="0.130">
+      They
+     </span>
+     <span data-begin="241.029" data-dur="0.250">
+      want
+     </span>
+     <span data-begin="241.279" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="241.379" data-dur="0.220">
+      make
+     </span>
+     <span data-begin="241.599" data-dur="0.089">
+      an
+     </span>
+     <span data-begin="241.689" data-dur="0.160">
+      end
+     </span>
+     <span data-begin="241.849" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="241.949" data-dur="0.190">
+      it
+     </span>
+     ."
+     <p>
+      "不光是士兵，我今天还看到了农民，太....。农民--连他们也得走，"车后的士兵对皮埃尔凄然一笑，说道。"现在不分....。他们想让整个国家都倒向他们--一句话，这就是莫斯科！他们想一了百了"。
+     </p>
+    </p>
+    <p>
+     <span data-begin="242.909" data-dur="0.110">
+      In
+     </span>
+     <span data-begin="243.019" data-dur="0.320">
+      spite
+     </span>
+     <span data-begin="243.339" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="243.439" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="243.610" data-dur="0.518">
+      obscurity
+     </span>
+     <span data-begin="244.129" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="244.229" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="244.288" data-dur="0.531">
+      soldier's
+     </span>
+     <span data-begin="244.819" data-dur="0.420">
+      words
+     </span>
+     <span data-begin="245.239" data-dur="0.310">
+      Pierre
+     </span>
+     <span data-begin="245.549" data-dur="0.680">
+      understood
+     </span>
+     <span data-begin="246.349" data-dur="0.220">
+      what
+     </span>
+     <span data-begin="246.569" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="246.699" data-dur="0.280">
+      wanted
+     </span>
+     <span data-begin="246.979" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="247.080" data-dur="0.238">
+      say
+     </span>
+     <span data-begin="247.319" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="247.449" data-dur="0.250">
+      nodded
+     </span>
+     <span data-begin="247.699" data-dur="1.000">
+      approval
+     </span>
+     .
+     <p>
+      尽管士兵的话含糊不清，皮埃尔还是听懂了他想说的话，并点头表示赞同。
+     </p>
+    </p>
+    <p>
+     <span data-begin="248.889" data-dur="0.110">
+      The
+     </span>
+     <span data-begin="249.000" data-dur="0.308">
+      road
+     </span>
+     <span data-begin="249.309" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="249.449" data-dur="0.250">
+      clear
+     </span>
+     <span data-begin="249.699" data-dur="0.359">
+      again
+     </span>
+     ;
+     <span data-begin="250.349" data-dur="0.260">
+      Pierre
+     </span>
+     <span data-begin="250.610" data-dur="0.368">
+      descended
+     </span>
+     <span data-begin="250.979" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="251.069" data-dur="0.260">
+      hill
+     </span>
+     <span data-begin="251.330" data-dur="0.108">
+      and
+     </span>
+     <span data-begin="251.439" data-dur="0.280">
+      drove
+     </span>
+     <span data-begin="251.720" data-dur="1.000">
+      on
+     </span>
+     .
+     <p>
+      道路恢复了畅通；皮埃尔下了山，继续往前开。
+     </p>
+    </p>
+    <p>
+     <span data-begin="252.799" data-dur="0.099">
+      He
+     </span>
+     <span data-begin="252.899" data-dur="0.359">
+      kept
+     </span>
+     <span data-begin="253.259" data-dur="0.440">
+      looking
+     </span>
+     <span data-begin="253.860" data-dur="0.168">
+      to
+     </span>
+     <span data-begin="254.029" data-dur="0.220">
+      either
+     </span>
+     <span data-begin="254.250" data-dur="0.359">
+      side
+     </span>
+     <span data-begin="254.610" data-dur="0.097">
+      of
+     </span>
+     <span data-begin="254.708" data-dur="0.111">
+      the
+     </span>
+     <span data-begin="254.819" data-dur="0.329">
+      road
+     </span>
+     <span data-begin="255.149" data-dur="0.220">
+      for
+     </span>
+     <span data-begin="255.369" data-dur="0.380">
+      familiar
+     </span>
+     <span data-begin="255.750" data-dur="0.550">
+      faces
+     </span>
+     ,
+     <span data-begin="256.419" data-dur="0.179">
+      but
+     </span>
+     <span data-begin="256.600" data-dur="0.208">
+      only
+     </span>
+     <span data-begin="256.809" data-dur="0.399">
+      saw
+     </span>
+     <span data-begin="257.570" data-dur="0.408">
+      everywhere
+     </span>
+     <span data-begin="257.979" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="258.130" data-dur="0.478">
+      unfamiliar
+     </span>
+     <span data-begin="258.609" data-dur="0.610">
+      faces
+     </span>
+     <span data-begin="259.220" data-dur="0.118">
+      of
+     </span>
+     <span data-begin="259.339" data-dur="0.399">
+      various
+     </span>
+     <span data-begin="259.739" data-dur="0.560">
+      military
+     </span>
+     <span data-begin="260.299" data-dur="0.329">
+      men
+     </span>
+     <span data-begin="260.630" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="260.790" data-dur="0.348">
+      different
+     </span>
+     <span data-begin="261.139" data-dur="0.440">
+      branches
+     </span>
+     <span data-begin="261.579" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="261.690" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="261.759" data-dur="0.520">
+      service
+     </span>
+     ,
+     <span data-begin="262.769" data-dur="0.179">
+      who
+     </span>
+     <span data-begin="262.949" data-dur="0.240">
+      all
+     </span>
+     <span data-begin="263.190" data-dur="0.258">
+      looked
+     </span>
+     <span data-begin="263.449" data-dur="0.130">
+      with
+     </span>
+     <span data-begin="263.579" data-dur="0.770">
+      astonishment
+     </span>
+     <span data-begin="264.389" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="264.519" data-dur="0.210">
+      his
+     </span>
+     <span data-begin="264.729" data-dur="0.210">
+      white
+     </span>
+     <span data-begin="264.940" data-dur="0.288">
+      hat
+     </span>
+     <span data-begin="265.229" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="265.350" data-dur="0.280">
+      green
+     </span>
+     <span data-begin="265.660" data-dur="0.238">
+      tail
+     </span>
+     <span data-begin="265.899" data-dur="1.000">
+      coat
+     </span>
+     .
+     <p>
+      他不停地向路的两边张望，寻找熟悉的面孔，但只看到到处都是不同兵种的军人的陌生面孔，他们都惊奇地看着他的白帽子和绿色尾衣。
+     </p>
+    </p>
+    <p>
+     <span data-begin="267.239" data-dur="0.329">
+      Having
+     </span>
+     <span data-begin="267.570" data-dur="0.269">
+      gone
+     </span>
+     <span data-begin="267.839" data-dur="0.310">
+      nearly
+     </span>
+     <span data-begin="268.149" data-dur="0.260">
+      three
+     </span>
+     <span data-begin="268.410" data-dur="0.539">
+      miles
+     </span>
+     <span data-begin="269.290" data-dur="0.168">
+      he
+     </span>
+     <span data-begin="269.459" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="269.589" data-dur="0.340">
+      last
+     </span>
+     <span data-begin="269.929" data-dur="0.240">
+      met
+     </span>
+     <span data-begin="270.169" data-dur="0.089">
+      an
+     </span>
+     <span data-begin="270.259" data-dur="0.590">
+      acquaintance
+     </span>
+     <span data-begin="270.850" data-dur="0.108">
+      and
+     </span>
+     <span data-begin="270.959" data-dur="0.359">
+      eagerly
+     </span>
+     <span data-begin="271.320" data-dur="0.388">
+      addressed
+     </span>
+     <span data-begin="271.709" data-dur="0.190">
+      him
+     </span>
+     .
+     <span data-begin="272.470" data-dur="0.168">
+      This
+     </span>
+     <span data-begin="272.639" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="272.809" data-dur="0.160">
+      one
+     </span>
+     <span data-begin="272.970" data-dur="0.108">
+      of
+     </span>
+     <span data-begin="273.079" data-dur="0.170">
+      the
+     </span>
+     <span data-begin="273.250" data-dur="0.220">
+      head
+     </span>
+     <span data-begin="273.470" data-dur="0.288">
+      army
+     </span>
+     <span data-begin="273.759" data-dur="1.000">
+      doctors
+     </span>
+     .
+     <span data-begin="275.109" data-dur="0.130">
+      He
+     </span>
+     <span data-begin="275.239" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="275.399" data-dur="0.399">
+      driving
+     </span>
+     <span data-begin="275.799" data-dur="0.240">
+      toward
+     </span>
+     <span data-begin="276.040" data-dur="0.440">
+      Pierre
+     </span>
+     <span data-begin="276.889" data-dur="0.130">
+      in
+     </span>
+     <span data-begin="277.019" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="277.078" data-dur="0.351">
+      covered
+     </span>
+     <span data-begin="277.429" data-dur="0.359">
+      gig
+     </span>
+     ,
+     <span data-begin="277.910" data-dur="0.399">
+      sitting
+     </span>
+     <span data-begin="278.309" data-dur="0.350">
+      beside
+     </span>
+     <span data-begin="278.660" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="278.719" data-dur="0.230">
+      young
+     </span>
+     <span data-begin="278.949" data-dur="0.539">
+      surgeon
+     </span>
+     ,
+     <span data-begin="279.940" data-dur="0.118">
+      and
+     </span>
+     <span data-begin="280.059" data-dur="0.149">
+      on
+     </span>
+     <span data-begin="280.209" data-dur="0.590">
+      recognizing
+     </span>
+     <span data-begin="280.799" data-dur="0.299">
+      Pierre
+     </span>
+     <span data-begin="281.100" data-dur="0.190">
+      he
+     </span>
+     <span data-begin="281.290" data-dur="0.238">
+      told
+     </span>
+     <span data-begin="281.529" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="281.649" data-dur="0.440">
+      Cossack
+     </span>
+     <span data-begin="282.220" data-dur="0.229">
+      who
+     </span>
+     <span data-begin="282.820" data-dur="0.620">
+      occupied
+     </span>
+     <span data-begin="283.440" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="283.509" data-dur="0.420">
+      driver's
+     </span>
+     <span data-begin="283.929" data-dur="0.260">
+      seat
+     </span>
+     <span data-begin="284.190" data-dur="0.087">
+      to
+     </span>
+     <span data-begin="284.278" data-dur="0.270">
+      pull
+     </span>
+     <span data-begin="284.549" data-dur="0.440">
+      up
+     </span>
+     .
+     <p>
+      走了将近三英里后，他终于遇到了一个熟人，并急切地向他打招呼。这是一位军医长。他坐在一位年轻的外科医生身旁，驾着一辆有篷的马车向皮埃尔驶来，当他认出皮埃尔时，便让坐在驾驶座上的哥萨克人停车。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="285.399" data-dur="0.380">
+      Count
+     </span>
+     !
+     <span data-begin="286.239" data-dur="0.149">
+      Your
+     </span>
+     <span data-begin="286.389" data-dur="0.690">
+      excellency
+     </span>
+     ,
+     <span data-begin="287.350" data-dur="0.158">
+      how
+     </span>
+     <span data-begin="287.509" data-dur="0.179">
+      come
+     </span>
+     <span data-begin="287.690" data-dur="0.058">
+      you
+     </span>
+     <span data-begin="287.749" data-dur="0.150">
+      to
+     </span>
+     <span data-begin="287.899" data-dur="0.179">
+      be
+     </span>
+     <span data-begin="288.079" data-dur="0.290">
+      here
+     </span>
+     ?"
+     <span data-begin="288.399" data-dur="0.269">
+      asked
+     </span>
+     <span data-begin="288.669" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="288.738" data-dur="1.000">
+      doctor
+     </span>
+     .
+     <p>
+      "伯爵阁下，您怎么会在这里？"医生问道。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="289.849" data-dur="0.340">
+      Well
+     </span>
+     ,
+     <span data-begin="290.339" data-dur="0.250">
+      you
+     </span>
+     <span data-begin="290.589" data-dur="0.550">
+      know
+     </span>
+     ,
+     <span data-begin="291.169" data-dur="0.089">
+      I
+     </span>
+     <span data-begin="291.260" data-dur="0.290">
+      wanted
+     </span>
+     <span data-begin="291.550" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="291.640" data-dur="0.429">
+      see
+     </span>
+     ..."
+     <p>
+      "嗯，您知道，我想看看......"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="292.430" data-dur="0.620">
+      Yes
+     </span>
+     ,
+     <span data-begin="293.289" data-dur="0.610">
+      yes
+     </span>
+     ,
+     <span data-begin="293.930" data-dur="0.179">
+      there
+     </span>
+     <span data-begin="294.109" data-dur="0.120">
+      will
+     </span>
+     <span data-begin="294.229" data-dur="0.110">
+      be
+     </span>
+     <span data-begin="294.339" data-dur="0.390">
+      something
+     </span>
+     <span data-begin="294.729" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="294.829" data-dur="0.340">
+      see
+     </span>
+     ...."
+     <p>
+      "是的，是的，会有东西看的...."。
+     </p>
+    </p>
+    <p>
+     <span data-begin="295.829" data-dur="0.260">
+      Pierre
+     </span>
+     <span data-begin="296.119" data-dur="0.190">
+      got
+     </span>
+     <span data-begin="296.309" data-dur="0.269">
+      out
+     </span>
+     <span data-begin="296.619" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="296.749" data-dur="0.250">
+      talked
+     </span>
+     <span data-begin="296.999" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="297.078" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="297.169" data-dur="0.520">
+      doctor
+     </span>
+     ,
+     <span data-begin="297.989" data-dur="0.539">
+      explaining
+     </span>
+     <span data-begin="298.529" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="298.720" data-dur="0.500">
+      intention
+     </span>
+     <span data-begin="299.220" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="299.320" data-dur="0.329">
+      taking
+     </span>
+     <span data-begin="299.650" data-dur="0.310">
+      part
+     </span>
+     <span data-begin="299.990" data-dur="0.097">
+      in
+     </span>
+     <span data-begin="300.088" data-dur="0.061">
+      a
+     </span>
+     <span data-begin="300.150" data-dur="1.000">
+      battle
+     </span>
+     .
+     <p>
+      皮埃尔下了车，和医生谈了谈，说明了他想参加战斗的意图。
+     </p>
+    </p>
+    <p>
+     <span data-begin="301.269" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="301.348" data-dur="0.411">
+      doctor
+     </span>
+     <span data-begin="301.759" data-dur="0.429">
+      advised
+     </span>
+     <span data-begin="302.189" data-dur="0.280">
+      him
+     </span>
+     <span data-begin="302.470" data-dur="0.199">
+      to
+     </span>
+     <span data-begin="302.669" data-dur="0.320">
+      apply
+     </span>
+     <span data-begin="302.989" data-dur="0.459">
+      direct
+     </span>
+     <span data-begin="303.449" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="303.570" data-dur="1.000">
+      Kutuzov
+     </span>
+     .
+     <p>
+      医生建议他直接向库图佐夫提出申请。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="305.300" data-dur="0.158">
+      Why
+     </span>
+     <span data-begin="305.459" data-dur="0.220">
+      should
+     </span>
+     <span data-begin="305.679" data-dur="0.149">
+      you
+     </span>
+     <span data-begin="305.829" data-dur="0.310">
+      be
+     </span>
+     <span data-begin="306.140" data-dur="0.278">
+      God
+     </span>
+     <span data-begin="306.419" data-dur="0.229">
+      knows
+     </span>
+     <span data-begin="306.650" data-dur="0.258">
+      where
+     </span>
+     <span data-begin="306.909" data-dur="0.120">
+      out
+     </span>
+     <span data-begin="307.029" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="307.108" data-dur="0.360">
+      sight
+     </span>
+     ,
+     <span data-begin="307.499" data-dur="0.329">
+      during
+     </span>
+     <span data-begin="307.829" data-dur="0.060">
+      the
+     </span>
+     <span data-begin="307.890" data-dur="0.350">
+      battle
+     </span>
+     ?"
+     <span data-begin="308.269" data-dur="0.089">
+      he
+     </span>
+     <span data-begin="308.359" data-dur="0.269">
+      said
+     </span>
+     ,
+     <span data-begin="308.629" data-dur="0.520">
+      exchanging
+     </span>
+     <span data-begin="309.149" data-dur="0.440">
+      glances
+     </span>
+     <span data-begin="309.589" data-dur="0.089">
+      with
+     </span>
+     <span data-begin="309.679" data-dur="0.130">
+      his
+     </span>
+     <span data-begin="309.810" data-dur="0.179">
+      young
+     </span>
+     <span data-begin="309.989" data-dur="1.000">
+      companion
+     </span>
+     . "
+     <span data-begin="311.050" data-dur="0.558">
+      Anyhow
+     </span>
+     <span data-begin="311.609" data-dur="0.210">
+      his
+     </span>
+     <span data-begin="311.819" data-dur="0.359">
+      Serene
+     </span>
+     <span data-begin="312.179" data-dur="0.370">
+      Highness
+     </span>
+     <span data-begin="312.550" data-dur="0.260">
+      knows
+     </span>
+     <span data-begin="312.810" data-dur="0.210">
+      you
+     </span>
+     <span data-begin="313.459" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="313.640" data-dur="0.128">
+      will
+     </span>
+     <span data-begin="313.769" data-dur="0.299">
+      receive
+     </span>
+     <span data-begin="314.069" data-dur="0.078">
+      you
+     </span>
+     <span data-begin="314.148" data-dur="1.000">
+      graciously
+     </span>
+     .
+     <span data-begin="315.399" data-dur="0.220">
+      That's
+     </span>
+     <span data-begin="315.619" data-dur="0.140">
+      what
+     </span>
+     <span data-begin="315.759" data-dur="0.068">
+      you
+     </span>
+     <span data-begin="315.828" data-dur="0.241">
+      must
+     </span>
+     <span data-begin="316.070" data-dur="1.000">
+      do
+     </span>
+     ."
+     <p>
+      "在战斗中，你为什么要神不知鬼不觉地离开视线呢？"他说，并与他的年轻同伴交换了一下眼神。"不管怎么说，尊贵的殿下认识你，他会热情接待你的。这是你必须做的。"
+     </p>
+    </p>
+    <p>
+     <span data-begin="317.109" data-dur="0.070">
+      The
+     </span>
+     <span data-begin="317.180" data-dur="0.399">
+      doctor
+     </span>
+     <span data-begin="317.579" data-dur="0.280">
+      seemed
+     </span>
+     <span data-begin="317.859" data-dur="0.440">
+      tired
+     </span>
+     <span data-begin="318.300" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="318.439" data-dur="0.130">
+      in
+     </span>
+     <span data-begin="318.570" data-dur="0.030">
+      a
+     </span>
+     <span data-begin="318.629" data-dur="1.000">
+      hurry
+     </span>
+     .
+     <p>
+      医生似乎有些疲惫和匆忙。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="319.719" data-dur="0.240">
+      You
+     </span>
+     <span data-begin="319.989" data-dur="0.250">
+      think
+     </span>
+     <span data-begin="320.239" data-dur="0.399">
+      so
+     </span>
+     ?...
+     <span data-begin="320.919" data-dur="0.530">
+      Ah
+     </span>
+     ,
+     <span data-begin="321.570" data-dur="0.250">
+      I
+     </span>
+     <span data-begin="321.820" data-dur="0.258">
+      also
+     </span>
+     <span data-begin="322.079" data-dur="0.290">
+      wanted
+     </span>
+     <span data-begin="322.369" data-dur="0.179">
+      to
+     </span>
+     <span data-begin="322.550" data-dur="0.269">
+      ask
+     </span>
+     <span data-begin="322.820" data-dur="0.179">
+      you
+     </span>
+     <span data-begin="323.029" data-dur="0.170">
+      where
+     </span>
+     <span data-begin="323.199" data-dur="0.160">
+      our
+     </span>
+     <span data-begin="323.390" data-dur="0.438">
+      position
+     </span>
+     <span data-begin="323.829" data-dur="0.140">
+      is
+     </span>
+     <span data-begin="323.969" data-dur="0.459">
+      exactly
+     </span>
+     ?"
+     <span data-begin="324.459" data-dur="0.190">
+      said
+     </span>
+     <span data-begin="324.649" data-dur="1.000">
+      Pierre
+     </span>
+     .
+     <p>
+      "你这么认为？啊，我还想问您，我们的位置到底在哪里？"皮埃尔说。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="325.689" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="325.779" data-dur="0.669">
+      position
+     </span>
+     ?"
+     <span data-begin="326.519" data-dur="0.399">
+      repeated
+     </span>
+     <span data-begin="326.919" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="327.000" data-dur="1.000">
+      doctor
+     </span>
+     . "
+     <span data-begin="328.050" data-dur="0.329">
+      Well
+     </span>
+     ,
+     <span data-begin="328.379" data-dur="0.250">
+      that's
+     </span>
+     <span data-begin="328.629" data-dur="0.179">
+      not
+     </span>
+     <span data-begin="328.809" data-dur="0.190">
+      my
+     </span>
+     <span data-begin="329.000" data-dur="1.000">
+      line
+     </span>
+     .
+     <span data-begin="330.099" data-dur="0.280">
+      Drive
+     </span>
+     <span data-begin="330.500" data-dur="0.539">
+      past
+     </span>
+     <span data-begin="331.300" data-dur="1.000">
+      Tatarinova
+     </span>
+     ,
+     <span data-begin="332.879" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="332.958" data-dur="0.230">
+      lot
+     </span>
+     <span data-begin="333.189" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="333.289" data-dur="0.350">
+      digging
+     </span>
+     <span data-begin="333.640" data-dur="0.138">
+      is
+     </span>
+     <span data-begin="333.779" data-dur="0.310">
+      going
+     </span>
+     <span data-begin="334.089" data-dur="0.190">
+      on
+     </span>
+     <span data-begin="334.279" data-dur="1.000">
+      there
+     </span>
+     .
+     <span data-begin="335.800" data-dur="0.299">
+      Go
+     </span>
+     <span data-begin="336.099" data-dur="0.199">
+      up
+     </span>
+     <span data-begin="336.410" data-dur="0.599">
+      the
+     </span>
+     <span data-begin="337.039" data-dur="0.480">
+      hillock
+     </span>
+     <span data-begin="337.550" data-dur="0.238">
+      and
+     </span>
+     <span data-begin="337.789" data-dur="0.170">
+      you'll
+     </span>
+     <span data-begin="337.959" data-dur="1.000">
+      see
+     </span>
+     ."
+     <p>
+      "位置？"医生重复道。"嗯，这不是我的线路。开车经过塔塔里诺娃，那里正在进行大量的挖掘工作。沿着山岗往上走，你就会看到了。"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="339.890" data-dur="0.318">
+      Can
+     </span>
+     <span data-begin="340.209" data-dur="0.220">
+      one
+     </span>
+     <span data-begin="340.429" data-dur="0.240">
+      see
+     </span>
+     <span data-begin="340.669" data-dur="0.370">
+      from
+     </span>
+     <span data-begin="341.070" data-dur="0.359">
+      there
+     </span>
+     ?...
+     <span data-begin="341.519" data-dur="0.399">
+      If
+     </span>
+     <span data-begin="341.919" data-dur="0.130">
+      you
+     </span>
+     <span data-begin="342.050" data-dur="0.370">
+      would
+     </span>
+     ..."
+     <p>
+      "从那里能看到吗？如果您能......"
+     </p>
+    </p>
+    <p>
+     <span data-begin="342.669" data-dur="0.210">
+      But
+     </span>
+     <span data-begin="342.879" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="342.958" data-dur="0.360">
+      doctor
+     </span>
+     <span data-begin="343.320" data-dur="0.410">
+      interrupted
+     </span>
+     <span data-begin="343.730" data-dur="0.168">
+      him
+     </span>
+     <span data-begin="343.899" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="344.029" data-dur="0.229">
+      moved
+     </span>
+     <span data-begin="344.359" data-dur="0.250">
+      toward
+     </span>
+     <span data-begin="344.609" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="344.769" data-dur="1.000">
+      gig
+     </span>
+     .
+     <p>
+      但医生打断了他的话，向他的小车走去。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="345.890" data-dur="0.168">
+      I
+     </span>
+     <span data-begin="346.059" data-dur="0.170">
+      would
+     </span>
+     <span data-begin="346.230" data-dur="0.199">
+      go
+     </span>
+     <span data-begin="346.429" data-dur="0.210">
+      with
+     </span>
+     <span data-begin="346.640" data-dur="0.208">
+      you
+     </span>
+     <span data-begin="346.849" data-dur="0.110">
+      but
+     </span>
+     <span data-begin="346.959" data-dur="0.140">
+      on
+     </span>
+     <span data-begin="347.099" data-dur="0.220">
+      my
+     </span>
+     <span data-begin="347.319" data-dur="0.480">
+      honor
+     </span>
+     <span data-begin="347.829" data-dur="0.269">
+      I'm
+     </span>
+     <span data-begin="348.130" data-dur="0.179">
+      up
+     </span>
+     <span data-begin="348.340" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="348.489" data-dur="0.390">
+      here
+     </span>
+     "—
+     <span data-begin="348.910" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="349.050" data-dur="0.078">
+      he
+     </span>
+     <span data-begin="349.129" data-dur="0.430">
+      pointed
+     </span>
+     <span data-begin="349.560" data-dur="0.158">
+      to
+     </span>
+     <span data-begin="349.719" data-dur="0.240">
+      his
+     </span>
+     <span data-begin="349.959" data-dur="0.350">
+      throat
+     </span>
+     . "
+     <span data-begin="350.499" data-dur="0.220">
+      I'm
+     </span>
+     <span data-begin="350.719" data-dur="0.530">
+      galloping
+     </span>
+     <span data-begin="351.249" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="351.359" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="351.459" data-dur="0.480">
+      commander
+     </span>
+     <span data-begin="351.939" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="352.020" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="352.130" data-dur="1.000">
+      corps
+     </span>
+     .
+     <span data-begin="353.389" data-dur="0.170">
+      How
+     </span>
+     <span data-begin="353.560" data-dur="0.068">
+      do
+     </span>
+     <span data-begin="353.629" data-dur="0.360">
+      matters
+     </span>
+     <span data-begin="353.989" data-dur="0.459">
+      stand
+     </span>
+     ?...
+     <span data-begin="354.919" data-dur="0.170">
+      You
+     </span>
+     <span data-begin="355.090" data-dur="1.000">
+      know
+     </span>
+     ,
+     <span data-begin="356.410" data-dur="0.450">
+      Count
+     </span>
+     ,
+     <span data-begin="356.999" data-dur="0.310">
+      there'll
+     </span>
+     <span data-begin="357.310" data-dur="0.118">
+      be
+     </span>
+     <span data-begin="357.429" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="357.508" data-dur="0.300">
+      battle
+     </span>
+     <span data-begin="357.810" data-dur="0.489">
+      tomorrow
+     </span>
+     .
+     <span data-begin="358.829" data-dur="0.160">
+      Out
+     </span>
+     <span data-begin="358.989" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="359.099" data-dur="0.089">
+      an
+     </span>
+     <span data-begin="359.219" data-dur="0.350">
+      army
+     </span>
+     <span data-begin="359.569" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="359.679" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="359.738" data-dur="0.291">
+      hundred
+     </span>
+     <span data-begin="360.059" data-dur="0.399">
+      thousand
+     </span>
+     <span data-begin="360.459" data-dur="0.099">
+      we
+     </span>
+     <span data-begin="360.559" data-dur="0.240">
+      must
+     </span>
+     <span data-begin="360.800" data-dur="0.378">
+      expect
+     </span>
+     <span data-begin="361.179" data-dur="0.078">
+      at
+     </span>
+     <span data-begin="361.258" data-dur="0.230">
+      least
+     </span>
+     <span data-begin="361.489" data-dur="0.250">
+      twenty
+     </span>
+     <span data-begin="361.739" data-dur="0.410">
+      thousand
+     </span>
+     <span data-begin="362.149" data-dur="0.350">
+      wounded
+     </span>
+     ,
+     <span data-begin="362.499" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="362.599" data-dur="0.110">
+      we
+     </span>
+     <span data-begin="362.709" data-dur="0.320">
+      haven't
+     </span>
+     <span data-begin="363.029" data-dur="0.539">
+      stretchers
+     </span>
+     ,
+     <span data-begin="363.569" data-dur="0.130">
+      or
+     </span>
+     <span data-begin="363.700" data-dur="0.368">
+      bunks
+     </span>
+     ,
+     <span data-begin="364.069" data-dur="0.068">
+      or
+     </span>
+     <span data-begin="364.138" data-dur="1.000">
+      dressers
+     </span>
+     ,
+     <span data-begin="365.300" data-dur="0.168">
+      or
+     </span>
+     <span data-begin="365.469" data-dur="0.570">
+      doctors
+     </span>
+     <span data-begin="366.039" data-dur="0.440">
+      enough
+     </span>
+     <span data-begin="366.819" data-dur="0.370">
+      for
+     </span>
+     <span data-begin="367.219" data-dur="0.310">
+      six
+     </span>
+     <span data-begin="367.529" data-dur="1.000">
+      thousand
+     </span>
+     .
+     <span data-begin="368.989" data-dur="0.130">
+      We
+     </span>
+     <span data-begin="369.119" data-dur="0.190">
+      have
+     </span>
+     <span data-begin="369.309" data-dur="0.210">
+      ten
+     </span>
+     <span data-begin="369.520" data-dur="0.408">
+      thousand
+     </span>
+     <span data-begin="369.929" data-dur="0.420">
+      carts
+     </span>
+     ,
+     <span data-begin="370.349" data-dur="0.329">
+      but
+     </span>
+     <span data-begin="370.679" data-dur="0.130">
+      we
+     </span>
+     <span data-begin="370.809" data-dur="0.179">
+      need
+     </span>
+     <span data-begin="370.989" data-dur="0.190">
+      other
+     </span>
+     <span data-begin="371.179" data-dur="0.290">
+      things
+     </span>
+     <span data-begin="371.469" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="371.590" data-dur="0.320">
+      well
+     </span>
+     —
+     <span data-begin="372.279" data-dur="0.140">
+      we
+     </span>
+     <span data-begin="372.419" data-dur="0.240">
+      must
+     </span>
+     <span data-begin="372.660" data-dur="0.329">
+      manage
+     </span>
+     <span data-begin="373.020" data-dur="0.108">
+      as
+     </span>
+     <span data-begin="373.129" data-dur="0.260">
+      best
+     </span>
+     <span data-begin="373.389" data-dur="0.120">
+      we
+     </span>
+     <span data-begin="373.509" data-dur="1.000">
+      can
+     </span>
+     !"
+     <p>
+      "我想和你一起去，但以我的名誉，我就在这里"--他指了指自己的喉咙。他指着自己的喉咙说："我要去找军团指挥官。情况如何？你知道，伯爵，明天会有一场战斗。十万大军中至少有两万伤员，而我们的担架、床铺、敷料和医生都不够六千人使用。我们有一万辆马车，但我们还需要其他东西，我们必须尽力而为！"
+     </p>
+    </p>
+    <p>
+     <span data-begin="375.069" data-dur="0.068">
+      The
+     </span>
+     <span data-begin="375.138" data-dur="0.400">
+      strange
+     </span>
+     <span data-begin="375.539" data-dur="0.429">
+      thought
+     </span>
+     <span data-begin="376.050" data-dur="0.299">
+      that
+     </span>
+     <span data-begin="376.349" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="376.428" data-dur="0.059">
+      the
+     </span>
+     <span data-begin="376.488" data-dur="0.460">
+      thousands
+     </span>
+     <span data-begin="376.950" data-dur="0.128">
+      of
+     </span>
+     <span data-begin="377.079" data-dur="0.320">
+      men
+     </span>
+     ,
+     <span data-begin="377.399" data-dur="0.220">
+      young
+     </span>
+     <span data-begin="377.619" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="377.730" data-dur="0.299">
+      old
+     </span>
+     ,
+     <span data-begin="378.520" data-dur="0.158">
+      who
+     </span>
+     <span data-begin="378.679" data-dur="0.120">
+      had
+     </span>
+     <span data-begin="378.800" data-dur="0.408">
+      stared
+     </span>
+     <span data-begin="379.209" data-dur="0.190">
+      with
+     </span>
+     <span data-begin="379.399" data-dur="0.269">
+      merry
+     </span>
+     <span data-begin="379.669" data-dur="0.590">
+      surprise
+     </span>
+     <span data-begin="380.259" data-dur="0.058">
+      at
+     </span>
+     <span data-begin="380.318" data-dur="0.171">
+      his
+     </span>
+     <span data-begin="380.489" data-dur="1.000">
+      hat
+     </span>
+     (perhaps the very men he had noticed), twenty thousand
+     <span data-begin="383.959" data-dur="0.140">
+      were
+     </span>
+     <span data-begin="384.099" data-dur="0.560">
+      inevitably
+     </span>
+     <span data-begin="384.660" data-dur="0.478">
+      doomed
+     </span>
+     <span data-begin="385.139" data-dur="0.190">
+      to
+     </span>
+     <span data-begin="385.329" data-dur="0.359">
+      wounds
+     </span>
+     <span data-begin="385.689" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="385.829" data-dur="0.269">
+      death
+     </span>
+     <span data-begin="386.270" data-dur="0.468">
+      amazed
+     </span>
+     <span data-begin="386.739" data-dur="1.000">
+      Pierre
+     </span>
+     .
+     <p>
+      皮埃尔奇怪地想到，成千上万的人，无论老少，都兴高采烈地盯着他的帽子看（也许正是他注意到的人），其中有两万人注定要受伤和死亡。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="388.079" data-dur="0.110">
+      They
+     </span>
+     <span data-begin="388.189" data-dur="0.210">
+      may
+     </span>
+     <span data-begin="388.399" data-dur="0.269">
+      die
+     </span>
+     <span data-begin="388.669" data-dur="1.000">
+      tomorrow
+     </span>
+     ;
+     <span data-begin="389.889" data-dur="0.179">
+      why
+     </span>
+     <span data-begin="390.069" data-dur="0.120">
+      are
+     </span>
+     <span data-begin="390.189" data-dur="0.140">
+      they
+     </span>
+     <span data-begin="390.359" data-dur="0.329">
+      thinking
+     </span>
+     <span data-begin="390.689" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="390.829" data-dur="0.350">
+      anything
+     </span>
+     <span data-begin="391.179" data-dur="0.190">
+      but
+     </span>
+     <span data-begin="391.369" data-dur="0.310">
+      death
+     </span>
+     ?"
+     <span data-begin="392.329" data-dur="0.140">
+      And
+     </span>
+     <span data-begin="392.469" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="392.619" data-dur="0.329">
+      some
+     </span>
+     <span data-begin="392.949" data-dur="0.380">
+      latent
+     </span>
+     <span data-begin="393.329" data-dur="0.599">
+      sequence
+     </span>
+     <span data-begin="393.959" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="394.079" data-dur="0.440">
+      thought
+     </span>
+     <span data-begin="394.569" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="394.689" data-dur="0.520">
+      descent
+     </span>
+     <span data-begin="395.319" data-dur="0.190">
+      of
+     </span>
+     <span data-begin="395.539" data-dur="0.220">
+      the
+     </span>
+     <span data-begin="395.969" data-dur="0.750">
+      Mozhaysk
+     </span>
+     <span data-begin="396.719" data-dur="0.320">
+      hill
+     </span>
+     ,
+     <span data-begin="397.520" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="397.669" data-dur="0.410">
+      carts
+     </span>
+     <span data-begin="398.079" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="398.239" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="398.369" data-dur="0.520">
+      wounded
+     </span>
+     ,
+     <span data-begin="399.169" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="399.319" data-dur="0.350">
+      ringing
+     </span>
+     <span data-begin="399.669" data-dur="0.530">
+      bells
+     </span>
+     ,
+     <span data-begin="400.249" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="400.359" data-dur="0.500">
+      slanting
+     </span>
+     <span data-begin="400.859" data-dur="0.320">
+      rays
+     </span>
+     <span data-begin="401.179" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="401.279" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="401.369" data-dur="0.440">
+      sun
+     </span>
+     ,
+     <span data-begin="402.160" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="402.289" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="402.368" data-dur="0.430">
+      songs
+     </span>
+     <span data-begin="402.800" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="402.910" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="402.998" data-dur="0.730">
+      cavalrymen
+     </span>
+     <span data-begin="403.730" data-dur="0.489">
+      vividly
+     </span>
+     <span data-begin="404.219" data-dur="0.470">
+      recurred
+     </span>
+     <span data-begin="404.689" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="404.800" data-dur="0.188">
+      his
+     </span>
+     <span data-begin="404.989" data-dur="1.000">
+      mind
+     </span>
+     .
+     <p>
+      "他们明天可能就会死，他们为什么只想着死呢？由于某种潜在的思维序列，莫扎伊斯克山丘的下坡、载着伤员的大车、敲响的钟声、斜射的阳光以及骑兵们的歌声在他脑海中历历在目。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="406.399" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="406.489" data-dur="0.740">
+      cavalry
+     </span>
+     <span data-begin="407.359" data-dur="0.359">
+      ride
+     </span>
+     <span data-begin="407.719" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="407.849" data-dur="0.459">
+      battle
+     </span>
+     <span data-begin="408.399" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="408.529" data-dur="0.229">
+      meet
+     </span>
+     <span data-begin="408.759" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="408.859" data-dur="0.510">
+      wounded
+     </span>
+     <span data-begin="409.399" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="409.569" data-dur="0.120">
+      do
+     </span>
+     <span data-begin="409.689" data-dur="0.370">
+      not
+     </span>
+     <span data-begin="410.099" data-dur="0.299">
+      for
+     </span>
+     <span data-begin="410.399" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="410.468" data-dur="0.360">
+      moment
+     </span>
+     <span data-begin="410.829" data-dur="0.329">
+      think
+     </span>
+     <span data-begin="411.189" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="411.329" data-dur="0.130">
+      what
+     </span>
+     <span data-begin="411.460" data-dur="0.378">
+      awaits
+     </span>
+     <span data-begin="411.839" data-dur="0.340">
+      them
+     </span>
+     ,
+     <span data-begin="412.499" data-dur="0.269">
+      but
+     </span>
+     <span data-begin="412.770" data-dur="0.338">
+      pass
+     </span>
+     <span data-begin="413.109" data-dur="0.399">
+      by
+     </span>
+     ,
+     <span data-begin="413.770" data-dur="0.368">
+      winking
+     </span>
+     <span data-begin="414.139" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="414.259" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="414.380" data-dur="1.000">
+      wounded
+     </span>
+     .
+     <span data-begin="415.460" data-dur="0.250">
+      Yet
+     </span>
+     <span data-begin="415.710" data-dur="0.149">
+      from
+     </span>
+     <span data-begin="415.859" data-dur="0.320">
+      among
+     </span>
+     <span data-begin="416.179" data-dur="0.199">
+      these
+     </span>
+     <span data-begin="416.380" data-dur="0.238">
+      men
+     </span>
+     <span data-begin="416.619" data-dur="0.290">
+      twenty
+     </span>
+     <span data-begin="416.910" data-dur="0.399">
+      thousand
+     </span>
+     <span data-begin="417.309" data-dur="0.149">
+      are
+     </span>
+     <span data-begin="417.460" data-dur="0.269">
+      doomed
+     </span>
+     <span data-begin="417.729" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="417.850" data-dur="0.420">
+      die
+     </span>
+     ,
+     <span data-begin="418.300" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="418.429" data-dur="0.130">
+      they
+     </span>
+     <span data-begin="418.559" data-dur="0.359">
+      wonder
+     </span>
+     <span data-begin="418.919" data-dur="0.078">
+      at
+     </span>
+     <span data-begin="418.998" data-dur="0.191">
+      my
+     </span>
+     <span data-begin="419.189" data-dur="0.340">
+      hat
+     </span>
+     !
+     <span data-begin="420.079" data-dur="0.690">
+      Strange
+     </span>
+     !"
+     <span data-begin="420.800" data-dur="0.220">
+      thought
+     </span>
+     <span data-begin="421.020" data-dur="0.410">
+      Pierre
+     </span>
+     ,
+     <span data-begin="421.479" data-dur="0.599">
+      continuing
+     </span>
+     <span data-begin="422.399" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="422.550" data-dur="0.350">
+      way
+     </span>
+     <span data-begin="423.249" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="423.410" data-dur="1.000">
+      Tatarinova
+     </span>
+     .
+     <p>
+      "骑兵们骑马上阵，遇到伤员，一刻也不去想等待他们的是什么，而是擦肩而过，向伤员眨眨眼睛。然而，在这些人中，有两万人注定要死，而他们却对我的帽子感到奇怪！皮埃尔心想："真奇怪！"他继续赶往塔塔里诺娃。
+     </p>
+    </p>
+    <p>
+     <span data-begin="425.570" data-dur="0.158">
+      In
+     </span>
+     <span data-begin="425.729" data-dur="0.350">
+      front
+     </span>
+     <span data-begin="426.079" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="426.199" data-dur="0.070">
+      a
+     </span>
+     <span data-begin="426.270" data-dur="0.580">
+      landowner's
+     </span>
+     <span data-begin="426.850" data-dur="0.280">
+      house
+     </span>
+     <span data-begin="427.130" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="427.249" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="427.350" data-dur="0.299">
+      left
+     </span>
+     <span data-begin="427.649" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="427.740" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="427.850" data-dur="0.329">
+      road
+     </span>
+     <span data-begin="428.179" data-dur="0.199">
+      stood
+     </span>
+     <span data-begin="428.410" data-dur="0.539">
+      carriages
+     </span>
+     ,
+     <span data-begin="428.949" data-dur="0.630">
+      wagons
+     </span>
+     ,
+     <span data-begin="429.740" data-dur="0.350">
+      and
+     </span>
+     <span data-begin="430.350" data-dur="0.399">
+      crowds
+     </span>
+     <span data-begin="430.749" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="430.869" data-dur="0.560">
+      orderlies
+     </span>
+     <span data-begin="431.429" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="431.539" data-dur="1.000">
+      sentinels
+     </span>
+     .
+     <span data-begin="433.020" data-dur="0.097">
+      The
+     </span>
+     <span data-begin="433.118" data-dur="0.521">
+      commander
+     </span>
+     -
+     <span data-begin="433.639" data-dur="0.120">
+      in
+     </span>
+     -
+     <span data-begin="433.759" data-dur="0.410">
+      chief
+     </span>
+     <span data-begin="434.169" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="434.339" data-dur="0.320">
+      putting
+     </span>
+     <span data-begin="434.660" data-dur="0.120">
+      up
+     </span>
+     <span data-begin="434.859" data-dur="0.299">
+      there
+     </span>
+     ,
+     <span data-begin="435.649" data-dur="0.160">
+      but
+     </span>
+     <span data-begin="435.809" data-dur="0.329">
+      just
+     </span>
+     <span data-begin="436.139" data-dur="0.149">
+      when
+     </span>
+     <span data-begin="436.289" data-dur="0.359">
+      Pierre
+     </span>
+     <span data-begin="436.649" data-dur="0.500">
+      arrived
+     </span>
+     <span data-begin="437.499" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="437.630" data-dur="0.188">
+      was
+     </span>
+     <span data-begin="437.819" data-dur="0.260">
+      not
+     </span>
+     <span data-begin="438.109" data-dur="0.380">
+      in
+     </span>
+     <span data-begin="438.520" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="438.699" data-dur="0.410">
+      hardly
+     </span>
+     <span data-begin="439.139" data-dur="0.220">
+      any
+     </span>
+     <span data-begin="439.359" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="439.479" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="439.558" data-dur="0.400">
+      staff
+     </span>
+     <span data-begin="440.039" data-dur="0.179">
+      were
+     </span>
+     <span data-begin="440.219" data-dur="0.290">
+      there
+     </span>
+     —
+     <span data-begin="441.089" data-dur="0.120">
+      they
+     </span>
+     <span data-begin="441.210" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="441.350" data-dur="0.288">
+      gone
+     </span>
+     <span data-begin="441.639" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="441.740" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="441.838" data-dur="0.330">
+      church
+     </span>
+     <span data-begin="442.169" data-dur="0.399">
+      service
+     </span>
+     .
+     <span data-begin="442.880" data-dur="0.280">
+      Pierre
+     </span>
+     <span data-begin="443.160" data-dur="0.288">
+      drove
+     </span>
+     <span data-begin="443.449" data-dur="0.190">
+      on
+     </span>
+     <span data-begin="443.639" data-dur="0.260">
+      toward
+     </span>
+     <span data-begin="443.899" data-dur="1.000">
+      Gorki
+     </span>
+     .
+     <p>
+      路左边的一个地主家门前，停着马车、马车，还有成群的勤务兵和哨兵。总司令正在那里休息，但就在皮埃尔到达时，他却不在，几乎没有一个工作人员在那里--他们都去教堂做礼拜了。皮埃尔驱车向高尔基驶去。
+     </p>
+    </p>
+    <p>
+     <span data-begin="446.169" data-dur="0.179">
+      When
+     </span>
+     <span data-begin="446.350" data-dur="0.149">
+      he
+     </span>
+     <span data-begin="446.499" data-dur="0.099">
+      had
+     </span>
+     <span data-begin="446.600" data-dur="0.450">
+      ascended
+     </span>
+     <span data-begin="447.050" data-dur="0.118">
+      the
+     </span>
+     <span data-begin="447.169" data-dur="0.399">
+      hill
+     </span>
+     <span data-begin="447.850" data-dur="0.158">
+      and
+     </span>
+     <span data-begin="448.009" data-dur="0.269">
+      reached
+     </span>
+     <span data-begin="448.279" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="448.358" data-dur="0.200">
+      little
+     </span>
+     <span data-begin="448.559" data-dur="0.299">
+      village
+     </span>
+     <span data-begin="448.859" data-dur="0.429">
+      street
+     </span>
+     ,
+     <span data-begin="449.319" data-dur="0.149">
+      he
+     </span>
+     <span data-begin="449.469" data-dur="0.269">
+      saw
+     </span>
+     <span data-begin="449.740" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="449.889" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="449.990" data-dur="0.368">
+      first
+     </span>
+     <span data-begin="450.359" data-dur="0.370">
+      time
+     </span>
+     <span data-begin="450.729" data-dur="0.359">
+      peasant
+     </span>
+     <span data-begin="451.089" data-dur="0.580">
+      militiamen
+     </span>
+     <span data-begin="452.009" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="452.130" data-dur="0.149">
+      their
+     </span>
+     <span data-begin="452.279" data-dur="0.280">
+      white
+     </span>
+     <span data-begin="452.559" data-dur="0.510">
+      shirts
+     </span>
+     <span data-begin="453.069" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="453.160" data-dur="0.140">
+      with
+     </span>
+     <span data-begin="453.300" data-dur="0.478">
+      crosses
+     </span>
+     <span data-begin="453.779" data-dur="0.140">
+      on
+     </span>
+     <span data-begin="453.919" data-dur="0.110">
+      their
+     </span>
+     <span data-begin="454.029" data-dur="0.500">
+      caps
+     </span>
+     ,
+     <span data-begin="454.529" data-dur="0.260">
+      who
+     </span>
+     ,
+     <span data-begin="455.289" data-dur="0.390">
+      talking
+     </span>
+     <span data-begin="455.679" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="455.789" data-dur="0.429">
+      laughing
+     </span>
+     <span data-begin="456.219" data-dur="0.470">
+      loudly
+     </span>
+     ,
+     <span data-begin="456.689" data-dur="0.500">
+      animated
+     </span>
+     <span data-begin="457.189" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="457.359" data-dur="0.700">
+      perspiring
+     </span>
+     ,
+     <span data-begin="458.329" data-dur="0.199">
+      were
+     </span>
+     <span data-begin="458.529" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="458.649" data-dur="0.280">
+      work
+     </span>
+     <span data-begin="458.929" data-dur="0.130">
+      on
+     </span>
+     <span data-begin="459.059" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="459.149" data-dur="0.359">
+      huge
+     </span>
+     <span data-begin="459.509" data-dur="0.390">
+      knoll
+     </span>
+     <span data-begin="459.929" data-dur="0.480">
+      overgrown
+     </span>
+     <span data-begin="460.410" data-dur="0.190">
+      with
+     </span>
+     <span data-begin="460.600" data-dur="0.420">
+      grass
+     </span>
+     <span data-begin="461.020" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="461.139" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="461.229" data-dur="0.199">
+      right
+     </span>
+     <span data-begin="461.429" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="461.508" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="461.600" data-dur="1.000">
+      road
+     </span>
+     .
+     <p>
+      当他上了山，来到村里的小街上时，他第一次看到了穿着白衬衫、帽子上带着十字架的农民民兵，他们大声谈笑，神采奕奕，汗流浃背，正在路右边一个长满荒草的巨大山丘上劳动。
+     </p>
+    </p>
+    <p>
+     <span data-begin="462.719" data-dur="0.320">
+      Some
+     </span>
+     <span data-begin="463.039" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="463.169" data-dur="0.190">
+      them
+     </span>
+     <span data-begin="463.359" data-dur="0.120">
+      were
+     </span>
+     <span data-begin="463.479" data-dur="0.410">
+      digging
+     </span>
+     ,
+     <span data-begin="464.309" data-dur="0.320">
+      others
+     </span>
+     <span data-begin="464.630" data-dur="0.140">
+      were
+     </span>
+     <span data-begin="464.770" data-dur="0.370">
+      wheeling
+     </span>
+     <span data-begin="465.169" data-dur="0.630">
+      barrowloads
+     </span>
+     <span data-begin="465.829" data-dur="0.190">
+      of
+     </span>
+     <span data-begin="466.020" data-dur="0.220">
+      earth
+     </span>
+     <span data-begin="466.240" data-dur="0.299">
+      along
+     </span>
+     <span data-begin="466.539" data-dur="0.550">
+      planks
+     </span>
+     ,
+     <span data-begin="467.149" data-dur="0.240">
+      while
+     </span>
+     <span data-begin="467.429" data-dur="0.280">
+      others
+     </span>
+     <span data-begin="467.709" data-dur="0.240">
+      stood
+     </span>
+     <span data-begin="467.949" data-dur="0.359">
+      about
+     </span>
+     <span data-begin="468.339" data-dur="0.280">
+      doing
+     </span>
+     <span data-begin="468.619" data-dur="1.000">
+      nothing
+     </span>
+     .
+     <p>
+      他们有的在挖土，有的在用木板推着一车车的土，还有的站在一旁无所事事。
+     </p>
+    </p>
+    <p>
+     <span data-begin="470.089" data-dur="0.260">
+      Two
+     </span>
+     <span data-begin="470.350" data-dur="0.560">
+      officers
+     </span>
+     <span data-begin="470.910" data-dur="0.087">
+      were
+     </span>
+     <span data-begin="470.998" data-dur="0.421">
+      standing
+     </span>
+     <span data-begin="471.419" data-dur="0.140">
+      on
+     </span>
+     <span data-begin="471.559" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="471.638" data-dur="0.351">
+      knoll
+     </span>
+     ,
+     <span data-begin="472.429" data-dur="0.440">
+      directing
+     </span>
+     <span data-begin="472.869" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="472.938" data-dur="1.000">
+      men
+     </span>
+     .
+     <span data-begin="474.229" data-dur="0.160">
+      On
+     </span>
+     <span data-begin="474.389" data-dur="0.299">
+      seeing
+     </span>
+     <span data-begin="474.689" data-dur="0.179">
+      these
+     </span>
+     <span data-begin="474.869" data-dur="0.570">
+      peasants
+     </span>
+     ,
+     <span data-begin="475.689" data-dur="0.149">
+      who
+     </span>
+     <span data-begin="475.839" data-dur="0.130">
+      were
+     </span>
+     <span data-begin="475.999" data-dur="0.480">
+      evidently
+     </span>
+     <span data-begin="476.479" data-dur="0.269">
+      still
+     </span>
+     <span data-begin="476.749" data-dur="0.440">
+      amused
+     </span>
+     <span data-begin="477.219" data-dur="0.140">
+      by
+     </span>
+     <span data-begin="477.359" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="477.449" data-dur="0.470">
+      novelty
+     </span>
+     <span data-begin="477.919" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="478.029" data-dur="0.089">
+      their
+     </span>
+     <span data-begin="478.119" data-dur="0.440">
+      position
+     </span>
+     <span data-begin="478.559" data-dur="0.099">
+      as
+     </span>
+     <span data-begin="478.660" data-dur="0.560">
+      soldiers
+     </span>
+     ,
+     <span data-begin="479.569" data-dur="0.310">
+      Pierre
+     </span>
+     <span data-begin="479.880" data-dur="0.258">
+      once
+     </span>
+     <span data-begin="480.139" data-dur="0.220">
+      more
+     </span>
+     <span data-begin="480.359" data-dur="0.299">
+      thought
+     </span>
+     <span data-begin="480.660" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="480.770" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="480.858" data-dur="0.321">
+      wounded
+     </span>
+     <span data-begin="481.179" data-dur="0.350">
+      men
+     </span>
+     <span data-begin="481.759" data-dur="0.210">
+      at
+     </span>
+     <span data-begin="481.969" data-dur="0.760">
+      Mozhaysk
+     </span>
+     <span data-begin="482.839" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="483.050" data-dur="0.690">
+      understood
+     </span>
+     <span data-begin="484.009" data-dur="0.210">
+      what
+     </span>
+     <span data-begin="484.219" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="484.309" data-dur="0.359">
+      soldier
+     </span>
+     <span data-begin="484.669" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="484.850" data-dur="0.299">
+      meant
+     </span>
+     <span data-begin="485.149" data-dur="0.120">
+      when
+     </span>
+     <span data-begin="485.270" data-dur="0.097">
+      he
+     </span>
+     <span data-begin="485.368" data-dur="0.371">
+      said
+     </span>
+     : "
+     <span data-begin="486.319" data-dur="0.120">
+      They
+     </span>
+     <span data-begin="486.439" data-dur="0.240">
+      want
+     </span>
+     <span data-begin="486.679" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="486.770" data-dur="0.208">
+      whole
+     </span>
+     <span data-begin="486.979" data-dur="0.340">
+      nation
+     </span>
+     <span data-begin="487.319" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="487.398" data-dur="0.281">
+      fall
+     </span>
+     <span data-begin="487.679" data-dur="0.120">
+      on
+     </span>
+     <span data-begin="487.800" data-dur="0.250">
+      them
+     </span>
+     ."
+     <span data-begin="488.509" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="488.588" data-dur="0.311">
+      sight
+     </span>
+     <span data-begin="488.899" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="489.069" data-dur="0.269">
+      these
+     </span>
+     <span data-begin="489.339" data-dur="0.390">
+      bearded
+     </span>
+     <span data-begin="489.729" data-dur="0.480">
+      peasants
+     </span>
+     <span data-begin="490.209" data-dur="0.110">
+      at
+     </span>
+     <span data-begin="490.319" data-dur="0.250">
+      work
+     </span>
+     <span data-begin="490.569" data-dur="0.089">
+      on
+     </span>
+     <span data-begin="490.660" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="490.739" data-dur="1.000">
+      battlefield
+     </span>
+     ,
+     <span data-begin="491.859" data-dur="0.179">
+      with
+     </span>
+     <span data-begin="492.039" data-dur="0.149">
+      their
+     </span>
+     <span data-begin="492.189" data-dur="0.370">
+      queer
+     </span>
+     ,
+     <span data-begin="492.559" data-dur="0.440">
+      clumsy
+     </span>
+     <span data-begin="492.999" data-dur="0.380">
+      boots
+     </span>
+     <span data-begin="493.380" data-dur="0.097">
+      and
+     </span>
+     <span data-begin="493.478" data-dur="0.561">
+      perspiring
+     </span>
+     <span data-begin="494.039" data-dur="0.410">
+      necks
+     </span>
+     ,
+     <span data-begin="494.449" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="494.550" data-dur="0.110">
+      their
+     </span>
+     <span data-begin="494.660" data-dur="0.408">
+      shirts
+     </span>
+     <span data-begin="495.069" data-dur="0.440">
+      opening
+     </span>
+     <span data-begin="495.509" data-dur="0.240">
+      from
+     </span>
+     <span data-begin="495.749" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="495.839" data-dur="0.420">
+      left
+     </span>
+     <span data-begin="496.259" data-dur="0.250">
+      toward
+     </span>
+     <span data-begin="496.539" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="496.608" data-dur="0.371">
+      middle
+     </span>
+     ,
+     <span data-begin="497.309" data-dur="0.710">
+      unfastened
+     </span>
+     ,
+     <span data-begin="498.020" data-dur="0.588">
+      exposing
+     </span>
+     <span data-begin="498.609" data-dur="0.099">
+      their
+     </span>
+     <span data-begin="498.709" data-dur="0.630">
+      sunburned
+     </span>
+     <span data-begin="499.339" data-dur="1.000">
+      collarbones
+     </span>
+     ,
+     <span data-begin="500.410" data-dur="0.459">
+      impressed
+     </span>
+     <span data-begin="500.869" data-dur="0.310">
+      Pierre
+     </span>
+     <span data-begin="501.179" data-dur="0.179">
+      more
+     </span>
+     <span data-begin="501.359" data-dur="0.620">
+      strongly
+     </span>
+     <span data-begin="501.979" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="502.139" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="502.208" data-dur="0.720">
+      solemnity
+     </span>
+     <span data-begin="503.209" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="503.359" data-dur="0.480">
+      importance
+     </span>
+     <span data-begin="503.839" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="503.949" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="504.039" data-dur="0.380">
+      moment
+     </span>
+     <span data-begin="504.490" data-dur="0.170">
+      than
+     </span>
+     <span data-begin="504.660" data-dur="0.470">
+      anything
+     </span>
+     <span data-begin="505.130" data-dur="0.208">
+      he
+     </span>
+     <span data-begin="505.339" data-dur="0.260">
+      had
+     </span>
+     <span data-begin="505.869" data-dur="0.220">
+      yet
+     </span>
+     <span data-begin="506.089" data-dur="0.350">
+      seen
+     </span>
+     <span data-begin="506.439" data-dur="0.089">
+      or
+     </span>
+     <span data-begin="506.529" data-dur="1.000">
+      heard
+     </span>
+     .
+     <p>
+      两名军官站在山丘上指挥着这些人。看到这些农民，皮埃尔再次想起了莫扎伊斯克的伤员，他明白了士兵所说的话的意思："他们希望整个民族都倒向他们"皮埃尔看到这些满脸络腮胡子的农民在战场上劳作，他们穿着古怪、笨拙的靴子，脖子上汗津津的，上衣从左边向中间敞开，没有系紧，露出被太阳晒得发烫的锁骨，这比他以前看到或听到的任何事情都更能让他感受到此刻的庄严和重要。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>
