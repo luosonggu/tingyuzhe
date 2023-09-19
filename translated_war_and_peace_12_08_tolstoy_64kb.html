@@ -1,0 +1,5435 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_12_08_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_12_08_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_12_08_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_12_08_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER VIII
+     <p>
+      第八章
+     </p>
+    </p>
+    <p>
+     <span data-begin="10.779" data-dur="0.470">
+      Sonya's
+     </span>
+     <span data-begin="11.250" data-dur="0.340">
+      letter
+     </span>
+     <span data-begin="11.619" data-dur="0.280">
+      written
+     </span>
+     <span data-begin="11.899" data-dur="0.210">
+      from
+     </span>
+     <span data-begin="12.109" data-dur="0.410">
+      Troitsa
+     </span>
+     ,
+     <span data-begin="12.849" data-dur="0.140">
+      which
+     </span>
+     <span data-begin="12.989" data-dur="0.099">
+      had
+     </span>
+     <span data-begin="13.090" data-dur="0.160">
+      come
+     </span>
+     <span data-begin="13.250" data-dur="0.118">
+      as
+     </span>
+     <span data-begin="13.369" data-dur="0.089">
+      an
+     </span>
+     <span data-begin="13.489" data-dur="0.359">
+      answer
+     </span>
+     <span data-begin="13.849" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="13.979" data-dur="0.340">
+      Nicholas
+     </span>
+     '
+     <span data-begin="14.489" data-dur="0.410">
+      prayer
+     </span>
+     ,
+     <span data-begin="15.279" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="15.429" data-dur="0.399">
+      prompted
+     </span>
+     <span data-begin="15.829" data-dur="0.140">
+      by
+     </span>
+     <span data-begin="15.969" data-dur="1.000">
+      this
+     </span>
+     :
+     <span data-begin="17.219" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="17.278" data-dur="0.291">
+      thought
+     </span>
+     <span data-begin="17.569" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="17.659" data-dur="0.240">
+      getting
+     </span>
+     <span data-begin="17.899" data-dur="0.429">
+      Nicholas
+     </span>
+     <span data-begin="18.329" data-dur="0.299">
+      married
+     </span>
+     <span data-begin="18.629" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="18.729" data-dur="0.130">
+      an
+     </span>
+     <span data-begin="18.889" data-dur="0.410">
+      heiress
+     </span>
+     <span data-begin="19.340" data-dur="0.550">
+      occupied
+     </span>
+     <span data-begin="19.969" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="20.149" data-dur="0.190">
+      old
+     </span>
+     <span data-begin="20.340" data-dur="0.429">
+      countess
+     </span>
+     '
+     <span data-begin="20.770" data-dur="0.399">
+      mind
+     </span>
+     <span data-begin="21.229" data-dur="0.310">
+      more
+     </span>
+     <span data-begin="21.539" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="21.639" data-dur="1.000">
+      more
+     </span>
+     .
+     <span data-begin="22.859" data-dur="0.179">
+      She
+     </span>
+     <span data-begin="23.069" data-dur="0.170">
+      knew
+     </span>
+     <span data-begin="23.239" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="23.399" data-dur="0.359">
+      Sonya
+     </span>
+     <span data-begin="23.760" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="23.909" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="23.978" data-dur="0.311">
+      chief
+     </span>
+     <span data-begin="24.319" data-dur="0.459">
+      obstacle
+     </span>
+     <span data-begin="24.779" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="24.899" data-dur="0.179">
+      this
+     </span>
+     <span data-begin="25.079" data-dur="0.550">
+      happening
+     </span>
+     ,
+     <span data-begin="25.989" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="26.159" data-dur="0.380">
+      Sonya's
+     </span>
+     <span data-begin="26.539" data-dur="0.250">
+      life
+     </span>
+     <span data-begin="26.789" data-dur="0.058">
+      in
+     </span>
+     <span data-begin="26.848" data-dur="0.059">
+      the
+     </span>
+     <span data-begin="26.908" data-dur="0.471">
+      countess
+     </span>
+     '
+     <span data-begin="27.379" data-dur="0.370">
+      house
+     </span>
+     <span data-begin="27.789" data-dur="0.099">
+      had
+     </span>
+     <span data-begin="27.889" data-dur="0.240">
+      grown
+     </span>
+     <span data-begin="28.159" data-dur="0.329">
+      harder
+     </span>
+     <span data-begin="28.489" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="28.599" data-dur="0.440">
+      harder
+     </span>
+     ,
+     <span data-begin="29.459" data-dur="0.539">
+      especially
+     </span>
+     <span data-begin="30.000" data-dur="0.308">
+      after
+     </span>
+     <span data-begin="30.309" data-dur="0.160">
+      they
+     </span>
+     <span data-begin="30.469" data-dur="0.120">
+      had
+     </span>
+     <span data-begin="30.590" data-dur="0.420">
+      received
+     </span>
+     <span data-begin="31.010" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="31.049" data-dur="0.340">
+      letter
+     </span>
+     <span data-begin="31.420" data-dur="0.158">
+      from
+     </span>
+     <span data-begin="31.579" data-dur="0.480">
+      Nicholas
+     </span>
+     <span data-begin="32.090" data-dur="0.340">
+      telling
+     </span>
+     <span data-begin="32.430" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="32.499" data-dur="0.159">
+      his
+     </span>
+     <span data-begin="32.659" data-dur="0.240">
+      meeting
+     </span>
+     <span data-begin="32.899" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="33.069" data-dur="0.370">
+      Princess
+     </span>
+     <span data-begin="33.439" data-dur="0.450">
+      Mary
+     </span>
+     <span data-begin="33.959" data-dur="0.329">
+      in
+     </span>
+     <span data-begin="34.500" data-dur="1.000">
+      Bogucharovo
+     </span>
+     .
+     <span data-begin="36.159" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="36.250" data-dur="0.388">
+      countess
+     </span>
+     <span data-begin="36.639" data-dur="0.149">
+      let
+     </span>
+     <span data-begin="36.790" data-dur="0.210">
+      no
+     </span>
+     <span data-begin="37.000" data-dur="0.489">
+      occasion
+     </span>
+     <span data-begin="37.489" data-dur="0.350">
+      slip
+     </span>
+     <span data-begin="37.869" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="37.938" data-dur="0.341">
+      making
+     </span>
+     <span data-begin="38.279" data-dur="0.580">
+      humiliating
+     </span>
+     <span data-begin="38.889" data-dur="0.078">
+      or
+     </span>
+     <span data-begin="38.968" data-dur="0.360">
+      cruel
+     </span>
+     <span data-begin="39.329" data-dur="0.420">
+      allusions
+     </span>
+     <span data-begin="39.750" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="39.819" data-dur="1.000">
+      Sonya
+     </span>
+     .
+     <p>
+      索尼娅从特罗伊察写来的信是对尼古拉祈祷的回应，这封信的起因是：让尼古拉与一位女继承人结婚的想法越来越占据着老伯爵夫人的心。她知道，索尼娅是实现这一愿望的主要障碍，索尼娅在伯爵夫人家的生活越来越艰难，尤其是在他们收到尼古拉斯的来信，告知他在博古恰罗沃与玛丽公主会面之后。伯爵夫人不放过任何对索尼娅进行羞辱或残忍暗示的机会。
+     </p>
+    </p>
+    <p>
+     <span data-begin="41.419" data-dur="0.130">
+      But
+     </span>
+     <span data-begin="41.549" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="41.599" data-dur="0.250">
+      few
+     </span>
+     <span data-begin="41.849" data-dur="0.260">
+      days
+     </span>
+     <span data-begin="42.110" data-dur="0.348">
+      before
+     </span>
+     <span data-begin="42.459" data-dur="0.068">
+      they
+     </span>
+     <span data-begin="42.528" data-dur="0.321">
+      left
+     </span>
+     <span data-begin="42.849" data-dur="0.560">
+      Moscow
+     </span>
+     ,
+     <span data-begin="43.849" data-dur="0.149">
+      moved
+     </span>
+     <span data-begin="44.000" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="44.159" data-dur="0.480">
+      excited
+     </span>
+     <span data-begin="44.639" data-dur="0.089">
+      by
+     </span>
+     <span data-begin="44.729" data-dur="0.240">
+      all
+     </span>
+     <span data-begin="44.969" data-dur="0.089">
+      that
+     </span>
+     <span data-begin="45.059" data-dur="0.130">
+      was
+     </span>
+     <span data-begin="45.189" data-dur="0.260">
+      going
+     </span>
+     <span data-begin="45.450" data-dur="0.390">
+      on
+     </span>
+     ,
+     <span data-begin="46.069" data-dur="0.140">
+      she
+     </span>
+     <span data-begin="46.209" data-dur="0.250">
+      called
+     </span>
+     <span data-begin="46.459" data-dur="0.329">
+      Sonya
+     </span>
+     <span data-begin="46.789" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="46.959" data-dur="0.179">
+      her
+     </span>
+     <span data-begin="47.139" data-dur="0.399">
+      and
+     </span>
+     ,
+     <span data-begin="48.099" data-dur="0.290">
+      instead
+     </span>
+     <span data-begin="48.389" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="48.479" data-dur="0.500">
+      reproaching
+     </span>
+     <span data-begin="48.979" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="49.069" data-dur="0.290">
+      making
+     </span>
+     <span data-begin="49.360" data-dur="0.378">
+      demands
+     </span>
+     <span data-begin="49.739" data-dur="0.170">
+      on
+     </span>
+     <span data-begin="49.909" data-dur="0.250">
+      her
+     </span>
+     ,
+     <span data-begin="50.619" data-dur="0.440">
+      tearfully
+     </span>
+     <span data-begin="51.059" data-dur="0.410">
+      implored
+     </span>
+     <span data-begin="51.469" data-dur="0.089">
+      her
+     </span>
+     <span data-begin="51.559" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="51.628" data-dur="0.581">
+      sacrifice
+     </span>
+     <span data-begin="52.209" data-dur="0.329">
+      herself
+     </span>
+     <span data-begin="52.590" data-dur="0.108">
+      and
+     </span>
+     <span data-begin="52.699" data-dur="0.280">
+      repay
+     </span>
+     <span data-begin="53.049" data-dur="0.269">
+      all
+     </span>
+     <span data-begin="53.319" data-dur="0.089">
+      that
+     </span>
+     <span data-begin="53.409" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="53.478" data-dur="0.321">
+      family
+     </span>
+     <span data-begin="53.799" data-dur="0.120">
+      had
+     </span>
+     <span data-begin="53.919" data-dur="0.229">
+      done
+     </span>
+     <span data-begin="54.149" data-dur="0.140">
+      for
+     </span>
+     <span data-begin="54.329" data-dur="0.220">
+      her
+     </span>
+     <span data-begin="55.079" data-dur="0.110">
+      by
+     </span>
+     <span data-begin="55.189" data-dur="0.350">
+      breaking
+     </span>
+     <span data-begin="55.539" data-dur="0.179">
+      off
+     </span>
+     <span data-begin="55.719" data-dur="0.089">
+      her
+     </span>
+     <span data-begin="55.809" data-dur="0.500">
+      engagement
+     </span>
+     <span data-begin="56.309" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="56.430" data-dur="1.000">
+      Nicholas
+     </span>
+     .
+     <p>
+      但在他们离开莫斯科的前几天，她被眼前发生的一切所感动和激动，把索尼娅叫到身边，不但没有责备她，也没有向她提要求，而是含泪恳求她牺牲自己，解除与尼古拉斯的婚约，以报答这个家庭为她所做的一切。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="58.439" data-dur="0.049">
+      I
+     </span>
+     <span data-begin="58.489" data-dur="0.199">
+      shall
+     </span>
+     <span data-begin="58.689" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="58.899" data-dur="0.120">
+      be
+     </span>
+     <span data-begin="59.020" data-dur="0.108">
+      at
+     </span>
+     <span data-begin="59.129" data-dur="0.299">
+      peace
+     </span>
+     <span data-begin="59.430" data-dur="0.179">
+      till
+     </span>
+     <span data-begin="59.609" data-dur="0.078">
+      you
+     </span>
+     <span data-begin="59.688" data-dur="0.400">
+      promise
+     </span>
+     <span data-begin="60.090" data-dur="0.179">
+      me
+     </span>
+     <span data-begin="60.270" data-dur="1.000">
+      this
+     </span>
+     ."
+     <p>
+      "除非你答应我，否则我不会安心"
+     </p>
+    </p>
+    <p>
+     <span data-begin="62.329" data-dur="0.370">
+      Sonya
+     </span>
+     <span data-begin="62.699" data-dur="0.329">
+      burst
+     </span>
+     <span data-begin="63.029" data-dur="0.140">
+      into
+     </span>
+     <span data-begin="63.169" data-dur="0.570">
+      hysterical
+     </span>
+     <span data-begin="63.739" data-dur="0.480">
+      tears
+     </span>
+     <span data-begin="64.260" data-dur="0.087">
+      and
+     </span>
+     <span data-begin="64.348" data-dur="0.411">
+      replied
+     </span>
+     <span data-begin="64.760" data-dur="0.099">
+      through
+     </span>
+     <span data-begin="64.860" data-dur="0.118">
+      her
+     </span>
+     <span data-begin="64.979" data-dur="0.420">
+      sobs
+     </span>
+     <span data-begin="65.400" data-dur="0.099">
+      that
+     </span>
+     <span data-begin="65.500" data-dur="0.138">
+      she
+     </span>
+     <span data-begin="65.639" data-dur="0.099">
+      would
+     </span>
+     <span data-begin="65.739" data-dur="0.160">
+      do
+     </span>
+     <span data-begin="65.970" data-dur="0.640">
+      anything
+     </span>
+     <span data-begin="66.650" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="66.760" data-dur="0.108">
+      was
+     </span>
+     <span data-begin="66.869" data-dur="0.429">
+      prepared
+     </span>
+     <span data-begin="67.299" data-dur="0.179">
+      for
+     </span>
+     <span data-begin="67.510" data-dur="0.590">
+      anything
+     </span>
+     ,
+     <span data-begin="68.459" data-dur="0.140">
+      but
+     </span>
+     <span data-begin="68.599" data-dur="0.170">
+      gave
+     </span>
+     <span data-begin="68.769" data-dur="0.240">
+      no
+     </span>
+     <span data-begin="69.010" data-dur="0.280">
+      actual
+     </span>
+     <span data-begin="69.290" data-dur="0.408">
+      promise
+     </span>
+     <span data-begin="69.699" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="69.790" data-dur="0.118">
+      could
+     </span>
+     <span data-begin="69.909" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="70.119" data-dur="0.179">
+      bring
+     </span>
+     <span data-begin="70.299" data-dur="0.329">
+      herself
+     </span>
+     <span data-begin="70.629" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="70.720" data-dur="0.399">
+      decide
+     </span>
+     <span data-begin="71.119" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="71.229" data-dur="0.149">
+      do
+     </span>
+     <span data-begin="71.379" data-dur="0.110">
+      what
+     </span>
+     <span data-begin="71.489" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="71.639" data-dur="0.390">
+      demanded
+     </span>
+     <span data-begin="72.029" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="72.139" data-dur="1.000">
+      her
+     </span>
+     .
+     <span data-begin="73.169" data-dur="0.160">
+      She
+     </span>
+     <span data-begin="73.330" data-dur="0.378">
+      must
+     </span>
+     <span data-begin="73.709" data-dur="0.550">
+      sacrifice
+     </span>
+     <span data-begin="74.260" data-dur="0.308">
+      herself
+     </span>
+     <span data-begin="74.569" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="74.659" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="74.738" data-dur="0.441">
+      family
+     </span>
+     <span data-begin="75.220" data-dur="0.110">
+      that
+     </span>
+     <span data-begin="75.330" data-dur="0.087">
+      had
+     </span>
+     <span data-begin="75.418" data-dur="0.300">
+      reared
+     </span>
+     <span data-begin="75.750" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="75.889" data-dur="0.190">
+      brought
+     </span>
+     <span data-begin="76.080" data-dur="0.170">
+      her
+     </span>
+     <span data-begin="76.250" data-dur="1.000">
+      up
+     </span>
+     .
+     <span data-begin="77.569" data-dur="0.099">
+      To
+     </span>
+     <span data-begin="77.669" data-dur="0.539">
+      sacrifice
+     </span>
+     <span data-begin="78.209" data-dur="0.290">
+      herself
+     </span>
+     <span data-begin="78.500" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="78.650" data-dur="0.329">
+      others
+     </span>
+     <span data-begin="78.979" data-dur="0.110">
+      was
+     </span>
+     <span data-begin="79.089" data-dur="0.370">
+      Sonya's
+     </span>
+     <span data-begin="79.459" data-dur="1.000">
+      habit
+     </span>
+     .
+     <span data-begin="80.739" data-dur="0.110">
+      Her
+     </span>
+     <span data-begin="80.849" data-dur="0.410">
+      position
+     </span>
+     <span data-begin="81.259" data-dur="0.058">
+      in
+     </span>
+     <span data-begin="81.318" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="81.409" data-dur="0.310">
+      house
+     </span>
+     <span data-begin="81.720" data-dur="0.118">
+      was
+     </span>
+     <span data-begin="81.839" data-dur="0.240">
+      such
+     </span>
+     <span data-begin="82.080" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="82.259" data-dur="0.260">
+      only
+     </span>
+     <span data-begin="82.519" data-dur="0.120">
+      by
+     </span>
+     <span data-begin="82.639" data-dur="0.590">
+      sacrifice
+     </span>
+     <span data-begin="83.229" data-dur="0.110">
+      could
+     </span>
+     <span data-begin="83.339" data-dur="0.140">
+      she
+     </span>
+     <span data-begin="83.479" data-dur="0.229">
+      show
+     </span>
+     <span data-begin="83.709" data-dur="0.140">
+      her
+     </span>
+     <span data-begin="83.849" data-dur="0.380">
+      worth
+     </span>
+     ,
+     <span data-begin="84.769" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="84.939" data-dur="0.099">
+      she
+     </span>
+     <span data-begin="85.040" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="85.180" data-dur="0.500">
+      accustomed
+     </span>
+     <span data-begin="85.680" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="85.759" data-dur="0.199">
+      this
+     </span>
+     <span data-begin="85.959" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="86.110" data-dur="0.220">
+      loved
+     </span>
+     <span data-begin="86.330" data-dur="0.329">
+      doing
+     </span>
+     <span data-begin="86.659" data-dur="1.000">
+      it
+     </span>
+     .
+     <span data-begin="87.979" data-dur="0.179">
+      But
+     </span>
+     <span data-begin="88.159" data-dur="0.080">
+      in
+     </span>
+     <span data-begin="88.269" data-dur="0.190">
+      all
+     </span>
+     <span data-begin="88.489" data-dur="0.110">
+      her
+     </span>
+     <span data-begin="88.599" data-dur="0.440">
+      former
+     </span>
+     <span data-begin="89.069" data-dur="0.320">
+      acts
+     </span>
+     <span data-begin="89.389" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="89.458" data-dur="0.270">
+      self
+     </span>
+     -
+     <span data-begin="89.729" data-dur="1.000">
+      sacrifice
+     </span>
+     <span data-begin="90.909" data-dur="0.170">
+      she
+     </span>
+     <span data-begin="91.079" data-dur="0.089">
+      had
+     </span>
+     <span data-begin="91.169" data-dur="0.130">
+      been
+     </span>
+     <span data-begin="91.299" data-dur="0.420">
+      happily
+     </span>
+     <span data-begin="91.720" data-dur="0.399">
+      conscious
+     </span>
+     <span data-begin="92.119" data-dur="0.110">
+      that
+     </span>
+     <span data-begin="92.259" data-dur="0.130">
+      they
+     </span>
+     <span data-begin="92.389" data-dur="0.280">
+      raised
+     </span>
+     <span data-begin="92.699" data-dur="0.068">
+      her
+     </span>
+     <span data-begin="92.768" data-dur="0.079">
+      in
+     </span>
+     <span data-begin="92.848" data-dur="0.141">
+      her
+     </span>
+     <span data-begin="93.019" data-dur="0.149">
+      own
+     </span>
+     <span data-begin="93.169" data-dur="0.530">
+      esteem
+     </span>
+     <span data-begin="94.119" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="94.279" data-dur="0.099">
+      in
+     </span>
+     <span data-begin="94.379" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="94.549" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="94.650" data-dur="1.000">
+      others
+     </span>
+     ,
+     <span data-begin="95.790" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="95.939" data-dur="0.179">
+      so
+     </span>
+     <span data-begin="96.119" data-dur="0.160">
+      made
+     </span>
+     <span data-begin="96.279" data-dur="0.140">
+      her
+     </span>
+     <span data-begin="96.419" data-dur="0.260">
+      more
+     </span>
+     <span data-begin="96.680" data-dur="0.348">
+      worthy
+     </span>
+     <span data-begin="97.029" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="97.098" data-dur="0.511">
+      Nicholas
+     </span>
+     <span data-begin="97.639" data-dur="0.089">
+      whom
+     </span>
+     <span data-begin="97.729" data-dur="0.140">
+      she
+     </span>
+     <span data-begin="97.869" data-dur="0.240">
+      loved
+     </span>
+     <span data-begin="98.139" data-dur="0.260">
+      more
+     </span>
+     <span data-begin="98.400" data-dur="0.210">
+      than
+     </span>
+     <span data-begin="98.639" data-dur="0.350">
+      anything
+     </span>
+     <span data-begin="98.989" data-dur="0.078">
+      in
+     </span>
+     <span data-begin="99.068" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="99.159" data-dur="1.000">
+      world
+     </span>
+     .
+     <span data-begin="100.779" data-dur="0.170">
+      But
+     </span>
+     <span data-begin="100.949" data-dur="0.220">
+      now
+     </span>
+     <span data-begin="101.169" data-dur="0.130">
+      they
+     </span>
+     <span data-begin="101.299" data-dur="0.299">
+      wanted
+     </span>
+     <span data-begin="101.599" data-dur="0.058">
+      her
+     </span>
+     <span data-begin="101.658" data-dur="0.061">
+      to
+     </span>
+     <span data-begin="101.720" data-dur="0.588">
+      sacrifice
+     </span>
+     <span data-begin="102.309" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="102.419" data-dur="0.359">
+      very
+     </span>
+     <span data-begin="102.809" data-dur="0.229">
+      thing
+     </span>
+     <span data-begin="103.040" data-dur="0.118">
+      that
+     </span>
+     <span data-begin="103.159" data-dur="0.640">
+      constituted
+     </span>
+     <span data-begin="103.829" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="103.979" data-dur="0.190">
+      whole
+     </span>
+     <span data-begin="104.169" data-dur="0.440">
+      reward
+     </span>
+     <span data-begin="104.639" data-dur="0.080">
+      for
+     </span>
+     <span data-begin="104.720" data-dur="0.108">
+      her
+     </span>
+     <span data-begin="104.829" data-dur="0.290">
+      self
+     </span>
+     -
+     <span data-begin="105.119" data-dur="0.719">
+      sacrifice
+     </span>
+     <span data-begin="105.889" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="106.009" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="106.129" data-dur="0.179">
+      whole
+     </span>
+     <span data-begin="106.339" data-dur="0.310">
+      meaning
+     </span>
+     <span data-begin="106.680" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="106.860" data-dur="0.087">
+      her
+     </span>
+     <span data-begin="106.948" data-dur="1.000">
+      life
+     </span>
+     .
+     <span data-begin="108.659" data-dur="0.149">
+      And
+     </span>
+     <span data-begin="108.809" data-dur="0.110">
+      for
+     </span>
+     <span data-begin="108.919" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="109.009" data-dur="0.310">
+      first
+     </span>
+     <span data-begin="109.319" data-dur="0.269">
+      time
+     </span>
+     <span data-begin="109.589" data-dur="0.140">
+      she
+     </span>
+     <span data-begin="109.729" data-dur="0.210">
+      felt
+     </span>
+     <span data-begin="109.939" data-dur="0.459">
+      bitterness
+     </span>
+     <span data-begin="110.399" data-dur="0.299">
+      against
+     </span>
+     <span data-begin="110.699" data-dur="0.260">
+      those
+     </span>
+     <span data-begin="110.959" data-dur="0.099">
+      who
+     </span>
+     <span data-begin="111.099" data-dur="0.110">
+      had
+     </span>
+     been her
+     <span data-begin="111.309" data-dur="1.000">
+      benefactors
+     </span>
+     <span data-begin="112.519" data-dur="0.229">
+      only
+     </span>
+     <span data-begin="112.750" data-dur="0.097">
+      to
+     </span>
+     <span data-begin="112.848" data-dur="0.371">
+      torture
+     </span>
+     <span data-begin="113.250" data-dur="0.087">
+      her
+     </span>
+     <span data-begin="113.338" data-dur="0.081">
+      the
+     </span>
+     <span data-begin="113.470" data-dur="0.250">
+      more
+     </span>
+     <span data-begin="113.720" data-dur="1.000">
+      painfully
+     </span>
+     ;
+     <span data-begin="114.989" data-dur="0.140">
+      she
+     </span>
+     <span data-begin="115.130" data-dur="0.190">
+      felt
+     </span>
+     <span data-begin="115.320" data-dur="0.348">
+      jealous
+     </span>
+     <span data-begin="115.669" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="115.748" data-dur="0.611">
+      Natasha
+     </span>
+     <span data-begin="116.749" data-dur="0.089">
+      who
+     </span>
+     <span data-begin="116.839" data-dur="0.120">
+      had
+     </span>
+     <span data-begin="116.959" data-dur="0.229">
+      never
+     </span>
+     <span data-begin="117.189" data-dur="0.530">
+      experienced
+     </span>
+     <span data-begin="117.719" data-dur="0.340">
+      anything
+     </span>
+     <span data-begin="118.059" data-dur="0.060">
+      of
+     </span>
+     <span data-begin="118.150" data-dur="0.179">
+      this
+     </span>
+     <span data-begin="118.329" data-dur="0.280">
+      sort
+     </span>
+     ,
+     <span data-begin="118.999" data-dur="0.110">
+      had
+     </span>
+     <span data-begin="119.110" data-dur="0.258">
+      never
+     </span>
+     <span data-begin="119.369" data-dur="0.299">
+      needed
+     </span>
+     <span data-begin="119.669" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="119.759" data-dur="0.539">
+      sacrifice
+     </span>
+     <span data-begin="120.299" data-dur="0.429">
+      herself
+     </span>
+     ,
+     <span data-begin="120.979" data-dur="0.089">
+      but
+     </span>
+     <span data-begin="121.189" data-dur="0.250">
+      made
+     </span>
+     <span data-begin="121.469" data-dur="0.280">
+      others
+     </span>
+     <span data-begin="121.749" data-dur="0.520">
+      sacrifice
+     </span>
+     <span data-begin="122.269" data-dur="0.399">
+      themselves
+     </span>
+     <span data-begin="122.669" data-dur="0.250">
+      for
+     </span>
+     <span data-begin="122.919" data-dur="0.070">
+      her
+     </span>
+     <span data-begin="123.070" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="123.419" data-dur="0.140">
+      yet
+     </span>
+     <span data-begin="123.559" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="123.719" data-dur="0.410">
+      beloved
+     </span>
+     <span data-begin="124.129" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="124.259" data-dur="1.000">
+      everybody
+     </span>
+     .
+     <span data-begin="125.789" data-dur="0.110">
+      And
+     </span>
+     <span data-begin="125.900" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="125.990" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="126.080" data-dur="0.329">
+      first
+     </span>
+     <span data-begin="126.410" data-dur="0.329">
+      time
+     </span>
+     <span data-begin="126.740" data-dur="0.368">
+      Sonya
+     </span>
+     <span data-begin="127.109" data-dur="0.220">
+      felt
+     </span>
+     <span data-begin="127.330" data-dur="0.097">
+      that
+     </span>
+     <span data-begin="127.428" data-dur="0.150">
+      out
+     </span>
+     <span data-begin="127.580" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="127.670" data-dur="0.128">
+      her
+     </span>
+     <span data-begin="127.799" data-dur="0.350">
+      pure
+     </span>
+     ,
+     <span data-begin="128.150" data-dur="0.399">
+      quiet
+     </span>
+     <span data-begin="128.549" data-dur="0.190">
+      love
+     </span>
+     <span data-begin="128.740" data-dur="0.118">
+      for
+     </span>
+     <span data-begin="128.859" data-dur="1.000">
+      Nicholas
+     </span>
+     <span data-begin="129.969" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="130.059" data-dur="0.530">
+      passionate
+     </span>
+     <span data-begin="130.589" data-dur="0.210">
+      feeling
+     </span>
+     <span data-begin="130.799" data-dur="0.120">
+      was
+     </span>
+     <span data-begin="130.919" data-dur="0.329">
+      beginning
+     </span>
+     <span data-begin="131.250" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="131.319" data-dur="0.209">
+      grow
+     </span>
+     <span data-begin="131.529" data-dur="0.179">
+      up
+     </span>
+     <span data-begin="131.759" data-dur="0.130">
+      which
+     </span>
+     <span data-begin="131.889" data-dur="0.110">
+      was
+     </span>
+     <span data-begin="132.000" data-dur="0.448">
+      stronger
+     </span>
+     <span data-begin="132.449" data-dur="0.140">
+      than
+     </span>
+     <span data-begin="132.589" data-dur="0.550">
+      principle
+     </span>
+     ,
+     <span data-begin="133.259" data-dur="0.450">
+      virtue
+     </span>
+     ,
+     <span data-begin="133.929" data-dur="0.140">
+      or
+     </span>
+     <span data-begin="134.070" data-dur="1.000">
+      religion
+     </span>
+     .
+     <span data-begin="135.669" data-dur="0.210">
+      Under
+     </span>
+     <span data-begin="135.879" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="136.029" data-dur="0.420">
+      influence
+     </span>
+     <span data-begin="136.449" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="136.549" data-dur="0.160">
+      this
+     </span>
+     <span data-begin="136.709" data-dur="0.380">
+      feeling
+     </span>
+     <span data-begin="137.119" data-dur="1.000">
+      Sonya
+     </span>
+     ,
+     <span data-begin="138.160" data-dur="0.160">
+      whose
+     </span>
+     <span data-begin="138.320" data-dur="0.179">
+      life
+     </span>
+     <span data-begin="138.499" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="138.589" data-dur="0.530">
+      dependence
+     </span>
+     <span data-begin="139.119" data-dur="0.089">
+      had
+     </span>
+     <span data-begin="139.209" data-dur="0.240">
+      taught
+     </span>
+     <span data-begin="139.449" data-dur="0.120">
+      her
+     </span>
+     <span data-begin="139.570" data-dur="0.789">
+      involuntarily
+     </span>
+     <span data-begin="140.359" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="140.459" data-dur="0.089">
+      be
+     </span>
+     <span data-begin="140.549" data-dur="1.000">
+      secretive
+     </span>
+     ,
+     <span data-begin="141.609" data-dur="0.240">
+      having
+     </span>
+     <span data-begin="141.850" data-dur="0.320">
+      answered
+     </span>
+     <span data-begin="142.170" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="142.239" data-dur="0.400">
+      countess
+     </span>
+     <span data-begin="142.639" data-dur="0.099">
+      in
+     </span>
+     <span data-begin="142.740" data-dur="0.229">
+      vague
+     </span>
+     <span data-begin="142.969" data-dur="0.310">
+      general
+     </span>
+     <span data-begin="143.280" data-dur="0.530">
+      terms
+     </span>
+     ,
+     <span data-begin="144.280" data-dur="0.370">
+      avoided
+     </span>
+     <span data-begin="144.650" data-dur="0.380">
+      talking
+     </span>
+     <span data-begin="145.030" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="145.190" data-dur="0.149">
+      her
+     </span>
+     <span data-begin="145.339" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="145.530" data-dur="0.348">
+      resolved
+     </span>
+     <span data-begin="145.879" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="145.969" data-dur="0.210">
+      wait
+     </span>
+     <span data-begin="146.179" data-dur="0.120">
+      till
+     </span>
+     <span data-begin="146.299" data-dur="0.130">
+      she
+     </span>
+     <span data-begin="146.429" data-dur="0.170">
+      should
+     </span>
+     <span data-begin="146.600" data-dur="0.140">
+      see
+     </span>
+     <span data-begin="146.740" data-dur="0.570">
+      Nicholas
+     </span>
+     ,
+     <span data-begin="147.709" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="147.920" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="148.039" data-dur="0.229">
+      order
+     </span>
+     <span data-begin="148.269" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="148.338" data-dur="0.211">
+      set
+     </span>
+     <span data-begin="148.549" data-dur="0.170">
+      him
+     </span>
+     <span data-begin="148.749" data-dur="0.320">
+      free
+     </span>
+     <span data-begin="149.170" data-dur="0.089">
+      but
+     </span>
+     <span data-begin="149.260" data-dur="0.089">
+      on
+     </span>
+     <span data-begin="149.350" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="149.409" data-dur="0.640">
+      contrary
+     </span>
+     <span data-begin="150.049" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="150.170" data-dur="0.168">
+      that
+     </span>
+     <span data-begin="150.339" data-dur="0.350">
+      meeting
+     </span>
+     <span data-begin="150.690" data-dur="0.087">
+      to
+     </span>
+     <span data-begin="150.778" data-dur="0.341">
+      bind
+     </span>
+     <span data-begin="151.119" data-dur="0.130">
+      him
+     </span>
+     <span data-begin="151.249" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="151.379" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="151.549" data-dur="1.000">
+      forever
+     </span>
+     .
+     <p>
+      索尼娅歇斯底里地哭了起来，她在啜泣中回答说，她愿意做任何事，也做好了一切准备，但她没有做出实际的承诺，也无法下定决心去做要求她做的事。她必须为抚养她长大的家庭牺牲自己。为他人牺牲自己是索尼娅的习惯。她在家里的地位决定了她只有牺牲才能体现自己的价值，她已经习惯并喜欢这样做。但在她以前所有的自我牺牲行为中，她都很高兴地意识到，这些行为提高了她自己和他人对她的评价，从而使她更配得上尼古拉斯，她爱尼古拉斯胜过世界上的一切。但现在，他们要她牺牲的东西，正是她自我牺牲的全部回报和她生命的全部意义。她第一次对那些恩人产生了怨恨，这些恩人只是为了更痛苦地折磨她；她嫉妒娜塔莎，娜塔莎从来没有经历过这样的事情，从来不需要牺牲自己，而是让别人为她牺牲，却受到所有人的爱戴。索尼娅第一次感觉到，在她对尼古拉纯洁、平静的爱中，一种比原则、美德或宗教更强烈的感情开始萌发。在这种感情的影响下，索尼娅的依赖生活让她不由自主地变得神秘起来，她用含糊笼统的语言回答了伯爵夫人，避免了与她交谈，并决心等到见到尼古拉时再谈，这不是为了让他自由，而是为了让他永远与她在一起。
+     </p>
+    </p>
+    <p>
+     <span data-begin="153.920" data-dur="0.078">
+      The
+     </span>
+     <span data-begin="153.999" data-dur="0.429">
+      bustle
+     </span>
+     <span data-begin="154.429" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="154.609" data-dur="0.260">
+      terror
+     </span>
+     <span data-begin="154.869" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="154.990" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="155.080" data-dur="0.528">
+      Rostovs
+     </span>
+     '
+     <span data-begin="155.609" data-dur="0.260">
+      last
+     </span>
+     <span data-begin="155.869" data-dur="0.260">
+      days
+     </span>
+     <span data-begin="156.129" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="156.198" data-dur="0.371">
+      Moscow
+     </span>
+     <span data-begin="156.689" data-dur="0.480">
+      stifled
+     </span>
+     <span data-begin="157.170" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="157.249" data-dur="0.329">
+      gloomy
+     </span>
+     <span data-begin="157.580" data-dur="0.368">
+      thoughts
+     </span>
+     <span data-begin="157.949" data-dur="0.110">
+      that
+     </span>
+     <span data-begin="158.059" data-dur="0.399">
+      oppressed
+     </span>
+     <span data-begin="158.459" data-dur="0.470">
+      Sonya
+     </span>
+     .
+     <span data-begin="159.420" data-dur="0.118">
+      She
+     </span>
+     <span data-begin="159.539" data-dur="0.120">
+      was
+     </span>
+     <span data-begin="159.659" data-dur="0.250">
+      glad
+     </span>
+     <span data-begin="159.909" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="160.010" data-dur="0.229">
+      find
+     </span>
+     <span data-begin="160.240" data-dur="0.410">
+      escape
+     </span>
+     <span data-begin="160.650" data-dur="0.168">
+      from
+     </span>
+     <span data-begin="160.819" data-dur="0.160">
+      them
+     </span>
+     <span data-begin="160.979" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="161.069" data-dur="0.429">
+      practical
+     </span>
+     <span data-begin="161.499" data-dur="1.000">
+      activity
+     </span>
+     .
+     <span data-begin="162.549" data-dur="0.099">
+      But
+     </span>
+     <span data-begin="162.650" data-dur="0.118">
+      when
+     </span>
+     <span data-begin="162.769" data-dur="0.149">
+      she
+     </span>
+     <span data-begin="162.920" data-dur="0.208">
+      heard
+     </span>
+     <span data-begin="163.129" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="163.279" data-dur="0.260">
+      Prince
+     </span>
+     <span data-begin="163.539" data-dur="0.370">
+      Andrew's
+     </span>
+     <span data-begin="163.909" data-dur="0.410">
+      presence
+     </span>
+     <span data-begin="164.319" data-dur="0.058">
+      in
+     </span>
+     <span data-begin="164.378" data-dur="0.161">
+      their
+     </span>
+     <span data-begin="164.539" data-dur="0.390">
+      house
+     </span>
+     ,
+     <span data-begin="165.260" data-dur="0.269">
+      despite
+     </span>
+     <span data-begin="165.529" data-dur="0.078">
+      her
+     </span>
+     <span data-begin="165.608" data-dur="0.501">
+      sincere
+     </span>
+     <span data-begin="166.109" data-dur="0.269">
+      pity
+     </span>
+     <span data-begin="166.379" data-dur="0.170">
+      for
+     </span>
+     <span data-begin="166.549" data-dur="0.149">
+      him
+     </span>
+     <span data-begin="166.699" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="166.839" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="166.929" data-dur="0.440">
+      Natasha
+     </span>
+     ,
+     <span data-begin="167.619" data-dur="0.190">
+      she
+     </span>
+     <span data-begin="167.809" data-dur="0.190">
+      was
+     </span>
+     <span data-begin="167.999" data-dur="0.310">
+      seized
+     </span>
+     <span data-begin="168.309" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="168.459" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="168.509" data-dur="0.410">
+      joyful
+     </span>
+     <span data-begin="168.920" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="169.049" data-dur="0.550">
+      superstitious
+     </span>
+     <span data-begin="169.599" data-dur="0.310">
+      feeling
+     </span>
+     <span data-begin="169.909" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="170.069" data-dur="0.250">
+      God
+     </span>
+     <span data-begin="170.319" data-dur="0.089">
+      did
+     </span>
+     <span data-begin="170.439" data-dur="0.179">
+      not
+     </span>
+     <span data-begin="170.619" data-dur="0.399">
+      intend
+     </span>
+     <span data-begin="171.019" data-dur="0.078">
+      her
+     </span>
+     <span data-begin="171.098" data-dur="0.100">
+      to
+     </span>
+     <span data-begin="171.199" data-dur="0.078">
+      be
+     </span>
+     <span data-begin="171.278" data-dur="0.531">
+      separated
+     </span>
+     <span data-begin="171.809" data-dur="0.149">
+      from
+     </span>
+     <span data-begin="171.959" data-dur="1.000">
+      Nicholas
+     </span>
+     .
+     <span data-begin="173.510" data-dur="0.168">
+      She
+     </span>
+     <span data-begin="173.679" data-dur="0.190">
+      knew
+     </span>
+     <span data-begin="173.870" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="174.019" data-dur="0.420">
+      Natasha
+     </span>
+     <span data-begin="174.440" data-dur="0.199">
+      loved
+     </span>
+     <span data-begin="174.679" data-dur="0.210">
+      no
+     </span>
+     <span data-begin="174.889" data-dur="0.149">
+      one
+     </span>
+     <span data-begin="175.039" data-dur="0.130">
+      but
+     </span>
+     <span data-begin="175.169" data-dur="0.250">
+      Prince
+     </span>
+     <span data-begin="175.419" data-dur="0.380">
+      Andrew
+     </span>
+     <span data-begin="175.889" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="176.010" data-dur="0.087">
+      had
+     </span>
+     <span data-begin="176.098" data-dur="0.251">
+      never
+     </span>
+     <span data-begin="176.349" data-dur="0.350">
+      ceased
+     </span>
+     <span data-begin="176.699" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="176.768" data-dur="0.180">
+      love
+     </span>
+     <span data-begin="177.019" data-dur="1.000">
+      him
+     </span>
+     .
+     <span data-begin="178.309" data-dur="0.190">
+      She
+     </span>
+     <span data-begin="178.499" data-dur="0.199">
+      knew
+     </span>
+     <span data-begin="178.699" data-dur="0.120">
+      that
+     </span>
+     <span data-begin="178.819" data-dur="0.229">
+      being
+     </span>
+     <span data-begin="179.050" data-dur="0.338">
+      thrown
+     </span>
+     <span data-begin="179.389" data-dur="0.410">
+      together
+     </span>
+     <span data-begin="179.800" data-dur="0.410">
+      again
+     </span>
+     <span data-begin="180.550" data-dur="0.218">
+      under
+     </span>
+     <span data-begin="180.769" data-dur="0.250">
+      such
+     </span>
+     <span data-begin="181.050" data-dur="0.408">
+      terrible
+     </span>
+     <span data-begin="181.459" data-dur="0.840">
+      circumstances
+     </span>
+     <span data-begin="182.300" data-dur="0.128">
+      they
+     </span>
+     <span data-begin="182.429" data-dur="0.110">
+      would
+     </span>
+     <span data-begin="182.539" data-dur="0.380">
+      again
+     </span>
+     <span data-begin="182.919" data-dur="0.269">
+      fall
+     </span>
+     <span data-begin="183.190" data-dur="0.128">
+      in
+     </span>
+     <span data-begin="183.319" data-dur="0.140">
+      love
+     </span>
+     <span data-begin="183.459" data-dur="0.089">
+      with
+     </span>
+     <span data-begin="183.550" data-dur="0.149">
+      one
+     </span>
+     <span data-begin="183.699" data-dur="1.000">
+      another
+     </span>
+     ,
+     <span data-begin="184.769" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="184.859" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="185.019" data-dur="0.450">
+      Nicholas
+     </span>
+     <span data-begin="185.469" data-dur="0.149">
+      would
+     </span>
+     <span data-begin="185.620" data-dur="0.258">
+      then
+     </span>
+     <span data-begin="185.879" data-dur="0.170">
+      not
+     </span>
+     <span data-begin="186.050" data-dur="0.158">
+      be
+     </span>
+     <span data-begin="186.209" data-dur="0.220">
+      able
+     </span>
+     <span data-begin="186.429" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="186.550" data-dur="0.338">
+      marry
+     </span>
+     <span data-begin="186.889" data-dur="0.399">
+      Princess
+     </span>
+     <span data-begin="187.289" data-dur="0.399">
+      Mary
+     </span>
+     <span data-begin="188.029" data-dur="0.160">
+      as
+     </span>
+     <span data-begin="188.190" data-dur="0.078">
+      they
+     </span>
+     <span data-begin="188.269" data-dur="0.110">
+      would
+     </span>
+     <span data-begin="188.379" data-dur="0.120">
+      be
+     </span>
+     <span data-begin="188.499" data-dur="0.260">
+      within
+     </span>
+     <span data-begin="188.760" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="188.839" data-dur="0.420">
+      prohibited
+     </span>
+     <span data-begin="189.260" data-dur="0.438">
+      degrees
+     </span>
+     <span data-begin="189.699" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="189.789" data-dur="1.000">
+      affinity
+     </span>
+     .
+     <span data-begin="191.749" data-dur="0.470">
+      Despite
+     </span>
+     <span data-begin="192.459" data-dur="0.210">
+      all
+     </span>
+     <span data-begin="192.669" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="192.738" data-dur="0.400">
+      terror
+     </span>
+     <span data-begin="193.139" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="193.218" data-dur="0.141">
+      what
+     </span>
+     <span data-begin="193.359" data-dur="0.130">
+      had
+     </span>
+     <span data-begin="193.519" data-dur="0.410">
+      happened
+     </span>
+     <span data-begin="193.929" data-dur="0.299">
+      during
+     </span>
+     <span data-begin="194.230" data-dur="0.158">
+      those
+     </span>
+     <span data-begin="194.389" data-dur="0.310">
+      last
+     </span>
+     <span data-begin="194.699" data-dur="0.459">
+      days
+     </span>
+     <span data-begin="195.440" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="195.569" data-dur="0.220">
+      during
+     </span>
+     <span data-begin="195.789" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="195.858" data-dur="0.341">
+      first
+     </span>
+     <span data-begin="196.199" data-dur="0.229">
+      days
+     </span>
+     <span data-begin="196.429" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="196.519" data-dur="0.120">
+      their
+     </span>
+     <span data-begin="196.639" data-dur="0.450">
+      journey
+     </span>
+     ,
+     <span data-begin="197.469" data-dur="0.170">
+      this
+     </span>
+     <span data-begin="197.639" data-dur="0.260">
+      feeling
+     </span>
+     <span data-begin="197.900" data-dur="0.128">
+      that
+     </span>
+     <span data-begin="198.029" data-dur="0.480">
+      Providence
+     </span>
+     <span data-begin="198.510" data-dur="0.118">
+      was
+     </span>
+     <span data-begin="198.629" data-dur="0.520">
+      intervening
+     </span>
+     <span data-begin="199.150" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="199.219" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="199.349" data-dur="0.450">
+      personal
+     </span>
+     <span data-begin="199.800" data-dur="0.539">
+      affairs
+     </span>
+     <span data-begin="200.339" data-dur="0.290">
+      cheered
+     </span>
+     <span data-begin="200.629" data-dur="1.000">
+      Sonya
+     </span>
+     .
+     <p>
+      罗斯托夫夫妇在莫斯科最后几天的喧闹和恐怖，扼杀了压在索尼娅心头的阴郁想法。她很高兴能在实际活动中摆脱这些想法。但是，当她听说安德鲁王子来到他们家时，尽管她真诚地同情安德鲁王子和娜塔莎，但她还是被一种快乐而迷信的感觉攫住了，那就是上帝并不想让她与尼古拉分离。她知道，除了安德鲁王子，娜塔莎谁也不爱，而且从未停止过对他的爱。她知道，在如此可怕的情况下再次相聚，他们会再次坠入爱河，而尼古拉斯届时将无法迎娶玛丽公主，因为他们将属于被禁止的姻亲关系。尽管在最后几天和旅途的最初几天里发生的事情让索尼娅感到恐惧，但这种天意干预她个人事务的感觉还是让索尼娅感到欣慰。
+     </p>
+    </p>
+    <p>
+     <span data-begin="202.999" data-dur="0.149">
+      At
+     </span>
+     <span data-begin="203.150" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="203.229" data-dur="0.429">
+      Troitsa
+     </span>
+     <span data-begin="203.659" data-dur="0.770">
+      monastery
+     </span>
+     <span data-begin="204.479" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="204.580" data-dur="0.578">
+      Rostovs
+     </span>
+     <span data-begin="205.159" data-dur="0.340">
+      first
+     </span>
+     <span data-begin="205.499" data-dur="0.250">
+      broke
+     </span>
+     <span data-begin="205.749" data-dur="0.130">
+      their
+     </span>
+     <span data-begin="205.879" data-dur="0.329">
+      journey
+     </span>
+     <span data-begin="206.239" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="206.389" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="206.510" data-dur="0.188">
+      whole
+     </span>
+     <span data-begin="206.699" data-dur="1.000">
+      day
+     </span>
+     .
+     <p>
+      在特罗伊察修道院，罗斯托夫夫妇首先休息了一整天。
+     </p>
+    </p>
+    <p>
+     <span data-begin="207.919" data-dur="0.250">
+      Three
+     </span>
+     <span data-begin="208.169" data-dur="0.359">
+      large
+     </span>
+     <span data-begin="208.529" data-dur="0.250">
+      rooms
+     </span>
+     <span data-begin="208.779" data-dur="0.078">
+      were
+     </span>
+     <span data-begin="208.858" data-dur="0.330">
+      assigned
+     </span>
+     <span data-begin="209.190" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="209.279" data-dur="0.179">
+      them
+     </span>
+     <span data-begin="209.459" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="209.528" data-dur="0.059">
+      the
+     </span>
+     <span data-begin="209.588" data-dur="0.571">
+      monastery
+     </span>
+     <span data-begin="210.159" data-dur="1.000">
+      hostelry
+     </span>
+     ,
+     <span data-begin="211.269" data-dur="0.170">
+      one
+     </span>
+     <span data-begin="211.440" data-dur="0.097">
+      of
+     </span>
+     <span data-begin="211.538" data-dur="0.150">
+      which
+     </span>
+     <span data-begin="211.690" data-dur="0.108">
+      was
+     </span>
+     <span data-begin="211.799" data-dur="0.410">
+      occupied
+     </span>
+     <span data-begin="212.209" data-dur="0.149">
+      by
+     </span>
+     <span data-begin="212.389" data-dur="0.250">
+      Prince
+     </span>
+     <span data-begin="212.639" data-dur="1.000">
+      Andrew
+     </span>
+     .
+     <span data-begin="213.830" data-dur="0.097">
+      The
+     </span>
+     <span data-begin="213.928" data-dur="0.270">
+      wounded
+     </span>
+     <span data-begin="214.199" data-dur="0.290">
+      man
+     </span>
+     <span data-begin="214.489" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="214.639" data-dur="0.380">
+      much
+     </span>
+     <span data-begin="215.019" data-dur="0.269">
+      better
+     </span>
+     <span data-begin="215.289" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="215.449" data-dur="0.299">
+      day
+     </span>
+     <span data-begin="216.150" data-dur="0.168">
+      and
+     </span>
+     <span data-begin="216.319" data-dur="0.450">
+      Natasha
+     </span>
+     <span data-begin="216.769" data-dur="0.099">
+      was
+     </span>
+     <span data-begin="216.870" data-dur="0.258">
+      sitting
+     </span>
+     <span data-begin="217.129" data-dur="0.099">
+      with
+     </span>
+     <span data-begin="217.359" data-dur="1.000">
+      him
+     </span>
+     .
+     <span data-begin="218.469" data-dur="0.058">
+      In
+     </span>
+     <span data-begin="218.528" data-dur="0.079">
+      the
+     </span>
+     <span data-begin="218.608" data-dur="0.321">
+      next
+     </span>
+     <span data-begin="218.929" data-dur="0.220">
+      room
+     </span>
+     <span data-begin="219.150" data-dur="0.240">
+      sat
+     </span>
+     <span data-begin="219.419" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="219.488" data-dur="0.351">
+      count
+     </span>
+     <span data-begin="219.839" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="219.929" data-dur="0.340">
+      countess
+     </span>
+     <span data-begin="220.269" data-dur="0.560">
+      respectfully
+     </span>
+     <span data-begin="220.830" data-dur="0.459">
+      conversing
+     </span>
+     <span data-begin="221.289" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="221.409" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="221.478" data-dur="0.241">
+      prior
+     </span>
+     ,
+     <span data-begin="221.719" data-dur="0.070">
+      who
+     </span>
+     <span data-begin="222.370" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="222.510" data-dur="0.308">
+      calling
+     </span>
+     <span data-begin="222.819" data-dur="0.110">
+      on
+     </span>
+     <span data-begin="222.929" data-dur="0.179">
+      them
+     </span>
+     <span data-begin="223.109" data-dur="0.130">
+      as
+     </span>
+     <span data-begin="223.299" data-dur="0.170">
+      old
+     </span>
+     <span data-begin="223.469" data-dur="0.630">
+      acquaintances
+     </span>
+     <span data-begin="224.099" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="224.199" data-dur="0.610">
+      benefactors
+     </span>
+     <span data-begin="224.809" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="224.909" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="224.978" data-dur="1.000">
+      monastery
+     </span>
+     .
+     <span data-begin="226.349" data-dur="0.320">
+      Sonya
+     </span>
+     <span data-begin="226.669" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="226.830" data-dur="0.138">
+      there
+     </span>
+     <span data-begin="226.969" data-dur="0.269">
+      too
+     </span>
+     ,
+     <span data-begin="227.519" data-dur="0.440">
+      tormented
+     </span>
+     <span data-begin="227.989" data-dur="0.110">
+      by
+     </span>
+     <span data-begin="228.099" data-dur="0.729">
+      curiosity
+     </span>
+     <span data-begin="228.830" data-dur="0.128">
+      as
+     </span>
+     <span data-begin="228.959" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="229.069" data-dur="0.170">
+      what
+     </span>
+     <span data-begin="229.239" data-dur="0.269">
+      Prince
+     </span>
+     <span data-begin="229.539" data-dur="0.320">
+      Andrew
+     </span>
+     <span data-begin="229.859" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="229.949" data-dur="0.410">
+      Natasha
+     </span>
+     <span data-begin="230.359" data-dur="0.080">
+      were
+     </span>
+     <span data-begin="230.440" data-dur="0.399">
+      talking
+     </span>
+     <span data-begin="230.839" data-dur="1.000">
+      about
+     </span>
+     .
+     <span data-begin="231.919" data-dur="0.190">
+      She
+     </span>
+     <span data-begin="232.109" data-dur="0.240">
+      heard
+     </span>
+     <span data-begin="232.349" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="232.408" data-dur="0.270">
+      sound
+     </span>
+     <span data-begin="232.679" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="232.748" data-dur="0.121">
+      their
+     </span>
+     <span data-begin="232.869" data-dur="0.370">
+      voices
+     </span>
+     <span data-begin="233.239" data-dur="0.140">
+      through
+     </span>
+     <span data-begin="233.379" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="233.469" data-dur="0.210">
+      door
+     </span>
+     .
+     <span data-begin="234.469" data-dur="0.170">
+      That
+     </span>
+     <span data-begin="234.639" data-dur="0.210">
+      door
+     </span>
+     <span data-begin="234.879" data-dur="0.350">
+      opened
+     </span>
+     <span data-begin="235.229" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="235.319" data-dur="0.420">
+      Natasha
+     </span>
+     <span data-begin="235.739" data-dur="0.210">
+      came
+     </span>
+     <span data-begin="235.949" data-dur="0.260">
+      out
+     </span>
+     ,
+     <span data-begin="236.369" data-dur="0.269">
+      looking
+     </span>
+     <span data-begin="236.639" data-dur="1.000">
+      excited
+     </span>
+     .
+     <span data-begin="238.359" data-dur="0.269">
+      Not
+     </span>
+     <span data-begin="238.629" data-dur="0.390">
+      noticing
+     </span>
+     <span data-begin="239.019" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="239.090" data-dur="0.359">
+      monk
+     </span>
+     ,
+     <span data-begin="239.639" data-dur="0.078">
+      who
+     </span>
+     <span data-begin="239.718" data-dur="0.090">
+      had
+     </span>
+     <span data-begin="239.810" data-dur="0.280">
+      risen
+     </span>
+     <span data-begin="240.090" data-dur="0.097">
+      to
+     </span>
+     <span data-begin="240.188" data-dur="0.281">
+      greet
+     </span>
+     <span data-begin="240.499" data-dur="0.269">
+      her
+     </span>
+     <span data-begin="240.900" data-dur="0.097">
+      and
+     </span>
+     <span data-begin="240.998" data-dur="0.121">
+      was
+     </span>
+     <span data-begin="241.120" data-dur="0.299">
+      drawing
+     </span>
+     <span data-begin="241.420" data-dur="0.290">
+      back
+     </span>
+     <span data-begin="241.760" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="241.848" data-dur="0.300">
+      wide
+     </span>
+     <span data-begin="242.150" data-dur="0.308">
+      sleeve
+     </span>
+     <span data-begin="242.459" data-dur="0.120">
+      on
+     </span>
+     <span data-begin="242.579" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="242.730" data-dur="0.190">
+      right
+     </span>
+     <span data-begin="242.920" data-dur="0.399">
+      arm
+     </span>
+     ,
+     <span data-begin="243.779" data-dur="0.170">
+      she
+     </span>
+     <span data-begin="243.950" data-dur="0.149">
+      went
+     </span>
+     <span data-begin="244.099" data-dur="0.070">
+      up
+     </span>
+     <span data-begin="244.170" data-dur="0.097">
+      to
+     </span>
+     <span data-begin="244.268" data-dur="0.381">
+      Sonya
+     </span>
+     <span data-begin="244.650" data-dur="0.087">
+      and
+     </span>
+     <span data-begin="244.738" data-dur="0.200">
+      took
+     </span>
+     <span data-begin="244.939" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="245.069" data-dur="1.000">
+      hand
+     </span>
+     .
+     <p>
+      修道院招待所为他们安排了三个大房间，安德鲁王子住在其中一个房间里。受伤的安德鲁王子当天好多了，娜塔莎正陪着他。伯爵和伯爵夫人坐在隔壁的房间里，恭恭敬敬地与院长交谈，院长把他们当作老熟人和修道院的恩人。索尼娅也在那里，她对安德鲁王子和娜塔莎在谈论什么充满了好奇。她从门缝里听到了他们的声音。门开了，娜塔莎走了出来，一脸兴奋。她没有注意到起身迎接她的僧侣，僧侣正在挽起右臂上的宽袖，她走到索尼娅面前，握住了她的手。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="246.469" data-dur="0.620">
+      Natasha
+     </span>
+     ,
+     <span data-begin="247.260" data-dur="0.208">
+      what
+     </span>
+     <span data-begin="247.469" data-dur="0.028">
+      are
+     </span>
+     <span data-begin="247.498" data-dur="0.141">
+      you
+     </span>
+     <span data-begin="247.639" data-dur="0.420">
+      about
+     </span>
+     ?
+     <span data-begin="248.379" data-dur="0.179">
+      Come
+     </span>
+     <span data-begin="248.560" data-dur="0.470">
+      here
+     </span>
+     !"
+     <span data-begin="249.109" data-dur="0.190">
+      said
+     </span>
+     <span data-begin="249.299" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="249.370" data-dur="1.000">
+      countess
+     </span>
+     .
+     <p>
+      "娜塔莎，你在干什么？过来！"伯爵夫人说。
+     </p>
+    </p>
+    <p>
+     <span data-begin="251.150" data-dur="0.440">
+      Natasha
+     </span>
+     <span data-begin="251.590" data-dur="0.188">
+      went
+     </span>
+     <span data-begin="251.779" data-dur="0.130">
+      up
+     </span>
+     <span data-begin="251.909" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="252.010" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="252.079" data-dur="0.290">
+      monk
+     </span>
+     <span data-begin="252.370" data-dur="0.140">
+      for
+     </span>
+     <span data-begin="252.510" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="252.670" data-dur="0.380">
+      blessing
+     </span>
+     ,
+     <span data-begin="253.079" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="253.329" data-dur="0.058">
+      he
+     </span>
+     <span data-begin="253.388" data-dur="0.451">
+      advised
+     </span>
+     <span data-begin="253.840" data-dur="0.078">
+      her
+     </span>
+     <span data-begin="253.919" data-dur="0.090">
+      to
+     </span>
+     <span data-begin="254.010" data-dur="0.238">
+      pray
+     </span>
+     <span data-begin="254.249" data-dur="0.170">
+      for
+     </span>
+     <span data-begin="254.450" data-dur="0.199">
+      aid
+     </span>
+     <span data-begin="254.650" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="254.779" data-dur="0.290">
+      God
+     </span>
+     <span data-begin="255.069" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="255.159" data-dur="0.130">
+      His
+     </span>
+     <span data-begin="255.289" data-dur="1.000">
+      saint
+     </span>
+     .
+     <p>
+      娜塔莎走上前去，请求僧侣的祝福，僧侣建议她向上帝和他的圣人祈求援助。
+     </p>
+    </p>
+    <p>
+     <span data-begin="256.700" data-dur="0.188">
+      As
+     </span>
+     <span data-begin="256.889" data-dur="0.160">
+      soon
+     </span>
+     <span data-begin="257.049" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="257.170" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="257.268" data-dur="0.391">
+      prior
+     </span>
+     <span data-begin="257.659" data-dur="1.000">
+      withdrew
+     </span>
+     ,
+     <span data-begin="258.739" data-dur="0.410">
+      Natasha
+     </span>
+     <span data-begin="259.150" data-dur="0.258">
+      took
+     </span>
+     <span data-begin="259.409" data-dur="0.120">
+      her
+     </span>
+     <span data-begin="259.529" data-dur="0.290">
+      friend
+     </span>
+     <span data-begin="259.819" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="259.950" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="260.120" data-dur="0.340">
+      hand
+     </span>
+     <span data-begin="260.569" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="260.700" data-dur="0.218">
+      went
+     </span>
+     <span data-begin="260.919" data-dur="0.199">
+      with
+     </span>
+     <span data-begin="261.150" data-dur="0.190">
+      her
+     </span>
+     <span data-begin="261.499" data-dur="0.160">
+      into
+     </span>
+     <span data-begin="261.659" data-dur="0.160">
+      the
+     </span>
+     <span data-begin="261.870" data-dur="0.518">
+      unoccupied
+     </span>
+     <span data-begin="262.389" data-dur="1.000">
+      room
+     </span>
+     .
+     <p>
+      僧侣一走，娜塔莎就拉着她朋友的手，和她一起走进了无人的房间。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="263.809" data-dur="0.530">
+      Sonya
+     </span>
+     ,
+     <span data-begin="264.369" data-dur="0.120">
+      will
+     </span>
+     <span data-begin="264.489" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="264.590" data-dur="0.269">
+      live
+     </span>
+     ?"
+     <span data-begin="264.949" data-dur="0.229">
+      she
+     </span>
+     <span data-begin="265.179" data-dur="1.000">
+      asked
+     </span>
+     . "
+     <span data-begin="266.479" data-dur="0.420">
+      Sonya
+     </span>
+     ,
+     <span data-begin="266.900" data-dur="0.240">
+      how
+     </span>
+     <span data-begin="267.169" data-dur="0.450">
+      happy
+     </span>
+     <span data-begin="267.619" data-dur="0.058">
+      I
+     </span>
+     <span data-begin="267.678" data-dur="0.261">
+      am
+     </span>
+     ,
+     <span data-begin="267.939" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="268.039" data-dur="0.310">
+      how
+     </span>
+     <span data-begin="268.379" data-dur="1.000">
+      unhappy
+     </span>
+     !...
+     <span data-begin="269.479" data-dur="0.489">
+      Sonya
+     </span>
+     ,
+     <span data-begin="270.009" data-dur="0.420">
+      dovey
+     </span>
+     ,
+     <span data-begin="270.459" data-dur="0.399">
+      everything
+     </span>
+     <span data-begin="270.860" data-dur="0.118">
+      is
+     </span>
+     <span data-begin="270.979" data-dur="0.210">
+      as
+     </span>
+     <span data-begin="271.189" data-dur="0.120">
+      it
+     </span>
+     <span data-begin="271.309" data-dur="0.199">
+      used
+     </span>
+     <span data-begin="271.509" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="271.588" data-dur="0.270">
+      be
+     </span>
+     .
+     <span data-begin="272.189" data-dur="0.130">
+      If
+     </span>
+     <span data-begin="272.349" data-dur="0.299">
+      only
+     </span>
+     <span data-begin="272.650" data-dur="0.118">
+      he
+     </span>
+     <span data-begin="272.769" data-dur="0.520">
+      lives
+     </span>
+     !
+     <span data-begin="273.670" data-dur="0.087">
+      He
+     </span>
+     <span data-begin="273.758" data-dur="1.000">
+      cannot
+     </span>
+     ...
+     <span data-begin="275.029" data-dur="1.000">
+      because
+     </span>
+     ...
+     <span data-begin="276.660" data-dur="1.000">
+      because
+     </span>
+     ...
+     <span data-begin="278.049" data-dur="1.000">
+      of
+     </span>
+     "
+     <span data-begin="279.229" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="279.359" data-dur="0.530">
+      Natasha
+     </span>
+     <span data-begin="279.889" data-dur="0.359">
+      burst
+     </span>
+     <span data-begin="280.250" data-dur="0.118">
+      into
+     </span>
+     <span data-begin="280.369" data-dur="1.000">
+      tears
+     </span>
+     .
+     <p>
+      "她问道："索尼娅，他还活着吗？"索尼娅，我是多么幸福，又是多么不幸！......索尼娅，多维，一切都像从前一样。只要他还活着！因为......因为...... "娜塔莎泪流满面。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="282.059" data-dur="0.489">
+      Yes
+     </span>
+     !
+     <span data-begin="282.619" data-dur="0.049">
+      I
+     </span>
+     <span data-begin="282.669" data-dur="0.269">
+      knew
+     </span>
+     <span data-begin="282.969" data-dur="1.000">
+      it
+     </span>
+     ! Thank God!"
+     <span data-begin="284.059" data-dur="0.310">
+      murmured
+     </span>
+     <span data-begin="284.400" data-dur="0.410">
+      Sonya
+     </span>
+     . "
+     <span data-begin="284.859" data-dur="0.130">
+      He
+     </span>
+     <span data-begin="284.990" data-dur="0.149">
+      will
+     </span>
+     <span data-begin="285.139" data-dur="1.000">
+      live
+     </span>
+     ."
+     <p>
+      "是的！我就知道！感谢上帝！"索尼娅喃喃地说。"他会活下来的。"
+     </p>
+    </p>
+    <p>
+     <span data-begin="286.449" data-dur="0.390">
+      Sonya
+     </span>
+     <span data-begin="286.839" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="286.999" data-dur="0.310">
+      not
+     </span>
+     <span data-begin="287.309" data-dur="0.250">
+      less
+     </span>
+     <span data-begin="287.589" data-dur="0.580">
+      agitated
+     </span>
+     <span data-begin="288.199" data-dur="0.089">
+      than
+     </span>
+     <span data-begin="288.289" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="288.419" data-dur="0.340">
+      friend
+     </span>
+     <span data-begin="288.759" data-dur="0.099">
+      by
+     </span>
+     <span data-begin="288.889" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="288.979" data-dur="0.359">
+      latter's
+     </span>
+     <span data-begin="289.339" data-dur="0.229">
+      fear
+     </span>
+     <span data-begin="289.569" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="289.709" data-dur="0.390">
+      grief
+     </span>
+     <span data-begin="290.369" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="290.490" data-dur="0.118">
+      by
+     </span>
+     <span data-begin="290.609" data-dur="0.140">
+      her
+     </span>
+     <span data-begin="290.780" data-dur="0.229">
+      own
+     </span>
+     <span data-begin="291.010" data-dur="0.418">
+      personal
+     </span>
+     <span data-begin="291.429" data-dur="0.320">
+      feelings
+     </span>
+     <span data-begin="291.749" data-dur="0.120">
+      which
+     </span>
+     <span data-begin="291.869" data-dur="0.110">
+      she
+     </span>
+     <span data-begin="291.979" data-dur="0.229">
+      shared
+     </span>
+     <span data-begin="292.209" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="292.319" data-dur="0.160">
+      no
+     </span>
+     <span data-begin="292.479" data-dur="1.000">
+      one
+     </span>
+     .
+     <span data-begin="293.519" data-dur="0.580">
+      Sobbing
+     </span>
+     ,
+     <span data-begin="294.129" data-dur="0.170">
+      she
+     </span>
+     <span data-begin="294.299" data-dur="0.320">
+      kissed
+     </span>
+     <span data-begin="294.650" data-dur="0.118">
+      and
+     </span>
+     <span data-begin="294.769" data-dur="0.370">
+      comforted
+     </span>
+     <span data-begin="295.179" data-dur="0.420">
+      Natasha
+     </span>
+     . "
+     <span data-begin="296.119" data-dur="0.140">
+      If
+     </span>
+     <span data-begin="296.330" data-dur="0.288">
+      only
+     </span>
+     <span data-begin="296.619" data-dur="0.120">
+      he
+     </span>
+     <span data-begin="296.740" data-dur="0.370">
+      lives
+     </span>
+     !"
+     <span data-begin="297.139" data-dur="0.179">
+      she
+     </span>
+     <span data-begin="297.319" data-dur="0.290">
+      thought
+     </span>
+     .
+     <span data-begin="298.319" data-dur="0.340">
+      Having
+     </span>
+     <span data-begin="298.659" data-dur="0.329">
+      wept
+     </span>
+     ,
+     <span data-begin="299.119" data-dur="0.329">
+      talked
+     </span>
+     ,
+     <span data-begin="299.479" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="299.600" data-dur="0.269">
+      wiped
+     </span>
+     <span data-begin="299.869" data-dur="0.179">
+      away
+     </span>
+     <span data-begin="300.049" data-dur="0.120">
+      their
+     </span>
+     <span data-begin="300.170" data-dur="0.510">
+      tears
+     </span>
+     ,
+     <span data-begin="300.969" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="301.048" data-dur="0.241">
+      two
+     </span>
+     <span data-begin="301.289" data-dur="0.290">
+      friends
+     </span>
+     <span data-begin="301.580" data-dur="0.179">
+      went
+     </span>
+     <span data-begin="301.760" data-dur="0.378">
+      together
+     </span>
+     <span data-begin="302.139" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="302.240" data-dur="0.269">
+      Prince
+     </span>
+     <span data-begin="302.539" data-dur="0.370">
+      Andrew's
+     </span>
+     <span data-begin="302.909" data-dur="1.000">
+      door
+     </span>
+     .
+     <span data-begin="304.369" data-dur="0.450">
+      Natasha
+     </span>
+     <span data-begin="304.819" data-dur="0.280">
+      opened
+     </span>
+     <span data-begin="305.100" data-dur="0.068">
+      it
+     </span>
+     <span data-begin="305.169" data-dur="0.579">
+      cautiously
+     </span>
+     <span data-begin="305.749" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="305.900" data-dur="0.378">
+      glanced
+     </span>
+     <span data-begin="306.279" data-dur="0.170">
+      into
+     </span>
+     <span data-begin="306.449" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="306.559" data-dur="0.380">
+      room
+     </span>
+     ,
+     <span data-begin="307.459" data-dur="0.359">
+      Sonya
+     </span>
+     <span data-begin="307.819" data-dur="0.380">
+      standing
+     </span>
+     <span data-begin="308.199" data-dur="0.310">
+      beside
+     </span>
+     <span data-begin="308.510" data-dur="0.118">
+      her
+     </span>
+     <span data-begin="308.629" data-dur="0.080">
+      at
+     </span>
+     <span data-begin="308.760" data-dur="0.060">
+      the
+     </span>
+     <span data-begin="308.859" data-dur="0.190">
+      half
+     </span>
+     -
+     <span data-begin="309.049" data-dur="0.269">
+      open
+     </span>
+     <span data-begin="309.319" data-dur="1.000">
+      door
+     </span>
+     .
+     <p>
+      索尼娅并不像她的朋友那样，因为后者的恐惧和悲痛以及她自己的个人感受而激动不已，但她并没有与任何人分享这些感受。她抽泣着亲吻并安慰娜塔莎。她想，"要是他还活着就好了！"。哭过、说过、擦过眼泪后，两个朋友一起来到安德鲁王子的门前。娜塔莎小心翼翼地打开门，朝房间里看了一眼，索尼娅站在她身边，看着半开的门。
+     </p>
+    </p>
+    <p>
+     <span data-begin="311.150" data-dur="0.229">
+      Prince
+     </span>
+     <span data-begin="311.409" data-dur="0.340">
+      Andrew
+     </span>
+     <span data-begin="311.749" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="311.889" data-dur="0.329">
+      lying
+     </span>
+     <span data-begin="312.219" data-dur="0.340">
+      raised
+     </span>
+     <span data-begin="312.589" data-dur="0.170">
+      high
+     </span>
+     <span data-begin="312.760" data-dur="0.149">
+      on
+     </span>
+     <span data-begin="312.909" data-dur="0.190">
+      three
+     </span>
+     <span data-begin="313.099" data-dur="1.000">
+      pillows
+     </span>
+     .
+     <span data-begin="314.289" data-dur="0.130">
+      His
+     </span>
+     <span data-begin="314.420" data-dur="0.258">
+      pale
+     </span>
+     <span data-begin="314.679" data-dur="0.250">
+      face
+     </span>
+     <span data-begin="314.929" data-dur="0.130">
+      was
+     </span>
+     <span data-begin="315.059" data-dur="0.470">
+      calm
+     </span>
+     ,
+     <span data-begin="315.559" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="315.709" data-dur="0.240">
+      eyes
+     </span>
+     <span data-begin="315.949" data-dur="0.530">
+      closed
+     </span>
+     ,
+     <span data-begin="316.709" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="316.839" data-dur="0.060">
+      they
+     </span>
+     <span data-begin="316.900" data-dur="0.168">
+      could
+     </span>
+     <span data-begin="317.069" data-dur="0.120">
+      see
+     </span>
+     <span data-begin="317.189" data-dur="0.179">
+      his
+     </span>
+     <span data-begin="317.369" data-dur="0.380">
+      regular
+     </span>
+     <span data-begin="317.749" data-dur="1.000">
+      breathing
+     </span>
+     .
+     <p>
+      安德鲁王子高高地躺在三个枕头上。他苍白的脸上平静无波，双眼紧闭，她们可以看到他有规律的呼吸。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="319.319" data-dur="0.229">
+      O
+     </span>
+     ,
+     <span data-begin="319.549" data-dur="1.000">
+      Natasha
+     </span>
+     !"
+     <span data-begin="320.949" data-dur="0.370">
+      Sonya
+     </span>
+     <span data-begin="321.319" data-dur="0.390">
+      suddenly
+     </span>
+     <span data-begin="321.709" data-dur="0.390">
+      almost
+     </span>
+     <span data-begin="322.099" data-dur="0.470">
+      screamed
+     </span>
+     ,
+     <span data-begin="322.609" data-dur="0.320">
+      catching
+     </span>
+     <span data-begin="322.929" data-dur="0.110">
+      her
+     </span>
+     <span data-begin="323.039" data-dur="0.520">
+      companion's
+     </span>
+     <span data-begin="323.609" data-dur="0.170">
+      arm
+     </span>
+     <span data-begin="323.779" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="323.889" data-dur="0.359">
+      stepping
+     </span>
+     <span data-begin="324.249" data-dur="0.260">
+      back
+     </span>
+     <span data-begin="324.559" data-dur="0.120">
+      from
+     </span>
+     <span data-begin="324.679" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="324.760" data-dur="1.000">
+      door
+     </span>
+     .
+     <p>
+      "啊，娜塔莎！"索尼娅突然几乎尖叫起来，她抓住同伴的胳膊，从门边退了出来。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="326.019" data-dur="0.290">
+      What
+     </span>
+     ?
+     <span data-begin="326.969" data-dur="0.179">
+      What
+     </span>
+     <span data-begin="327.150" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="327.330" data-dur="0.140">
+      it
+     </span>
+     ?"
+     <span data-begin="327.499" data-dur="0.269">
+      asked
+     </span>
+     <span data-begin="327.769" data-dur="1.000">
+      Natasha
+     </span>
+     .
+     <p>
+      "怎么了？怎么了？"娜塔莎问道。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="328.980" data-dur="0.118">
+      It's
+     </span>
+     <span data-begin="329.099" data-dur="1.000">
+      that
+     </span>
+     ,
+     <span data-begin="330.139" data-dur="0.359">
+      that
+     </span>
+     ..."
+     <span data-begin="330.900" data-dur="0.269">
+      said
+     </span>
+     <span data-begin="331.169" data-dur="0.390">
+      Sonya
+     </span>
+     ,
+     <span data-begin="331.589" data-dur="0.149">
+      with
+     </span>
+     <span data-begin="331.739" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="331.830" data-dur="0.229">
+      white
+     </span>
+     <span data-begin="332.059" data-dur="0.380">
+      face
+     </span>
+     <span data-begin="332.440" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="332.550" data-dur="0.459">
+      trembling
+     </span>
+     <span data-begin="333.010" data-dur="1.000">
+      lips
+     </span>
+     .
+     <p>
+      "是那个，那个...... "索尼娅脸色发白，嘴唇颤抖着说。
+     </p>
+    </p>
+    <p>
+     <span data-begin="334.219" data-dur="0.390">
+      Natasha
+     </span>
+     <span data-begin="334.609" data-dur="0.450">
+      softly
+     </span>
+     <span data-begin="335.059" data-dur="0.299">
+      closed
+     </span>
+     <span data-begin="335.359" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="335.440" data-dur="0.218">
+      door
+     </span>
+     <span data-begin="335.659" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="335.870" data-dur="0.140">
+      went
+     </span>
+     <span data-begin="336.010" data-dur="0.128">
+      with
+     </span>
+     <span data-begin="336.139" data-dur="0.329">
+      Sonya
+     </span>
+     <span data-begin="336.469" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="336.559" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="336.669" data-dur="0.410">
+      window
+     </span>
+     ,
+     <span data-begin="337.199" data-dur="0.229">
+      not
+     </span>
+     <span data-begin="337.429" data-dur="0.149">
+      yet
+     </span>
+     <span data-begin="337.580" data-dur="0.650">
+      understanding
+     </span>
+     <span data-begin="338.230" data-dur="0.158">
+      what
+     </span>
+     <span data-begin="338.389" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="338.468" data-dur="0.291">
+      latter
+     </span>
+     <span data-begin="338.760" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="338.900" data-dur="0.370">
+      telling
+     </span>
+     <span data-begin="339.300" data-dur="1.000">
+      her
+     </span>
+     .
+     <p>
+      娜塔莎轻轻地关上门，和索尼娅一起走到窗前，她还不明白后者在跟她说什么。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="340.419" data-dur="0.089">
+      You
+     </span>
+     <span data-begin="340.510" data-dur="0.489">
+      remember
+     </span>
+     ,"
+     <span data-begin="340.999" data-dur="0.210">
+      said
+     </span>
+     <span data-begin="341.209" data-dur="0.280">
+      Sonya
+     </span>
+     <span data-begin="341.569" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="341.730" data-dur="0.047">
+      a
+     </span>
+     <span data-begin="341.778" data-dur="0.481">
+      solemn
+     </span>
+     <span data-begin="342.260" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="342.400" data-dur="0.338">
+      frightened
+     </span>
+     <span data-begin="342.739" data-dur="1.000">
+      expression
+     </span>
+     . "
+     <span data-begin="344.109" data-dur="0.099">
+      You
+     </span>
+     <span data-begin="344.209" data-dur="0.459">
+      remember
+     </span>
+     <span data-begin="344.669" data-dur="0.130">
+      when
+     </span>
+     <span data-begin="344.800" data-dur="0.058">
+      I
+     </span>
+     <span data-begin="344.859" data-dur="0.329">
+      looked
+     </span>
+     <span data-begin="345.190" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="345.330" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="345.389" data-dur="0.190">
+      mirror
+     </span>
+     <span data-begin="345.580" data-dur="0.220">
+      for
+     </span>
+     <span data-begin="345.800" data-dur="0.269">
+      you
+     </span>
+     ...
+     <span data-begin="346.190" data-dur="0.099">
+      at
+     </span>
+     <span data-begin="346.330" data-dur="0.459">
+      Otradnoe
+     </span>
+     <span data-begin="346.789" data-dur="0.120">
+      at
+     </span>
+     <span data-begin="346.909" data-dur="1.000">
+      Christmas
+     </span>
+     ? Do
+     <span data-begin="348.029" data-dur="0.058">
+      you
+     </span>
+     <span data-begin="348.088" data-dur="0.281">
+      remember
+     </span>
+     <span data-begin="348.370" data-dur="0.097">
+      what
+     </span>
+     <span data-begin="348.468" data-dur="0.061">
+      I
+     </span>
+     <span data-begin="348.559" data-dur="1.000">
+      saw
+     </span>
+     ?"
+     <p>
+      "你还记得吗？"索尼娅表情肃穆而惊恐地说。"你还记得圣诞节时我在奥特拉德诺为你照镜子的情景吗？你还记得我看到了什么吗？"
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="349.729" data-dur="0.550">
+      Yes
+     </span>
+     ,
+     <span data-begin="350.459" data-dur="0.410">
+      yes
+     </span>
+     !"
+     <span data-begin="350.909" data-dur="0.220">
+      cried
+     </span>
+     <span data-begin="351.159" data-dur="0.429">
+      Natasha
+     </span>
+     <span data-begin="351.690" data-dur="0.390">
+      opening
+     </span>
+     <span data-begin="352.080" data-dur="0.118">
+      her
+     </span>
+     <span data-begin="352.199" data-dur="0.260">
+      eyes
+     </span>
+     <span data-begin="352.459" data-dur="0.380">
+      wide
+     </span>
+     ,
+     <span data-begin="353.109" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="353.279" data-dur="0.359">
+      vaguely
+     </span>
+     <span data-begin="353.639" data-dur="0.459">
+      recalling
+     </span>
+     <span data-begin="354.099" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="354.229" data-dur="0.280">
+      Sonya
+     </span>
+     <span data-begin="354.510" data-dur="0.118">
+      had
+     </span>
+     <span data-begin="354.629" data-dur="0.240">
+      told
+     </span>
+     <span data-begin="354.870" data-dur="0.068">
+      her
+     </span>
+     <span data-begin="354.939" data-dur="0.419">
+      something
+     </span>
+     <span data-begin="355.359" data-dur="0.190">
+      about
+     </span>
+     <span data-begin="355.550" data-dur="0.280">
+      Prince
+     </span>
+     <span data-begin="355.859" data-dur="0.459">
+      Andrew
+     </span>
+     <span data-begin="356.669" data-dur="0.120">
+      whom
+     </span>
+     <span data-begin="356.789" data-dur="0.170">
+      she
+     </span>
+     <span data-begin="356.959" data-dur="0.120">
+      had
+     </span>
+     <span data-begin="357.080" data-dur="0.250">
+      seen
+     </span>
+     <span data-begin="357.330" data-dur="0.278">
+      lying
+     </span>
+     <span data-begin="357.609" data-dur="1.000">
+      down
+     </span>
+     .
+     <p>
+      "是的，是的！"娜塔莎睁大眼睛喊道，她依稀记得索尼娅曾告诉过她一些关于安德鲁王子的事情，她看到安德鲁王子躺在地上。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="359.239" data-dur="0.078">
+      You
+     </span>
+     <span data-begin="359.318" data-dur="0.531">
+      remember
+     </span>
+     ?"
+     <span data-begin="359.879" data-dur="0.380">
+      Sonya
+     </span>
+     <span data-begin="360.260" data-dur="0.229">
+      went
+     </span>
+     <span data-begin="360.489" data-dur="0.310">
+      on
+     </span>
+     . "
+     <span data-begin="361.260" data-dur="0.087">
+      I
+     </span>
+     <span data-begin="361.348" data-dur="0.311">
+      saw
+     </span>
+     <span data-begin="361.659" data-dur="0.120">
+      it
+     </span>
+     <span data-begin="361.809" data-dur="0.290">
+      then
+     </span>
+     <span data-begin="362.129" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="362.239" data-dur="0.210">
+      told
+     </span>
+     <span data-begin="362.449" data-dur="0.659">
+      everybody
+     </span>
+     ,
+     <span data-begin="363.239" data-dur="0.160">
+      you
+     </span>
+     <span data-begin="363.400" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="363.529" data-dur="0.459">
+      Dunyasha
+     </span>
+     .
+     <span data-begin="364.510" data-dur="0.040">
+      I
+     </span>
+     <span data-begin="364.580" data-dur="0.229">
+      saw
+     </span>
+     <span data-begin="364.809" data-dur="0.199">
+      him
+     </span>
+     <span data-begin="365.010" data-dur="0.218">
+      lying
+     </span>
+     <span data-begin="365.229" data-dur="0.110">
+      on
+     </span>
+     <span data-begin="365.339" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="365.418" data-dur="0.270">
+      bed
+     </span>
+     ,"
+     <span data-begin="365.739" data-dur="0.149">
+      said
+     </span>
+     <span data-begin="365.889" data-dur="0.359">
+      she
+     </span>
+     ,
+     <span data-begin="366.559" data-dur="0.269">
+      making
+     </span>
+     <span data-begin="366.830" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="366.889" data-dur="0.370">
+      gesture
+     </span>
+     <span data-begin="367.260" data-dur="0.118">
+      with
+     </span>
+     <span data-begin="367.379" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="367.539" data-dur="0.290">
+      hand
+     </span>
+     <span data-begin="367.830" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="367.940" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="367.969" data-dur="0.420">
+      lifted
+     </span>
+     <span data-begin="368.440" data-dur="0.299">
+      finger
+     </span>
+     <span data-begin="368.739" data-dur="0.070">
+      at
+     </span>
+     <span data-begin="368.849" data-dur="0.170">
+      each
+     </span>
+     <span data-begin="369.019" data-dur="1.000">
+      detail
+     </span>
+     , "
+     <span data-begin="370.169" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="370.260" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="370.440" data-dur="0.087">
+      he
+     </span>
+     <span data-begin="370.528" data-dur="0.171">
+      had
+     </span>
+     <span data-begin="370.699" data-dur="0.140">
+      his
+     </span>
+     <span data-begin="370.870" data-dur="0.269">
+      eyes
+     </span>
+     <span data-begin="371.139" data-dur="0.459">
+      closed
+     </span>
+     and
+     <span data-begin="371.599" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="371.739" data-dur="0.370">
+      covered
+     </span>
+     <span data-begin="372.109" data-dur="0.310">
+      just
+     </span>
+     <span data-begin="372.449" data-dur="0.149">
+      with
+     </span>
+     <span data-begin="372.599" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="372.628" data-dur="0.200">
+      pink
+     </span>
+     <span data-begin="372.830" data-dur="0.340">
+      quilt
+     </span>
+     ,
+     <span data-begin="373.749" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="373.859" data-dur="0.089">
+      that
+     </span>
+     <span data-begin="373.949" data-dur="0.170">
+      his
+     </span>
+     <span data-begin="374.119" data-dur="0.310">
+      hands
+     </span>
+     <span data-begin="374.429" data-dur="0.089">
+      were
+     </span>
+     <span data-begin="374.519" data-dur="0.480">
+      folded
+     </span>
+     ,"
+     <span data-begin="374.999" data-dur="0.149">
+      she
+     </span>
+     <span data-begin="375.150" data-dur="1.000">
+      concluded
+     </span>
+     ,
+     <span data-begin="376.199" data-dur="0.570">
+      convincing
+     </span>
+     <span data-begin="376.769" data-dur="0.359">
+      herself
+     </span>
+     <span data-begin="377.129" data-dur="0.110">
+      that
+     </span>
+     <span data-begin="377.239" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="377.308" data-dur="0.441">
+      details
+     </span>
+     <span data-begin="377.749" data-dur="0.089">
+      she
+     </span>
+     <span data-begin="377.839" data-dur="0.099">
+      had
+     </span>
+     <span data-begin="377.940" data-dur="0.320">
+      just
+     </span>
+     <span data-begin="378.260" data-dur="0.238">
+      seen
+     </span>
+     <span data-begin="378.499" data-dur="0.099">
+      were
+     </span>
+     <span data-begin="378.599" data-dur="0.470">
+      exactly
+     </span>
+     <span data-begin="379.069" data-dur="0.099">
+      what
+     </span>
+     <span data-begin="379.169" data-dur="0.160">
+      she
+     </span>
+     <span data-begin="379.359" data-dur="0.099">
+      had
+     </span>
+     <span data-begin="379.510" data-dur="1.000">
+      seen
+     </span>
+     in the mirror.
+     <p>
+      "你还记得？索尼娅接着说。"我当时看到了，就告诉了所有人，包括你和杜尼亚莎。我看见他躺在床上，"说着，她用手做了一个手势，抬起手指指着每一个细节，"他闭着眼睛，身上只盖了一条粉红色的被子，双手合十，"她最后说，让自己相信刚才看到的细节正是她在镜子里看到的。
+     </p>
+    </p>
+    <p>
+     <span data-begin="381.969" data-dur="0.179">
+      She
+     </span>
+     <span data-begin="382.149" data-dur="0.269">
+      had
+     </span>
+     <span data-begin="382.419" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="382.509" data-dur="0.310">
+      fact
+     </span>
+     <span data-begin="382.819" data-dur="0.199">
+      seen
+     </span>
+     <span data-begin="383.020" data-dur="0.368">
+      nothing
+     </span>
+     <span data-begin="383.389" data-dur="0.210">
+      then
+     </span>
+     <span data-begin="383.679" data-dur="0.120">
+      but
+     </span>
+     <span data-begin="383.799" data-dur="0.130">
+      had
+     </span>
+     <span data-begin="383.929" data-dur="0.410">
+      mentioned
+     </span>
+     <span data-begin="384.339" data-dur="0.060">
+      the
+     </span>
+     <span data-begin="384.400" data-dur="0.480">
+      first
+     </span>
+     <span data-begin="384.980" data-dur="0.218">
+      thing
+     </span>
+     <span data-begin="385.199" data-dur="0.099">
+      that
+     </span>
+     <span data-begin="385.299" data-dur="0.229">
+      came
+     </span>
+     <span data-begin="385.529" data-dur="0.199">
+      into
+     </span>
+     <span data-begin="385.730" data-dur="0.149">
+      her
+     </span>
+     <span data-begin="385.879" data-dur="1.000">
+      head
+     </span>
+     ,
+     <span data-begin="386.919" data-dur="0.099">
+      but
+     </span>
+     <span data-begin="387.020" data-dur="0.130">
+      what
+     </span>
+     <span data-begin="387.150" data-dur="0.188">
+      she
+     </span>
+     <span data-begin="387.339" data-dur="0.089">
+      had
+     </span>
+     <span data-begin="387.429" data-dur="0.390">
+      invented
+     </span>
+     <span data-begin="387.850" data-dur="0.260">
+      then
+     </span>
+     <span data-begin="388.139" data-dur="0.250">
+      seemed
+     </span>
+     <span data-begin="388.389" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="388.520" data-dur="0.118">
+      her
+     </span>
+     <span data-begin="388.639" data-dur="0.280">
+      now
+     </span>
+     <span data-begin="388.919" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="389.039" data-dur="0.269">
+      real
+     </span>
+     <span data-begin="389.310" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="389.480" data-dur="0.269">
+      any
+     </span>
+     <span data-begin="389.749" data-dur="0.179">
+      other
+     </span>
+     <span data-begin="389.929" data-dur="1.000">
+      recollection
+     </span>
+     .
+     <span data-begin="391.829" data-dur="0.199">
+      She
+     </span>
+     <span data-begin="392.030" data-dur="0.250">
+      not
+     </span>
+     <span data-begin="392.309" data-dur="0.320">
+      only
+     </span>
+     <span data-begin="392.629" data-dur="0.489">
+      remembered
+     </span>
+     <span data-begin="393.149" data-dur="0.110">
+      what
+     </span>
+     <span data-begin="393.259" data-dur="0.199">
+      she
+     </span>
+     <span data-begin="393.459" data-dur="0.149">
+      had
+     </span>
+     <span data-begin="393.610" data-dur="0.199">
+      then
+     </span>
+     <span data-begin="393.850" data-dur="0.308">
+      said
+     </span>
+     —
+     <span data-begin="394.159" data-dur="0.099">
+      that
+     </span>
+     <span data-begin="394.579" data-dur="0.160">
+      he
+     </span>
+     <span data-begin="394.739" data-dur="0.269">
+      turned
+     </span>
+     <span data-begin="395.009" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="395.100" data-dur="0.179">
+      look
+     </span>
+     <span data-begin="395.280" data-dur="0.060">
+      at
+     </span>
+     <span data-begin="395.399" data-dur="0.070">
+      her
+     </span>
+     <span data-begin="395.509" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="395.669" data-dur="0.429">
+      smiled
+     </span>
+     <span data-begin="396.129" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="396.219" data-dur="0.120">
+      was
+     </span>
+     <span data-begin="396.339" data-dur="0.340">
+      covered
+     </span>
+     <span data-begin="396.679" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="396.799" data-dur="0.290">
+      something
+     </span>
+     <span data-begin="397.089" data-dur="1.000">
+      red
+     </span>
+     —
+     <span data-begin="398.209" data-dur="0.099">
+      but
+     </span>
+     <span data-begin="398.309" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="398.499" data-dur="0.299">
+      firmly
+     </span>
+     <span data-begin="398.799" data-dur="0.429">
+      convinced
+     </span>
+     <span data-begin="399.229" data-dur="0.089">
+      that
+     </span>
+     <span data-begin="399.319" data-dur="0.149">
+      she
+     </span>
+     <span data-begin="399.469" data-dur="0.130">
+      had
+     </span>
+     <span data-begin="399.600" data-dur="0.208">
+      then
+     </span>
+     <span data-begin="399.809" data-dur="0.429">
+      seen
+     </span>
+     <span data-begin="400.319" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="400.440" data-dur="0.359">
+      said
+     </span>
+     <span data-begin="400.850" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="401.020" data-dur="0.068">
+      he
+     </span>
+     <span data-begin="401.089" data-dur="0.120">
+      was
+     </span>
+     <span data-begin="401.209" data-dur="0.359">
+      covered
+     </span>
+     <span data-begin="401.659" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="401.799" data-dur="0.028">
+      a
+     </span>
+     <span data-begin="401.828" data-dur="0.200">
+      pink
+     </span>
+     <span data-begin="402.030" data-dur="0.380">
+      quilt
+     </span>
+     <span data-begin="402.449" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="402.539" data-dur="0.089">
+      that
+     </span>
+     <span data-begin="402.629" data-dur="0.130">
+      his
+     </span>
+     <span data-begin="402.789" data-dur="0.280">
+      eyes
+     </span>
+     <span data-begin="403.069" data-dur="0.099">
+      were
+     </span>
+     <span data-begin="403.169" data-dur="1.000">
+      closed
+     </span>
+     .
+     <p>
+      事实上，她当时什么也没看到，只是提到了她脑海中浮现的第一件事，但她现在看来，她当时编造的东西就像其他回忆一样真实。她不仅记得自己当时说过的话--他转过身来看着她笑，身上盖着红色的东西，而且坚信自己当时看到并说过他盖着粉红色的被子，眼睛是闭着的。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="404.959" data-dur="0.489">
+      Yes
+     </span>
+     ,
+     <span data-begin="405.809" data-dur="0.170">
+      yes
+     </span>
+     ,
+     <span data-begin="405.979" data-dur="0.130">
+      it
+     </span>
+     <span data-begin="406.110" data-dur="0.240">
+      really
+     </span>
+     <span data-begin="406.350" data-dur="0.329">
+      was
+     </span>
+     <span data-begin="406.739" data-dur="0.310">
+      pink
+     </span>
+     !"
+     <span data-begin="407.109" data-dur="0.229">
+      cried
+     </span>
+     <span data-begin="407.339" data-dur="0.570">
+      Natasha
+     </span>
+     ,
+     <span data-begin="408.009" data-dur="0.078">
+      who
+     </span>
+     <span data-begin="408.088" data-dur="0.180">
+      now
+     </span>
+     <span data-begin="408.269" data-dur="0.280">
+      thought
+     </span>
+     <span data-begin="408.550" data-dur="0.229">
+      she
+     </span>
+     <span data-begin="408.780" data-dur="0.238">
+      too
+     </span>
+     <span data-begin="409.019" data-dur="0.429">
+      remembered
+     </span>
+     <span data-begin="409.449" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="409.518" data-dur="0.221">
+      word
+     </span>
+     <span data-begin="409.800" data-dur="0.179">
+      pink
+     </span>
+     <span data-begin="410.019" data-dur="0.299">
+      being
+     </span>
+     <span data-begin="410.319" data-dur="0.399">
+      used
+     </span>
+     ,
+     <span data-begin="411.169" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="411.300" data-dur="0.199">
+      saw
+     </span>
+     <span data-begin="411.499" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="411.620" data-dur="0.208">
+      this
+     </span>
+     <span data-begin="411.829" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="411.919" data-dur="0.179">
+      most
+     </span>
+     <span data-begin="412.100" data-dur="0.818">
+      extraordinary
+     </span>
+     <span data-begin="412.919" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="413.039" data-dur="0.489">
+      mysterious
+     </span>
+     <span data-begin="413.530" data-dur="0.238">
+      part
+     </span>
+     <span data-begin="413.769" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="413.850" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="413.929" data-dur="1.000">
+      prediction
+     </span>
+     .
+     <p>
+      "是的，是的，真的是粉红色的！"娜塔莎喊道，她现在觉得自己也记得有人说过粉红色这个词，并从中看到了预言中最特别、最神秘的部分。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="415.469" data-dur="0.160">
+      But
+     </span>
+     <span data-begin="415.629" data-dur="0.160">
+      what
+     </span>
+     <span data-begin="415.789" data-dur="0.170">
+      does
+     </span>
+     <span data-begin="415.960" data-dur="0.068">
+      it
+     </span>
+     <span data-begin="416.029" data-dur="0.400">
+      mean
+     </span>
+     ?"
+     <span data-begin="416.679" data-dur="0.210">
+      she
+     </span>
+     <span data-begin="416.890" data-dur="0.269">
+      added
+     </span>
+     <span data-begin="417.159" data-dur="1.000">
+      meditatively
+     </span>
+     .
+     <p>
+      "但这意味着什么呢？"她沉思着补充道
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="418.739" data-dur="0.179">
+      Oh
+     </span>
+     ,
+     <span data-begin="418.949" data-dur="0.089">
+      I
+     </span>
+     <span data-begin="419.039" data-dur="0.190">
+      don't
+     </span>
+     <span data-begin="419.229" data-dur="0.220">
+      know
+     </span>
+     ,
+     <span data-begin="419.449" data-dur="0.068">
+      it
+     </span>
+     <span data-begin="419.518" data-dur="0.100">
+      is
+     </span>
+     <span data-begin="419.649" data-dur="0.170">
+      all
+     </span>
+     <span data-begin="419.819" data-dur="0.310">
+      so
+     </span>
+     <span data-begin="420.129" data-dur="0.770">
+      strange
+     </span>
+     ,"
+     <span data-begin="420.899" data-dur="0.350">
+      replied
+     </span>
+     <span data-begin="421.249" data-dur="0.399">
+      Sonya
+     </span>
+     ,
+     <span data-begin="421.739" data-dur="0.290">
+      clutching
+     </span>
+     <span data-begin="422.030" data-dur="0.089">
+      at
+     </span>
+     <span data-begin="422.149" data-dur="0.078">
+      her
+     </span>
+     <span data-begin="422.228" data-dur="1.000">
+      head
+     </span>
+     .
+     <p>
+      "哦，我不知道，这一切都太奇怪了，"索尼娅抓着头回答道。
+     </p>
+    </p>
+    <p>
+     <span data-begin="423.649" data-dur="0.040">
+      A
+     </span>
+     <span data-begin="423.690" data-dur="0.160">
+      few
+     </span>
+     <span data-begin="423.850" data-dur="0.318">
+      minutes
+     </span>
+     <span data-begin="424.169" data-dur="0.399">
+      later
+     </span>
+     <span data-begin="424.609" data-dur="0.299">
+      Prince
+     </span>
+     <span data-begin="424.949" data-dur="0.440">
+      Andrew
+     </span>
+     rang
+     <span data-begin="425.389" data-dur="0.329">
+      and
+     </span>
+     <span data-begin="425.879" data-dur="0.440">
+      Natasha
+     </span>
+     <span data-begin="426.319" data-dur="0.160">
+      went
+     </span>
+     <span data-begin="426.479" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="426.710" data-dur="0.199">
+      him
+     </span>
+     ,
+     <span data-begin="426.979" data-dur="0.130">
+      but
+     </span>
+     <span data-begin="427.109" data-dur="0.510">
+      Sonya
+     </span>
+     ,
+     <span data-begin="427.719" data-dur="0.210">
+      feeling
+     </span>
+     <span data-begin="427.929" data-dur="0.570">
+      unusually
+     </span>
+     <span data-begin="428.499" data-dur="0.420">
+      excited
+     </span>
+     <span data-begin="428.949" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="429.049" data-dur="0.420">
+      touched
+     </span>
+     ,
+     <span data-begin="430.069" data-dur="0.329">
+      remained
+     </span>
+     <span data-begin="430.399" data-dur="0.099">
+      at
+     </span>
+     <span data-begin="430.499" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="430.600" data-dur="0.329">
+      window
+     </span>
+     <span data-begin="430.929" data-dur="0.410">
+      thinking
+     </span>
+     <span data-begin="431.339" data-dur="0.179">
+      about
+     </span>
+     <span data-begin="431.519" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="431.609" data-dur="0.599">
+      strangeness
+     </span>
+     <span data-begin="432.210" data-dur="0.087">
+      of
+     </span>
+     <span data-begin="432.298" data-dur="0.171">
+      what
+     </span>
+     <span data-begin="432.469" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="432.609" data-dur="1.000">
+      occurred
+     </span>
+     .
+     <p>
+      几分钟后，安德鲁王子的电话响了，娜塔莎去找他，但索尼娅感到异常兴奋和感动，她仍然呆在窗前思考着发生的怪事。
+     </p>
+    </p>
+    <p>
+     <span data-begin="433.839" data-dur="0.068">
+      They
+     </span>
+     <span data-begin="433.908" data-dur="0.150">
+      had
+     </span>
+     <span data-begin="434.059" data-dur="0.080">
+      an
+     </span>
+     <span data-begin="434.169" data-dur="0.599">
+      opportunity
+     </span>
+     <span data-begin="434.769" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="434.969" data-dur="0.210">
+      day
+     </span>
+     <span data-begin="435.179" data-dur="0.068">
+      to
+     </span>
+     <span data-begin="435.248" data-dur="0.281">
+      send
+     </span>
+     <span data-begin="435.530" data-dur="0.308">
+      letters
+     </span>
+     <span data-begin="435.839" data-dur="0.060">
+      to
+     </span>
+     <span data-begin="435.929" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="436.059" data-dur="0.320">
+      army
+     </span>
+     ,
+     <span data-begin="437.030" data-dur="0.108">
+      and
+     </span>
+     <span data-begin="437.139" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="437.208" data-dur="0.381">
+      countess
+     </span>
+     <span data-begin="437.589" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="437.729" data-dur="0.280">
+      writing
+     </span>
+     <span data-begin="438.009" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="438.179" data-dur="0.078">
+      her
+     </span>
+     <span data-begin="438.258" data-dur="1.000">
+      son
+     </span>
+     .
+     <p>
+      那天，他们有机会给军队寄信，伯爵夫人正在给儿子写信。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="439.890" data-dur="0.510">
+      Sonya
+     </span>
+     !"
+     <span data-begin="440.430" data-dur="0.190">
+      said
+     </span>
+     <span data-begin="440.649" data-dur="0.060">
+      the
+     </span>
+     <span data-begin="440.710" data-dur="0.570">
+      countess
+     </span>
+     ,
+     <span data-begin="441.589" data-dur="0.340">
+      raising
+     </span>
+     <span data-begin="441.930" data-dur="0.118">
+      her
+     </span>
+     <span data-begin="442.049" data-dur="0.290">
+      eyes
+     </span>
+     <span data-begin="442.339" data-dur="0.140">
+      from
+     </span>
+     <span data-begin="442.479" data-dur="0.110">
+      her
+     </span>
+     <span data-begin="442.589" data-dur="0.280">
+      letter
+     </span>
+     <span data-begin="442.869" data-dur="0.149">
+      as
+     </span>
+     <span data-begin="443.049" data-dur="0.060">
+      her
+     </span>
+     <span data-begin="443.140" data-dur="0.220">
+      niece
+     </span>
+     <span data-begin="443.360" data-dur="1.000">
+      passed
+     </span>
+     , "
+     <span data-begin="444.649" data-dur="0.580">
+      Sonya
+     </span>
+     ,
+     <span data-begin="445.399" data-dur="0.179">
+      won't
+     </span>
+     <span data-begin="445.579" data-dur="0.120">
+      you
+     </span>
+     <span data-begin="445.699" data-dur="0.220">
+      write
+     </span>
+     <span data-begin="445.919" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="446.079" data-dur="0.640">
+      Nicholas
+     </span>
+     ?"
+     <span data-begin="447.089" data-dur="0.130">
+      She
+     </span>
+     <span data-begin="447.219" data-dur="0.269">
+      spoke
+     </span>
+     <span data-begin="447.489" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="447.558" data-dur="0.050">
+      a
+     </span>
+     <span data-begin="447.610" data-dur="0.448">
+      soft
+     </span>
+     ,
+     <span data-begin="448.059" data-dur="0.520">
+      tremulous
+     </span>
+     <span data-begin="448.579" data-dur="0.429">
+      voice
+     </span>
+     ,
+     <span data-begin="449.530" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="449.669" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="449.780" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="449.868" data-dur="0.360">
+      weary
+     </span>
+     <span data-begin="450.229" data-dur="0.290">
+      eyes
+     </span>
+     <span data-begin="450.519" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="450.649" data-dur="0.179">
+      looked
+     </span>
+     <span data-begin="450.859" data-dur="0.229">
+      over
+     </span>
+     <span data-begin="451.089" data-dur="0.110">
+      her
+     </span>
+     <span data-begin="451.199" data-dur="0.659">
+      spectacles
+     </span>
+     <span data-begin="451.859" data-dur="0.489">
+      Sonya
+     </span>
+     <span data-begin="452.350" data-dur="0.190">
+      read
+     </span>
+     <span data-begin="452.600" data-dur="0.220">
+      all
+     </span>
+     <span data-begin="452.820" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="452.960" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="453.039" data-dur="0.410">
+      countess
+     </span>
+     <span data-begin="453.449" data-dur="0.170">
+      meant
+     </span>
+     <span data-begin="453.619" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="453.698" data-dur="0.371">
+      convey
+     </span>
+     <span data-begin="454.070" data-dur="0.158">
+      with
+     </span>
+     <span data-begin="454.229" data-dur="0.199">
+      these
+     </span>
+     <span data-begin="454.460" data-dur="1.000">
+      words
+     </span>
+     .
+     <span data-begin="456.000" data-dur="0.240">
+      Those
+     </span>
+     <span data-begin="456.269" data-dur="0.280">
+      eyes
+     </span>
+     <span data-begin="456.549" data-dur="0.459">
+      expressed
+     </span>
+     <span data-begin="457.089" data-dur="0.630">
+      entreaty
+     </span>
+     ,
+     <span data-begin="457.960" data-dur="0.390">
+      shame
+     </span>
+     <span data-begin="458.350" data-dur="0.087">
+      at
+     </span>
+     <span data-begin="458.438" data-dur="0.300">
+      having
+     </span>
+     <span data-begin="458.739" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="458.890" data-dur="0.399">
+      ask
+     </span>
+     ,
+     <span data-begin="459.689" data-dur="0.359">
+      fear
+     </span>
+     <span data-begin="460.049" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="460.180" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="460.239" data-dur="0.650">
+      refusal
+     </span>
+     ,
+     <span data-begin="461.169" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="461.329" data-dur="0.420">
+      readiness
+     </span>
+     <span data-begin="461.750" data-dur="0.149">
+      for
+     </span>
+     <span data-begin="461.899" data-dur="0.500">
+      relentless
+     </span>
+     <span data-begin="462.430" data-dur="0.310">
+      hatred
+     </span>
+     <span data-begin="462.769" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="462.859" data-dur="0.210">
+      case
+     </span>
+     <span data-begin="463.070" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="463.139" data-dur="0.309">
+      such
+     </span>
+     <span data-begin="463.449" data-dur="1.000">
+      refusal
+     </span>
+     .
+     <p>
+      "索尼娅！"伯爵夫人在侄女经过时从信上抬起头说道，"索尼娅，你不给尼古拉斯写信吗？她说话的声音轻柔而颤抖，索尼娅从她戴着眼镜的那双疲惫的眼睛里读出了伯爵夫人想通过这些话表达的所有意思。那双眼睛表达了恳求、对不得不提出请求的羞愧、对遭到拒绝的恐惧，以及对遭到拒绝后无情憎恨的准备。
+     </p>
+    </p>
+    <p>
+     <span data-begin="464.769" data-dur="0.399">
+      Sonya
+     </span>
+     <span data-begin="465.169" data-dur="0.199">
+      went
+     </span>
+     <span data-begin="465.369" data-dur="0.099">
+      up
+     </span>
+     <span data-begin="465.469" data-dur="0.080">
+      to
+     </span>
+     <span data-begin="465.579" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="465.648" data-dur="0.471">
+      countess
+     </span>
+     <span data-begin="466.149" data-dur="0.329">
+      and
+     </span>
+     ,
+     <span data-begin="467.000" data-dur="0.320">
+      kneeling
+     </span>
+     <span data-begin="467.320" data-dur="0.420">
+      down
+     </span>
+     ,
+     <span data-begin="467.859" data-dur="0.290">
+      kissed
+     </span>
+     <span data-begin="468.149" data-dur="0.130">
+      her
+     </span>
+     <span data-begin="468.280" data-dur="1.000">
+      hand
+     </span>
+     .
+     <p>
+      索尼娅走到伯爵夫人面前，跪下亲吻了她的手。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="469.539" data-dur="0.280">
+      Yes
+     </span>
+     ,
+     <span data-begin="469.879" data-dur="0.220">
+      Mamma
+     </span>
+     ,
+     <span data-begin="470.689" data-dur="0.140">
+      I
+     </span>
+     <span data-begin="470.829" data-dur="0.220">
+      will
+     </span>
+     <span data-begin="471.049" data-dur="0.299">
+      write
+     </span>
+     ,"
+     <span data-begin="471.500" data-dur="0.188">
+      said
+     </span>
+     <span data-begin="471.689" data-dur="1.000">
+      she
+     </span>
+     .
+     <p>
+      "她说："好的，妈妈，我会写信
+     </p>
+    </p>
+    <p>
+     <span data-begin="473.359" data-dur="0.350">
+      Sonya
+     </span>
+     <span data-begin="473.710" data-dur="0.128">
+      was
+     </span>
+     <span data-begin="473.839" data-dur="0.550">
+      softened
+     </span>
+     ,
+     <span data-begin="474.419" data-dur="0.550">
+      excited
+     </span>
+     ,
+     <span data-begin="475.000" data-dur="0.168">
+      and
+     </span>
+     <span data-begin="475.169" data-dur="0.450">
+      touched
+     </span>
+     <span data-begin="475.619" data-dur="0.179">
+      by
+     </span>
+     <span data-begin="475.829" data-dur="0.190">
+      all
+     </span>
+     <span data-begin="476.019" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="476.149" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="476.289" data-dur="0.350">
+      occurred
+     </span>
+     <span data-begin="476.640" data-dur="0.168">
+      that
+     </span>
+     <span data-begin="476.809" data-dur="0.350">
+      day
+     </span>
+     ,
+     <span data-begin="477.589" data-dur="0.480">
+      especially
+     </span>
+     <span data-begin="478.070" data-dur="0.118">
+      by
+     </span>
+     <span data-begin="478.189" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="478.280" data-dur="0.539">
+      mysterious
+     </span>
+     <span data-begin="478.820" data-dur="0.558">
+      fulfillment
+     </span>
+     <span data-begin="479.379" data-dur="0.120">
+      she
+     </span>
+     <span data-begin="479.499" data-dur="0.089">
+      had
+     </span>
+     <span data-begin="479.589" data-dur="0.199">
+      just
+     </span>
+     <span data-begin="479.789" data-dur="0.170">
+      seen
+     </span>
+     <span data-begin="479.960" data-dur="0.087">
+      of
+     </span>
+     <span data-begin="480.048" data-dur="0.090">
+      her
+     </span>
+     <span data-begin="480.140" data-dur="1.000">
+      vision
+     </span>
+     .
+     <span data-begin="481.269" data-dur="0.250">
+      Now
+     </span>
+     <span data-begin="481.519" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="481.649" data-dur="0.199">
+      she
+     </span>
+     <span data-begin="481.850" data-dur="0.350">
+      knew
+     </span>
+     <span data-begin="482.399" data-dur="0.210">
+      that
+     </span>
+     <span data-begin="482.609" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="482.699" data-dur="0.580">
+      renewal
+     </span>
+     <span data-begin="483.280" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="483.359" data-dur="0.580">
+      Natasha's
+     </span>
+     <span data-begin="483.939" data-dur="0.459">
+      relations
+     </span>
+     <span data-begin="484.399" data-dur="0.099">
+      with
+     </span>
+     <span data-begin="484.499" data-dur="0.310">
+      Prince
+     </span>
+     <span data-begin="484.850" data-dur="0.470">
+      Andrew
+     </span>
+     <span data-begin="485.699" data-dur="0.120">
+      would
+     </span>
+     <span data-begin="485.820" data-dur="0.359">
+      prevent
+     </span>
+     <span data-begin="486.179" data-dur="0.390">
+      Nicholas
+     </span>
+     <span data-begin="486.570" data-dur="0.118">
+      from
+     </span>
+     <span data-begin="486.689" data-dur="0.390">
+      marrying
+     </span>
+     <span data-begin="487.079" data-dur="0.410">
+      Princess
+     </span>
+     <span data-begin="487.489" data-dur="0.450">
+      Mary
+     </span>
+     ,
+     <span data-begin="488.280" data-dur="0.128">
+      she
+     </span>
+     <span data-begin="488.409" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="488.579" data-dur="0.459">
+      joyfully
+     </span>
+     <span data-begin="489.039" data-dur="0.510">
+      conscious
+     </span>
+     <span data-begin="489.549" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="489.649" data-dur="0.099">
+      a
+     </span>
+     <span data-begin="489.749" data-dur="0.359">
+      return
+     </span>
+     <span data-begin="490.109" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="490.199" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="490.399" data-dur="0.310">
+      self
+     </span>
+     -
+     <span data-begin="490.710" data-dur="0.688">
+      sacrificing
+     </span>
+     <span data-begin="491.399" data-dur="0.420">
+      spirit
+     </span>
+     <span data-begin="491.819" data-dur="0.078">
+      in
+     </span>
+     <span data-begin="491.898" data-dur="0.131">
+      which
+     </span>
+     <span data-begin="492.030" data-dur="0.087">
+      she
+     </span>
+     <span data-begin="492.118" data-dur="0.111">
+      was
+     </span>
+     <span data-begin="492.229" data-dur="0.480">
+      accustomed
+     </span>
+     <span data-begin="492.710" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="492.789" data-dur="0.229">
+      live
+     </span>
+     <span data-begin="493.019" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="493.189" data-dur="1.000">
+      loved
+     </span>
+     to live.
+     <span data-begin="494.689" data-dur="0.179">
+      So
+     </span>
+     <span data-begin="494.869" data-dur="0.149">
+      with
+     </span>
+     <span data-begin="495.019" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="495.069" data-dur="0.410">
+      joyful
+     </span>
+     <span data-begin="495.479" data-dur="0.590">
+      consciousness
+     </span>
+     <span data-begin="496.069" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="496.169" data-dur="0.470">
+      performing
+     </span>
+     <span data-begin="496.640" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="496.679" data-dur="0.630">
+      magnanimous
+     </span>
+     <span data-begin="497.309" data-dur="0.350">
+      deed
+     </span>
+     —
+     <span data-begin="498.039" data-dur="0.459">
+      interrupted
+     </span>
+     <span data-begin="498.499" data-dur="0.390">
+      several
+     </span>
+     <span data-begin="498.890" data-dur="0.370">
+      times
+     </span>
+     <span data-begin="499.289" data-dur="0.099">
+      by
+     </span>
+     <span data-begin="499.390" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="499.488" data-dur="0.360">
+      tears
+     </span>
+     <span data-begin="499.850" data-dur="0.138">
+      that
+     </span>
+     <span data-begin="499.989" data-dur="0.229">
+      dimmed
+     </span>
+     <span data-begin="500.249" data-dur="0.068">
+      her
+     </span>
+     <span data-begin="500.318" data-dur="0.430">
+      velvety
+     </span>
+     <span data-begin="500.749" data-dur="0.250">
+      black
+     </span>
+     <span data-begin="500.999" data-dur="0.410">
+      eyes
+     </span>
+     —
+     <span data-begin="501.850" data-dur="0.179">
+      she
+     </span>
+     <span data-begin="502.030" data-dur="0.229">
+      wrote
+     </span>
+     <span data-begin="502.259" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="502.399" data-dur="0.429">
+      touching
+     </span>
+     <span data-begin="502.829" data-dur="0.390">
+      letter
+     </span>
+     <span data-begin="503.249" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="503.379" data-dur="0.350">
+      arrival
+     </span>
+     <span data-begin="503.729" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="503.808" data-dur="0.221">
+      which
+     </span>
+     <span data-begin="504.029" data-dur="0.149">
+      had
+     </span>
+     <span data-begin="504.180" data-dur="0.190">
+      so
+     </span>
+     <span data-begin="504.370" data-dur="0.350">
+      amazed
+     </span>
+     <span data-begin="504.749" data-dur="1.000">
+      Nicholas
+     </span>
+     .
+     <p>
+      那天发生的一切，尤其是她刚刚看到的幻象的神秘实现，让索尼娅心软了、激动了、感动了。现在，她知道娜塔莎与安德鲁王子恢复关系将阻止尼古拉斯与玛丽公主结婚，她欣喜地意识到，她习惯并热爱生活的那种自我牺牲精神又回来了。于是，她怀着做了一件宽宏大量的事的喜悦心情，写下了那封感人至深的信，这封信的到来使尼古拉大吃一惊。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>
