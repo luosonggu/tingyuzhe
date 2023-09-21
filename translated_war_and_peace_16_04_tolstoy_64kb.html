@@ -1,0 +1,3621 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_16_04_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_16_04_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_16_04_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_16_04_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER
+     <span data-begin="5.849" data-dur="1.000">
+      IV
+     </span>
+     <p>
+      第四章
+     </p>
+    </p>
+    <p>
+     <span data-begin="7.739" data-dur="0.110">
+      The
+     </span>
+     <span data-begin="7.849" data-dur="0.280">
+      flood
+     </span>
+     <span data-begin="8.130" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="8.239" data-dur="0.620">
+      nations
+     </span>
+     <span data-begin="9.019" data-dur="0.350">
+      begins
+     </span>
+     <span data-begin="9.369" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="9.460" data-dur="0.528">
+      subside
+     </span>
+     <span data-begin="9.989" data-dur="0.190">
+      into
+     </span>
+     <span data-begin="10.179" data-dur="0.170">
+      its
+     </span>
+     <span data-begin="10.349" data-dur="0.350">
+      normal
+     </span>
+     <span data-begin="10.699" data-dur="1.000">
+      channels
+     </span>
+     .
+     <span data-begin="11.889" data-dur="0.130">
+      The
+     </span>
+     <span data-begin="12.019" data-dur="0.450">
+      waves
+     </span>
+     <span data-begin="12.469" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="12.559" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="12.630" data-dur="0.299">
+      great
+     </span>
+     <span data-begin="12.929" data-dur="0.489">
+      movement
+     </span>
+     <span data-begin="13.420" data-dur="0.429">
+      abate
+     </span>
+     ,
+     <span data-begin="14.229" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="14.349" data-dur="0.070">
+      on
+     </span>
+     <span data-begin="14.420" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="14.518" data-dur="0.360">
+      calm
+     </span>
+     <span data-begin="14.880" data-dur="0.659">
+      surface
+     </span>
+     <span data-begin="15.769" data-dur="0.320">
+      eddies
+     </span>
+     <span data-begin="16.090" data-dur="0.128">
+      are
+     </span>
+     <span data-begin="16.219" data-dur="0.539">
+      formed
+     </span>
+     <span data-begin="17.000" data-dur="0.128">
+      in
+     </span>
+     <span data-begin="17.129" data-dur="0.210">
+      which
+     </span>
+     <span data-begin="17.340" data-dur="0.378">
+      float
+     </span>
+     <span data-begin="17.719" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="17.819" data-dur="1.000">
+      diplomatists
+     </span>
+     ,
+     <span data-begin="19.119" data-dur="0.078">
+      who
+     </span>
+     <span data-begin="19.198" data-dur="0.451">
+      imagine
+     </span>
+     <span data-begin="19.649" data-dur="0.220">
+      that
+     </span>
+     <span data-begin="19.869" data-dur="0.240">
+      they
+     </span>
+     <span data-begin="20.109" data-dur="0.149">
+      have
+     </span>
+     <span data-begin="20.319" data-dur="0.390">
+      caused
+     </span>
+     <span data-begin="20.709" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="20.788" data-dur="0.391">
+      floods
+     </span>
+     <span data-begin="21.180" data-dur="0.128">
+      to
+     </span>
+     <span data-begin="21.309" data-dur="1.000">
+      abate
+     </span>
+     .
+     <p>
+      各国的洪水开始退去，进入正常的渠道。大运动的波浪减弱了，在平静的海面上形成了漩涡，外交家们在其中漂浮，他们想象自己已经使洪水减弱了。
+     </p>
+    </p>
+    <p>
+     <span data-begin="22.859" data-dur="0.199">
+      But
+     </span>
+     <span data-begin="23.059" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="23.138" data-dur="0.381">
+      smooth
+     </span>
+     <span data-begin="23.569" data-dur="0.310">
+      sea
+     </span>
+     <span data-begin="23.879" data-dur="0.420">
+      again
+     </span>
+     <span data-begin="24.430" data-dur="0.478">
+      suddenly
+     </span>
+     <span data-begin="24.909" data-dur="0.420">
+      becomes
+     </span>
+     <span data-begin="25.329" data-dur="1.000">
+      disturbed
+     </span>
+     .
+     <span data-begin="26.729" data-dur="0.110">
+      The
+     </span>
+     <span data-begin="26.840" data-dur="1.000">
+      diplomatists
+     </span>
+     <span data-begin="27.869" data-dur="0.199">
+      think
+     </span>
+     <span data-begin="28.069" data-dur="0.220">
+      that
+     </span>
+     <span data-begin="28.329" data-dur="0.269">
+      their
+     </span>
+     <span data-begin="28.599" data-dur="0.780">
+      disagreements
+     </span>
+     <span data-begin="29.609" data-dur="0.060">
+      are
+     </span>
+     <span data-begin="29.670" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="29.749" data-dur="0.581">
+      cause
+     </span>
+     <span data-begin="30.469" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="30.609" data-dur="0.199">
+      this
+     </span>
+     <span data-begin="30.809" data-dur="0.440">
+      fresh
+     </span>
+     <span data-begin="31.309" data-dur="0.500">
+      pressure
+     </span>
+     <span data-begin="31.809" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="31.929" data-dur="0.420">
+      natural
+     </span>
+     <span data-begin="32.349" data-dur="1.000">
+      forces
+     </span>
+     ;
+     <span data-begin="33.969" data-dur="0.120">
+      they
+     </span>
+     <span data-begin="34.090" data-dur="0.610">
+      anticipate
+     </span>
+     <span data-begin="34.819" data-dur="0.280">
+      war
+     </span>
+     <span data-begin="35.099" data-dur="0.290">
+      between
+     </span>
+     <span data-begin="35.389" data-dur="0.120">
+      their
+     </span>
+     <span data-begin="35.509" data-dur="1.000">
+      sovereigns
+     </span>
+     ;
+     <span data-begin="36.979" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="37.090" data-dur="0.550">
+      position
+     </span>
+     <span data-begin="37.700" data-dur="0.378">
+      seems
+     </span>
+     <span data-begin="38.079" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="38.219" data-dur="0.250">
+      them
+     </span>
+     <span data-begin="38.700" data-dur="1.000">
+      insoluble
+     </span>
+     .
+     <span data-begin="40.450" data-dur="0.179">
+      But
+     </span>
+     <span data-begin="40.629" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="40.729" data-dur="0.340">
+      wave
+     </span>
+     <span data-begin="41.110" data-dur="0.160">
+      they
+     </span>
+     <span data-begin="41.270" data-dur="0.320">
+      feel
+     </span>
+     <span data-begin="41.590" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="41.680" data-dur="0.179">
+      be
+     </span>
+     <span data-begin="41.860" data-dur="0.599">
+      rising
+     </span>
+     <span data-begin="42.649" data-dur="0.179">
+      does
+     </span>
+     <span data-begin="42.829" data-dur="0.149">
+      not
+     </span>
+     <span data-begin="42.979" data-dur="0.370">
+      come
+     </span>
+     <span data-begin="43.349" data-dur="0.190">
+      from
+     </span>
+     <span data-begin="43.540" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="43.619" data-dur="0.390">
+      quarter
+     </span>
+     <span data-begin="44.009" data-dur="0.130">
+      they
+     </span>
+     <span data-begin="44.139" data-dur="1.000">
+      expect
+     </span>
+     .
+     <span data-begin="45.509" data-dur="0.149">
+      It
+     </span>
+     <span data-begin="45.659" data-dur="0.450">
+      rises
+     </span>
+     <span data-begin="46.110" data-dur="0.308">
+      again
+     </span>
+     <span data-begin="46.419" data-dur="0.160">
+      from
+     </span>
+     <span data-begin="46.579" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="46.669" data-dur="0.370">
+      same
+     </span>
+     <span data-begin="47.039" data-dur="0.280">
+      point
+     </span>
+     <span data-begin="47.319" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="47.439" data-dur="1.000">
+      before
+     </span>
+     —
+     <span data-begin="48.779" data-dur="1.000">
+      Paris
+     </span>
+     .
+     <span data-begin="50.399" data-dur="0.099">
+      The
+     </span>
+     <span data-begin="50.500" data-dur="0.399">
+      last
+     </span>
+     <span data-begin="50.899" data-dur="0.610">
+      backwash
+     </span>
+     <span data-begin="51.509" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="51.619" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="51.698" data-dur="0.501">
+      movement
+     </span>
+     <span data-begin="52.229" data-dur="0.110">
+      from
+     </span>
+     <span data-begin="52.340" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="52.430" data-dur="0.340">
+      west
+     </span>
+     <span data-begin="52.770" data-dur="1.000">
+      occurs
+     </span>
+     :
+     <span data-begin="53.829" data-dur="0.099">
+      a
+     </span>
+     <span data-begin="53.930" data-dur="0.669">
+      backwash
+     </span>
+     <span data-begin="54.659" data-dur="0.280">
+      which
+     </span>
+     <span data-begin="54.939" data-dur="0.459">
+      serves
+     </span>
+     <span data-begin="55.399" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="55.520" data-dur="0.440">
+      solve
+     </span>
+     <span data-begin="56.000" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="56.098" data-dur="0.521">
+      apparently
+     </span>
+     <span data-begin="56.649" data-dur="0.810">
+      insuperable
+     </span>
+     <span data-begin="57.489" data-dur="0.520">
+      diplomatic
+     </span>
+     <span data-begin="58.009" data-dur="0.700">
+      difficulties
+     </span>
+     <span data-begin="58.939" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="59.109" data-dur="0.370">
+      ends
+     </span>
+     <span data-begin="59.520" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="59.608" data-dur="0.441">
+      military
+     </span>
+     <span data-begin="60.049" data-dur="0.410">
+      movement
+     </span>
+     <span data-begin="60.459" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="60.559" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="60.759" data-dur="0.370">
+      period
+     </span>
+     <span data-begin="61.129" data-dur="0.068">
+      of
+     </span>
+     <span data-begin="61.198" data-dur="1.000">
+      history
+     </span>
+     .
+     <p>
+      但是，平静的海面又突然变得动荡不安。外交家们认为，他们之间的分歧是造成这种新的自然力量压力的原因；他们预感到他们的君主之间会开战；在他们看来，局势似乎无法解决。但是，他们所感受到的浪潮并不是来自他们所期待的地方。它又从先前的同一地点--巴黎--涌起。来自西方的运动出现了最后一次反扑：这次反扑解决了显然无法解决的外交难题，结束了这一历史时期的军事运动。
+     </p>
+    </p>
+    <p>
+     <span data-begin="63.090" data-dur="0.149">
+      The
+     </span>
+     <span data-begin="63.239" data-dur="0.350">
+      man
+     </span>
+     <span data-begin="63.590" data-dur="0.089">
+      who
+     </span>
+     <span data-begin="63.680" data-dur="0.170">
+      had
+     </span>
+     <span data-begin="63.889" data-dur="0.520">
+      devastated
+     </span>
+     <span data-begin="64.409" data-dur="0.630">
+      France
+     </span>
+     <span data-begin="65.379" data-dur="0.489">
+      returns
+     </span>
+     <span data-begin="65.869" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="65.970" data-dur="0.560">
+      France
+     </span>
+     <span data-begin="66.709" data-dur="0.500">
+      alone
+     </span>
+     ,
+     <span data-begin="67.689" data-dur="0.299">
+      without
+     </span>
+     <span data-begin="68.040" data-dur="0.188">
+      any
+     </span>
+     <span data-begin="68.229" data-dur="1.000">
+      conspiracy
+     </span>
+     <span data-begin="69.409" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="69.569" data-dur="0.350">
+      without
+     </span>
+     <span data-begin="69.919" data-dur="1.000">
+      soldiers
+     </span>
+     .
+     <span data-begin="71.500" data-dur="0.269">
+      Any
+     </span>
+     <span data-begin="71.799" data-dur="0.320">
+      guard
+     </span>
+     <span data-begin="72.150" data-dur="0.320">
+      might
+     </span>
+     <span data-begin="72.470" data-dur="0.399">
+      arrest
+     </span>
+     <span data-begin="72.869" data-dur="0.220">
+      him
+     </span>
+     ,
+     <span data-begin="73.260" data-dur="0.218">
+      but
+     </span>
+     <span data-begin="73.479" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="73.610" data-dur="0.539">
+      strange
+     </span>
+     <span data-begin="74.150" data-dur="0.440">
+      chance
+     </span>
+     <span data-begin="74.819" data-dur="0.240">
+      no
+     </span>
+     <span data-begin="75.059" data-dur="0.210">
+      one
+     </span>
+     <span data-begin="75.269" data-dur="0.190">
+      does
+     </span>
+     <span data-begin="75.459" data-dur="0.359">
+      so
+     </span>
+     <span data-begin="76.189" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="76.430" data-dur="0.338">
+      all
+     </span>
+     <span data-begin="76.769" data-dur="0.770">
+      rapturously
+     </span>
+     <span data-begin="77.569" data-dur="0.340">
+      greet
+     </span>
+     <span data-begin="77.949" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="78.049" data-dur="0.299">
+      man
+     </span>
+     <span data-begin="78.349" data-dur="0.120">
+      they
+     </span>
+     <span data-begin="78.470" data-dur="0.539">
+      cursed
+     </span>
+     <span data-begin="79.009" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="79.088" data-dur="0.150">
+      day
+     </span>
+     <span data-begin="79.239" data-dur="0.570">
+      before
+     </span>
+     <span data-begin="80.069" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="80.220" data-dur="0.118">
+      will
+     </span>
+     <span data-begin="80.339" data-dur="0.450">
+      curse
+     </span>
+     <span data-begin="80.790" data-dur="0.410">
+      again
+     </span>
+     <span data-begin="81.439" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="81.489" data-dur="0.370">
+      month
+     </span>
+     <span data-begin="81.860" data-dur="1.000">
+      later
+     </span>
+     .
+     <p>
+      蹂躏法国的人独自返回法国，没有任何阴谋，也没有士兵。任何卫兵都有可能逮捕他，但奇怪的是，没有人这样做，所有人都兴高采烈地迎接这个他们前一天诅咒过、一个月后又要诅咒的人。
+     </p>
+    </p>
+    <p>
+     <span data-begin="83.430" data-dur="0.290">
+      This
+     </span>
+     <span data-begin="83.720" data-dur="0.410">
+      man
+     </span>
+     <span data-begin="84.470" data-dur="0.110">
+      is
+     </span>
+     <span data-begin="84.580" data-dur="0.350">
+      still
+     </span>
+     <span data-begin="84.930" data-dur="0.399">
+      needed
+     </span>
+     <span data-begin="85.750" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="85.909" data-dur="0.560">
+      justify
+     </span>
+     <span data-begin="86.470" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="86.580" data-dur="0.500">
+      final
+     </span>
+     <span data-begin="87.080" data-dur="0.599">
+      collective
+     </span>
+     <span data-begin="87.709" data-dur="1.000">
+      act
+     </span>
+     .
+     <p>
+      最后的集体行动仍然需要这个人。
+     </p>
+    </p>
+    <p>
+     <span data-begin="89.229" data-dur="0.240">
+      That
+     </span>
+     <span data-begin="89.500" data-dur="0.420">
+      act
+     </span>
+     <span data-begin="90.059" data-dur="0.170">
+      is
+     </span>
+     <span data-begin="90.229" data-dur="1.000">
+      performed
+     </span>
+     .
+     <p>
+      行动已经开始。
+     </p>
+    </p>
+    <p>
+     <span data-begin="91.900" data-dur="0.120">
+      The
+     </span>
+     <span data-begin="92.049" data-dur="0.380">
+      last
+     </span>
+     <span data-begin="92.430" data-dur="0.278">
+      role
+     </span>
+     <span data-begin="92.709" data-dur="0.170">
+      is
+     </span>
+     <span data-begin="92.879" data-dur="1.000">
+      played
+     </span>
+     .
+     <span data-begin="94.049" data-dur="0.140">
+      The
+     </span>
+     <span data-begin="94.189" data-dur="0.280">
+      actor
+     </span>
+     <span data-begin="94.470" data-dur="0.118">
+      is
+     </span>
+     <span data-begin="94.589" data-dur="0.310">
+      bidden
+     </span>
+     <span data-begin="94.930" data-dur="0.118">
+      to
+     </span>
+     <span data-begin="95.049" data-dur="0.510">
+      disrobe
+     </span>
+     <span data-begin="95.689" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="95.879" data-dur="0.260">
+      wash
+     </span>
+     <span data-begin="96.139" data-dur="0.269">
+      off
+     </span>
+     <span data-begin="96.409" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="96.569" data-dur="0.440">
+      powder
+     </span>
+     <span data-begin="97.009" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="97.180" data-dur="0.429">
+      paint
+     </span>
+     :
+     <span data-begin="97.970" data-dur="0.199">
+      he
+     </span>
+     <span data-begin="98.169" data-dur="0.149">
+      will
+     </span>
+     <span data-begin="98.319" data-dur="0.170">
+      not
+     </span>
+     <span data-begin="98.519" data-dur="0.140">
+      be
+     </span>
+     <span data-begin="98.659" data-dur="0.350">
+      wanted
+     </span>
+     <span data-begin="99.009" data-dur="0.160">
+      any
+     </span>
+     <span data-begin="99.169" data-dur="1.000">
+      more
+     </span>
+     .
+     <p>
+      最后一个角色登场。演员被要求脱掉衣服，洗掉身上的粉和颜料：他将不再被需要。
+     </p>
+    </p>
+    <p>
+     <span data-begin="100.759" data-dur="0.179">
+      And
+     </span>
+     <span data-begin="100.939" data-dur="0.290">
+      some
+     </span>
+     <span data-begin="101.229" data-dur="0.280">
+      years
+     </span>
+     <span data-begin="101.509" data-dur="0.550">
+      pass
+     </span>
+     <span data-begin="102.269" data-dur="0.280">
+      during
+     </span>
+     <span data-begin="102.549" data-dur="0.190">
+      which
+     </span>
+     <span data-begin="102.739" data-dur="0.078">
+      he
+     </span>
+     <span data-begin="102.818" data-dur="0.341">
+      plays
+     </span>
+     <span data-begin="103.159" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="103.220" data-dur="0.530">
+      pitiful
+     </span>
+     <span data-begin="103.750" data-dur="0.429">
+      comedy
+     </span>
+     <span data-begin="104.180" data-dur="0.087">
+      to
+     </span>
+     <span data-begin="104.268" data-dur="0.600">
+      himself
+     </span>
+     <span data-begin="105.040" data-dur="0.128">
+      in
+     </span>
+     <span data-begin="105.169" data-dur="0.570">
+      solitude
+     </span>
+     <span data-begin="105.739" data-dur="0.099">
+      on
+     </span>
+     <span data-begin="105.839" data-dur="0.140">
+      his
+     </span>
+     <span data-begin="106.009" data-dur="0.459">
+      island
+     </span>
+     ,
+     <span data-begin="106.899" data-dur="0.560">
+      justifying
+     </span>
+     <span data-begin="107.459" data-dur="0.120">
+      his
+     </span>
+     <span data-begin="107.579" data-dur="0.500">
+      actions
+     </span>
+     <span data-begin="108.250" data-dur="0.170">
+      by
+     </span>
+     <span data-begin="108.449" data-dur="0.620">
+      intrigues
+     </span>
+     <span data-begin="109.069" data-dur="0.299">
+      and
+     </span>
+     <span data-begin="109.369" data-dur="0.470">
+      lies
+     </span>
+     <span data-begin="110.059" data-dur="0.089">
+      when
+     </span>
+     <span data-begin="110.149" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="110.239" data-dur="0.669">
+      justification
+     </span>
+     <span data-begin="110.909" data-dur="0.130">
+      is
+     </span>
+     <span data-begin="111.040" data-dur="0.108">
+      no
+     </span>
+     <span data-begin="111.149" data-dur="0.329">
+      longer
+     </span>
+     <span data-begin="111.479" data-dur="0.420">
+      needed
+     </span>
+     ,
+     <span data-begin="112.430" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="112.559" data-dur="0.539">
+      displaying
+     </span>
+     <span data-begin="113.099" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="113.259" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="113.328" data-dur="0.360">
+      whole
+     </span>
+     <span data-begin="113.689" data-dur="0.359">
+      world
+     </span>
+     <span data-begin="114.399" data-dur="0.280">
+      what
+     </span>
+     <span data-begin="114.680" data-dur="0.118">
+      it
+     </span>
+     <span data-begin="114.799" data-dur="0.310">
+      was
+     </span>
+     <span data-begin="115.110" data-dur="0.218">
+      that
+     </span>
+     <span data-begin="115.329" data-dur="0.280">
+      people
+     </span>
+     <span data-begin="115.610" data-dur="0.110">
+      had
+     </span>
+     <span data-begin="115.750" data-dur="0.518">
+      mistaken
+     </span>
+     <span data-begin="116.269" data-dur="0.179">
+      for
+     </span>
+     <span data-begin="116.449" data-dur="0.450">
+      strength
+     </span>
+     <span data-begin="117.360" data-dur="0.070">
+      as
+     </span>
+     <span data-begin="117.529" data-dur="0.299">
+      long
+     </span>
+     <span data-begin="117.860" data-dur="0.108">
+      as
+     </span>
+     <span data-begin="117.969" data-dur="0.080">
+      an
+     </span>
+     <span data-begin="118.079" data-dur="0.570">
+      unseen
+     </span>
+     <span data-begin="118.649" data-dur="0.440">
+      hand
+     </span>
+     <span data-begin="119.309" data-dur="0.450">
+      directed
+     </span>
+     <span data-begin="119.759" data-dur="0.120">
+      his
+     </span>
+     <span data-begin="119.879" data-dur="1.000">
+      actions
+     </span>
+     .
+     <p>
+      几年过去了，他在孤岛上自娱自乐地上演了一出可怜的喜剧。当不再需要理由时，他就用阴谋和谎言为自己的行为辩护，并向全世界展示，只要有一只看不见的手在指挥他的行动，人们就会误以为他有力量。
+     </p>
+    </p>
+    <p>
+     <span data-begin="121.659" data-dur="0.099">
+      The
+     </span>
+     <span data-begin="121.759" data-dur="0.450">
+      manager
+     </span>
+     <span data-begin="122.209" data-dur="0.260">
+      having
+     </span>
+     <span data-begin="122.469" data-dur="0.299">
+      brought
+     </span>
+     <span data-begin="122.769" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="122.869" data-dur="0.420">
+      drama
+     </span>
+     <span data-begin="123.319" data-dur="0.199">
+      to
+     </span>
+     <span data-begin="123.519" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="123.569" data-dur="0.599">
+      close
+     </span>
+     <span data-begin="124.329" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="124.509" data-dur="0.359">
+      stripped
+     </span>
+     <span data-begin="124.869" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="125.009" data-dur="0.450">
+      actor
+     </span>
+     <span data-begin="125.750" data-dur="0.399">
+      shows
+     </span>
+     <span data-begin="126.149" data-dur="0.130">
+      him
+     </span>
+     <span data-begin="126.279" data-dur="0.240">
+      to
+     </span>
+     <span data-begin="126.519" data-dur="1.000">
+      us
+     </span>
+     .
+     <p>
+      管理者结束了这场戏剧，剥下了演员的衣服，把他展示给我们看。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="127.889" data-dur="0.410">
+      See
+     </span>
+     <span data-begin="128.300" data-dur="0.199">
+      what
+     </span>
+     <span data-begin="128.500" data-dur="0.097">
+      you
+     </span>
+     <span data-begin="128.598" data-dur="0.460">
+      believed
+     </span>
+     <span data-begin="129.059" data-dur="0.240">
+      in
+     </span>
+     !
+     <span data-begin="129.589" data-dur="0.310">
+      This
+     </span>
+     <span data-begin="129.899" data-dur="0.199">
+      is
+     </span>
+     <span data-begin="130.099" data-dur="0.459">
+      he
+     </span>
+     !
+     <span data-begin="131.020" data-dur="0.078">
+      Do
+     </span>
+     <span data-begin="131.099" data-dur="0.140">
+      you
+     </span>
+     <span data-begin="131.239" data-dur="0.260">
+      now
+     </span>
+     <span data-begin="131.500" data-dur="0.329">
+      see
+     </span>
+     <span data-begin="131.830" data-dur="0.118">
+      that
+     </span>
+     <span data-begin="131.949" data-dur="0.070">
+      it
+     </span>
+     <span data-begin="132.020" data-dur="0.128">
+      was
+     </span>
+     <span data-begin="132.149" data-dur="0.199">
+      not
+     </span>
+     <span data-begin="132.379" data-dur="0.470">
+      he
+     </span>
+     <span data-begin="132.879" data-dur="0.210">
+      but
+     </span>
+     <span data-begin="133.349" data-dur="0.459">
+      I
+     </span>
+     <span data-begin="133.809" data-dur="0.179">
+      who
+     </span>
+     <span data-begin="133.989" data-dur="0.359">
+      moved
+     </span>
+     <span data-begin="134.349" data-dur="1.000">
+      you
+     </span>
+     ?"
+     <p>
+      "看看你们所相信的！这就是他！你们现在明白了吗 不是他而是我打动了你们？"
+     </p>
+    </p>
+    <p>
+     <span data-begin="135.869" data-dur="0.220">
+      But
+     </span>
+     <span data-begin="136.360" data-dur="0.410">
+      dazed
+     </span>
+     <span data-begin="136.809" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="136.940" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="137.028" data-dur="0.321">
+      force
+     </span>
+     <span data-begin="137.349" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="137.428" data-dur="0.090">
+      the
+     </span>
+     <span data-begin="137.520" data-dur="0.520">
+      movement
+     </span>
+     ,
+     <span data-begin="138.470" data-dur="0.118">
+      it
+     </span>
+     <span data-begin="138.589" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="138.739" data-dur="0.470">
+      long
+     </span>
+     <span data-begin="139.209" data-dur="0.310">
+      before
+     </span>
+     <span data-begin="139.520" data-dur="0.340">
+      people
+     </span>
+     <span data-begin="139.860" data-dur="0.440">
+      understood
+     </span>
+     <span data-begin="140.330" data-dur="1.000">
+      this
+     </span>
+     .
+     <p>
+      但是，由于被运动的力量所震慑，人们很久才明白这一点。
+     </p>
+    </p>
+    <p>
+     <span data-begin="142.409" data-dur="0.320">
+      Still
+     </span>
+     <span data-begin="142.729" data-dur="0.450">
+      greater
+     </span>
+     <span data-begin="143.179" data-dur="0.659">
+      coherence
+     </span>
+     <span data-begin="143.839" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="144.010" data-dur="1.000">
+      inevitability
+     </span>
+     <span data-begin="145.319" data-dur="0.160">
+      is
+     </span>
+     <span data-begin="145.479" data-dur="0.500">
+      seen
+     </span>
+     <span data-begin="146.010" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="146.100" data-dur="0.108">
+      the
+     </span>
+     <span data-begin="146.209" data-dur="0.450">
+      life
+     </span>
+     <span data-begin="146.689" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="146.859" data-dur="0.630">
+      Alexander
+     </span>
+     <span data-begin="147.729" data-dur="0.190">
+      I
+     </span>
+     ,
+     <span data-begin="148.709" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="148.839" data-dur="0.350">
+      man
+     </span>
+     <span data-begin="149.189" data-dur="0.089">
+      who
+     </span>
+     <span data-begin="149.279" data-dur="0.240">
+      stood
+     </span>
+     <span data-begin="149.550" data-dur="0.138">
+      at
+     </span>
+     <span data-begin="149.689" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="149.779" data-dur="0.179">
+      head
+     </span>
+     <span data-begin="150.019" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="150.119" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="150.209" data-dur="0.780">
+      countermovement
+     </span>
+     <span data-begin="150.989" data-dur="0.250">
+      from
+     </span>
+     <span data-begin="151.269" data-dur="0.420">
+      east
+     </span>
+     <span data-begin="151.779" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="151.939" data-dur="1.000">
+      west
+     </span>
+     .
+     <p>
+      从亚历山大一世的一生中，我们可以看到更大的连贯性和必然性，他是东西方反运动的领袖。
+     </p>
+    </p>
+    <p>
+     <span data-begin="153.779" data-dur="0.149">
+      What
+     </span>
+     <span data-begin="153.959" data-dur="0.229">
+      was
+     </span>
+     <span data-begin="154.189" data-dur="0.429">
+      needed
+     </span>
+     <span data-begin="154.829" data-dur="0.299">
+      for
+     </span>
+     <span data-begin="155.129" data-dur="0.290">
+      him
+     </span>
+     <span data-begin="155.419" data-dur="0.340">
+      who
+     </span>
+     ,
+     <span data-begin="156.019" data-dur="0.700">
+      overshadowing
+     </span>
+     <span data-begin="156.749" data-dur="0.500">
+      others
+     </span>
+     ,
+     <span data-begin="157.570" data-dur="0.269">
+      stood
+     </span>
+     <span data-begin="157.939" data-dur="0.160">
+      at
+     </span>
+     <span data-begin="158.099" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="158.189" data-dur="0.220">
+      head
+     </span>
+     <span data-begin="158.409" data-dur="0.060">
+      of
+     </span>
+     <span data-begin="158.499" data-dur="0.179">
+      that
+     </span>
+     <span data-begin="158.679" data-dur="0.440">
+      movement
+     </span>
+     <span data-begin="159.119" data-dur="0.190">
+      from
+     </span>
+     <span data-begin="159.359" data-dur="0.260">
+      east
+     </span>
+     <span data-begin="159.619" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="159.720" data-dur="1.000">
+      west
+     </span>
+     ?
+     <p>
+      亚历山大一世是这场自东向西运动的领袖，他需要什么？
+     </p>
+    </p>
+    <p>
+     <span data-begin="161.369" data-dur="0.099">
+      What
+     </span>
+     <span data-begin="161.470" data-dur="0.179">
+      was
+     </span>
+     <span data-begin="161.649" data-dur="0.359">
+      needed
+     </span>
+     <span data-begin="162.519" data-dur="0.110">
+      was
+     </span>
+     <span data-begin="162.629" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="162.698" data-dur="0.261">
+      sense
+     </span>
+     <span data-begin="162.959" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="163.140" data-dur="0.630">
+      justice
+     </span>
+     <span data-begin="164.129" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="164.269" data-dur="0.040">
+      a
+     </span>
+     <span data-begin="164.310" data-dur="0.580">
+      sympathy
+     </span>
+     <span data-begin="164.890" data-dur="0.179">
+      with
+     </span>
+     <span data-begin="165.099" data-dur="0.500">
+      European
+     </span>
+     <span data-begin="165.599" data-dur="1.000">
+      affairs
+     </span>
+     ,
+     <span data-begin="166.849" data-dur="0.160">
+      but
+     </span>
+     <span data-begin="167.009" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="167.078" data-dur="0.441">
+      remote
+     </span>
+     <span data-begin="167.519" data-dur="0.630">
+      sympathy
+     </span>
+     <span data-begin="168.390" data-dur="0.280">
+      not
+     </span>
+     <span data-begin="168.699" data-dur="0.250">
+      dulled
+     </span>
+     <span data-begin="168.989" data-dur="0.140">
+      by
+     </span>
+     <span data-begin="169.129" data-dur="0.370">
+      petty
+     </span>
+     <span data-begin="169.500" data-dur="1.000">
+      interests
+     </span>
+     ;
+     <span data-begin="170.890" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="170.949" data-dur="0.359">
+      moral
+     </span>
+     <span data-begin="171.309" data-dur="1.000">
+      superiority
+     </span>
+     <span data-begin="172.459" data-dur="0.210">
+      over
+     </span>
+     <span data-begin="172.669" data-dur="0.269">
+      those
+     </span>
+     <span data-begin="172.939" data-dur="0.580">
+      sovereigns
+     </span>
+     <span data-begin="173.519" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="173.649" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="173.730" data-dur="0.399">
+      day
+     </span>
+     <span data-begin="174.369" data-dur="0.130">
+      who
+     </span>
+     <span data-begin="174.500" data-dur="0.128">
+      co
+     </span>
+     -
+     <span data-begin="174.629" data-dur="0.530">
+      operated
+     </span>
+     <span data-begin="175.219" data-dur="0.160">
+      with
+     </span>
+     <span data-begin="175.379" data-dur="1.000">
+      him
+     </span>
+     ;
+     <span data-begin="176.619" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="176.688" data-dur="0.490">
+      mild
+     </span>
+     <span data-begin="177.179" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="177.309" data-dur="0.580">
+      attractive
+     </span>
+     <span data-begin="177.890" data-dur="1.000">
+      personality
+     </span>
+     ;
+     <span data-begin="179.300" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="179.410" data-dur="0.047">
+      a
+     </span>
+     <span data-begin="179.458" data-dur="0.511">
+      personal
+     </span>
+     <span data-begin="179.969" data-dur="0.480">
+      grievance
+     </span>
+     <span data-begin="180.449" data-dur="0.320">
+      against
+     </span>
+     <span data-begin="180.769" data-dur="1.000">
+      Napoleon
+     </span>
+     .
+     <span data-begin="182.239" data-dur="0.170">
+      And
+     </span>
+     <span data-begin="182.410" data-dur="0.199">
+      all
+     </span>
+     <span data-begin="182.609" data-dur="0.350">
+      this
+     </span>
+     <span data-begin="183.070" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="183.269" data-dur="0.489">
+      found
+     </span>
+     <span data-begin="183.869" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="183.938" data-dur="0.561">
+      Alexander
+     </span>
+     <span data-begin="184.730" data-dur="1.000">
+      I
+     </span>
+     ;
+     <span data-begin="185.929" data-dur="0.240">
+      all
+     </span>
+     <span data-begin="186.169" data-dur="0.380">
+      this
+     </span>
+     <span data-begin="186.699" data-dur="0.140">
+      had
+     </span>
+     <span data-begin="186.869" data-dur="0.160">
+      been
+     </span>
+     <span data-begin="187.029" data-dur="0.530">
+      prepared
+     </span>
+     <span data-begin="187.629" data-dur="0.120">
+      by
+     </span>
+     <span data-begin="187.779" data-dur="0.900">
+      innumerable
+     </span>
+     <span data-begin="188.679" data-dur="0.560">
+      so
+     </span>
+     -called
+     <span data-begin="189.410" data-dur="0.548">
+      chances
+     </span>
+     <span data-begin="189.959" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="190.050" data-dur="0.120">
+      his
+     </span>
+     <span data-begin="190.199" data-dur="1.000">
+      life
+     </span>
+     :
+     <span data-begin="191.320" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="191.480" data-dur="1.000">
+      education
+     </span>
+     ,
+     <span data-begin="192.669" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="192.939" data-dur="0.329">
+      early
+     </span>
+     <span data-begin="193.269" data-dur="1.000">
+      liberalism
+     </span>
+     ,
+     <span data-begin="194.449" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="194.559" data-dur="0.599">
+      advisers
+     </span>
+     <span data-begin="195.159" data-dur="0.060">
+      who
+     </span>
+     <span data-begin="195.249" data-dur="0.489">
+      surrounded
+     </span>
+     <span data-begin="195.769" data-dur="0.280">
+      him
+     </span>
+     ,
+     <span data-begin="196.629" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="196.739" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="196.869" data-dur="0.750">
+      Austerlitz
+     </span>
+     ,
+     <span data-begin="197.820" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="197.980" data-dur="0.570">
+      Tilsit
+     </span>
+     ,
+     <span data-begin="198.849" data-dur="0.190">
+      and
+     </span>
+     <span data-begin="199.039" data-dur="1.000">
+      Erfurt
+     </span>
+     .
+     <p>
+      他需要的是正义感和对欧洲事务的同情，但这种遥远的同情不会因琐碎的利益而变得迟钝；在道义上优于当时与他合作的君主；温和而有魅力的个性；以及对拿破仑的个人怨恨。这一切都在亚历山大一世身上得到了体现；这一切是由他一生中无数所谓的机会准备的：他所受的教育、他早期的自由主义、他身边的顾问、奥斯特利茨、蒂尔西特和埃尔富特。
+     </p>
+    </p>
+    <p>
+     <span data-begin="201.239" data-dur="0.240">
+      During
+     </span>
+     <span data-begin="201.480" data-dur="0.118">
+      the
+     </span>
+     <span data-begin="201.599" data-dur="0.489">
+      national
+     </span>
+     <span data-begin="202.090" data-dur="0.440">
+      war
+     </span>
+     <span data-begin="202.719" data-dur="0.110">
+      he
+     </span>
+     <span data-begin="202.829" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="203.039" data-dur="0.550">
+      inactive
+     </span>
+     <span data-begin="203.880" data-dur="0.269">
+      because
+     </span>
+     <span data-begin="204.149" data-dur="0.099">
+      he
+     </span>
+     <span data-begin="204.249" data-dur="0.130">
+      was
+     </span>
+     <span data-begin="204.380" data-dur="0.220">
+      not
+     </span>
+     <span data-begin="204.649" data-dur="1.000">
+      needed
+     </span>
+     .
+     <span data-begin="205.840" data-dur="0.118">
+      But
+     </span>
+     <span data-begin="205.959" data-dur="0.120">
+      as
+     </span>
+     <span data-begin="206.079" data-dur="0.310">
+      soon
+     </span>
+     <span data-begin="206.389" data-dur="0.099">
+      as
+     </span>
+     <span data-begin="206.489" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="206.609" data-dur="0.520">
+      necessity
+     </span>
+     <span data-begin="207.130" data-dur="0.210">
+      for
+     </span>
+     <span data-begin="207.340" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="207.419" data-dur="0.489">
+      general
+     </span>
+     <span data-begin="207.910" data-dur="0.688">
+      European
+     </span>
+     <span data-begin="208.599" data-dur="0.269">
+      war
+     </span>
+     <span data-begin="208.869" data-dur="0.510">
+      presented
+     </span>
+     <span data-begin="209.380" data-dur="0.459">
+      itself
+     </span>
+     <span data-begin="210.149" data-dur="0.170">
+      he
+     </span>
+     <span data-begin="210.319" data-dur="0.440">
+      appeared
+     </span>
+     <span data-begin="210.759" data-dur="0.058">
+      in
+     </span>
+     <span data-begin="210.818" data-dur="0.121">
+      his
+     </span>
+     <span data-begin="210.939" data-dur="0.440">
+      place
+     </span>
+     <span data-begin="211.380" data-dur="0.078">
+      at
+     </span>
+     <span data-begin="211.459" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="211.528" data-dur="0.261">
+      given
+     </span>
+     <span data-begin="211.789" data-dur="0.500">
+      moment
+     </span>
+     <span data-begin="212.469" data-dur="0.280">
+      and
+     </span>
+     ,
+     <span data-begin="212.980" data-dur="0.489">
+      uniting
+     </span>
+     <span data-begin="213.469" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="213.538" data-dur="0.411">
+      nations
+     </span>
+     <span data-begin="213.950" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="214.099" data-dur="0.450">
+      Europe
+     </span>
+     ,
+     <span data-begin="214.859" data-dur="0.160">
+      led
+     </span>
+     <span data-begin="215.099" data-dur="0.250">
+      them
+     </span>
+     <span data-begin="215.380" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="215.520" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="215.608" data-dur="1.000">
+      goal
+     </span>
+     .
+     <p>
+      在全国战争期间，由于不需要他，他一直无所作为。但是，当欧洲全面战争的必要性一出现，他就在特定的时刻出现在了自己的位置上，并团结欧洲各国，带领他们走向目标。
+     </p>
+    </p>
+    <p>
+     <span data-begin="217.429" data-dur="0.089">
+      The
+     </span>
+     <span data-begin="217.550" data-dur="0.338">
+      goal
+     </span>
+     <span data-begin="217.889" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="218.109" data-dur="1.000">
+      reached
+     </span>
+     .
+     <span data-begin="219.480" data-dur="0.188">
+      After
+     </span>
+     <span data-begin="219.669" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="219.779" data-dur="0.470">
+      final
+     </span>
+     <span data-begin="220.249" data-dur="0.299">
+      war
+     </span>
+     <span data-begin="220.550" data-dur="1.000">
+      of
+     </span>
+     1815
+     <span data-begin="222.389" data-dur="0.799">
+      Alexander
+     </span>
+     <span data-begin="223.219" data-dur="0.459">
+      possesses
+     </span>
+     <span data-begin="223.730" data-dur="0.329">
+      all
+     </span>
+     <span data-begin="224.090" data-dur="0.459">
+      possible
+     </span>
+     <span data-begin="224.550" data-dur="1.000">
+      power
+     </span>
+     .
+     <span data-begin="225.919" data-dur="0.210">
+      How
+     </span>
+     <span data-begin="226.129" data-dur="0.179">
+      does
+     </span>
+     <span data-begin="226.309" data-dur="0.130">
+      he
+     </span>
+     <span data-begin="226.439" data-dur="0.220">
+      use
+     </span>
+     <span data-begin="226.660" data-dur="1.000">
+      it
+     </span>
+     ?
+     <p>
+      目标达到了。1815 年的最后一战之后，亚历山大拥有了一切可能的力量。他是如何使用它的呢？
+     </p>
+    </p>
+    <p>
+     Alexander I—the pacifier of
+     <span data-begin="231.069" data-dur="0.420">
+      Europe
+     </span>
+     ,
+     <span data-begin="231.959" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="232.079" data-dur="0.370">
+      man
+     </span>
+     <span data-begin="232.450" data-dur="0.118">
+      who
+     </span>
+     <span data-begin="232.569" data-dur="0.220">
+      from
+     </span>
+     <span data-begin="232.789" data-dur="0.140">
+      his
+     </span>
+     <span data-begin="233.090" data-dur="0.329">
+      early
+     </span>
+     <span data-begin="233.419" data-dur="0.290">
+      years
+     </span>
+     <span data-begin="233.709" data-dur="0.130">
+      had
+     </span>
+     <span data-begin="233.840" data-dur="0.390">
+      striven
+     </span>
+     <span data-begin="234.279" data-dur="0.450">
+      only
+     </span>
+     <span data-begin="234.999" data-dur="0.130">
+      for
+     </span>
+     <span data-begin="235.129" data-dur="0.140">
+      his
+     </span>
+     <span data-begin="235.270" data-dur="0.390">
+      people's
+     </span>
+     <span data-begin="235.689" data-dur="1.000">
+      welfare
+     </span>
+     ,
+     <span data-begin="236.969" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="237.230" data-dur="0.500">
+      originator
+     </span>
+     <span data-begin="237.730" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="237.829" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="237.969" data-dur="0.429">
+      liberal
+     </span>
+     <span data-begin="238.429" data-dur="0.669">
+      innovations
+     </span>
+     <span data-begin="239.099" data-dur="0.068">
+      in
+     </span>
+     <span data-begin="239.168" data-dur="0.131">
+      his
+     </span>
+     <span data-begin="239.300" data-dur="1.000">
+      fatherland
+     </span>
+     —
+     <span data-begin="240.939" data-dur="0.160">
+      now
+     </span>
+     <span data-begin="241.099" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="241.249" data-dur="0.058">
+      he
+     </span>
+     <span data-begin="241.308" data-dur="0.291">
+      seemed
+     </span>
+     <span data-begin="241.599" data-dur="0.078">
+      to
+     </span>
+     <span data-begin="241.678" data-dur="0.411">
+      possess
+     </span>
+     <span data-begin="242.090" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="242.249" data-dur="0.470">
+      utmost
+     </span>
+     <span data-begin="242.719" data-dur="0.510">
+      power
+     </span>
+     <span data-begin="243.609" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="243.789" data-dur="0.500">
+      therefore
+     </span>
+     <span data-begin="244.550" data-dur="0.128">
+      to
+     </span>
+     <span data-begin="244.679" data-dur="0.140">
+      have
+     </span>
+     <span data-begin="244.849" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="244.939" data-dur="0.659">
+      possibility
+     </span>
+     <span data-begin="245.599" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="245.749" data-dur="0.290">
+      bringing
+     </span>
+     <span data-begin="246.039" data-dur="0.480">
+      about
+     </span>
+     <span data-begin="246.749" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="246.889" data-dur="0.640">
+      welfare
+     </span>
+     <span data-begin="247.529" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="247.629" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="247.779" data-dur="1.000">
+      peoples
+     </span>
+     —
+     <span data-begin="249.279" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="249.410" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="249.489" data-dur="0.489">
+      time
+     </span>
+     <span data-begin="249.980" data-dur="0.138">
+      when
+     </span>
+     <span data-begin="250.119" data-dur="0.530">
+      Napoleon
+     </span>
+     <span data-begin="250.649" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="250.759" data-dur="0.580">
+      exile
+     </span>
+     <span data-begin="251.579" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="251.739" data-dur="0.380">
+      drawing
+     </span>
+     <span data-begin="252.119" data-dur="0.149">
+      up
+     </span>
+     <span data-begin="252.449" data-dur="0.640">
+      childish
+     </span>
+     <span data-begin="253.090" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="253.219" data-dur="0.530">
+      mendacious
+     </span>
+     <span data-begin="253.749" data-dur="0.539">
+      plans
+     </span>
+     <span data-begin="254.539" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="254.669" data-dur="0.310">
+      how
+     </span>
+     <span data-begin="254.980" data-dur="0.258">
+      he
+     </span>
+     <span data-begin="255.239" data-dur="0.140">
+      would
+     </span>
+     <span data-begin="255.379" data-dur="0.089">
+      have
+     </span>
+     <span data-begin="255.499" data-dur="0.280">
+      made
+     </span>
+     <span data-begin="255.859" data-dur="0.550">
+      mankind
+     </span>
+     <span data-begin="256.439" data-dur="0.500">
+      happy
+     </span>
+     <span data-begin="256.969" data-dur="0.149">
+      had
+     </span>
+     <span data-begin="257.119" data-dur="0.120">
+      he
+     </span>
+     <span data-begin="257.239" data-dur="0.459">
+      retained
+     </span>
+     <span data-begin="257.699" data-dur="1.000">
+      power
+     </span>
+     —
+     <span data-begin="259.069" data-dur="0.530">
+      Alexander
+     </span>
+     <span data-begin="259.599" data-dur="1.000">
+      I
+     </span>
+     , having
+     <span data-begin="260.929" data-dur="0.520">
+      fulfilled
+     </span>
+     <span data-begin="261.449" data-dur="0.149">
+      his
+     </span>
+     <span data-begin="261.599" data-dur="0.450">
+      mission
+     </span>
+     <span data-begin="262.489" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="262.719" data-dur="0.320">
+      feeling
+     </span>
+     <span data-begin="263.039" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="263.149" data-dur="0.229">
+      hand
+     </span>
+     <span data-begin="263.379" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="263.519" data-dur="0.290">
+      God
+     </span>
+     <span data-begin="263.809" data-dur="0.320">
+      upon
+     </span>
+     <span data-begin="264.130" data-dur="0.240">
+      him
+     </span>
+     ,
+     <span data-begin="265.089" data-dur="0.450">
+      suddenly
+     </span>
+     <span data-begin="265.539" data-dur="0.640">
+      recognizes
+     </span>
+     <span data-begin="266.179" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="266.329" data-dur="0.799">
+      insignificance
+     </span>
+     <span data-begin="267.130" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="267.209" data-dur="0.150">
+      that
+     </span>
+     <span data-begin="267.389" data-dur="0.450">
+      supposed
+     </span>
+     <span data-begin="267.839" data-dur="0.440">
+      power
+     </span>
+     ,
+     <span data-begin="268.820" data-dur="0.288">
+      turns
+     </span>
+     <span data-begin="269.109" data-dur="0.269">
+      away
+     </span>
+     <span data-begin="269.380" data-dur="0.229">
+      from
+     </span>
+     <span data-begin="269.609" data-dur="0.170">
+      it
+     </span>
+     ,
+     <span data-begin="270.259" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="270.429" data-dur="0.240">
+      gives
+     </span>
+     <span data-begin="270.669" data-dur="0.199">
+      it
+     </span>
+     <span data-begin="270.969" data-dur="0.170">
+      into
+     </span>
+     <span data-begin="271.139" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="271.259" data-dur="0.359">
+      hands
+     </span>
+     <span data-begin="271.619" data-dur="0.149">
+      of
+     </span>
+     <span data-begin="271.770" data-dur="0.738">
+      contemptible
+     </span>
+     <span data-begin="272.509" data-dur="0.420">
+      men
+     </span>
+     <span data-begin="273.249" data-dur="0.170">
+      whom
+     </span>
+     <span data-begin="273.419" data-dur="0.070">
+      he
+     </span>
+     <span data-begin="273.490" data-dur="1.000">
+      despises
+     </span>
+     ,
+     <span data-begin="274.710" data-dur="0.329">
+      saying
+     </span>
+     <span data-begin="275.039" data-dur="1.000">
+      only
+     </span>
+     :
+     <p>
+      亚历山大一世--欧洲的安抚者，早年只为人民谋福利的人，祖国自由革新的开创者--现在他似乎拥有了最大的权力，因此有可能为人民谋福利--当流亡中的拿破仑正在制定幼稚而虚伪的计划，计划着如果他保留权力将如何使人类幸福时，亚历山大一世、亚历山大一世完成了他的使命，感受到了上帝之手对他的眷顾，他突然意识到这种所谓的权力是多么微不足道，于是放弃了这种权力，把它交到了他所鄙视的卑鄙小人手中，只说了一句话："不是我们的，也不是你们的：
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="276.249" data-dur="0.370">
+      Not
+     </span>
+     <span data-begin="276.740" data-dur="0.288">
+      unto
+     </span>
+     <span data-begin="277.029" data-dur="0.510">
+      us
+     </span>
+     ,
+     <span data-begin="277.809" data-dur="0.359">
+      not
+     </span>
+     <span data-begin="278.329" data-dur="0.269">
+      unto
+     </span>
+     <span data-begin="278.689" data-dur="0.459">
+      us
+     </span>
+     ,
+     <span data-begin="279.369" data-dur="0.190">
+      but
+     </span>
+     <span data-begin="279.619" data-dur="0.429">
+      unto
+     </span>
+     <span data-begin="280.050" data-dur="0.260">
+      Thy
+     </span>
+     <span data-begin="280.339" data-dur="1.000">
+      Name
+     </span>
+     !...
+     <span data-begin="281.410" data-dur="0.340">
+      I
+     </span>
+     <span data-begin="281.779" data-dur="0.459">
+      too
+     </span>
+     <span data-begin="282.270" data-dur="0.140">
+      am
+     </span>
+     <span data-begin="282.410" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="282.479" data-dur="0.380">
+      man
+     </span>
+     <span data-begin="282.899" data-dur="0.210">
+      like
+     </span>
+     <span data-begin="283.109" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="283.210" data-dur="0.250">
+      rest
+     </span>
+     <span data-begin="283.460" data-dur="0.097">
+      of
+     </span>
+     <span data-begin="283.558" data-dur="0.241">
+      you
+     </span>
+     .
+     <span data-begin="284.490" data-dur="0.149">
+      Let
+     </span>
+     <span data-begin="284.639" data-dur="0.149">
+      me
+     </span>
+     <span data-begin="284.789" data-dur="0.280">
+      live
+     </span>
+     <span data-begin="285.100" data-dur="0.208">
+      like
+     </span>
+     <span data-begin="285.309" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="285.368" data-dur="0.400">
+      man
+     </span>
+     <span data-begin="286.029" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="286.229" data-dur="0.310">
+      think
+     </span>
+     <span data-begin="286.539" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="286.669" data-dur="0.210">
+      my
+     </span>
+     <span data-begin="286.880" data-dur="0.640">
+      soul
+     </span>
+     <span data-begin="287.619" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="287.779" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="287.910" data-dur="1.000">
+      God
+     </span>
+     ."
+     <p>
+      "不归于我们，不归于我们，只归于你的名！...我也和你们一样是人。让我像一个人一样生活，为我的灵魂和上帝着想"。
+     </p>
+    </p>
+    <p>
+     <span data-begin="290.240" data-dur="0.168">
+      As
+     </span>
+     <span data-begin="290.409" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="290.510" data-dur="0.480">
+      sun
+     </span>
+     <span data-begin="291.019" data-dur="0.240">
+      and
+     </span>
+     <span data-begin="291.300" data-dur="0.329">
+      each
+     </span>
+     <span data-begin="291.699" data-dur="0.329">
+      atom
+     </span>
+     <span data-begin="292.029" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="292.239" data-dur="0.560">
+      ether
+     </span>
+     <span data-begin="292.959" data-dur="0.170">
+      is
+     </span>
+     <span data-begin="293.129" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="293.188" data-dur="0.451">
+      sphere
+     </span>
+     <span data-begin="293.640" data-dur="0.518">
+      complete
+     </span>
+     <span data-begin="294.159" data-dur="0.099">
+      in
+     </span>
+     <span data-begin="294.260" data-dur="1.000">
+      itself
+     </span>
+     ,
+     <span data-begin="295.399" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="295.579" data-dur="0.199">
+      yet
+     </span>
+     <span data-begin="295.779" data-dur="0.140">
+      at
+     </span>
+     <span data-begin="295.919" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="295.998" data-dur="0.351">
+      same
+     </span>
+     <span data-begin="296.349" data-dur="0.329">
+      time
+     </span>
+     <span data-begin="296.939" data-dur="0.310">
+      only
+     </span>
+     <span data-begin="297.249" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="297.339" data-dur="0.370">
+      part
+     </span>
+     <span data-begin="297.709" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="297.809" data-dur="0.078">
+      a
+     </span>
+     <span data-begin="297.888" data-dur="0.481">
+      whole
+     </span>
+     <span data-begin="298.519" data-dur="0.299">
+      too
+     </span>
+     <span data-begin="298.869" data-dur="0.599">
+      immense
+     </span>
+     <span data-begin="299.470" data-dur="0.158">
+      for
+     </span>
+     <span data-begin="299.629" data-dur="0.340">
+      man
+     </span>
+     <span data-begin="299.970" data-dur="0.138">
+      to
+     </span>
+     <span data-begin="300.109" data-dur="1.000">
+      comprehend
+     </span>
+     ,
+     <span data-begin="301.560" data-dur="0.370">
+      so
+     </span>
+     <span data-begin="301.990" data-dur="0.269">
+      each
+     </span>
+     <span data-begin="302.310" data-dur="0.770">
+      individual
+     </span>
+     <span data-begin="303.289" data-dur="0.220">
+      has
+     </span>
+     <span data-begin="303.509" data-dur="0.199">
+      within
+     </span>
+     <span data-begin="303.709" data-dur="0.620">
+      himself
+     </span>
+     <span data-begin="304.509" data-dur="0.210">
+      his
+     </span>
+     <span data-begin="304.820" data-dur="0.240">
+      own
+     </span>
+     <span data-begin="305.089" data-dur="0.429">
+      aims
+     </span>
+     <span data-begin="305.980" data-dur="0.218">
+      and
+     </span>
+     <span data-begin="306.199" data-dur="0.290">
+      yet
+     </span>
+     <span data-begin="306.560" data-dur="0.299">
+      has
+     </span>
+     <span data-begin="306.890" data-dur="0.299">
+      them
+     </span>
+     <span data-begin="307.220" data-dur="0.128">
+      to
+     </span>
+     <span data-begin="307.349" data-dur="0.410">
+      serve
+     </span>
+     <span data-begin="307.800" data-dur="0.080">
+      a
+     </span>
+     <span data-begin="307.909" data-dur="0.370">
+      general
+     </span>
+     <span data-begin="308.279" data-dur="0.570">
+      purpose
+     </span>
+     <span data-begin="308.879" data-dur="1.059">
+      incomprehensible
+     </span>
+     <span data-begin="309.939" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="310.089" data-dur="1.000">
+      man
+     </span>
+     .
+     <p>
+      正如太阳和每一个以太原子本身都是一个完整的球体，但同时又只是人类无法理解的巨大整体的一部分，每个人都有自己的目标，但这些目标又是为了实现人类无法理解的总体目标。
+     </p>
+    </p>
+    <p>
+     <span data-begin="311.579" data-dur="0.060">
+      A
+     </span>
+     <span data-begin="311.640" data-dur="0.368">
+      bee
+     </span>
+     <span data-begin="312.009" data-dur="0.450">
+      settling
+     </span>
+     <span data-begin="312.459" data-dur="0.120">
+      on
+     </span>
+     <span data-begin="312.579" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="312.629" data-dur="0.590">
+      flower
+     </span>
+     <span data-begin="313.289" data-dur="0.170">
+      has
+     </span>
+     <span data-begin="313.459" data-dur="0.269">
+      stung
+     </span>
+     <span data-begin="313.729" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="313.788" data-dur="0.460">
+      child
+     </span>
+     .
+     <span data-begin="314.759" data-dur="0.089">
+      And
+     </span>
+     <span data-begin="314.849" data-dur="0.060">
+      the
+     </span>
+     <span data-begin="314.959" data-dur="0.350">
+      child
+     </span>
+     <span data-begin="315.309" data-dur="0.130">
+      is
+     </span>
+     <span data-begin="315.439" data-dur="0.380">
+      afraid
+     </span>
+     <span data-begin="315.820" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="315.959" data-dur="0.420">
+      bees
+     </span>
+     <span data-begin="316.509" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="316.640" data-dur="0.418">
+      declares
+     </span>
+     <span data-begin="317.059" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="317.289" data-dur="0.320">
+      bees
+     </span>
+     <span data-begin="317.609" data-dur="0.440">
+      exist
+     </span>
+     <span data-begin="318.050" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="318.140" data-dur="0.318">
+      sting
+     </span>
+     <span data-begin="318.459" data-dur="1.000">
+      people
+     </span>
+     .
+     <span data-begin="320.269" data-dur="0.049">
+      A
+     </span>
+     <span data-begin="320.320" data-dur="0.480">
+      poet
+     </span>
+     <span data-begin="320.829" data-dur="0.510">
+      admires
+     </span>
+     <span data-begin="321.340" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="321.419" data-dur="0.280">
+      bee
+     </span>
+     <span data-begin="321.699" data-dur="0.470">
+      sucking
+     </span>
+     <span data-begin="322.169" data-dur="0.299">
+      from
+     </span>
+     <span data-begin="322.619" data-dur="1.000">
+      the
+     </span>
+     chalice of a flower
+     <span data-begin="323.929" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="324.090" data-dur="0.229">
+      says
+     </span>
+     <span data-begin="324.320" data-dur="0.097">
+      it
+     </span>
+     <span data-begin="324.418" data-dur="0.631">
+      exists
+     </span>
+     <span data-begin="325.079" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="325.179" data-dur="0.340">
+      suck
+     </span>
+     <span data-begin="325.519" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="325.609" data-dur="0.530">
+      fragrance
+     </span>
+     <span data-begin="326.140" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="326.230" data-dur="1.000">
+      flowers
+     </span>
+     .
+     <span data-begin="327.910" data-dur="0.068">
+      A
+     </span>
+     <span data-begin="327.979" data-dur="0.781">
+      beekeeper
+     </span>
+     ,
+     <span data-begin="328.809" data-dur="0.390">
+      seeing
+     </span>
+     <span data-begin="329.199" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="329.289" data-dur="0.199">
+      bee
+     </span>
+     <span data-begin="329.519" data-dur="0.329">
+      collect
+     </span>
+     <span data-begin="329.879" data-dur="0.459">
+      pollen
+     </span>
+     <span data-begin="330.339" data-dur="0.229">
+      from
+     </span>
+     <span data-begin="330.570" data-dur="0.580">
+      flowers
+     </span>
+     <span data-begin="331.320" data-dur="0.188">
+      and
+     </span>
+     <span data-begin="331.509" data-dur="0.310">
+      carry
+     </span>
+     <span data-begin="331.820" data-dur="0.097">
+      it
+     </span>
+     <span data-begin="331.918" data-dur="0.131">
+      to
+     </span>
+     <span data-begin="332.050" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="332.160" data-dur="0.390">
+      hive
+     </span>
+     ,
+     <span data-begin="333.059" data-dur="0.350">
+      says
+     </span>
+     <span data-begin="333.410" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="333.609" data-dur="0.120">
+      it
+     </span>
+     <span data-begin="333.829" data-dur="0.570">
+      exists
+     </span>
+     <span data-begin="334.439" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="334.570" data-dur="0.340">
+      gather
+     </span>
+     <span data-begin="334.910" data-dur="1.000">
+      honey
+     </span>
+     .
+     <span data-begin="336.160" data-dur="0.278">
+      Another
+     </span>
+     <span data-begin="336.439" data-dur="0.659">
+      beekeeper
+     </span>
+     <span data-begin="337.309" data-dur="0.130">
+      who
+     </span>
+     <span data-begin="337.439" data-dur="0.110">
+      has
+     </span>
+     <span data-begin="337.550" data-dur="0.310">
+      studied
+     </span>
+     <span data-begin="337.890" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="337.980" data-dur="0.320">
+      life
+     </span>
+     <span data-begin="338.300" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="338.390" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="338.459" data-dur="0.269">
+      hive
+     </span>
+     <span data-begin="338.769" data-dur="0.199">
+      more
+     </span>
+     <span data-begin="338.969" data-dur="0.690">
+      closely
+     </span>
+     <span data-begin="339.989" data-dur="0.370">
+      says
+     </span>
+     <span data-begin="340.359" data-dur="0.120">
+      that
+     </span>
+     <span data-begin="340.480" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="340.570" data-dur="0.290">
+      bee
+     </span>
+     <span data-begin="340.890" data-dur="0.410">
+      gathers
+     </span>
+     <span data-begin="341.300" data-dur="0.329">
+      pollen
+     </span>
+     <span data-begin="341.629" data-dur="0.350">
+      dust
+     </span>
+     <span data-begin="342.199" data-dur="0.179">
+      to
+     </span>
+     <span data-begin="342.379" data-dur="0.350">
+      feed
+     </span>
+     <span data-begin="342.730" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="342.809" data-dur="0.260">
+      young
+     </span>
+     <span data-begin="343.070" data-dur="0.420">
+      bees
+     </span>
+     <span data-begin="343.679" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="343.849" data-dur="0.310">
+      rear
+     </span>
+     <span data-begin="344.159" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="344.218" data-dur="0.481">
+      queen
+     </span>
+     ,
+     <span data-begin="344.699" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="345.129" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="345.329" data-dur="0.099">
+      it
+     </span>
+     <span data-begin="345.429" data-dur="0.700">
+      exists
+     </span>
+     <span data-begin="346.159" data-dur="0.070">
+      to
+     </span>
+     <span data-begin="346.230" data-dur="0.688">
+      perpetuate
+     </span>
+     <span data-begin="346.919" data-dur="0.149">
+      its
+     </span>
+     <span data-begin="347.070" data-dur="1.000">
+      race
+     </span>
+     .
+     <span data-begin="348.689" data-dur="0.058">
+      A
+     </span>
+     <span data-begin="348.748" data-dur="0.660">
+      botanist
+     </span>
+     <span data-begin="349.609" data-dur="0.510">
+      notices
+     </span>
+     <span data-begin="350.119" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="350.249" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="350.328" data-dur="0.291">
+      bee
+     </span>
+     <span data-begin="350.619" data-dur="0.410">
+      flying
+     </span>
+     <span data-begin="351.029" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="351.149" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="351.239" data-dur="0.350">
+      pollen
+     </span>
+     <span data-begin="351.590" data-dur="0.097">
+      of
+     </span>
+     <span data-begin="351.688" data-dur="0.050">
+      a
+     </span>
+     <span data-begin="351.739" data-dur="0.320">
+      male
+     </span>
+     <span data-begin="352.060" data-dur="0.480">
+      flower
+     </span>
+     <span data-begin="352.779" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="352.929" data-dur="0.049">
+      a
+     </span>
+     <span data-begin="352.980" data-dur="0.590">
+      pistil
+     </span>
+     <span data-begin="353.889" data-dur="0.700">
+      fertilizes
+     </span>
+     <span data-begin="354.590" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="354.678" data-dur="0.471">
+      latter
+     </span>
+     ,
+     <span data-begin="355.419" data-dur="0.179">
+      and
+     </span>
+     <span data-begin="355.599" data-dur="0.260">
+      sees
+     </span>
+     <span data-begin="355.859" data-dur="0.120">
+      in
+     </span>
+     <span data-begin="355.980" data-dur="0.340">
+      this
+     </span>
+     <span data-begin="356.489" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="356.599" data-dur="0.380">
+      purpose
+     </span>
+     <span data-begin="356.980" data-dur="0.097">
+      of
+     </span>
+     <span data-begin="357.078" data-dur="0.069">
+      the
+     </span>
+     <span data-begin="357.148" data-dur="0.281">
+      bee's
+     </span>
+     <span data-begin="357.429" data-dur="1.000">
+      existence
+     </span>
+     .
+     <span data-begin="359.219" data-dur="0.560">
+      Another
+     </span>
+     ,
+     <span data-begin="360.029" data-dur="0.520">
+      observing
+     </span>
+     <span data-begin="360.550" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="360.638" data-dur="0.621">
+      migration
+     </span>
+     <span data-begin="361.259" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="361.359" data-dur="0.570">
+      plants
+     </span>
+     ,
+     <span data-begin="362.239" data-dur="0.620">
+      notices
+     </span>
+     <span data-begin="363.009" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="363.169" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="363.289" data-dur="0.280">
+      bee
+     </span>
+     <span data-begin="363.599" data-dur="0.399">
+      helps
+     </span>
+     <span data-begin="363.999" data-dur="0.099">
+      in
+     </span>
+     <span data-begin="364.099" data-dur="0.220">
+      this
+     </span>
+     <span data-begin="364.319" data-dur="0.359">
+      work
+     </span>
+     ,
+     <span data-begin="365.050" data-dur="0.138">
+      and
+     </span>
+     <span data-begin="365.189" data-dur="0.170">
+      may
+     </span>
+     <span data-begin="365.359" data-dur="0.310">
+      say
+     </span>
+     <span data-begin="365.669" data-dur="0.190">
+      that
+     </span>
+     <span data-begin="365.859" data-dur="0.170">
+      in
+     </span>
+     <span data-begin="366.029" data-dur="0.380">
+      this
+     </span>
+     <span data-begin="366.719" data-dur="0.229">
+      lies
+     </span>
+     <span data-begin="366.950" data-dur="0.087">
+      the
+     </span>
+     <span data-begin="367.038" data-dur="0.341">
+      purpose
+     </span>
+     <span data-begin="367.380" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="367.480" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="367.559" data-dur="1.000">
+      bee
+     </span>
+     .
+     <span data-begin="369.189" data-dur="0.130">
+      But
+     </span>
+     <span data-begin="369.319" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="369.489" data-dur="0.420">
+      ultimate
+     </span>
+     <span data-begin="369.910" data-dur="0.368">
+      purpose
+     </span>
+     <span data-begin="370.279" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="370.380" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="370.459" data-dur="0.340">
+      bee
+     </span>
+     <span data-begin="370.969" data-dur="0.149">
+      is
+     </span>
+     <span data-begin="371.119" data-dur="0.210">
+      not
+     </span>
+     <span data-begin="371.329" data-dur="0.539">
+      exhausted
+     </span>
+     <span data-begin="371.869" data-dur="0.130">
+      by
+     </span>
+     <span data-begin="371.999" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="372.090" data-dur="0.550">
+      first
+     </span>
+     ,
+     <span data-begin="372.869" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="372.969" data-dur="0.530">
+      second
+     </span>
+     ,
+     <span data-begin="373.700" data-dur="0.130">
+      or
+     </span>
+     <span data-begin="373.899" data-dur="0.280">
+      any
+     </span>
+     <span data-begin="374.179" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="374.270" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="374.349" data-dur="0.659">
+      processes
+     </span>
+     <span data-begin="375.009" data-dur="0.220">
+      the
+     </span>
+     <span data-begin="375.230" data-dur="0.220">
+      human
+     </span>
+     <span data-begin="375.450" data-dur="0.368">
+      mind
+     </span>
+     <span data-begin="375.819" data-dur="0.199">
+      can
+     </span>
+     <span data-begin="376.020" data-dur="1.000">
+      discern
+     </span>
+     .
+     <span data-begin="377.450" data-dur="0.149">
+      The
+     </span>
+     <span data-begin="377.599" data-dur="0.429">
+      higher
+     </span>
+     <span data-begin="378.059" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="378.209" data-dur="0.229">
+      human
+     </span>
+     <span data-begin="378.439" data-dur="0.450">
+      intellect
+     </span>
+     <span data-begin="378.889" data-dur="0.539">
+      rises
+     </span>
+     <span data-begin="379.459" data-dur="0.089">
+      in
+     </span>
+     <span data-begin="379.550" data-dur="0.058">
+      the
+     </span>
+     <span data-begin="379.609" data-dur="0.610">
+      discovery
+     </span>
+     <span data-begin="380.219" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="380.319" data-dur="0.179">
+      these
+     </span>
+     <span data-begin="380.499" data-dur="1.000">
+      purposes
+     </span>
+     ,
+     <span data-begin="381.689" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="381.789" data-dur="0.290">
+      more
+     </span>
+     <span data-begin="382.079" data-dur="0.299">
+      obvious
+     </span>
+     <span data-begin="382.379" data-dur="0.140">
+      it
+     </span>
+     <span data-begin="382.520" data-dur="0.530">
+      becomes
+     </span>
+     ,
+     <span data-begin="383.369" data-dur="0.099">
+      that
+     </span>
+     <span data-begin="383.469" data-dur="0.130">
+      the
+     </span>
+     <span data-begin="383.629" data-dur="0.390">
+      ultimate
+     </span>
+     <span data-begin="384.020" data-dur="1.000">
+      purpose
+     </span>
+     <span data-begin="385.099" data-dur="0.140">
+      is
+     </span>
+     <span data-begin="385.289" data-dur="0.489">
+      beyond
+     </span>
+     <span data-begin="386.020" data-dur="0.128">
+      our
+     </span>
+     <span data-begin="386.149" data-dur="1.000">
+      comprehension
+     </span>
+     .
+     <p>
+      一只蜜蜂落在花朵上，蜇伤了一个孩子。孩子害怕蜜蜂，宣称蜜蜂的存在就是为了蜇人。一位诗人欣赏蜜蜂吮吸花朵，说它的存在是为了吮吸花香。一位养蜂人看到蜜蜂从花朵中采集花粉并将其带入蜂巢，他说蜜蜂的存在是为了采蜜。另一位养蜂人更仔细地研究了蜂巢的生活，他说蜜蜂采集花粉尘是为了喂养小蜜蜂和饲养蜂王，它的存在是为了延续自己的种族。一位植物学家注意到，蜜蜂带着雄花的花粉飞向雌花，使雌花受精，他认为这就是蜜蜂存在的目的。另一位植物学家在观察植物的迁徙时，注意到蜜蜂帮助了这一工作，他可能会说这就是蜜蜂的目的所在。但是，蜜蜂的最终目的并没有被第一个、第二个或人类思维所能识别的任何过程所穷尽。人类的智力在发现这些目的的过程中提升得越高，就越明显地看出，最终目的是我们无法理解的。
+     </p>
+    </p>
+    <p>
+     <span data-begin="388.899" data-dur="0.340">
+      All
+     </span>
+     <span data-begin="389.270" data-dur="0.108">
+      that
+     </span>
+     <span data-begin="389.379" data-dur="0.110">
+      is
+     </span>
+     <span data-begin="389.520" data-dur="0.548">
+      accessible
+     </span>
+     <span data-begin="390.069" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="390.189" data-dur="0.420">
+      man
+     </span>
+     <span data-begin="391.090" data-dur="0.087">
+      is
+     </span>
+     <span data-begin="391.178" data-dur="0.111">
+      the
+     </span>
+     <span data-begin="391.289" data-dur="0.640">
+      relation
+     </span>
+     <span data-begin="391.929" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="392.119" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="392.209" data-dur="0.320">
+      life
+     </span>
+     <span data-begin="392.529" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="392.629" data-dur="0.080">
+      the
+     </span>
+     <span data-begin="392.770" data-dur="0.340">
+      bee
+     </span>
+     <span data-begin="393.349" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="393.529" data-dur="0.229">
+      other
+     </span>
+     <span data-begin="393.759" data-dur="0.770">
+      manifestations
+     </span>
+     <span data-begin="394.529" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="394.639" data-dur="1.000">
+      life
+     </span>
+     .
+     <span data-begin="396.209" data-dur="0.220">
+      And
+     </span>
+     <span data-begin="396.429" data-dur="0.290">
+      so
+     </span>
+     <span data-begin="396.719" data-dur="0.110">
+      it
+     </span>
+     <span data-begin="396.829" data-dur="0.350">
+      is
+     </span>
+     <span data-begin="397.529" data-dur="0.089">
+      with
+     </span>
+     <span data-begin="397.619" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="397.719" data-dur="0.459">
+      purpose
+     </span>
+     <span data-begin="398.179" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="398.279" data-dur="0.570">
+      historic
+     </span>
+     <span data-begin="398.849" data-dur="0.729">
+      characters
+     </span>
+     <span data-begin="399.709" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="399.919" data-dur="1.000">
+      nations
+     </span>
+     .
+     <p>
+      人类所能理解的只是蜜蜂的生命与其他生命表现形式之间的关系。历史人物和民族的目的也是如此。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>

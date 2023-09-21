@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   war_and_peace_16_01_tolstoy_64kb - HTML5 Audio Read
+  </title>
+  <meta content="width=device-width" name="viewport"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <style>
+   html {
+    background: #333;
+    font-family: Verdana, sans-serif;
+}
+body {
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+}
+a {
+    color: #0E2560;
+}
+h2 {
+    margin-bottom: 1em;
+}
+.passage-audio {
+    height: 2em;
+}
+#passage-audio {
+    width: 100%;
+    max-height: 2em;
+}
+#passage-text.speaking {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.autofocus-current-word,
+.playback-rate {
+    font-size: smaller;
+}
+.autofocus-current-word label,
+.playback-rate label {
+    font-weight: bold;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+.section-heading {
+    display: none;
+}
+.passage p {
+    line-height: 1.4em;
+}
+.verse-start {
+    line-height: 0;
+}
+.initialized span[data-begin]:focus,
+.initialized span[data-begin]:hover {
+    background-color: #FFFFCA;
+    box-shadow: 0px 0px 4px #FFFFCA;
+}
+.initialized span[data-begin].speaking {
+    background-color: yellow;
+    box-shadow: 0px 0px 4px yellow;
+}
+.initialized span[data-begin] {
+    cursor: pointer;
+}
+.error {
+    color: red;
+}
+
+article > footer {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    font-size: small;
+}
+footer img {
+    vertical-align: text-bottom;
+}
+  </style>
+ </head>
+ <body>
+  <h1>
+   war_and_peace_16_01_tolstoy_64kb
+  </h1>
+  <article>
+   <p class="loading">
+    <em>
+     <img alt="Initializing audio" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+     Loading audio…
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio" hidden="">
+    <audio class="passage" controls="" id="passage-audio">
+     <source src="war_and_peace_16_01_tolstoy_64kb.mp3" type="audio/mp3"/>
+     <em class="error">
+      <strong>
+       Error:
+      </strong>
+      Your browser doesn't appear to support HTML5 Audio.
+     </em>
+    </audio>
+    <p>
+    </p>
+   </p>
+   <p class="passage-audio-unavailable" hidden="">
+    <em class="error">
+     <strong>
+      Error:
+     </strong>
+     You will not be able to do the read-along audio because your browser is not able to play MP3, Ogg, or WAV audio formats.
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate" hidden="" title="Note that increaseing the reading rate will decrease accuracy of word highlights">
+    <label for="playback-rate">
+     Reading rate:
+    </label>
+    <input disabled="" id="playback-rate" max="2.0" min="0.5" onchange='this.nextElementSibling.textContent = String(Math.round(this.valueAsNumber * 10) / 10) + "\u00D7";' step="0.1" type="range" value="1.0"/>
+    <output>
+     1×
+    </output>
+    <p>
+    </p>
+   </p>
+   <p class="playback-rate-unavailable" hidden="">
+    <em>
+     (It seems your browser does not support
+     <code>
+      HTMLMediaElement.playbackRate
+     </code>
+     , so you will not be able to change the speech rate.)
+    </em>
+    <p>
+    </p>
+   </p>
+   <p class="autofocus-current-word" hidden="">
+    <input checked="" id="autofocus-current-word" type="checkbox"/>
+    <label for="autofocus-current-word">
+     Auto-focus/auto-scroll
+    </label>
+    <p>
+    </p>
+   </p>
+   <noscript>
+    <p class="error">
+     <em>
+      <strong>
+       Notice:
+      </strong>
+      You must have JavaScript enabled/available to try this HTML5 Audio read along.
+     </em>
+     <p>
+     </p>
+    </p>
+   </noscript>
+   <div class="passage" id="passage-text">
+    <h3 class="section-heading">
+     war_and_peace_16_01_tolstoy_64kb
+    </h3>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     <p>
+     </p>
+    </p>
+    <p>
+     ﻿CHAPTER I
+     <p>
+      第一章
+     </p>
+    </p>
+    <p>
+     <span data-begin="31.179" data-dur="0.590">
+      Seven
+     </span>
+     <span data-begin="31.769" data-dur="0.520">
+      years
+     </span>
+     <span data-begin="32.290" data-dur="0.199">
+      had
+     </span>
+     <span data-begin="32.489" data-dur="1.000">
+      passed
+     </span>
+     .
+     <span data-begin="34.079" data-dur="0.070">
+      The
+     </span>
+     <span data-begin="34.180" data-dur="0.340">
+      storm
+     </span>
+     -
+     <span data-begin="34.579" data-dur="0.410">
+      tossed
+     </span>
+     <span data-begin="34.989" data-dur="0.299">
+      sea
+     </span>
+     <span data-begin="35.290" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="35.529" data-dur="0.560">
+      European
+     </span>
+     <span data-begin="36.090" data-dur="1.000">
+      history
+     </span>
+     <span data-begin="37.189" data-dur="0.199">
+      had
+     </span>
+     <span data-begin="37.419" data-dur="1.000">
+      subsided
+     </span>
+     <span data-begin="38.689" data-dur="0.329">
+      within
+     </span>
+     <span data-begin="39.020" data-dur="0.188">
+      its
+     </span>
+     <span data-begin="39.209" data-dur="0.459">
+      shores
+     </span>
+     <span data-begin="39.700" data-dur="0.128">
+      and
+     </span>
+     <span data-begin="39.829" data-dur="0.280">
+      seemed
+     </span>
+     <span data-begin="40.110" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="40.259" data-dur="0.199">
+      have
+     </span>
+     <span data-begin="40.500" data-dur="0.290">
+      become
+     </span>
+     <span data-begin="40.919" data-dur="1.000">
+      calm
+     </span>
+     .
+     <span data-begin="42.239" data-dur="0.170">
+      But
+     </span>
+     <span data-begin="42.409" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="42.488" data-dur="0.611">
+      mysterious
+     </span>
+     <span data-begin="43.099" data-dur="0.680">
+      forces
+     </span>
+     <span data-begin="43.779" data-dur="0.179">
+      that
+     </span>
+     <span data-begin="43.959" data-dur="0.190">
+      move
+     </span>
+     <span data-begin="44.209" data-dur="1.000">
+      humanity
+     </span>
+     (mysterious because the laws of their motion are unknown to us)
+     <span data-begin="49.219" data-dur="0.560">
+      continued
+     </span>
+     <span data-begin="49.779" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="49.959" data-dur="1.000">
+      operate
+     </span>
+     .
+     <p>
+      七年过去了。欧洲历史的风暴之海已在其岸边平息，似乎变得风平浪静。但是，推动人类前进的神秘力量（之所以神秘，是因为我们不知道它们的运动规律）仍在继续运作。
+     </p>
+    </p>
+    <p>
+     Though the surface of the sea of history seemed motionless, the movement of
+     <span data-begin="55.779" data-dur="0.599">
+      humanity
+     </span>
+     <span data-begin="56.379" data-dur="0.210">
+      went
+     </span>
+     <span data-begin="56.659" data-dur="0.329">
+      on
+     </span>
+     <span data-begin="57.020" data-dur="0.229">
+      as
+     </span>
+     <span data-begin="57.319" data-dur="1.000">
+      unceasingly
+     </span>
+     <span data-begin="58.649" data-dur="0.140">
+      as
+     </span>
+     <span data-begin="58.789" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="58.889" data-dur="0.240">
+      flow
+     </span>
+     <span data-begin="59.129" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="59.319" data-dur="1.000">
+      time
+     </span>
+     .
+     <span data-begin="60.629" data-dur="0.440">
+      Various
+     </span>
+     <span data-begin="61.069" data-dur="0.350">
+      groups
+     </span>
+     <span data-begin="61.419" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="61.579" data-dur="0.489">
+      people
+     </span>
+     <span data-begin="62.119" data-dur="0.399">
+      formed
+     </span>
+     <span data-begin="62.520" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="62.680" data-dur="1.000">
+      dissolved
+     </span>
+     ,
+     <span data-begin="63.809" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="63.878" data-dur="0.321">
+      coming
+     </span>
+     <span data-begin="64.199" data-dur="0.560">
+      formation
+     </span>
+     <span data-begin="64.760" data-dur="0.188">
+      and
+     </span>
+     <span data-begin="64.949" data-dur="0.669">
+      dissolution
+     </span>
+     <span data-begin="65.619" data-dur="0.140">
+      of
+     </span>
+     <span data-begin="65.900" data-dur="0.560">
+      kingdoms
+     </span>
+     <span data-begin="66.799" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="66.909" data-dur="0.740">
+      displacement
+     </span>
+     <span data-begin="67.689" data-dur="0.149">
+      of
+     </span>
+     <span data-begin="67.839" data-dur="0.359">
+      peoples
+     </span>
+     <span data-begin="68.250" data-dur="0.269">
+      was
+     </span>
+     <span data-begin="68.519" data-dur="1.000">
+      in
+     </span>
+     course of preparation.
+     <p>
+      虽然历史之海的海面似乎一动不动，但人类的运动却像时间的流水一样永不停息。各种人群的形成和解体，王国的形成和解体，民族的迁移，都在准备之中。
+     </p>
+    </p>
+    <p>
+     The sea of history was not driven spasmodically from shore to
+     <span data-begin="74.549" data-dur="0.489">
+      shore
+     </span>
+     <span data-begin="75.400" data-dur="0.158">
+      as
+     </span>
+     <span data-begin="75.559" data-dur="1.000">
+      previously
+     </span>
+     .
+     <span data-begin="76.889" data-dur="0.080">
+      It
+     </span>
+     <span data-begin="76.970" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="77.169" data-dur="0.450">
+      seething
+     </span>
+     <span data-begin="77.619" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="77.729" data-dur="0.260">
+      its
+     </span>
+     <span data-begin="77.989" data-dur="1.000">
+      depths
+     </span>
+     . Historic figures were not borne by
+     <span data-begin="81.279" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="81.430" data-dur="0.640">
+      waves
+     </span>
+     <span data-begin="82.290" data-dur="0.269">
+      from
+     </span>
+     <span data-begin="82.559" data-dur="0.140">
+      one
+     </span>
+     <span data-begin="82.729" data-dur="0.329">
+      shore
+     </span>
+     <span data-begin="83.059" data-dur="0.190">
+      to
+     </span>
+     <span data-begin="83.250" data-dur="0.378">
+      another
+     </span>
+     <span data-begin="83.629" data-dur="0.199">
+      as
+     </span>
+     <span data-begin="84.019" data-dur="1.000">
+      before
+     </span>
+     . They now seemed
+     <span data-begin="85.529" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="85.680" data-dur="0.750">
+      rotate
+     </span>
+     <span data-begin="86.459" data-dur="0.130">
+      on
+     </span>
+     <span data-begin="86.589" data-dur="0.170">
+      one
+     </span>
+     <span data-begin="86.790" data-dur="1.000">
+      spot
+     </span>
+     . The historical
+     <span data-begin="88.949" data-dur="0.390">
+      figures
+     </span>
+     <span data-begin="89.339" data-dur="0.179">
+      at
+     </span>
+     <span data-begin="89.519" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="89.629" data-dur="0.250">
+      head
+     </span>
+     <span data-begin="89.879" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="90.029" data-dur="1.000">
+      armies
+     </span>
+     , who formerly reflected the movement of the masses by ordering
+     <span data-begin="94.619" data-dur="0.680">
+      wars
+     </span>
+     ,
+     <span data-begin="95.339" data-dur="0.760">
+      campaigns
+     </span>
+     ,
+     <span data-begin="96.309" data-dur="1.000">
+      and
+     </span>
+     battles, now reflected the restless movement by
+     <span data-begin="100.089" data-dur="0.630">
+      political
+     </span>
+     <span data-begin="100.759" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="100.979" data-dur="0.640">
+      diplomatic
+     </span>
+     <span data-begin="101.619" data-dur="1.000">
+      combinations
+     </span>
+     ,
+     <span data-begin="103.199" data-dur="0.190">
+      laws
+     </span>
+     ,
+     <span data-begin="103.389" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="103.559" data-dur="1.000">
+      treaties
+     </span>
+     .
+     <p>
+      历史之海并不像以前那样从一个海岸到另一个海岸，而是在其深处汹涌澎湃。它在深处汹涌澎湃。历史人物不再像以前那样被波浪从一个海岸带到另一个海岸。他们现在似乎在一个地方旋转。军队的首脑人物以前通过下令发动战争、战役和战斗来反映群众的运动，现在则通过政治和外交组合、法律和条约来反映躁动不安的运动。
+     </p>
+    </p>
+    <p>
+     <span data-begin="105.680" data-dur="0.110">
+      The
+     </span>
+     historians call this
+     <span data-begin="105.889" data-dur="0.789">
+      activity
+     </span>
+     <span data-begin="106.680" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="106.809" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="106.939" data-dur="0.580">
+      historical
+     </span>
+     <span data-begin="107.579" data-dur="1.000">
+      figures
+     </span>
+     "
+     <span data-begin="108.889" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="109.040" data-dur="1.000">
+      reaction
+     </span>
+     ."
+     <p>
+      历史学家把历史人物的这种活动称为 "反动"。
+     </p>
+    </p>
+    <p>
+     <span data-begin="110.500" data-dur="0.140">
+      In
+     </span>
+     <span data-begin="110.669" data-dur="0.359">
+      dealing
+     </span>
+     <span data-begin="111.029" data-dur="0.140">
+      with
+     </span>
+     <span data-begin="111.169" data-dur="0.160">
+      this
+     </span>
+     <span data-begin="111.379" data-dur="0.590">
+      period
+     </span>
+     <span data-begin="112.299" data-dur="0.068">
+      they
+     </span>
+     <span data-begin="112.368" data-dur="0.381">
+      sternly
+     </span>
+     <span data-begin="112.750" data-dur="0.539">
+      condemn
+     </span>
+     <span data-begin="113.349" data-dur="1.000">
+      the
+     </span>
+     historical personages who, in their opinion, caused
+     <span data-begin="117.769" data-dur="0.199">
+      what
+     </span>
+     <span data-begin="118.029" data-dur="0.110">
+      they
+     </span>
+     <span data-begin="118.180" data-dur="0.740">
+      describe
+     </span>
+     <span data-begin="118.949" data-dur="0.250">
+      as
+     </span>
+     <span data-begin="119.199" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="119.339" data-dur="1.000">
+      reaction
+     </span>
+     .
+     <span data-begin="120.639" data-dur="0.220">
+      All
+     </span>
+     <span data-begin="120.860" data-dur="0.118">
+      the
+     </span>
+     <span data-begin="120.979" data-dur="0.420">
+      well
+     </span>
+     -known
+     <span data-begin="121.399" data-dur="0.380">
+      people
+     </span>
+     <span data-begin="121.809" data-dur="0.130">
+      of
+     </span>
+     <span data-begin="121.979" data-dur="0.220">
+      that
+     </span>
+     <span data-begin="122.199" data-dur="1.000">
+      period
+     </span>
+     , from Alexander and Napoleon to Madame de Stael, Photius, Schelling, Fichte, Chateaubriand, and
+     <span data-begin="131.309" data-dur="0.160">
+      the
+     </span>
+     <span data-begin="131.550" data-dur="1.000">
+      rest
+     </span>
+     ,
+     <span data-begin="132.720" data-dur="0.318">
+      pass
+     </span>
+     <span data-begin="133.039" data-dur="0.410">
+      before
+     </span>
+     <span data-begin="133.449" data-dur="0.130">
+      their
+     </span>
+     <span data-begin="133.580" data-dur="0.390">
+      stern
+     </span>
+     <span data-begin="134.000" data-dur="0.450">
+      judgment
+     </span>
+     <span data-begin="134.479" data-dur="0.410">
+      seat
+     </span>
+     <span data-begin="135.289" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="135.410" data-dur="0.030">
+      are
+     </span>
+     <span data-begin="135.669" data-dur="0.620">
+      acquitted
+     </span>
+     <span data-begin="136.509" data-dur="1.000">
+      or
+     </span>
+     condemned according
+     <span data-begin="137.819" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="137.970" data-dur="0.350">
+      whether
+     </span>
+     <span data-begin="138.349" data-dur="0.110">
+      they
+     </span>
+     <span data-begin="138.459" data-dur="0.750">
+      conduced
+     </span>
+     <span data-begin="139.440" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="139.619" data-dur="0.570">
+      progress
+     </span>
+     <span data-begin="140.319" data-dur="0.040">
+      or
+     </span>
+     <span data-begin="140.360" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="140.509" data-dur="1.000">
+      reaction
+     </span>
+     .
+     <p>
+      在论述这一时期时，他们严厉谴责那些在他们看来造成了他们所说的反动的历史人物。从亚历山大、拿破仑到斯塔尔夫人、波提乌斯、谢林、费希特、夏多布里昂，以及那个时期的所有知名人士，都在他们严厉的审判席前被宣判无罪或受到谴责，就看他们是促进了进步还是造成了反动。
+     </p>
+    </p>
+    <p>
+     <span data-begin="142.279" data-dur="0.459">
+      According
+     </span>
+     <span data-begin="142.739" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="142.879" data-dur="0.179">
+      their
+     </span>
+     <span data-begin="143.089" data-dur="0.690">
+      accounts
+     </span>
+     <span data-begin="143.819" data-dur="0.110">
+      a
+     </span>
+     <span data-begin="143.959" data-dur="0.669">
+      reaction
+     </span>
+     <span data-begin="144.629" data-dur="0.260">
+      took
+     </span>
+     <span data-begin="144.889" data-dur="0.560">
+      place
+     </span>
+     <span data-begin="145.789" data-dur="0.140">
+      at
+     </span>
+     <span data-begin="145.929" data-dur="0.190">
+      that
+     </span>
+     <span data-begin="146.119" data-dur="0.329">
+      time
+     </span>
+     <span data-begin="146.449" data-dur="0.110">
+      in
+     </span>
+     <span data-begin="146.589" data-dur="0.420">
+      Russia
+     </span>
+     <span data-begin="147.039" data-dur="0.550">
+      also
+     </span>
+     ,
+     <span data-begin="148.039" data-dur="0.089">
+      and
+     </span>
+     <span data-begin="148.129" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="148.229" data-dur="0.290">
+      chief
+     </span>
+     <span data-begin="148.649" data-dur="0.370">
+      culprit
+     </span>
+     <span data-begin="149.050" data-dur="0.170">
+      was
+     </span>
+     <span data-begin="149.250" data-dur="0.550">
+      Alexander
+     </span>
+     <span data-begin="149.889" data-dur="0.030">
+      I
+     </span>
+     ,
+     <span data-begin="149.989" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="150.919" data-dur="0.429">
+      same
+     </span>
+     <span data-begin="151.349" data-dur="0.269">
+      man
+     </span>
+     <span data-begin="151.690" data-dur="0.058">
+      who
+     </span>
+     <span data-begin="151.749" data-dur="0.441">
+      according
+     </span>
+     <span data-begin="152.220" data-dur="0.160">
+      to
+     </span>
+     <span data-begin="152.410" data-dur="0.229">
+      them
+     </span>
+     <span data-begin="153.080" data-dur="0.140">
+      was
+     </span>
+     <span data-begin="153.220" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="153.319" data-dur="0.299">
+      chief
+     </span>
+     <span data-begin="153.619" data-dur="0.500">
+      cause
+     </span>
+     <span data-begin="154.179" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="154.309" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="154.410" data-dur="0.500">
+      liberal
+     </span>
+     <span data-begin="154.989" data-dur="0.599">
+      movement
+     </span>
+     <span data-begin="156.000" data-dur="0.118">
+      at
+     </span>
+     <span data-begin="156.119" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="156.209" data-dur="0.560">
+      commencement
+     </span>
+     <span data-begin="156.809" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="156.919" data-dur="0.250">
+      his
+     </span>
+     <span data-begin="157.169" data-dur="0.350">
+      reign
+     </span>
+     ,
+     <span data-begin="157.949" data-dur="0.179">
+      being
+     </span>
+     <span data-begin="158.129" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="158.198" data-dur="0.521">
+      savior
+     </span>
+     <span data-begin="158.809" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="158.929" data-dur="1.000">
+      Russia
+     </span>
+     .
+     <p>
+      根据他们的说法，当时俄国也发生了反动，罪魁祸首是亚历山大一世，而根据他们的说法，亚历山大一世正是俄国自由主义运动的主因，是俄国的救世主。
+     </p>
+    </p>
+    <p>
+     There is no one in Russian literature now, from schoolboy essayist to learned historian, who does not throw his little stone at Alexander for things he did wrong at this period of his reign.
+     <p>
+      现在的俄罗斯文学界，从小学生散文家到博学的历史学家，没有一个人不对亚历山大在位期间的错误行为投以微词。
+     </p>
+    </p>
+    <p>
+     "
+     <span data-begin="172.939" data-dur="0.120">
+      He
+     </span>
+     <span data-begin="173.119" data-dur="0.260">
+      ought
+     </span>
+     <span data-begin="173.409" data-dur="0.149">
+      to
+     </span>
+     <span data-begin="173.560" data-dur="0.160">
+      have
+     </span>
+     <span data-begin="173.749" data-dur="0.489">
+      acted
+     </span>
+     <span data-begin="174.269" data-dur="0.210">
+      in
+     </span>
+     <span data-begin="174.509" data-dur="0.269">
+      this
+     </span>
+     <span data-begin="174.810" data-dur="0.299">
+      way
+     </span>
+     <span data-begin="175.150" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="175.300" data-dur="0.199">
+      in
+     </span>
+     <span data-begin="175.550" data-dur="0.310">
+      that
+     </span>
+     <span data-begin="175.900" data-dur="0.290">
+      way
+     </span>
+     .
+     <span data-begin="176.599" data-dur="0.190">
+      In
+     </span>
+     <span data-begin="176.819" data-dur="0.229">
+      this
+     </span>
+     <span data-begin="177.050" data-dur="0.388">
+      case
+     </span>
+     <span data-begin="177.439" data-dur="0.070">
+      he
+     </span>
+     <span data-begin="177.539" data-dur="0.190">
+      did
+     </span>
+     <span data-begin="177.759" data-dur="0.220">
+      well
+     </span>
+     <span data-begin="178.249" data-dur="0.099">
+      and
+     </span>
+     <span data-begin="178.349" data-dur="0.160">
+      in
+     </span>
+     <span data-begin="178.539" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="178.779" data-dur="0.380">
+      case
+     </span>
+     <span data-begin="179.159" data-dur="1.000">
+      badly
+     </span>
+     .
+     <span data-begin="180.310" data-dur="0.097">
+      He
+     </span>
+     <span data-begin="180.408" data-dur="0.551">
+      behaved
+     </span>
+     <span data-begin="180.989" data-dur="0.740">
+      admirably
+     </span>
+     <span data-begin="181.759" data-dur="0.130">
+      at
+     </span>
+     <span data-begin="181.890" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="181.959" data-dur="0.450">
+      beginning
+     </span>
+     <span data-begin="182.409" data-dur="0.160">
+      of
+     </span>
+     <span data-begin="182.569" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="182.759" data-dur="0.280">
+      reign
+     </span>
+     <span data-begin="183.039" data-dur="0.199">
+      and
+     </span>
+     <span data-begin="183.239" data-dur="1.000">
+      during
+     </span>
+     1812,
+     <span data-begin="184.769" data-dur="0.179">
+      but
+     </span>
+     <span data-begin="184.949" data-dur="0.329">
+      acted
+     </span>
+     <span data-begin="185.319" data-dur="0.510">
+      badly
+     </span>
+     <span data-begin="185.859" data-dur="0.099">
+      by
+     </span>
+     <span data-begin="186.029" data-dur="0.260">
+      giving
+     </span>
+     <span data-begin="186.340" data-dur="0.038">
+      a
+     </span>
+     <span data-begin="186.379" data-dur="0.880">
+      constitution
+     </span>
+     <span data-begin="187.289" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="187.399" data-dur="0.470">
+      Poland
+     </span>
+     ,
+     <span data-begin="187.930" data-dur="0.880">
+      forming
+     </span>
+     <span data-begin="188.840" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="188.919" data-dur="0.310">
+      Holy
+     </span>
+     <span data-begin="189.230" data-dur="0.640">
+      Alliance
+     </span>
+     ,
+     <span data-begin="189.939" data-dur="0.630">
+      entrusting
+     </span>
+     <span data-begin="190.629" data-dur="0.260">
+      power
+     </span>
+     <span data-begin="190.919" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="191.419" data-dur="0.440">
+      Arakcheev
+     </span>
+     ,
+     <span data-begin="191.989" data-dur="0.909">
+      favoring
+     </span>
+     <span data-begin="192.899" data-dur="0.610">
+      Golitsyn
+     </span>
+     <span data-begin="193.689" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="193.869" data-dur="1.000">
+      mysticism
+     </span>
+     ,
+     <span data-begin="195.079" data-dur="0.149">
+      and
+     </span>
+     <span data-begin="195.259" data-dur="0.680">
+      afterwards
+     </span>
+     <span data-begin="195.939" data-dur="0.520">
+      Shishkov
+     </span>
+     <span data-begin="196.619" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="196.759" data-dur="1.000">
+      Photius
+     </span>
+     .
+     <span data-begin="198.099" data-dur="0.089">
+      He
+     </span>
+     <span data-begin="198.189" data-dur="0.290">
+      also
+     </span>
+     <span data-begin="198.509" data-dur="0.299">
+      acted
+     </span>
+     <span data-begin="198.809" data-dur="0.470">
+      badly
+     </span>
+     <span data-begin="199.320" data-dur="0.099">
+      by
+     </span>
+     <span data-begin="199.449" data-dur="0.459">
+      concerning
+     </span>
+     <span data-begin="199.910" data-dur="0.480">
+      himself
+     </span>
+     <span data-begin="200.429" data-dur="0.120">
+      with
+     </span>
+     <span data-begin="200.550" data-dur="0.199">
+      the
+     </span>
+     <span data-begin="200.869" data-dur="0.350">
+      active
+     </span>
+     <span data-begin="201.289" data-dur="0.539">
+      army
+     </span>
+     <span data-begin="202.189" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="202.329" data-dur="0.710">
+      disbanding
+     </span>
+     <span data-begin="203.039" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="203.118" data-dur="0.600">
+      Semenov
+     </span>
+     <span data-begin="203.809" data-dur="0.470">
+      regiment
+     </span>
+     ."
+     <p>
+      "他应该这样做，也应该那样做。在这种情况下，他做得很好，在那种情况下，他做得很差。他在即位之初和 1812 年的表现令人钦佩，但在以下方面却做得不好：给波兰制定宪法，成立神圣同盟，把权力交给阿拉克切耶夫，支持戈利岑和神秘主义，后来又支持希什科夫和普提乌斯。他的错误还表现在对现役军队的关心和解散谢苗诺夫团"。
+     </p>
+    </p>
+    <p>
+     <span data-begin="204.719" data-dur="0.110">
+      It
+     </span>
+     <span data-begin="204.829" data-dur="0.110">
+      would
+     </span>
+     <span data-begin="204.939" data-dur="0.250">
+      take
+     </span>
+     <span data-begin="205.189" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="205.309" data-dur="0.299">
+      dozen
+     </span>
+     <span data-begin="205.609" data-dur="0.560">
+      pages
+     </span>
+     <span data-begin="206.230" data-dur="0.120">
+      to
+     </span>
+     <span data-begin="206.379" data-dur="1.000">
+      enumerate
+     </span>
+     <span data-begin="207.589" data-dur="0.220">
+      all
+     </span>
+     <span data-begin="207.809" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="207.919" data-dur="1.000">
+      reproaches
+     </span>
+     the historians address to him, based on their knowledge of
+     <span data-begin="211.629" data-dur="0.299">
+      what
+     </span>
+     <span data-begin="211.999" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="212.179" data-dur="0.310">
+      good
+     </span>
+     <span data-begin="212.489" data-dur="0.190">
+      for
+     </span>
+     <span data-begin="212.719" data-dur="1.000">
+      humanity
+     </span>
+     .
+     <p>
+      根据历史学家对人类福祉的了解，要列举他们对他的所有责难，恐怕要花上十几页纸。
+     </p>
+    </p>
+    <p>
+     <span data-begin="214.119" data-dur="0.199">
+      What
+     </span>
+     <span data-begin="214.359" data-dur="0.149">
+      do
+     </span>
+     <span data-begin="214.509" data-dur="0.229">
+      these
+     </span>
+     <span data-begin="214.739" data-dur="0.520">
+      reproaches
+     </span>
+     <span data-begin="215.259" data-dur="1.000">
+      mean
+     </span>
+     ?
+     <p>
+      这些责难意味着什么？
+     </p>
+    </p>
+    <p>
+     <span data-begin="216.300" data-dur="0.160">
+      Do
+     </span>
+     <span data-begin="216.489" data-dur="0.280">
+      not
+     </span>
+     <span data-begin="216.769" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="216.869" data-dur="0.290">
+      very
+     </span>
+     <span data-begin="217.219" data-dur="0.640">
+      actions
+     </span>
+     <span data-begin="217.859" data-dur="0.170">
+      for
+     </span>
+     <span data-begin="218.029" data-dur="0.210">
+      which
+     </span>
+     <span data-begin="218.270" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="218.410" data-dur="0.778">
+      historians
+     </span>
+     <span data-begin="219.189" data-dur="0.329">
+      praise
+     </span>
+     <span data-begin="219.520" data-dur="1.000">
+      Alexander
+     </span>
+     <span data-begin="221.369" data-dur="0.028">
+      I
+     </span>
+     (the liberal attempts at
+     <span data-begin="221.398" data-dur="1.000">
+      the
+     </span>
+     <span data-begin="222.459" data-dur="0.450">
+      beginning
+     </span>
+     <span data-begin="222.910" data-dur="0.070">
+      of
+     </span>
+     <span data-begin="223.020" data-dur="0.179">
+      his
+     </span>
+     <span data-begin="223.200" data-dur="1.000">
+      reign
+     </span>
+     , his struggle with Napoleon, the firmness he displayed in 1812 and the campaign of 1813) flow from the same sources—
+     <span data-begin="231.849" data-dur="0.160">
+      the
+     </span>
+     <span data-begin="232.599" data-dur="0.900">
+      circumstances
+     </span>
+     <span data-begin="233.499" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="233.609" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="233.829" data-dur="0.380">
+      birth
+     </span>
+     ,
+     <span data-begin="234.279" data-dur="0.680">
+      education
+     </span>
+     ,
+     <span data-begin="234.989" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="235.160" data-dur="0.190">
+      life
+     </span>
+     —
+     <span data-begin="236.029" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="236.179" data-dur="0.210">
+      made
+     </span>
+     <span data-begin="236.389" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="236.579" data-dur="0.780">
+      personality
+     </span>
+     <span data-begin="237.359" data-dur="0.220">
+      what
+     </span>
+     <span data-begin="237.579" data-dur="0.160">
+      it
+     </span>
+     <span data-begin="237.739" data-dur="0.399">
+      was
+     </span>
+     <span data-begin="238.169" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="238.309" data-dur="0.210">
+      from
+     </span>
+     <span data-begin="238.520" data-dur="0.210">
+      which
+     </span>
+     <span data-begin="238.730" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="238.899" data-dur="0.429">
+      actions
+     </span>
+     <span data-begin="239.329" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="239.450" data-dur="0.188">
+      which
+     </span>
+     <span data-begin="239.639" data-dur="0.149">
+      they
+     </span>
+     <span data-begin="239.819" data-dur="1.000">
+      blame
+     </span>
+     <span data-begin="241.259" data-dur="1.000">
+      him
+     </span>
+     (the Holy Alliance, the restoration of Poland, and the reaction of 1820 and later) also flowed?
+     <p>
+      难道历史学家们所赞扬的亚历山大一世的行为（他在位之初的自由主义尝试、他与拿破仑的斗争、他在 1812 年和 1813 年战役中表现出的坚定性）不是来自同样的源泉--他的出生、教育和生活环境--正是这些环境造就了他的人格，而他们所指责的行为（神圣同盟、波兰的复辟、1820 年及以后的反动）不也是来自这些环境吗？
+     </p>
+    </p>
+    <p>
+     <span data-begin="247.759" data-dur="0.199">
+      In
+     </span>
+     <span data-begin="247.959" data-dur="0.190">
+      what
+     </span>
+     <span data-begin="248.149" data-dur="0.179">
+      does
+     </span>
+     <span data-begin="248.329" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="248.419" data-dur="1.000">
+      substance
+     </span>
+     <span data-begin="249.499" data-dur="1.000">
+      of
+     </span>
+     those reproaches lie?
+     <p>
+      这些指责的实质是什么呢？
+     </p>
+    </p>
+    <p>
+     It lies in the fact that an historic character like Alexander I,
+     <span data-begin="255.119" data-dur="0.359">
+      standing
+     </span>
+     <span data-begin="255.509" data-dur="0.089">
+      on
+     </span>
+     <span data-begin="255.599" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="255.719" data-dur="0.370">
+      highest
+     </span>
+     <span data-begin="256.090" data-dur="0.489">
+      possible
+     </span>
+     <span data-begin="256.579" data-dur="0.539">
+      pinnacle
+     </span>
+     <span data-begin="257.169" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="257.369" data-dur="0.229">
+      human
+     </span>
+     <span data-begin="257.599" data-dur="0.520">
+      power
+     </span>
+     <span data-begin="258.599" data-dur="0.099">
+      with
+     </span>
+     <span data-begin="258.699" data-dur="0.149">
+      the
+     </span>
+     <span data-begin="258.849" data-dur="0.399">
+      blinding
+     </span>
+     <span data-begin="259.249" data-dur="0.250">
+      light
+     </span>
+     <span data-begin="259.499" data-dur="0.060">
+      of
+     </span>
+     <span data-begin="259.590" data-dur="0.429">
+      history
+     </span>
+     <span data-begin="260.069" data-dur="0.390">
+      focused
+     </span>
+     <span data-begin="260.459" data-dur="0.299">
+      upon
+     </span>
+     <span data-begin="260.840" data-dur="0.130">
+      him
+     </span>
+     ;
+     <span data-begin="261.629" data-dur="0.068">
+      a
+     </span>
+     <span data-begin="261.698" data-dur="0.411">
+      character
+     </span>
+     <span data-begin="262.109" data-dur="0.669">
+      exposed
+     </span>
+     <span data-begin="262.809" data-dur="0.089">
+      to
+     </span>
+     <span data-begin="262.899" data-dur="0.170">
+      those
+     </span>
+     <span data-begin="263.069" data-dur="0.560">
+      strongest
+     </span>
+     <span data-begin="263.629" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="263.708" data-dur="0.161">
+      all
+     </span>
+     <span data-begin="263.899" data-dur="1.000">
+      influences
+     </span>
+     :
+     <span data-begin="265.179" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="265.319" data-dur="0.750">
+      intrigues
+     </span>
+     ,
+     <span data-begin="266.129" data-dur="0.840">
+      flattery
+     </span>
+     ,
+     <span data-begin="266.999" data-dur="0.130">
+      and
+     </span>
+     <span data-begin="267.129" data-dur="1.000">
+      self
+     </span>
+     -deception inseparable from power;
+     <span data-begin="270.039" data-dur="0.120">
+      a
+     </span>
+     <span data-begin="270.160" data-dur="0.450">
+      character
+     </span>
+     <span data-begin="270.749" data-dur="0.110">
+      who
+     </span>
+     <span data-begin="270.949" data-dur="0.190">
+      at
+     </span>
+     <span data-begin="271.389" data-dur="0.359">
+      every
+     </span>
+     <span data-begin="271.749" data-dur="0.420">
+      moment
+     </span>
+     <span data-begin="272.199" data-dur="0.078">
+      of
+     </span>
+     <span data-begin="272.278" data-dur="0.211">
+      his
+     </span>
+     <span data-begin="272.489" data-dur="0.250">
+      life
+     </span>
+     <span data-begin="273.269" data-dur="0.210">
+      felt
+     </span>
+     <span data-begin="273.480" data-dur="0.058">
+      a
+     </span>
+     <span data-begin="273.539" data-dur="0.950">
+      responsibility
+     </span>
+     <span data-begin="274.489" data-dur="0.140">
+      for
+     </span>
+     <span data-begin="274.689" data-dur="0.210">
+      all
+     </span>
+     <span data-begin="274.899" data-dur="0.130">
+      that
+     </span>
+     <span data-begin="275.029" data-dur="0.160">
+      was
+     </span>
+     <span data-begin="275.189" data-dur="0.470">
+      happening
+     </span>
+     <span data-begin="275.660" data-dur="0.060">
+      in
+     </span>
+     <span data-begin="275.769" data-dur="0.340">
+      Europe
+     </span>
+     ;
+     <span data-begin="276.649" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="276.809" data-dur="0.269">
+      not
+     </span>
+     <span data-begin="277.149" data-dur="0.089">
+      a
+     </span>
+     <span data-begin="277.289" data-dur="0.780">
+      fictitious
+     </span>
+     <span data-begin="278.069" data-dur="0.149">
+      but
+     </span>
+     <span data-begin="278.249" data-dur="0.160">
+      a
+     </span>
+     <span data-begin="278.410" data-dur="0.340">
+      live
+     </span>
+     <span data-begin="278.789" data-dur="0.429">
+      character
+     </span>
+     <span data-begin="279.219" data-dur="0.060">
+      who
+     </span>
+     <span data-begin="279.969" data-dur="0.179">
+      like
+     </span>
+     <span data-begin="280.149" data-dur="0.260">
+      every
+     </span>
+     <span data-begin="280.410" data-dur="0.468">
+      man
+     </span>
+     <span data-begin="280.879" data-dur="0.179">
+      had
+     </span>
+     <span data-begin="281.059" data-dur="0.160">
+      his
+     </span>
+     <span data-begin="281.219" data-dur="0.399">
+      personal
+     </span>
+     <span data-begin="281.619" data-dur="0.560">
+      habits
+     </span>
+     ,
+     <span data-begin="282.350" data-dur="0.530">
+      passions
+     </span>
+     ,
+     <span data-begin="282.910" data-dur="1.000">
+      and
+     </span>
+     impulses toward goodness, beauty,
+     <span data-begin="285.380" data-dur="0.158">
+      and
+     </span>
+     <span data-begin="285.539" data-dur="0.459">
+      truth
+     </span>
+     —
+     <span data-begin="286.270" data-dur="0.158">
+      that
+     </span>
+     <span data-begin="286.429" data-dur="0.179">
+      this
+     </span>
+     <span data-begin="286.609" data-dur="1.000">
+      character
+     </span>
+     —
+     <span data-begin="287.809" data-dur="0.140">
+      though
+     </span>
+     <span data-begin="287.949" data-dur="0.190">
+      not
+     </span>
+     <span data-begin="288.139" data-dur="0.359">
+      lacking
+     </span>
+     <span data-begin="288.499" data-dur="0.220">
+      in
+     </span>
+     <span data-begin="288.749" data-dur="1.000">
+      virtue
+     </span>
+     (the historians do not accuse him of that)—had not the same conception of
+     <span data-begin="293.410" data-dur="1.000">
+      the
+     </span>
+     welfare of humanity fifty years ago as a present-day professor who from
+     <span data-begin="297.910" data-dur="0.199">
+      his
+     </span>
+     <span data-begin="298.109" data-dur="0.210">
+      youth
+     </span>
+     <span data-begin="298.350" data-dur="0.550">
+      upwards
+     </span>
+     <span data-begin="299.219" data-dur="0.149">
+      has
+     </span>
+     <span data-begin="299.369" data-dur="0.089">
+      been
+     </span>
+     <span data-begin="299.509" data-dur="0.669">
+      occupied
+     </span>
+     <span data-begin="300.179" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="300.329" data-dur="0.410">
+      learning
+     </span>
+     :
+     <span data-begin="301.199" data-dur="0.199">
+      that
+     </span>
+     <span data-begin="301.429" data-dur="0.500">
+      is
+     </span>
+     ,
+     <span data-begin="302.199" data-dur="0.099">
+      with
+     </span>
+     <span data-begin="302.449" data-dur="0.299">
+      books
+     </span>
+     <span data-begin="302.800" data-dur="0.160">
+      and
+     </span>
+     <span data-begin="303.029" data-dur="0.350">
+      lectures
+     </span>
+     <span data-begin="303.410" data-dur="0.110">
+      and
+     </span>
+     <span data-begin="303.520" data-dur="0.110">
+      with
+     </span>
+     <span data-begin="303.669" data-dur="0.350">
+      taking
+     </span>
+     <span data-begin="304.020" data-dur="0.299">
+      notes
+     </span>
+     <span data-begin="304.319" data-dur="0.130">
+      from
+     </span>
+     <span data-begin="304.490" data-dur="0.089">
+      them
+     </span>
+     .
+     <p>
+      那就是，像亚历山大一世这样的历史人物，站在人类权力的最高峰，历史的光辉照耀着他；他受到了所有影响中最强烈的影响：一个受到所有影响中最强烈的影响的人物： 与权力密不可分的阴谋、阿谀奉承和自欺欺人； 一个在他生命中的每时每刻都感到自己对欧洲发生的一切负有责任的人物；这位人物虽然不乏美德（历史学家并没有指责他），但他在五十年前对人类福祉的看法，与今天一位从青年时代起就致力于学习的教授不同：他从青年时代起就忙于学习，即读书、听课和做笔记。
+     </p>
+    </p>
+    <p>
+     <span data-begin="305.329" data-dur="0.140">
+      But
+     </span>
+     <span data-begin="305.470" data-dur="0.338">
+      even
+     </span>
+     <span data-begin="305.809" data-dur="0.199">
+      if
+     </span>
+     <span data-begin="306.010" data-dur="0.128">
+      we
+     </span>
+     <span data-begin="306.139" data-dur="0.450">
+      assume
+     </span>
+     <span data-begin="306.589" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="306.749" data-dur="0.329">
+      fifty
+     </span>
+     <span data-begin="307.079" data-dur="0.229">
+      years
+     </span>
+     <span data-begin="307.310" data-dur="0.199">
+      ago
+     </span>
+     <span data-begin="307.510" data-dur="0.620">
+      Alexander
+     </span>
+     <span data-begin="308.199" data-dur="0.060">
+      I
+     </span>
+     <span data-begin="308.609" data-dur="0.179">
+      was
+     </span>
+     <span data-begin="308.789" data-dur="0.550">
+      mistaken
+     </span>
+     <span data-begin="309.339" data-dur="0.199">
+      in
+     </span>
+     <span data-begin="309.539" data-dur="0.280">
+      his
+     </span>
+     <span data-begin="309.819" data-dur="0.399">
+      view
+     </span>
+     <span data-begin="310.609" data-dur="0.190">
+      of
+     </span>
+     <span data-begin="310.800" data-dur="0.138">
+      what
+     </span>
+     <span data-begin="310.939" data-dur="0.199">
+      was
+     </span>
+     <span data-begin="311.140" data-dur="0.238">
+      good
+     </span>
+     <span data-begin="311.379" data-dur="0.130">
+      for
+     </span>
+     <span data-begin="311.510" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="311.579" data-dur="0.580">
+      people
+     </span>
+     ,
+     <span data-begin="312.579" data-dur="0.110">
+      we
+     </span>
+     <span data-begin="312.689" data-dur="0.220">
+      must
+     </span>
+     <span data-begin="312.939" data-dur="0.710">
+      inevitably
+     </span>
+     <span data-begin="313.649" data-dur="0.489">
+      assume
+     </span>
+     <span data-begin="314.209" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="314.369" data-dur="0.110">
+      the
+     </span>
+     <span data-begin="314.569" data-dur="0.690">
+      historian
+     </span>
+     <span data-begin="315.289" data-dur="0.140">
+      who
+     </span>
+     <span data-begin="315.429" data-dur="0.570">
+      judges
+     </span>
+     <span data-begin="316.089" data-dur="1.000">
+      Alexander
+     </span>
+     <span data-begin="317.349" data-dur="0.130">
+      will
+     </span>
+     <span data-begin="317.509" data-dur="0.310">
+      also
+     </span>
+     <span data-begin="317.859" data-dur="0.420">
+      after
+     </span>
+     <span data-begin="318.279" data-dur="0.140">
+      the
+     </span>
+     <span data-begin="318.449" data-dur="0.520">
+      lapse
+     </span>
+     <span data-begin="318.999" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="319.089" data-dur="0.229">
+      some
+     </span>
+     <span data-begin="319.320" data-dur="0.329">
+      time
+     </span>
+     <span data-begin="319.820" data-dur="0.210">
+      turn
+     </span>
+     <span data-begin="320.060" data-dur="0.149">
+      out
+     </span>
+     <span data-begin="320.209" data-dur="0.080">
+      to
+     </span>
+     <span data-begin="320.329" data-dur="0.110">
+      be
+     </span>
+     <span data-begin="320.470" data-dur="1.000">
+      mistaken
+     </span>
+     <span data-begin="321.609" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="321.749" data-dur="0.290">
+      his
+     </span>
+     <span data-begin="322.039" data-dur="0.260">
+      view
+     </span>
+     <span data-begin="322.300" data-dur="0.158">
+      of
+     </span>
+     <span data-begin="322.459" data-dur="0.170">
+      what
+     </span>
+     <span data-begin="322.629" data-dur="0.170">
+      is
+     </span>
+     <span data-begin="322.800" data-dur="0.290">
+      good
+     </span>
+     <span data-begin="323.119" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="323.239" data-dur="1.000">
+      humanity
+     </span>
+     .
+     <span data-begin="324.669" data-dur="0.170">
+      This
+     </span>
+     <span data-begin="324.839" data-dur="0.590">
+      assumption
+     </span>
+     <span data-begin="325.429" data-dur="0.190">
+      is
+     </span>
+     <span data-begin="325.619" data-dur="0.179">
+      all
+     </span>
+     <span data-begin="325.800" data-dur="0.078">
+      the
+     </span>
+     <span data-begin="325.879" data-dur="0.149">
+      more
+     </span>
+     <span data-begin="326.029" data-dur="0.500">
+      natural
+     </span>
+     <span data-begin="326.609" data-dur="0.170">
+      and
+     </span>
+     <span data-begin="326.810" data-dur="1.000">
+      inevitable
+     </span>
+     <span data-begin="327.939" data-dur="0.260">
+      because
+     </span>
+     ,
+     <span data-begin="328.239" data-dur="0.370">
+      watching
+     </span>
+     <span data-begin="328.609" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="328.709" data-dur="0.590">
+      movement
+     </span>
+     <span data-begin="329.329" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="329.419" data-dur="0.570">
+      history
+     </span>
+     ,
+     <span data-begin="330.419" data-dur="0.099">
+      we
+     </span>
+     <span data-begin="330.519" data-dur="0.240">
+      see
+     </span>
+     <span data-begin="330.759" data-dur="0.149">
+      that
+     </span>
+     <span data-begin="330.939" data-dur="0.370">
+      every
+     </span>
+     <span data-begin="331.309" data-dur="0.269">
+      year
+     </span>
+     <span data-begin="331.579" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="331.699" data-dur="0.140">
+      with
+     </span>
+     <span data-begin="331.890" data-dur="0.250">
+      each
+     </span>
+     <span data-begin="332.140" data-dur="0.179">
+      new
+     </span>
+     <span data-begin="332.359" data-dur="0.350">
+      writer
+     </span>
+     ,
+     <span data-begin="332.899" data-dur="0.630">
+      opinion
+     </span>
+     <span data-begin="333.529" data-dur="0.240">
+      as
+     </span>
+     <span data-begin="333.769" data-dur="0.110">
+      to
+     </span>
+     <span data-begin="333.879" data-dur="0.140">
+      what
+     </span>
+     <span data-begin="334.050" data-dur="0.188">
+      is
+     </span>
+     <span data-begin="334.239" data-dur="0.269">
+      good
+     </span>
+     <span data-begin="334.509" data-dur="0.089">
+      for
+     </span>
+     <span data-begin="334.599" data-dur="0.570">
+      mankind
+     </span>
+     <span data-begin="335.169" data-dur="1.000">
+      changes
+     </span>
+     ;
+     <span data-begin="336.300" data-dur="0.168">
+      so
+     </span>
+     <span data-begin="336.469" data-dur="0.229">
+      that
+     </span>
+     <span data-begin="336.699" data-dur="0.269">
+      what
+     </span>
+     <span data-begin="336.969" data-dur="0.299">
+      once
+     </span>
+     <span data-begin="337.269" data-dur="0.199">
+      seemed
+     </span>
+     <span data-begin="337.469" data-dur="0.240">
+      good
+     </span>
+     ,
+     <span data-begin="337.980" data-dur="0.250">
+      ten
+     </span>
+     <span data-begin="338.230" data-dur="0.179">
+      years
+     </span>
+     <span data-begin="338.410" data-dur="0.288">
+      later
+     </span>
+     <span data-begin="338.699" data-dur="0.299">
+      seems
+     </span>
+     <span data-begin="339.000" data-dur="1.000">
+      bad
+     </span>
+     , and vice versa.
+     <span data-begin="340.599" data-dur="0.130">
+      And
+     </span>
+     <span data-begin="340.730" data-dur="0.160">
+      what
+     </span>
+     <span data-begin="340.890" data-dur="0.179">
+      is
+     </span>
+     <span data-begin="341.070" data-dur="0.290">
+      more
+     </span>
+     ,
+     <span data-begin="341.500" data-dur="0.078">
+      we
+     </span>
+     <span data-begin="341.579" data-dur="0.320">
+      find
+     </span>
+     <span data-begin="341.899" data-dur="0.229">
+      at
+     </span>
+     <span data-begin="342.129" data-dur="0.220">
+      one
+     </span>
+     <span data-begin="342.419" data-dur="0.420">
+      and
+     </span>
+     <span data-begin="342.929" data-dur="0.070">
+      the
+     </span>
+     <span data-begin="343.000" data-dur="0.288">
+      same
+     </span>
+     <span data-begin="343.289" data-dur="1.000">
+      time
+     </span>
+     quite contradictory views as to what is bad and
+     <span data-begin="346.629" data-dur="0.280">
+      what
+     </span>
+     <span data-begin="347.059" data-dur="0.560">
+      is
+     </span>
+     <span data-begin="348.039" data-dur="0.240">
+      good
+     </span>
+     <span data-begin="348.279" data-dur="0.140">
+      in
+     </span>
+     <span data-begin="348.419" data-dur="1.000">
+      history
+     </span>
+     :
+     <span data-begin="349.469" data-dur="0.210">
+      some
+     </span>
+     <span data-begin="349.679" data-dur="0.370">
+      people
+     </span>
+     <span data-begin="350.050" data-dur="0.440">
+      regard
+     </span>
+     <span data-begin="350.519" data-dur="0.310">
+      giving
+     </span>
+     <span data-begin="350.829" data-dur="0.060">
+      a
+     </span>
+     <span data-begin="350.890" data-dur="0.690">
+      constitution
+     </span>
+     <span data-begin="351.609" data-dur="0.099">
+      to
+     </span>
+     <span data-begin="351.820" data-dur="0.320">
+      Poland
+     </span>
+     <span data-begin="352.649" data-dur="0.140">
+      and
+     </span>
+     <span data-begin="352.789" data-dur="0.340">
+      forming
+     </span>
+     <span data-begin="353.129" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="353.219" data-dur="0.320">
+      Holy
+     </span>
+     <span data-begin="353.539" data-dur="0.560">
+      Alliance
+     </span>
+     <span data-begin="354.300" data-dur="0.218">
+      as
+     </span>
+     <span data-begin="354.519" data-dur="0.719">
+      praiseworthy
+     </span>
+     <span data-begin="355.239" data-dur="0.080">
+      in
+     </span>
+     <span data-begin="355.320" data-dur="1.000">
+      Alexander
+     </span>
+     ,
+     <span data-begin="356.619" data-dur="0.160">
+      while
+     </span>
+     <span data-begin="356.809" data-dur="0.340">
+      others
+     </span>
+     <span data-begin="357.179" data-dur="0.329">
+      regard
+     </span>
+     <span data-begin="357.509" data-dur="0.110">
+      it
+     </span>
+     <span data-begin="357.649" data-dur="0.080">
+      as
+     </span>
+     <span data-begin="357.849" data-dur="0.560">
+      blameworthy
+     </span>
+     .
+     <p>
+      但是，即使我们假定五十年前的亚历山大一世对人民福祉的看法是错误的，我们也不可避免地假定，对亚历山大作出评价的历史学家在经过一段时间后也会对人类福祉的看法产生误解。这种假设更加自然，也更加不可避免，因为观察历史的发展，我们会发现，每一年，每一位新的作家，对于什么是对人类有益的看法都会发生变化；因此，曾经看起来好的东西，十年后看起来就不好了，反之亦然。更有甚者，对于历史上的坏事和好事，我们会同时发现截然相反的观点：有些人认为亚历山大为波兰制定宪法和结成神圣同盟是值得称赞的，而另一些人则认为这是应该受到谴责的。
+     </p>
+    </p>
+    <p>
+     <span data-begin="358.439" data-dur="0.229">
+      The
+     </span>
+     <span data-begin="359.039" data-dur="0.640">
+      activity
+     </span>
+     <span data-begin="359.679" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="359.809" data-dur="0.770">
+      Alexander
+     </span>
+     <span data-begin="360.609" data-dur="0.160">
+      or
+     </span>
+     <span data-begin="360.820" data-dur="0.080">
+      of
+     </span>
+     <span data-begin="360.929" data-dur="0.550">
+      Napoleon
+     </span>
+     <span data-begin="361.550" data-dur="0.288">
+      cannot
+     </span>
+     <span data-begin="361.839" data-dur="0.099">
+      be
+     </span>
+     <span data-begin="361.939" data-dur="0.299">
+      called
+     </span>
+     <span data-begin="362.239" data-dur="0.480">
+      useful
+     </span>
+     <span data-begin="362.829" data-dur="0.080">
+      or
+     </span>
+     <span data-begin="362.939" data-dur="0.530">
+      harmful
+     </span>
+     ,
+     <span data-begin="363.499" data-dur="0.350">
+      for
+     </span>
+     <span data-begin="363.849" data-dur="0.220">
+      it
+     </span>
+     <span data-begin="364.069" data-dur="0.149">
+      is
+     </span>
+     <span data-begin="364.219" data-dur="0.550">
+      impossible
+     </span>
+     <span data-begin="364.770" data-dur="0.140">
+      to
+     </span>
+     <span data-begin="364.910" data-dur="0.308">
+      say
+     </span>
+     <span data-begin="365.219" data-dur="0.210">
+      for
+     </span>
+     <span data-begin="365.429" data-dur="0.190">
+      what
+     </span>
+     <span data-begin="365.619" data-dur="0.140">
+      it
+     </span>
+     <span data-begin="365.759" data-dur="0.210">
+      was
+     </span>
+     <span data-begin="365.999" data-dur="0.340">
+      useful
+     </span>
+     <span data-begin="366.450" data-dur="0.089">
+      or
+     </span>
+     <span data-begin="366.630" data-dur="0.489">
+      harmful
+     </span>
+     .
+     <span data-begin="367.649" data-dur="0.089">
+      If
+     </span>
+     <span data-begin="367.739" data-dur="0.170">
+      that
+     </span>
+     <span data-begin="367.939" data-dur="0.690">
+      activity
+     </span>
+     <span data-begin="368.660" data-dur="0.530">
+      displeases
+     </span>
+     <span data-begin="369.219" data-dur="1.000">
+      somebody
+     </span>
+     ,
+     <span data-begin="370.310" data-dur="0.128">
+      this
+     </span>
+     <span data-begin="370.439" data-dur="0.149">
+      is
+     </span>
+     <span data-begin="370.619" data-dur="0.280">
+      only
+     </span>
+     <span data-begin="370.899" data-dur="0.440">
+      because
+     </span>
+     <span data-begin="371.369" data-dur="0.130">
+      it
+     </span>
+     <span data-begin="371.590" data-dur="0.210">
+      does
+     </span>
+     <span data-begin="371.910" data-dur="0.128">
+      not
+     </span>
+     <span data-begin="372.039" data-dur="0.260">
+      agree
+     </span>
+     <span data-begin="372.300" data-dur="0.128">
+      with
+     </span>
+     <span data-begin="372.429" data-dur="0.190">
+      his
+     </span>
+     <span data-begin="372.669" data-dur="0.440">
+      limited
+     </span>
+     <span data-begin="373.179" data-dur="0.789">
+      understanding
+     </span>
+     <span data-begin="374.059" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="374.209" data-dur="0.210">
+      what
+     </span>
+     <span data-begin="374.450" data-dur="0.218">
+      is
+     </span>
+     <span data-begin="374.669" data-dur="1.000">
+      good
+     </span>
+     .
+     <span data-begin="375.789" data-dur="0.370">
+      Whether
+     </span>
+     <span data-begin="376.160" data-dur="0.128">
+      the
+     </span>
+     <span data-begin="376.289" data-dur="0.770">
+      preservation
+     </span>
+     <span data-begin="377.059" data-dur="0.149">
+      of
+     </span>
+     <span data-begin="377.209" data-dur="0.160">
+      my
+     </span>
+     <span data-begin="377.410" data-dur="0.338">
+      father's
+     </span>
+     <span data-begin="377.749" data-dur="0.310">
+      house
+     </span>
+     <span data-begin="378.090" data-dur="0.080">
+      in
+     </span>
+     <span data-begin="378.200" data-dur="1.000">
+      Moscow
+     </span>
+     ,
+     <span data-begin="379.359" data-dur="0.049">
+      or
+     </span>
+     <span data-begin="379.410" data-dur="0.097">
+      the
+     </span>
+     <span data-begin="379.508" data-dur="0.490">
+      glory
+     </span>
+     <span data-begin="379.999" data-dur="0.120">
+      of
+     </span>
+     <span data-begin="380.119" data-dur="0.089">
+      the
+     </span>
+     <span data-begin="380.239" data-dur="0.290">
+      Russian
+     </span>
+     <span data-begin="380.609" data-dur="1.000">
+      arms
+     </span>
+     ,
+     <span data-begin="381.749" data-dur="0.038">
+      or
+     </span>
+     <span data-begin="381.788" data-dur="0.079">
+      the
+     </span>
+     <span data-begin="381.868" data-dur="0.711">
+      prosperity
+     </span>
+     <span data-begin="382.579" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="382.689" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="382.758" data-dur="0.681">
+      Petersburg
+     </span>
+     <span data-begin="383.439" data-dur="0.120">
+      and
+     </span>
+     <span data-begin="383.639" data-dur="0.290">
+      other
+     </span>
+     <span data-begin="383.930" data-dur="1.019">
+      universities
+     </span>
+     ,
+     <span data-begin="385.439" data-dur="0.089">
+      or
+     </span>
+     <span data-begin="385.529" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="385.689" data-dur="0.310">
+      freedom
+     </span>
+     <span data-begin="385.999" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="386.179" data-dur="0.410">
+      Poland
+     </span>
+     <span data-begin="386.719" data-dur="0.080">
+      or
+     </span>
+     <span data-begin="386.800" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="386.929" data-dur="0.340">
+      greatness
+     </span>
+     <span data-begin="387.270" data-dur="0.110">
+      of
+     </span>
+     <span data-begin="387.410" data-dur="1.000">
+      Russia
+     </span>
+     , or the balance of power in Europe, or
+     <span data-begin="389.889" data-dur="0.110">
+      a
+     </span>
+     <span data-begin="390.609" data-dur="0.370">
+      certain
+     </span>
+     <span data-begin="390.980" data-dur="0.599">
+      kind
+     </span>
+     <span data-begin="391.609" data-dur="0.060">
+      of
+     </span>
+     <span data-begin="391.700" data-dur="0.508">
+      European
+     </span>
+     <span data-begin="392.209" data-dur="0.380">
+      culture
+     </span>
+     <span data-begin="392.590" data-dur="0.250">
+      called
+     </span>
+     "
+     <span data-begin="392.899" data-dur="0.610">
+      progress
+     </span>
+     "
+     <span data-begin="393.910" data-dur="0.320">
+      appear
+     </span>
+     <span data-begin="394.230" data-dur="0.138">
+      to
+     </span>
+     <span data-begin="394.369" data-dur="0.199">
+      me
+     </span>
+     <span data-begin="394.569" data-dur="0.130">
+      to
+     </span>
+     <span data-begin="394.700" data-dur="0.140">
+      be
+     </span>
+     <span data-begin="394.869" data-dur="0.250">
+      good
+     </span>
+     <span data-begin="395.209" data-dur="0.070">
+      or
+     </span>
+     <span data-begin="395.309" data-dur="0.350">
+      bad
+     </span>
+     ,
+     <span data-begin="396.189" data-dur="0.120">
+      I
+     </span>
+     <span data-begin="396.309" data-dur="0.260">
+      must
+     </span>
+     <span data-begin="396.569" data-dur="0.350">
+      admit
+     </span>
+     <span data-begin="396.919" data-dur="0.140">
+      that
+     </span>
+     <span data-begin="397.059" data-dur="0.570">
+      besides
+     </span>
+     <span data-begin="397.629" data-dur="0.260">
+      these
+     </span>
+     <span data-begin="397.919" data-dur="0.190">
+      things
+     </span>
+     <span data-begin="398.689" data-dur="0.099">
+      the
+     </span>
+     <span data-begin="398.789" data-dur="0.399">
+      action
+     </span>
+     <span data-begin="399.189" data-dur="0.089">
+      of
+     </span>
+     <span data-begin="399.450" data-dur="0.329">
+      every
+     </span>
+     <span data-begin="399.779" data-dur="0.530">
+      historic
+     </span>
+     <span data-begin="400.309" data-dur="0.500">
+      character
+     </span>
+     <span data-begin="400.809" data-dur="0.220">
+      has
+     </span>
+     <span data-begin="401.099" data-dur="0.260">
+      other
+     </span>
+     <span data-begin="401.359" data-dur="0.179">
+      more
+     </span>
+     <span data-begin="401.590" data-dur="1.000">
+      general
+     </span>
+     purposes inaccessible to me.
+     <p>
+      亚历山大或拿破仑的活动不能说是有益或有害的，因为不可能说它对什么是有益或有害的。如果有人不喜欢这种活动，那只是因为它不符合他对 "善 "的有限理解。无论在我看来，保护我父亲在莫斯科的房子、俄罗斯武器的荣耀、彼得堡和其他大学的繁荣、波兰的自由或俄罗斯的伟大、欧洲的力量平衡或某种被称为 "进步 "的欧洲文化是好是坏，我都必须承认，除了这些事情之外，每个历史人物的行动还有其他更普遍的目的，而我是无法理解的。
+     </p>
+    </p>
+    <p>
+     But let us assume that what is called science can harmonize all contradictions and possesses an unchanging standard of good and bad by which to try historic characters and events; let us say that Alexander could have done everything differently; let us say that with guidance from those who blame him and who profess to know the ultimate aim of the movement of humanity, he might have arranged matters according to the program his present accusers would have given him—of nationality, freedom, equality, and progress (these, I think, cover the ground). Let us
+     <span data-begin="440.490" data-dur="0.740">
+      assume
+     </span>
+     <span data-begin="441.259" data-dur="0.099">
+      that
+     </span>
+     <span data-begin="441.359" data-dur="0.190">
+      this
+     </span>
+     <span data-begin="441.550" data-dur="0.528">
+      program
+     </span>
+     <span data-begin="442.079" data-dur="0.149">
+      was
+     </span>
+     <span data-begin="442.229" data-dur="1.000">
+      possible
+     </span>
+     <span data-begin="443.410" data-dur="0.118">
+      and
+     </span>
+     <span data-begin="443.529" data-dur="0.310">
+      had
+     </span>
+     <span data-begin="443.919" data-dur="0.269">
+      then
+     </span>
+     <span data-begin="444.189" data-dur="0.210">
+      been
+     </span>
+     <span data-begin="444.429" data-dur="1.000">
+      formulated
+     </span>
+     ,
+     <span data-begin="445.630" data-dur="0.210">
+      and
+     </span>
+     <span data-begin="445.889" data-dur="0.229">
+      that
+     </span>
+     <span data-begin="446.149" data-dur="0.590">
+      Alexander
+     </span>
+     <span data-begin="446.740" data-dur="0.220">
+      had
+     </span>
+     <span data-begin="446.990" data-dur="0.438">
+      acted
+     </span>
+     <span data-begin="447.429" data-dur="0.170">
+      on
+     </span>
+     <span data-begin="447.669" data-dur="0.130">
+      it
+     </span>
+     .
+     <span data-begin="448.429" data-dur="0.199">
+      What
+     </span>
+     <span data-begin="448.630" data-dur="0.140">
+      would
+     </span>
+     <span data-begin="448.820" data-dur="0.269">
+      then
+     </span>
+     <span data-begin="449.089" data-dur="0.210">
+      have
+     </span>
+     <span data-begin="449.350" data-dur="0.390">
+      become
+     </span>
+     <span data-begin="449.770" data-dur="0.168">
+      of
+     </span>
+     <span data-begin="449.939" data-dur="0.120">
+      the
+     </span>
+     <span data-begin="450.059" data-dur="0.719">
+      activity
+     </span>
+     <span data-begin="450.779" data-dur="0.099">
+      of
+     </span>
+     <span data-begin="451.089" data-dur="0.089">
+      all
+     </span>
+     <span data-begin="451.179" data-dur="0.229">
+      those
+     </span>
+     <span data-begin="451.439" data-dur="0.130">
+      who
+     </span>
+     <span data-begin="451.600" data-dur="0.470">
+      opposed
+     </span>
+     <span data-begin="452.100" data-dur="0.068">
+      the
+     </span>
+     <span data-begin="452.169" data-dur="1.000">
+      tendency
+     </span>
+     <span data-begin="453.270" data-dur="0.160">
+      that
+     </span>
+     <span data-begin="453.460" data-dur="0.179">
+      then
+     </span>
+     <span data-begin="453.639" data-dur="0.450">
+      prevailed
+     </span>
+     in the government—an activity that
+     <span data-begin="454.119" data-dur="0.110">
+      in
+     </span>
+     the opinion of the historians was good and beneficent? Their activity would not have existed: there would have been no life, there would have been nothing.
+     <p>
+      但是，让我们假定，所谓的科学能够调和所有矛盾，并拥有一个不变的好坏标准来衡量历史人物和历史事件；让我们假定，亚历山大本可以以不同的方式做每一件事；让我们假定，在那些指责他并声称了解人类运动最终目标的人的指导下，他本可以按照他现在的指控者给他的方案来安排事情--民族、自由、平等和进步（我认为这些已经涵盖了全部内容）。让我们假设这个方案是可能的，而且当时已经制定出来，亚历山大也按照这个方案采取了行动。那么，所有反对当时政府中盛行的倾向的人的活动--在历史学家看来是善意和有益的活动--会变成什么样子呢？他们的活动将不复存在：生命将不复存在，一切都将不复存在。
+     </p>
+    </p>
+    <p>
+     If we admit that human life can be ruled by reason,
+     <span data-begin="454.259" data-dur="1.000">
+      the
+     </span>
+     possibility of life is destroyed.
+     <p>
+      如果我们承认人的生命可以被理性所支配，那么生命的可能性就被摧毁了。
+     </p>
+    </p>
+   </div>
+  </article>
+  <footer class="credits">
+   <p>
+    阅读外语经典，了解世界文化，复兴中华文明
+   </p>
+   <p>
+    听语族外语软件工作室出品 湖南长沙 联系人：李涉川 微信 Tingyuzu.
+   </p>
+  </footer>
+ </body>
+ <script type="text/javascript">
+  /**
+ * HTML5 Audio Read-Along
+ * @author Weston Ruter, X-Team
+ * @license MIT/GPL
+ * https://github.com/westonruter/html5-audio-read-along
+ */
+var ReadAlong = {
+    text_element: null,
+    audio_element: null,
+    autofocus_current_word: true,
+
+    words: [],
+
+    init: function (args) {
+        var name;
+        for (name in args) {
+            this[name] = args[name];
+        }
+        this.generateWordList();
+        this.addEventListeners();
+        this.selectCurrentWord();
+    },
+
+    /**
+     * Build an index of all of the words that can be read along with their begin,
+     * and end times, and the DOM element representing the word.
+     */
+    generateWordList: function () {
+        var word_els = this.text_element.querySelectorAll('[data-begin]');
+        this.words = Array.prototype.map.call(word_els, function (word_el, index) {
+            var word = {
+                'begin': parseFloat(word_el.dataset.begin),
+                'dur': parseFloat(word_el.dataset.dur),
+                'element': word_el
+            };
+            word_el.tabIndex = 0; // to make it focusable/interactive
+            word.index = index;
+            word.end = word.begin + word.dur;
+            word_el.dataset.index = word.index;
+            return word;
+        });
+    },
+
+    /**
+     * From the audio's currentTime, find the word that is currently being played
+     * @todo this would better be implemented as a binary search
+     */
+    getCurrentWord: function () {
+        var i;
+        var len;
+        var is_current_word;
+        var word = null;
+        for (i = 0, len = this.words.length; i < len; i += 1) {
+            is_current_word = (
+                (
+                    this.audio_element.currentTime >= this.words[i].begin
+                    &&
+                    this.audio_element.currentTime < this.words[i].end
+                )
+                ||
+                (this.audio_element.currentTime < this.words[i].begin)
+            );
+            if (is_current_word) {
+                word = this.words[i];
+                break;
+            }
+        }
+
+        if (!word) {
+            throw Error('Unable to find current word and we should always be able to.');
+        }
+        return word;
+    },
+
+    _current_end_select_timeout_id: null,
+    _current_next_select_timeout_id: null,
+
+    /**
+     * Select the current word and set timeout to select the next one if playing
+     */
+    selectCurrentWord: function() {
+        var that = this;
+        var current_word = this.getCurrentWord();
+        var is_playing = !this.audio_element.paused;
+
+        if (!current_word.element.classList.contains('speaking')) {
+            this.removeWordSelection();
+            current_word.element.classList.add('speaking');
+            if (this.autofocus_current_word) {
+                current_word.element.focus();
+            }
+        }
+
+        /**
+         * The timeupdate Media event does not fire repeatedly enough to be
+         * able to rely on for updating the selected word (it hovers around
+         * 250ms resolution), so we add a setTimeout with the exact duration
+         * of the word.
+         */
+        if (is_playing) {
+            // Remove word selection when the word ceases to be spoken
+            var seconds_until_this_word_ends = current_word.end - this.audio_element.currentTime; // Note: 'word' not 'world'! ;-)
+            if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                seconds_until_this_word_ends *= 1.0/this.audio_element.playbackRate;
+            }
+            clearTimeout(this._current_end_select_timeout_id);
+            this._current_end_select_timeout_id = setTimeout(
+                function () {
+                    if (!that.audio_element.paused) { // we always want to have a word selected while paused
+                        current_word.element.classList.remove('speaking');
+                    }
+                },
+                Math.max(seconds_until_this_word_ends * 1000, 0)
+            );
+
+            // Automatically trigger selectCurrentWord when the next word begins
+            var next_word = this.words[current_word.index + 1];
+            if (next_word) {
+                var seconds_until_next_word_begins = next_word.begin - this.audio_element.currentTime;
+
+                var orig_seconds_until_next_word_begins = seconds_until_next_word_begins; // temp
+                if (typeof this.audio_element === 'number' && !isNaN(this.audio_element)) {
+                    seconds_until_next_word_begins *= 1.0/this.audio_element.playbackRate;
+                }
+                clearTimeout(this._current_next_select_timeout_id);
+                this._current_next_select_timeout_id = setTimeout(
+                    function () {
+                        that.selectCurrentWord();
+                    },
+                    Math.max(seconds_until_next_word_begins * 1000, 0)
+                );
+            }
+        }
+
+    },
+
+    removeWordSelection: function() {
+        // There should only be one element with .speaking, but selecting all for good measure
+        var spoken_word_els = this.text_element.querySelectorAll('span[data-begin].speaking');
+        Array.prototype.forEach.call(spoken_word_els, function (spoken_word_el) {
+            spoken_word_el.classList.remove('speaking');
+        });
+    },
+
+
+    addEventListeners: function () {
+        var that = this;
+
+        /**
+         * Select next word (at that.audio_element.currentTime) when playing begins
+         */
+        that.audio_element.addEventListener('play', function (e) {
+            that.selectCurrentWord();
+            that.text_element.classList.add('speaking');
+        }, false);
+
+        /**
+         * Abandon seeking the next word because we're paused
+         */
+        that.audio_element.addEventListener('pause', function (e) {
+            that.selectCurrentWord(); // We always want a word to be selected
+            that.text_element.classList.remove('speaking');
+        }, false);
+
+        /**
+         * Seek by selecting a word (event delegation)
+         */
+        function on_select_word_el(e) {
+            if (!e.target.dataset.begin) {
+                return;
+            }
+            e.preventDefault();
+
+            var i = e.target.dataset.index;
+            that.audio_element.currentTime = that.words[i].begin + 0.01; //Note: times apparently cannot be exactly set and sometimes select too early
+            that.selectCurrentWord();
+        }
+        that.text_element.addEventListener('click', on_select_word_el, false);
+        that.text_element.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 13 /*Enter*/) {
+                on_select_word_el.call(this, e);
+            }
+        }, false);
+
+        /**
+         * Spacebar toggles playback
+         */
+        document.addEventListener('keypress', function (e) {
+            if ( (e.charCode || e.keyCode) === 32 /*Space*/) {
+                e.preventDefault();
+                if (that.audio_element.paused) {
+                    that.audio_element.play();
+                }
+                else {
+                    that.audio_element.pause();
+                }
+            }
+        }, false);
+
+        /**
+         * First click handler sets currentTime to the word, and second click
+         * here then causes it to play.
+         * @todo Should it stop playing once the duration is over?
+         */
+        that.text_element.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            that.audio_element.play();
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('seeked', function (e) {
+            that.selectCurrentWord();
+
+            /**
+             * Address probem with Chrome where sometimes it seems to get stuck upon seeked:
+             * http://code.google.com/p/chromium/issues/detail?id=99749
+             */
+            var audio_element = this;
+            if (!audio_element.paused) {
+                var previousTime = audio_element.currentTime;
+                setTimeout(function () {
+                    if (!audio_element.paused && previousTime === audio_element.currentTime) {
+                        audio_element.currentTime += 0.01; // Attempt to unstick
+                    }
+                }, 500);
+            }
+        }, false);
+
+        /**
+         * Select a word when seeking
+         */
+        that.audio_element.addEventListener('ratechange', function (e) {
+            that.selectCurrentWord();
+        }, false);
+    }
+};
+ </script>
+ <script type="text/javascript">
+  /*global ReadAlong */
+window.addEventListener('load', function (e) {
+    try {
+        var args = {
+            text_element: document.getElementById('passage-text'),
+            audio_element: document.getElementById('passage-audio'),
+            autofocus_current_word: document.getElementById('autofocus-current-word').checked
+        };
+
+        if (!args.audio_element.canPlayType) {
+            // No error messaging is needed because error message appears in <audio> fallback
+            throw new Error('HTML5 Audio not supported');
+        }
+        if (args.audio_element.networkState === args.audio_element.NETWORK_NO_SOURCE) {
+            document.querySelector('.passage-audio-unavailable').hidden = false;
+            throw new Error('Cannot play any of the available sources');
+        }
+
+        var supports_playback_rate = (function (audio) {
+            if (typeof audio.playbackRate !== 'number' || isNaN(audio.playbackRate)) {
+                return false;
+            }
+
+            // For Opera, since it doesn't currently support playbackRate and yet
+            // has it defined as 1.0, we can detect Opera support by changing
+            // the playbackRate and see if the change sticks.
+            var original_playback_rate = audio.playbackRate;
+            audio.playbackRate += 1.0;
+            var is_playback_rate_changed = (original_playback_rate !== audio.playbackRate);
+            audio.playbackRate = original_playback_rate;
+            return is_playback_rate_changed;
+        }(args.audio_element));
+
+        if (supports_playback_rate) {
+            var rate_range_element = document.getElementById('playback-rate');
+            rate_range_element.disabled = false;
+            rate_range_element.addEventListener('change', function (e) {
+                args.audio_element.playbackRate = this.valueAsNumber;
+            }, false);
+        }
+        else {
+            document.querySelector('.playback-rate-unavailable').hidden = false;
+        }
+
+        ReadAlong.init(args);
+
+        document.getElementById('autofocus-current-word').addEventListener('change', function (e) {
+            ReadAlong.autofocus_current_word = this.checked;
+        }, false);
+
+        document.querySelector('.passage-audio').hidden = false;
+        if (supports_playback_rate) {
+            document.querySelector('.playback-rate').hidden = false;
+        }
+        document.querySelector('.autofocus-current-word').hidden = false;
+    }
+    catch (err) {
+        console.error(err);
+    }
+    document.body.classList.add('initialized');
+    document.querySelector('.loading').hidden = true;
+}, false);
+ </script>
+</html>
